@@ -1,0 +1,641 @@
+body {margin:0px;padding:0px;font-family: 'Samsung Sharp Sans';}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+
+}
+
+body {
+  overflow: hidden !important;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+
+    max-width: 94%;
+}
+
+.row {
+    flex-grow: 1;
+    width: 100%;
+    margin-bottom: 20px;
+    --bs-gutter-x: 1.9rem;
+   
+}
+
+.centerauto {
+  margin: auto;
+  text-align: center;
+  padding-top: 30px;
+}
+
+.card {
+    height: 100%;
+    border-radius: 30px;
+    border:solid 0px;
+}
+
+.no-margin-right {
+    width: 100%;
+    border: solid 1px;
+}
+
+.full-height {
+    height: 100%;
+}
+
+.margin-bottom-20 {
+    margin-bottom: 20px; /* Adicionando margem inferior de 20px */
+}
+
+.header-links {text-decoration: none;}
+
+.svg-icone {max-width: 48px;margin:auto;margin-left:12px;}
+.svg-icone2 {
+  max-width: 43px;
+  margin: auto;
+  margin-left: -33px;
+  margin-top: 9px;
+}
+
+.selecione {background: #000;border-bottom-left-radius: 30px;border-bottom-right-radius: 30px;max-height: 90%;text-align: center;max-height: 70px;}
+.selecione-black {background: #fff;border-bottom-left-radius: 30px;border-bottom-right-radius: 30px;max-height: 90%;text-align: center;max-height: 70px;}
+.selecione-black .title-selecione {color:#000;margin:auto;font-size:22px;line-height: 40px;}
+.title-selecione {color:#fff;margin:auto;font-size:22px;line-height: 40px;}
+video {max-width: 100%;}
+.videoPromo {
+  max-width: 93%;
+  margin-left: 2%;
+}
+
+.bac-verde {background:#97d653;}
+.bac-preto {background:#000;}
+.bac-azul {background:#0278cc;color:#fff;}
+.bac-azul-medio {background: #04b3e2;color:#fff;}
+.bac-lilas {background:#e8dafd;}
+.bac-violeta {background: rgb(183,183,201);
+  background: linear-gradient(340deg, rgba(183,183,201,1) 35%, rgba(255,255,255,1) 100%);border:solid 1px;}
+.bac-branco {background:#fff;border:solid 1px;}
+.bac-cinza {background:#f8f8f8;border:solid 1px;}
+.bac-cinza2 {background: #eeeeee;}
+
+.bac-verde-agua {background:#b1cbc4;}
+.bac-verde-agua-claro {background:#d7e8de;}
+.bac-cinza-fa {background:#fafafa;border:solid 1px;}
+.bac-cinza-f4 {background:#f4f4f4;border:solid 1px;}
+.bac-cinza-f4-2 {background:#f4f4f4;}
+.bac-cinza-f5 {background:#f5f5f5;border:solid 1px;}
+.bac-cinza-fe {background:#fefefe;border:solid 1px;}
+.bac-cinza-fe-2 {background:#fefefe;}
+.bac-roxo {background:#3d367e;}
+.bac-verde-claro {background:#e5f1a9;}
+.bac-lilas-escuro {background:#5d4656;}
+.bac-lilas-claro {background:#d0cce5;}
+.bac-azul-claro {background: #6091c9;}
+.bac-marrom-alaranjado {background: #c86f39;}
+.bac-transparente {background: rgba(255,255,255,0);}
+.bac-verde-agua-claro-2 {background:#def4ec;}
+.bac-verde-agua-claro-fe {background:#e1f2eb;}
+.bac-verde-agua-claro-3 {background:#ebf2e0;}
+.bac-caqui {background:#76766e;}
+.bac-azul-escuro {background: #0e2443;}
+.bac-gelo {background: #eaeff5;}
+
+.background-s23 { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/smartphone/galaxy-s23_bg.png');
+  background-size: cover;
+}
+
+.background-s23fe { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/smartphone/galaxy-s23fe_bg.png');
+  background-size: cover;
+}
+
+.background-s23fe { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/smartphone/galaxy-s23fe_bg.png');
+  background-size: cover;
+}
+
+.bac-s23fe_03b { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/smartphone/galaxy-s23fe_03b.png');
+  background-size: cover;
+}
+
+.bac-s23fe_03a { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/smartphone/galaxy-s23fe_03a.png');
+  background-size: cover;
+}
+
+.bac-s23fe_02 { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/smartphone/galaxy-s23fe_02.png');
+  background-size: cover;
+}
+
+.background-zfold { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/smartphone/galaxy-zfold_bg.png');
+  background-size: cover;
+}
+
+.background-zflip { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/smartphone/galaxy-zflip_bg.png');
+  background-size: cover;
+}
+
+.seta-preta {
+    position: absolute;
+    top: 68px;
+    left: 50%;
+    margin-left: -28px;
+    max-width: 50px;
+    
+}
+
+.botoes {
+    padding: 0px !important;
+    max-width: 86%;
+    align-items: center !important;
+    display: flex;
+}
+
+.botoes-left {padding-right: 0px;}
+
+
+
+@font-face {
+    font-family: 'Samsung Sharp Sans';
+    src: url("../css/SamsungSharpSans-Bold.woff2") format("woff2"), url("../css/SamsungSharpSans-Bold.woff") format("woff");
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Samsung InterFace';
+    src: url("../css/SamsungIF_Rg.ttf") format('truetype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'Samsung InterFace Bold';
+    src: url("../css/SamsungIF.ttf") format('truetype');
+    font-weight: 800;
+    font-display: swap;
+  }
+  
+  @font-face {
+    font-family: 'SamsungOne';
+    src: url("../css/SamsungOne-400.ttf") format('truetype');
+    font-weight: bolder;
+    font-style: normal;
+    font-display: swap;
+  }
+  
+
+  .card-title {font-size: 26px;}
+  .card-center {margin:auto;text-align: center;}
+
+  .respiro-categoria {
+    padding: 25px;
+    text-align: center;
+    padding-bottom: 10px;
+}
+  .card-title.categoria {
+    font-size: 29px;
+    text-align: left;
+    color:#000;
+}
+.card-title.categoria.color-branco {color:#fff;}
+
+  .botoes {padding-top:15px;}
+
+  img {
+    max-width: 100%;
+}
+
+.color-branco {color:#ffffff}
+
+.image-scroll {
+  width: 100%; /* ou o valor desejado */
+  max-width: 97%; /* garante que a imagem não ultrapasse a largura do contêiner */
+  transition: transform 0.3s ease-in-out; /* adiciona uma transição suave ao efeito de escala */
+}
+
+
+.col-md-12 img {
+  padding: 0px !important;
+  width: 150%;
+  max-width: 115% !important;
+  margin-left:-7%;
+}
+
+.card.bac-lilas img {
+  max-width: 91%;
+  padding-top: 57px;
+}
+
+.align-items-center {
+  align-items: center!important;
+  display: block !important;
+  text-align: center;
+}
+
+.respiro-categoria {
+  margin:auto;
+  max-width: 100%;
+}
+
+.col-md-12 .respiro-categoria {
+  max-width: 76%;
+  margin: auto;
+}
+
+.card-title.categoria {
+  font-size: 29px;
+  text-align: left;
+  left: 0;
+  position: absolute;
+  margin-left: 30px;
+}
+
+
+.trava-botoes {max-height: 346px;}
+
+.volta-lojista {position: absolute;z-index: 99999999;}
+.volta-lojista button {
+  background: none;
+  width: 40px;
+  height: 40px;
+  border: solid 0px !important;
+}
+
+
+    /* Estilos para o overlay de carregamento */
+    #loading-overlay {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.8);
+      z-index: 9999;
+      opacity: 0;
+      transition: opacity 0.5s;
+      font-family: 'Samsung Sharp Sans';
+  }
+
+  .button {
+    margin: 0 auto;
+    width: 1042px;
+    border: 2px solid #2089ff;
+    border-radius: 30px;
+    box-shadow: 30px 30px #000000;
+    background-color: #2089ff;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 80px 0 110px;
+    scale: 0.7;
+    margin-left: -140px;
+    color: #ffffff;
+}
+
+h2 {
+
+  font-size: 90px;
+}
+
+.div_button {
+  position: absolute;
+  bottom: 0px;
+  margin: auto;
+  text-align: center;
+  width: 100%;
+}
+
+a.btn_start {
+  text-decoration: none;
+}
+
+
+a,video,.btn_start,.div_button,button,.card,.button,.centerauto,.col-md-12,.col-md-6 {
+  transition: transform 0.3s; /* Defina a duração desejada (por exemplo, 0.3 segundos) */
+
+}
+
+a:active,video:active,.btn_start:active,.card:active,.button:active,.col-md-12:active,.col-md-6:active {
+  transform: scale(0.8); /* Use 'scale' para suavizar a transição de zoom */
+}
+
+button:active {
+  transform: scale(0.8); /* Use 'scale' para suavizar a transição de zoom */
+  
+}
+
+.primeira-linha {max-height: 70px;}
+
+.primeira-linha .card {background: transparent !important;}
+
+.destaques .card-title.categoria {
+  position: absolute;
+  z-index: 99;
+  margin-top:10px;
+}
+
+#carousel-promo .videos {
+  max-width: 95%;
+  margin-left: 2%;
+}
+
+#carousel-promo {
+  position: absolute;
+  max-width: 90% !important;
+  width: 100%;
+  bottom: -7px;
+}
+
+#carousel-promo, .destaques h5 {
+  display: none;
+}
+
+.institucionais {
+  position: absolute;
+  z-index: 9999999999;
+  margin: auto;
+  max-width: 100%;
+}
+
+.title-selecione.parte2 {
+  color: #fff;
+  margin: auto;
+  font-size: 30px;
+}
+
+.bacCategorias {width: 100%;background-size: cover !important;border-radius: 30px;}
+
+ 
+.pagina-produto {background-position: 0px -8px;}
+
+.pagina-produto .col-md-12 img {
+  padding: 0px !important;
+  width: 100%;
+  max-width: 100% !important;
+  margin-left: 0%;
+}
+.pagina-produto .col-md-12 .respiro-categoria {
+  max-width: 100%;
+  margin: auto;
+}
+
+.pagina-produto .respiro-categoria {
+  padding: 0px;
+  text-align: center;
+  padding-bottom: 0px;
+}
+
+.pagina-produto .image-scroll {
+  max-width: 100%;
+  height: -webkit-fill-available;
+}
+.pagina-produto .centerauto {padding-top:0px;}
+.pagina-produto .card-title.categoria {padding-top: 32px;font-size:32px;}
+
+.pagina-produto .trava-botoes {
+  max-height: 230px;
+  margin-bottom: 0px;
+}
+
+
+
+.pagina-produto .card-title.categoria {left:auto;}
+
+.pagina-produto .trava-botoes .card-title.categoria {
+  padding-top: 80px;
+}
+.pagina-produto .trava-botoes img {
+  margin-top: -18px;
+  max-width: 85% !important;
+  margin-left: 118px;
+  margin-bottom: -15px;
+}
+
+.bottom-title {
+  margin-top: 55% !important;
+}
+
+.borda {
+  border: solid 1px #999;
+  border-radius: 30px;
+}
+
+.pagina-produto video {border-radius: 30px;}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+
+
+.card-title.categoria {
+  opacity: 0; /* Inicialmente oculto */
+  animation-name: fadeIn;
+  animation-duration: 3s; /* Duração da animação de fade-in */
+  animation-fill-mode: forwards; /* Mantém o estado final após a animação */
+}
+
+.right-title {
+  right: 90px;
+ 
+}
+
+.bac-watch5pro {
+  background: url(../img/galaxy-watch5pro_bg.png);
+  background-size: contain;
+  background-color: #000;
+}
+
+
+.vertical-center {
+  vertical-align: middle;
+  display: flex;
+  align-content: center;
+  margin-bottom: -4%;
+}
+
+.feature h3 {
+  font-size: 42px;
+  line-height: 52px;
+  margin-bottom: 20px;
+}
+
+.box-paragraph {
+  margin: 0 auto 35px;
+  font-size: 26px;
+  line-height: 36px;
+  font-family: 'Samsung InterFace';
+  text-align: center;
+}
+
+.box-paragraph strong {
+  margin: 0 auto;
+  font-weight: 800;
+  font-family: 'Samsung InterFace Bold';
+}
+
+.feature video {
+  max-width: 114%;
+  margin-left: -7%;
+}
+
+.box-tj {
+  font-family: 'SamsungOne';
+  font-size: 4px !important;
+  margin: 25px auto;
+  line-height: 1.5;
+  text-align: center;
+  opacity: 0.3;
+  color: #fff;
+}
+
+.color-red {color:#fd5051;}
+.color-red-dark {color:#c03a36;}
+.color-verde-claro {color:#c2d5ca;}
+.color-preto {color:#000;}
+.color-verde-escuro {color:#79af68;}
+.bac-bege {background:#f1ebe1;}
+
+.feature .card,.bac-cinza-escuro {background:#212121;}
+.feature .svg-icone2 {opacity: 0.3;}
+
+
+.text-strong {  margin: 0 auto;
+  font-weight: 800;
+  font-family: 'Samsung InterFace Bold';}
+
+  .video-zfold {margin-left:20% !important;margin-bottom: -170px;}
+
+  .S6 video {
+    position: absolute;
+    z-index: 1;
+    top: -17%;
+    right: -4%;
+}
+
+.S62 video {
+  position: absolute;
+  z-index: 1;
+  top: -3%;
+  right: 0;
+  max-width: 102%;
+}
+
+.watch6 video {
+  position: absolute;
+  z-index: 1;
+  top: -9%;
+  right: 0;
+  max-width: 102%;
+}
+
+.feature .primeira-linha {
+    max-height: 70px;
+    position: absolute;
+    z-index: 9;
+    right: 0px;
+}
+
+.S6content {position: absolute;z-index: 999;top:20%;}
+.budscontent {position: absolute;z-index: 999;top:25%;}
+.budscontent2 {position: absolute;z-index: 999;top:38%;}
+.watch5pro {position: absolute;z-index: 999;top:15%;}
+
+.budscontent h3 {
+  font-size: 33px;
+  line-height: 41px;
+  margin-bottom: 20px;
+}
+
+.budscontent2 .box-paragraph, .budscontent .box-paragraph {
+  font-size: 21px;
+  line-height: 27px;
+}
+
+.buds2 video {
+  position: absolute;
+  z-index: 1;
+  top: -12%;
+  right: -1%;
+}
+
+.bus3 video {
+  position: absolute;
+  z-index: 1;
+  top: 0%;
+  right: -2%;
+  max-width: 99%;
+}
+
+  .text-right {text-align: right;}
+  .text-left {text-align: left;}
+  .text-justify {text-align: justify;}
+
+  .watchcontent {
+    position: absolute;
+    z-index: 999;
+    top: 15%;
+}
+
+  .txt-grey {
+    color: #646464;
+}
+
+.txt-blue {
+  color: #47a8cd;
+}
+
+.txt-green2,.txt-green {
+  color: #80c606;
+}
+
+.tit-orange {
+  color: #ff7f0c;
+  font-size:34px !important;
+  line-height: 42px !important;
+}
+
+.color-lilas {color: #d5cae5;}
+
+.bac-budsfe-1 video {
+  max-width: 74%;
+  margin-left: 0;
+}
+.bac-budsfe-1 {
+  background: url(../img/galaxy-budsfe-feature2_bg.jpg);
+  background-size: cover;
+  background-position: 0%;
+}
