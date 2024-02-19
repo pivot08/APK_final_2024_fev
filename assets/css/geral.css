@@ -376,3 +376,13 @@ button:active {
 }
 
 .title-descubra-galaxy-ai {font-size: 16px !important;}
+
+
+
+.videoIntro {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+}
