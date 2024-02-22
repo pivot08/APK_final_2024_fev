@@ -50,16 +50,16 @@
                     <div class="card">
                         <ul class="nav nav-pills nav-justified" id="myTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <img src="assets/img/seta.png" width="10%" style="margin:0 auto; visibility: hidden">
-                                <button class="nav-link" id="pos-pago" data-bs-toggle="tab" data-bs-target="#pos-pago-tab-pane" type="button" role="tab" aria-controls="pos-pago-tab-pane" aria-selected="true"><h3 class="arial">PÓS-PAGO</h3></button>
+                                <img class="seta-img" src="assets/img/seta.png" width="10%" style="margin:0 auto; visibility: hidden">
+                                <button id="pos-pago-btn" class="nav-link" id="pos-pago" data-bs-toggle="tab" data-bs-target="#pos-pago-tab-pane" type="button" role="tab" aria-controls="pos-pago-tab-pane" aria-selected="true"><h3 class="arial">PÓS-PAGO</h3></button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <img src="assets/img/seta.png" width="10%" style="margin:0 auto; visibility:visible">
-                                <button class="nav-link active" id="controle-tab" data-bs-toggle="tab" data-bs-target="#controle-tab-pane" type="button" role="tab" aria-controls="controle-tab-pane" aria-selected="true"><h3 class="arial">CONTROLE</h3></button>
+                                <img class="seta-img" src="assets/img/seta.png" width="10%" style="margin:0 auto; visibility:visible">
+                                <button id="controle-btn" class="nav-link active" id="controle-tab" data-bs-toggle="tab" data-bs-target="#controle-tab-pane" type="button" role="tab" aria-controls="controle-tab-pane" aria-selected="true"><h3 class="arial">CONTROLE</h3></button>
                             </li>
                             <li class="nav-item" role="presentation">
-                                <img src="assets/img/seta.png" width="10%" style="margin:0 auto; visibility: hidden">
-                                <button class="nav-link" id="pre-pago-tab" data-bs-toggle="tab" data-bs-target="#pre-pago-tab-pane" type="button" role="tab" aria-controls="pre-pago-tab-pane" aria-selected="true"><h3 class="arial">PRÉ-PAGO</h3></button>
+                                <img class="seta-img" src="assets/img/seta.png" width="10%" style="margin:0 auto; visibility: hidden">
+                                <button id="pre-pago-btn" class="nav-link" id="pre-pago-tab" data-bs-toggle="tab" data-bs-target="#pre-pago-tab-pane" type="button" role="tab" aria-controls="pre-pago-tab-pane" aria-selected="true"><h3 class="arial">PRÉ-PAGO</h3></button>
                             </li>
                         </ul>
 
@@ -124,5 +124,14 @@
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/util.js"></script>
 
+    <script>
+        $(document).ready(function(){
+            $('.nav-link').click(function(){
+                $('.seta-img').css('visibility', 'hidden'); // Oculta todas as setas
+                $(this).closest('li').find('.seta-img').css('visibility', 'visible'); // Exibe a seta dentro do botão clicado
+            });
+        });
+    </script>
+    
 </body>
 </html>

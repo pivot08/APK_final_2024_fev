@@ -67,25 +67,9 @@ $(document).ready(function() {
 //setTimeout(redirect, 60000);
 
 
-$(document).ready(function() {
-    $('.nav-link').click(function() {
-        // Verifique se o botão clicado está ativo ou não
-        if ($(this).hasClass('active')) {
-            // Se estiver ativo, mostre a imagem da seta
-            $(this).prev('img').css('visibility', 'visible');
-        } else {
-            // Se não estiver ativo, oculte a imagem da seta
-            $(this).prev('img').css('visibility', 'hidden');
-        }
-    });
-});
-
-$(document).ready(function() {
-    // Verifica quando um botão é clicado
-    $('.nav-link').on('click', function() {
-        // Esconde a imagem em todos os botões
-        $('.nav-link img').addClass('hidden');
-        // Exibe a imagem apenas no botão clicado
-        $(this).find('img').removeClass('hidden');
+$(document).ready(function(){
+    $('.nav-link').click(function(){
+        $('.seta-img').css('visibility', 'hidden'); // Oculta todas as setas
+        $(this).closest('li').find('.seta-img').css('visibility', 'visible'); // Exibe a seta dentro do botão clicado
     });
 });
