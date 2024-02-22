@@ -153,12 +153,11 @@ li.nav-item.meio {
   content: "";
   position: absolute;
   top: 50%;
-  right: -13px; /* Ajuste a posição horizontal da seta */
+  right: -9px; /* Ajuste a posição horizontal da seta */
   transform: translateY(-50%);
-  border-top: 15px solid transparent; /* Configuração da seta */
-  border-bottom: 15px solid transparent; /* Configuração da seta */
-  border-left: 15px solid; /* Configuração da seta */
-  color: #8f2425; /* Cor de fundo da seta */
+  border-top: 10px solid transparent; /* Configuração da seta */
+  border-bottom: 10px solid transparent; /* Configuração da seta */
+  border-left: 10px solid; /* Configuração da seta */
   z-index: 999;
 }
 
@@ -168,7 +167,7 @@ li.nav-item.meio {
 }
 
 .nav-link::after {
-  border-right-color: #8f2425; /* Cor da seta quando ativo */
+  color: #8f2425; /* Cor da seta quando ativo */
 }
 
 /* Esconder a seta no último botão */
