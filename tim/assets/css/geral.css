@@ -1,0 +1,257 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 96%;
+}
+
+.row {
+    flex-grow: 1;
+    width: 100%;
+    margin-bottom: 20px;
+    --bs-gutter-x: 1.9rem; 
+}
+
+.card {
+    height: 100%;
+    border-radius: 0px;
+    border:solid 0px;
+}
+
+.bahnschrift {
+  font-family: 'Bahnschrift', Times, serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* tim Geral */
+.bg_verde-agua {background-color: #2bf7fe;}
+.card.bg_verde-agua {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+
+}
+
+.title-vertical {
+  color: #002198;
+  writing-mode: vertical-lr; /* Texto da esquerda para a direita */
+  text-orientation: sideways; /* Mantém o texto na posição vertical */
+  white-space: nowrap; /* Evita quebra de linha */
+  transform: rotate(180deg); /* Rotaciona o texto em 180 graus */
+  margin:0 auto;
+}
+
+.bg_tim {background-image: url('../img/bg_tim.png');}
+
+.bg_transparente {background-color: rgba(255,255,255,0);}
+
+.tim_top {padding-top: 10vh;}
+
+.tim_logo {width: 30%;}
+
+.color_white {color:#ffffff;}
+
+.title {
+  font-weight: 800 !important;
+  color: #2bf7fe;
+}
+
+.tim_parte1 h1 {margin: 25px 0;}
+
+.text {font-weight: 400 !important;}
+
+.button-tim {
+  background-color: #2bf7fe;
+  color:#002198;
+  border:solid 0px;
+  margin:auto;
+  font-size:28px;
+  padding:6px;
+  padding-left:20px;
+  padding-right:45px;
+  border-radius: 6px;
+  width:100%
+}
+
+.button-tim a {
+  color:#002198;
+  text-decoration: none;
+}
+
+
+/* Vivo 1 */
+
+.div-texto1 {margin: 5vh 0;}
+
+.fw700 {font-weight: 700 !important;}
+
+.fw400 {font-weight: 400 !important;}
+
+.title-2 {color: #ffffff;}
+
+.div-bttn1 h6 {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.div-bttn1 button {margin: 10vh 0 0}
+
+.conteudo {
+  display: flex;
+  align-items: center;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  margin-bottom: 3vh;
+}
+
+.conteudo .plano, .conteudo .valor {
+  width: 50%;
+  text-align: center;
+  padding: 3vh 5vh;
+}
+
+.conteudo .plano {border-right: 2px solid #ffffff;}
+
+.valor h1 {border-bottom: 2px solid #ffffff;}
+
+.forma {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  border-radius: 20px;
+}
+
+.box {
+  flex-grow: 1;
+}
+
+.bigger {
+  flex-grow: 3; /* Torna esta div duas vezes maior que as outras */
+}
+
+.lh-menor {line-height: 0.8;}
+/* Vivo 2 e Vivo 3*/
+.conteudo2 {
+  text-align: center;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  margin-bottom: 3vh;
+  padding: 1vh 5vh; 
+}
+
+.conteudo2 .plano {border-bottom: 2px solid #ffffff;}
+
+.conteudo2 .valor h1 {border-bottom: none}
+.prod{
+  margin: 5vh 0;
+  width: 40%;
+}
+
+.div-img2 img {
+  width: 100%;
+  margin-top: 50px;
+}
+
+
+.div-img3 img {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.flex-tim {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.div-bttn3 h6 {
+  text-align: center;
+  margin: 25px 0;
+  color: #ffffff;
+}
+
+.div-bttn3 button {margin: 5vh 0 0}
+
+
+.prod2{
+  margin: 5vh 0;
+  width: 30%;
+}
+
+.tim_parteflex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tim_parteflex .prod {
+  width: 50%;
+}
+
+.div-texto2a {margin: 5vh 0 2vh;}
+
+.div-texto2b {margin: 2vh 0 5vh;}
+
+.div-texto2b .forma {
+  display: flex;
+  justify-content: space-between;
+  align-items:end;
+  align-self: flex-end;
+  border-radius: 20px;
+}
+
+
+.title-3 {
+  color: #ffffff;
+  font-size: .7rem;
+}
+
+.lh-menor2 {line-height: 0.7;}
+
+.linha_borda {
+  width: 70%;
+  margin: 0 auto 1vh;
+  border-bottom: 2px solid #ffffff;
+}
+
+
+.tim_parteflex .prod2 {
+  width: 32.5%;
+}
+
+.conteudo3 {
+  text-align: center;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  margin-bottom: 3vh;
+  padding: 1vh 3vh; 
+}
+
+.conteudo3 .plano {border-bottom: 2px solid #ffffff;}
+
+.conteudo3 .valor h1 {border-bottom: none}
+
+
+.div-texto2b .forma2 {
+  display: flex;
+  justify-content: space-between;
+  align-items:end;
+  align-self: flex-end;
+  border-radius: 20px;
+}
+
+
+
+.title-4 {
+  color: #ffffff;
+  font-size: .9rem;
+}

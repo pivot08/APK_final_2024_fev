@@ -1,0 +1,144 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 96%;
+}
+
+.row {
+    flex-grow: 1;
+    width: 100%;
+    margin-bottom: 20px;
+    --bs-gutter-x: 1.9rem; 
+}
+
+.card {
+    height: 100%;
+    border-radius: 0px;
+    border:solid 0px;
+}
+
+.trebuchet-ms {
+  font-family: "Trebuchet MS", Tahoma, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Claro Geral */
+
+.bg_claro {background-color: #da291c;}
+
+.claro_top {padding-top: 10vh;}
+
+.claro_parte1 {padding-left: 10vh;}
+
+.claro_logo {width: 30%;}
+
+.color_white {color:#ffffff;}
+
+.title {font-weight: 800 !important;}
+
+.claro_parte1 h1 {margin: 25px 0;}
+
+.text {font-weight: 400 !important;}
+
+.claro_bottom {padding-bottom: 10vh;}
+
+.nav-pills .nav-link.active {
+  color:  #ffffff !important;
+  background-color: #c79192;
+  border-radius: 0px;
+}
+
+.nav-pills .nav-link {
+  color:  #ffffff !important;
+  background-color: #8f2425;
+  border-radius: 0px;
+}
+
+.nav-link {color: #747474}
+
+.nav-item {padding: 5px 0;}
+
+.button-claro {
+  background-color: #da291c;
+  color:#fff;
+  border:solid 0px;
+  margin:auto;
+  font-size:28px;
+  padding:6px;
+  padding-left:20px;
+  padding-right:45px;
+  border-radius: 
+  6px;
+  width:100%
+}
+
+.button-claro a {
+  color:#fff;
+  text-decoration: none;
+}
+
+li.nav-item.meio {
+  padding:  5px;
+}
+
+/* Vivo 1 */
+.conteudo {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.div-texto1 {margin: 5vh 0;}
+
+.fw700 {font-weight: 700 !important;}
+
+.fw400 {font-weight: 400 !important;}
+
+.title-2 {color: #8f2425;}
+
+.div-bttn1 h6 {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.div-bttn1 button {margin: 10vh 0 0}
+
+/* Vivo 2 e Vivo 3*/
+.prod{
+  margin: 5vh 0;
+  width: 40%;
+}
+
+.div-img2 img {
+  width: 100%;
+  margin-top: 50px;
+}
+
+.flex-claro {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.div-bttn2 h6 {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.div-bttn2 button {margin: 5vh 0 0}
+
+
+.prod2{
+  margin: 5vh 0;
+  width: 30%;
+}
