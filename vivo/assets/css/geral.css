@@ -10,19 +10,20 @@ html, body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    max-width: 96%;
+    max-width: 100%;
+    padding:0px;
 }
 
 .row {
     flex-grow: 1;
     width: 100%;
-    margin-bottom: 20px;
+  
     --bs-gutter-x: 1.9rem; 
 }
 
 .card {
     height: 100%;
-    border-radius: 20px;
+    border-radius: 20px 20px 0px 0px;
     border:solid 0px;
 }
 
@@ -128,6 +129,8 @@ html, body {
   display: flex; 
   justify-content: space-between; 
   align-items: center;
+  padding-top:10px;
+  padding-bottom:10px;
 }
 
 .flex-vivo.divisoria {
@@ -146,3 +149,22 @@ html, body {
   padding: 1vh 0 0;}
 
 .div-texto3 h4:first-child {margin-bottom: 15px;}
+
+.col-md-12 {
+  padding:0px;
+}
+
+.button-vivo {
+  background-color: #652c8f;
+  color: #fff;
+  border: solid 0px;
+  margin: auto;
+  font-size: 32px;
+  padding: 6px;
+  padding-left: 20px;
+  padding-right: 45px;
+  border-radius: 13px;
+  width: 100%;
+  font-family: "Roboto Slab", serif;
+  margin-top:30px;
+}
