@@ -34,7 +34,7 @@ html, body {
 }
 
 .bahnschrift {
-  font-family: 'Bahnschrift', Times, serif;
+  font-family: 'Bahnschrift', serif;
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
