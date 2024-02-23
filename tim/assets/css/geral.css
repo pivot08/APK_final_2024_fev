@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
 
+@font-face {
+  font-family: "Bahnschrift";
+  src: url("https://db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.eot");
+  src: url("https://db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.svg#Bahnschrift")format("svg");
+}
+
 html, body {
     height: 100%;
     margin: 0;
@@ -30,15 +40,9 @@ html, body {
     border:solid 0px;
 }
 
-@font-face {
-  font-family: 'Bahnschrift';
-  src: url("bahnschrift.ttf") format("ttf");
-  font-weight: normal;
-  font-style: normal;
-}
 
 .bahnschrift {
-  font-family: 'Bahnschrift', serif;
+  font-family: 'Bahnschrift';
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
@@ -103,6 +107,8 @@ html, body {
 /* Vivo 1 */
 
 .div-texto1 {margin: 1vh 0;}
+
+.fw500 {font-weight: 500 !important;}
 
 .fw700 {font-weight: 700 !important;}
 
