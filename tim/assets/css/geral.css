@@ -26,6 +26,13 @@ html, body {
     border:solid 0px;
 }
 
+@font-face {
+  font-family: 'Bahnschrift';
+  src: url("bahnschrift.ttf") format("ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
 .bahnschrift {
   font-family: 'Bahnschrift', Times, serif;
   font-optical-sizing: auto;
@@ -102,6 +109,12 @@ html, body {
 .div-bttn3 h6 {
   text-align: center;
   margin: 5px 0;
+}
+
+.div-bttn1 h6 {
+  text-align: center;
+  margin: 5px 0;
+  color: #ffffff;
 }
 
 .div-bttn1 button {margin: 1vh 0 0}
