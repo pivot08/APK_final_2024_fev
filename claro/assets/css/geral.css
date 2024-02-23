@@ -37,11 +37,11 @@ html, body {
 
 .bg_claro {background-color: #da291c;}
 
-.claro_top {padding-top: 3vh;}
+.claro_top {padding-top: 5vh;}
 
 .claro_parte1 {padding-left: 5vh;}
 
-.claro_logo {width: 20%;}
+.claro_logo {width: 25%;}
 
 .color_white {color:#ffffff;}
 
@@ -98,7 +98,7 @@ li.nav-item.meio {
   margin: 0 auto;
 }
 
-.div-texto1 {margin: 1vh 0;}
+.div-texto1 {margin: 3vh 0;}
 
 .fw700 {font-weight: 700 !important;}
 
@@ -121,21 +121,35 @@ li.nav-item.meio {
 
 .div-img2 img {
   width: 100%;
-  margin-top: 50px;
+  margin-top: 20px;
 }
 
 .flex-claro {
   display: flex; 
   justify-content: space-between; 
+  align-items: flex-start;
+}
+
+.flex-claro2 {
+  display: flex; 
+  justify-content: space-between; 
   align-items: center;
+align-items: flex-start;
 }
 
 .div-bttn2 h6 {
   text-align: center;
-  margin: 25px 0;
+  margin: 5px 0;
+}
+
+.div-bttn3 h6 {
+  text-align: center;
+  margin: 5px 0;
 }
 
 .div-bttn2 button {margin: 3vh 0 0}
+
+.div-bttn3 button {margin: 1vh 0 0}
 
 
 .prod2{
@@ -179,4 +193,4 @@ li.nav-item.meio {
   display: none;
 }
 
-.conteudo-vazio {height: 70vh;}
+.tab-pane.fade {height: 65vh;}
