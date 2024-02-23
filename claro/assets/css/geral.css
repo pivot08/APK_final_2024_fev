@@ -98,7 +98,6 @@ li.nav-item.meio {
   margin: 0 auto;
 }
 
-.div-texto1 {margin: 3vh 0;}
 
 .fw700 {font-weight: 700 !important;}
 
@@ -193,4 +192,5 @@ align-items: flex-start;
   display: none;
 }
 
-.tab-pane.fade {height: 65vh;}
+.tab-pane.fade { height: 65vh;
+  padding: 1vh 0 0;}

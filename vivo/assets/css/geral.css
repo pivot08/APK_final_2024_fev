@@ -44,13 +44,13 @@ html, body {
 
 .bg_vivo {background-color: #652c8f;}
 
-.vivo_top {padding-top: 3vh;}
+.vivo_top {padding-top: 5vh;}
 
-.vivo_top3 {padding-top: 1vh;}
+.vivo_top3 {padding-top: 5vh;}
 
 .vivo_parte1 {padding-left: 5vh;}
 
-.vivo_logo {width: 20%;}
+.vivo_logo {width: 30%;}
 
 .color_white {color:#ffffff;}
 
@@ -98,7 +98,7 @@ html, body {
   margin: 0 auto;
 }
 
-.div-texto1 {margin: 1vh 0;}
+.div-texto1 {padding: 2vh 0;}
 
 .fw700 {font-weight: 700 !important;}
 
@@ -109,17 +109,17 @@ html, body {
   margin: 5px 0;
 }
 
-.div-bttn1 button {margin: 1vh 0 0}
+.div-bttn1 button {margin: 2vh 0 0}
 
 /* Vivo 2 e Vivo 3*/
 .div-texto2 {
   margin: 3vh 0;
-  width: 40%;
+  width: 47%;
 }
 
 .div-texto3 {
   margin: 1vh 0;
-  width: 40%;
+  width: 47%;
 }
 
 .div-img2 {width: 45%;}
@@ -139,10 +139,10 @@ html, body {
   margin: 5px 0;
 }
 
-.div-bttn2 button {margin: 1vh 0 0}
 
-.conteudo-vazio {height: 68vh;}
 
-.conteudo-vazio2 {height: 69vh;}
+.tab-pane.fade {
+  height: 65vh;
+  padding: 1vh 0 0;}
 
-.conteudo-vazio3 {height: 73vh;}
+.div-texto3 h4:first-child {margin-bottom: 15px;}
