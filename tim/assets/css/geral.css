@@ -21,6 +21,8 @@ html, body {
     flex-direction: column;
     height: 100vh;
     max-width: 100%;
+    padding-left:0px;
+    margin-left:-20px;
 }
 
 .row.mx-auto {
@@ -70,7 +72,7 @@ html, body {
 
 .bg_transparente {background-color: rgba(255,255,255,0);}
 
-.tim_top {padding-top: 3vh;}
+.tim_top {padding-top: 6vh;}
 
 .tim_logo {width: 20%;}
 
@@ -287,3 +289,10 @@ html, body {
 .tim-parte2, .prod2 {margin-bottom:0 ;}
 
 .tim-parte3, .prod3 {margin-bottom:0 ;}
+
+
+
+.tim_parteflex {
+  
+  max-height: 1000px;
+}
