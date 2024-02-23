@@ -153,3 +153,18 @@ html, body {
 .col-md-12 {
   padding:0px;
 }
+
+.button-vivo {
+  background-color: #652c8f;
+  color: #fff;
+  border: solid 0px;
+  margin: auto;
+  font-size: 32px;
+  padding: 6px;
+  padding-left: 20px;
+  padding-right: 45px;
+  border-radius: 13px;
+  width: 100%;
+  font-family: "Roboto Slab", serif;
+  margin-top:30px;
+}
