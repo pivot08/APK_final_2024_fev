@@ -66,13 +66,14 @@ html, body {
   white-space: nowrap; /* Evita quebra de linha */
   transform: rotate(180deg); /* Rotaciona o texto em 180 graus */
   margin:0 auto;
+  font-size: 3rem;
 }
 
 .bg_tim {background-image: url('../img/bg_tim.png');}
 
 .bg_transparente {background-color: rgba(255,255,255,0);}
 
-.tim_top {padding-top: 6vh;}
+.tim_top {padding-top: 6vh;width: 75%; margin: 0 auto}
 
 .tim_logo {width: 20%;}
 
@@ -96,8 +97,10 @@ html, body {
   padding:6px;
   padding-left:20px;
   padding-right:45px;
-  border-radius: 6px;
-  width:100%
+  border-radius: 20px;
+  width:100%;
+  font-size: 2rem;
+  font-weight: 900;
 }
 
 .button-tim a {
@@ -200,11 +203,12 @@ html, body {
 
 .div-bttn3 h6 {
   text-align: center;
-  margin: 5px 0;
+  margin: 25px 0;
   color: #ffffff;
+  font-size: .8rem;
 }
 
-.div-bttn3 button {margin: -3vh 0 0}
+.div-bttn3 button {margin: 3vh 0 0}
 
 
 .prod2{
@@ -213,7 +217,12 @@ html, body {
 
 .prod3{
   margin: 2vh 0;
-  width: 30%;
+  width: 33.3%;
+}
+
+.prod3 .auto-mx {
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .tim_parteflex {
@@ -226,10 +235,10 @@ html, body {
 }
 
 .tim_parteflex .prod3 {
-  width: 32.5%;
+  width: 25%;
 }
 
-.div-texto2a {margin: 1vh 0 1vh;}
+.div-texto2a {margin: .5vh;}
 
 .div-texto2b .forma {
   display: flex;
@@ -263,7 +272,7 @@ html, body {
   border: 2px solid #ffffff;
   border-radius: 20px;
   margin-bottom: 1vh;
-  padding: 1vh 1vh; 
+  padding: .5vh; 
 }
 
 .conteudo3 .plano {border-bottom: 2px solid #ffffff;}
@@ -273,10 +282,12 @@ html, body {
 
 .div-texto2b .forma2 {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items:end;
   align-self: flex-end;
   border-radius: 20px;
+  max-width: 90px;
+    margin: 0 auto;
 }
 
 
@@ -293,6 +304,16 @@ html, body {
 
 
 .tim_parteflex {
-  
+  margin-top: 20px;
   max-height: 1000px;
 }
+
+.tim_parteflex .prod3 {
+  width: 30%;
+}
+
+.lh-menor2 {
+
+}
+
+.planos {margin: 26px 0 !important}

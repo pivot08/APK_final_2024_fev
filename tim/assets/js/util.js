@@ -53,7 +53,7 @@ $(document).ready(function() {
     }
 
     // Inicia a reprodução do primeiro vídeo
-    playNextVideo(0);
+    //playNextVideo(0);
 });
 
 
