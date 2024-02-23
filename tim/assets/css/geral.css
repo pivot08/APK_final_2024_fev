@@ -55,9 +55,9 @@ html, body {
 
 .bg_transparente {background-color: rgba(255,255,255,0);}
 
-.tim_top {padding-top: 10vh;}
+.tim_top {padding-top: 2vh;}
 
-.tim_logo {width: 30%;}
+.tim_logo {width: 20%;}
 
 .color_white {color:#ffffff;}
 
@@ -66,7 +66,7 @@ html, body {
   color: #2bf7fe;
 }
 
-.tim_parte1 h1 {margin: 25px 0;}
+.tim_parte1 h1 {margin: 5px 0;}
 
 .text {font-weight: 400 !important;}
 
@@ -91,7 +91,7 @@ html, body {
 
 /* Vivo 1 */
 
-.div-texto1 {margin: 5vh 0;}
+.div-texto1 {margin: 2vh 0;}
 
 .fw700 {font-weight: 700 !important;}
 
@@ -99,25 +99,25 @@ html, body {
 
 .title-2 {color: #ffffff;}
 
-.div-bttn1 h6 {
+.div-bttn3 h6 {
   text-align: center;
-  margin: 25px 0;
+  margin: 5px 0;
 }
 
-.div-bttn1 button {margin: 10vh 0 0}
+.div-bttn1 button {margin: 1vh 0 0}
 
 .conteudo {
   display: flex;
   align-items: center;
   border: 2px solid #ffffff;
   border-radius: 20px;
-  margin-bottom: 3vh;
+  margin-bottom: 2vh;
 }
 
 .conteudo .plano, .conteudo .valor {
   width: 50%;
   text-align: center;
-  padding: 3vh 5vh;
+  padding: 0 5vh;
 }
 
 .conteudo .plano {border-right: 2px solid #ffffff;}
@@ -159,7 +159,6 @@ html, body {
 
 .div-img2 img {
   width: 100%;
-  margin-top: 50px;
 }
 
 
@@ -176,11 +175,11 @@ html, body {
 
 .div-bttn3 h6 {
   text-align: center;
-  margin: 25px 0;
+  margin: 5px 0;
   color: #ffffff;
 }
 
-.div-bttn3 button {margin: 5vh 0 0}
+.div-bttn3 button {margin: 1vh 0 0}
 
 
 .prod2{

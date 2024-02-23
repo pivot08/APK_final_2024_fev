@@ -44,21 +44,23 @@ html, body {
 
 .bg_vivo {background-color: #652c8f;}
 
-.vivo_top {padding-top: 10vh;}
+.vivo_top {padding-top: 3vh;}
 
-.vivo_parte1 {padding-left: 10vh;}
+.vivo_top3 {padding-top: 1vh;}
 
-.vivo_logo {width: 30%;}
+.vivo_parte1 {padding-left: 5vh;}
+
+.vivo_logo {width: 20%;}
 
 .color_white {color:#ffffff;}
 
 .title {font-weight: 800 !important;}
 
-.vivo_parte1 h1 {margin: 25px 0;}
+.vivo_parte1 h1 {margin: 5px 0;}
 
 .text {font-weight: 400 !important;}
 
-.vivo_bottom {padding-bottom: 10vh;}
+
 
 .nav-pills .nav-link.active {
   color:  #652c8f !important;
@@ -69,7 +71,7 @@ html, body {
 
 .nav-link {color: #747474}
 
-.nav-item {padding: 40px 0;}
+.nav-item {padding: 10px 0;}
 
 .button-vivo {
   background-color: #652c8f;
@@ -96,7 +98,7 @@ html, body {
   margin: 0 auto;
 }
 
-.div-texto1 {margin: 5vh 0;}
+.div-texto1 {margin: 1vh 0;}
 
 .fw700 {font-weight: 700 !important;}
 
@@ -104,14 +106,19 @@ html, body {
 
 .div-bttn1 h6 {
   text-align: center;
-  margin: 25px 0;
+  margin: 5px 0;
 }
 
-.div-bttn1 button {margin: 10vh 0 0}
+.div-bttn1 button {margin: 1vh 0 0}
 
 /* Vivo 2 e Vivo 3*/
 .div-texto2 {
-  margin: 5vh 0;
+  margin: 3vh 0;
+  width: 40%;
+}
+
+.div-texto3 {
+  margin: 1vh 0;
   width: 40%;
 }
 
@@ -129,8 +136,8 @@ html, body {
 
 .div-bttn2 h6 {
   text-align: center;
-  margin: 25px 0;
+  margin: 5px 0;
 }
 
-.div-bttn2 button {margin: 5vh 0 0}
+.div-bttn2 button {margin: 1vh 0 0}
                        
