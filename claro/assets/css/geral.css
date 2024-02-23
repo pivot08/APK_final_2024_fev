@@ -13,6 +13,8 @@ html, body {
     max-width: 96%;
 }
 
+
+
 .row {
     flex-grow: 1;
     width: 100%;
@@ -31,6 +33,7 @@ html, body {
   font-optical-sizing: auto;
   font-weight: 500;
   font-style: normal;
+  letter-spacing: 1px;
 }
 
 /* Claro Geral */
@@ -39,9 +42,9 @@ html, body {
 
 .claro_top {padding-top: 5vh;}
 
-.claro_parte1 {padding-left: 5vh;}
+.claro_parte1 {padding-left: 4vh;}
 
-.claro_logo {width: 25%;}
+.claro_logo {width: 21%;}
 
 .color_white {color:#ffffff;}
 
