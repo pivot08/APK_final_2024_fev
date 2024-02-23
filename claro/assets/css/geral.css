@@ -37,21 +37,21 @@ html, body {
 
 .bg_claro {background-color: #da291c;}
 
-.claro_top {padding-top: 10vh;}
+.claro_top {padding-top: 3vh;}
 
-.claro_parte1 {padding-left: 10vh;}
+.claro_parte1 {padding-left: 5vh;}
 
-.claro_logo {width: 30%;}
+.claro_logo {width: 20%;}
 
 .color_white {color:#ffffff;}
 
 .title {font-weight: 800 !important;}
 
-.claro_parte1 h1 {margin: 25px 0;}
+.claro_parte1 h1 {margin: 5px 0;}
 
 .text {font-weight: 400 !important;}
 
-.claro_bottom {padding-bottom: 10vh;}
+.claro_bottom {padding-bottom: 1vh;}
 
 .nav-pills .nav-link.active {
   color:  #ffffff !important;
@@ -98,7 +98,7 @@ li.nav-item.meio {
   margin: 0 auto;
 }
 
-.div-texto1 {margin: 5vh 0;}
+.div-texto1 {margin: 1vh 0;}
 
 .fw700 {font-weight: 700 !important;}
 
@@ -108,10 +108,10 @@ li.nav-item.meio {
 
 .div-bttn1 h6 {
   text-align: center;
-  margin: 25px 0;
+  margin: 5px 0;
 }
 
-.div-bttn1 button {margin: 10vh 0 0}
+.div-bttn1 button {margin: 3vh 0 0}
 
 /* Vivo 2 e Vivo 3*/
 .prod{
@@ -135,11 +135,11 @@ li.nav-item.meio {
   margin: 25px 0;
 }
 
-.div-bttn2 button {margin: 5vh 0 0}
+.div-bttn2 button {margin: 3vh 0 0}
 
 
 .prod2{
-  margin: 5vh 0;
+  margin: 3vh 0 0;
   width: 30%;
 }
 
