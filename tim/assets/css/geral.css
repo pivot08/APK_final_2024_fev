@@ -55,7 +55,7 @@ html, body {
 
 .bg_transparente {background-color: rgba(255,255,255,0);}
 
-.tim_top {padding-top: 2vh;}
+.tim_top {padding-top: 3vh;}
 
 .tim_logo {width: 20%;}
 
@@ -91,7 +91,7 @@ html, body {
 
 /* Vivo 1 */
 
-.div-texto1 {margin: 2vh 0;}
+.div-texto1 {margin: 1vh 0;}
 
 .fw700 {font-weight: 700 !important;}
 
@@ -117,7 +117,7 @@ html, body {
 .conteudo .plano, .conteudo .valor {
   width: 50%;
   text-align: center;
-  padding: 0 5vh;
+  padding: 0 3vh;
 }
 
 .conteudo .plano {border-right: 2px solid #ffffff;}
@@ -145,8 +145,8 @@ html, body {
   text-align: center;
   border: 2px solid #ffffff;
   border-radius: 20px;
-  margin-bottom: 2vh;
-  padding: 1vh 5vh; 
+  margin-bottom: 1vh;
+  padding: 1vh; 
 }
 
 .conteudo2 .plano {border-bottom: 2px solid #ffffff;}
@@ -179,11 +179,10 @@ html, body {
   color: #ffffff;
 }
 
-.div-bttn3 button {margin: 1vh 0 0}
+.div-bttn3 button {margin: -3vh 0 0}
 
 
 .prod2{
-  margin: 2vh 0 0;
   width: 45%;
 }
 
@@ -201,9 +200,13 @@ html, body {
   width: 50%;
 }
 
-.div-texto2a {margin: 2vh 0 2vh;}
+.tim_parteflex .prod3 {
+  width: 32.5%;
+}
 
-.div-texto2b {margin: 2vh 0 2vh;}
+.div-texto2a {margin: 1vh 0 1vh;}
+
+.div-texto2b {margin: 1vh 0 1vh;}
 
 .div-texto2b .forma {
   display: flex;
@@ -236,8 +239,8 @@ html, body {
   text-align: center;
   border: 2px solid #ffffff;
   border-radius: 20px;
-  margin-bottom: 3vh;
-  padding: 1vh 3vh; 
+  margin-bottom: 1vh;
+  padding: 1vh 1vh; 
 }
 
 .conteudo3 .plano {border-bottom: 2px solid #ffffff;}
@@ -259,3 +262,7 @@ html, body {
   color: #ffffff;
   font-size: .9rem;
 }
+
+.tim-parte2, .prod2 {margin-bottom:0 ;}
+
+.tim-parte3, .prod3 {margin-bottom:0 ;}
