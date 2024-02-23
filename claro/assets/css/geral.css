@@ -140,9 +140,13 @@ li.nav-item.meio {
 
 .prod2{
   margin: 3vh 0 0;
-  width: 30%;
+  width: 45%;
 }
 
+.prod3{
+  margin: 3vh 0 0;
+  width: 30%;
+}
 /* Estilizando os botões da navegação */
 .nav-link {
   position: relative;
@@ -174,3 +178,5 @@ li.nav-item.meio {
 .nav-item:last-child .nav-link::after {
   display: none;
 }
+
+.conteudo-vazio {height: 70vh;}

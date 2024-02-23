@@ -111,7 +111,7 @@ html, body {
   align-items: center;
   border: 2px solid #ffffff;
   border-radius: 20px;
-  margin-bottom: 2vh;
+  margin-bottom: 1vh;
 }
 
 .conteudo .plano, .conteudo .valor {
@@ -122,7 +122,7 @@ html, body {
 
 .conteudo .plano {border-right: 2px solid #ffffff;}
 
-.valor h1 {border-bottom: 2px solid #ffffff;}
+.valor h2 {border-bottom: 2px solid #ffffff;}
 
 .forma {
   display: flex;
@@ -145,7 +145,7 @@ html, body {
   text-align: center;
   border: 2px solid #ffffff;
   border-radius: 20px;
-  margin-bottom: 3vh;
+  margin-bottom: 2vh;
   padding: 1vh 5vh; 
 }
 
@@ -183,7 +183,12 @@ html, body {
 
 
 .prod2{
-  margin: 5vh 0;
+  margin: 2vh 0 0;
+  width: 45%;
+}
+
+.prod3{
+  margin: 2vh 0;
   width: 30%;
 }
 
@@ -192,13 +197,13 @@ html, body {
   justify-content: space-between;
 }
 
-.tim_parteflex .prod {
+.tim_parteflex .prod2 {
   width: 50%;
 }
 
-.div-texto2a {margin: 5vh 0 2vh;}
+.div-texto2a {margin: 2vh 0 2vh;}
 
-.div-texto2b {margin: 2vh 0 5vh;}
+.div-texto2b {margin: 2vh 0 2vh;}
 
 .div-texto2b .forma {
   display: flex;
@@ -223,7 +228,7 @@ html, body {
 }
 
 
-.tim_parteflex .prod2 {
+.tim_parteflex .prod3 {
   width: 32.5%;
 }
 
