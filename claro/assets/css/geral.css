@@ -10,15 +10,20 @@ html, body {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    max-width: 96%;
+    max-width: 100%;
+    padding:0px;
 }
 
+.col-md-12 {
+  
+  padding: 0px;
+}
 
 
 .row {
     flex-grow: 1;
     width: 100%;
-    margin-bottom: 20px;
+    
     --bs-gutter-x: 1.9rem; 
 }
 
@@ -42,17 +47,17 @@ html, body {
 
 .claro_top {padding-top: 5vh;}
 
-.claro_parte1 {padding-left: 4vh;}
+.claro_parte1 {padding-left: 4vh;margin-top:0px;}
 
-.claro_logo {width: 21%;}
+.claro_logo {width: 18%;}
 
 .color_white {color:#ffffff;}
 
-.title {font-weight: 800 !important;}
+.title {font-weight: 800 !important;font-size:43px;}
 
 .claro_parte1 h1 {margin: 5px 0;}
 
-.text {font-weight: 400 !important;}
+.text {font-weight: 400 !important;line-height: 35px;}
 
 .claro_bottom {padding-bottom: 1vh;}
 
@@ -60,12 +65,14 @@ html, body {
   color:  #ffffff !important;
   background-color: #c79192;
   border-radius: 0px;
+  
 }
 
 .nav-pills .nav-link {
   color:  #ffffff !important;
   background-color: #8f2425;
   border-radius: 0px;
+  padding:17px;
 }
 
 .nav-link {color: #747474}
