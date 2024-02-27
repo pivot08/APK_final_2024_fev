@@ -55,9 +55,9 @@
 
     <script>
         function authenticate() {
-            var username = document.getElementById("username").value;
-            var password = document.getElementById("password").value;
-
+            var username = document.getElementById("username").value.toLowerCase();
+            var password = document.getElementById("password").value.toLowerCase();
+    
             // Verifica o username e abre o diretório correspondente
             switch(username) {
                 case "vivo@operadoras":
@@ -67,7 +67,7 @@
                         alert("Senha incorreta para Vivo");
                     }
                     break;
-
+    
                 case "claro@operadoras":
                     if (password === "claro1324") {
                         window.location.href = "claro/claro.html";
@@ -75,7 +75,7 @@
                         alert("Senha incorreta para Claro");
                     }
                     break;
-
+    
                 case "tim@operadoras":
                     if (password === "tim1234") {
                         window.location.href = "tim/tim.html";
@@ -83,7 +83,7 @@
                         alert("Senha incorreta para Tim");
                     }
                     break;
-
+    
                 case "geral@apk":
                     if (password === "geral1234") {
                         window.location.href = "index.html";
@@ -91,7 +91,7 @@
                         alert("Senha incorreta para Geral");
                     }
                     break;
-
+    
                 default:
                     alert("Usuário não reconhecido");
             }
