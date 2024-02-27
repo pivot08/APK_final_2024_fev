@@ -57,6 +57,9 @@
         function authenticate() {
             var username = document.getElementById("username").value.toLowerCase();
             var password = document.getElementById("password").value.toLowerCase();
+
+            // Armazena o username na sessão
+            sessionStorage.setItem("username", username);
     
             // Verifica o username e abre o diretório correspondente
             switch(username) {

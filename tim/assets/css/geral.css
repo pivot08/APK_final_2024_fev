@@ -318,3 +318,10 @@ html, body {
 }
 
 .planos {margin: 26px 0 !important}
+
+.div-bttn3 h6 {
+  text-align: center;
+  margin: 15px 0;
+  color: #ffffff;
+  font-size: 10px !important;
+}
