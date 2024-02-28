@@ -1,0 +1,115 @@
+
+
+
+/*===========================
+       9.NEWSLATTER css 
+===========================*/
+
+.newsletter-area{}
+
+.newsletter-wrapper{
+    
+    .section-title{
+        & .sub-title{
+            
+        }
+        & .title{
+            font-size: 56px;
+            color: #000;
+            
+            @media #{$lg} {
+                font-size: 44px;
+            }
+            @media #{$md} {
+                font-size: 40px;
+            }
+            
+            @media #{$xs} {
+                font-size: 28px;
+            }
+        }
+    }
+    
+    & .newsletter-form{
+        margin-top: 120px;
+        position: relative;
+        
+        @media #{$md} {
+            margin-top: 60px;
+        }
+        @media #{$xs} {
+            margin-top: 60px;
+        }
+        
+        & input{
+            width: 100%;
+            border: 2px solid $theme-color;
+            padding: 0 85px;
+            height: 100px;
+            border-radius: 50px;
+            
+            @media #{$xs} {
+                height: 60px;
+                padding: 0 25px;
+            }
+        }
+        & .main-btn{
+            width: 245px;
+            height: 100px;
+            line-height: 96px;
+            text-transform: uppercase;
+            font-size: 18px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            
+            @media #{$xs} {
+                position: relative;
+                width: 100%;
+                height: 60px;
+                line-height: 56px;
+                margin-top: 10px;
+            }
+            
+            @media #{$sm} {
+                position: absolute;
+                width: auto;
+                margin-top: 0;
+            }
+        }
+    }
+    
+    & .newsletter-form-4{
+        & input{
+            border-color: $theme-color-4;
+        }
+            
+        & .main-btn {
+            background-color: $theme-color-4;
+            border-color: $theme-color-4;
+
+            &:hover{
+                background-color: rgba($theme-color-4, 0.5);
+                color: $white;
+                border-color: $theme-color-4;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

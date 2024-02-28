@@ -1,0 +1,104 @@
+
+
+
+/*===========================
+         13.FAQ css 
+===========================*/
+
+.faq-area{}
+
+
+.faq-accordion{
+    & .accordion{
+        & .card{
+            border: 0;
+            background: none;
+            
+            & .card-header{
+                padding: 0;
+                border: 0;
+                background: none;
+                margin-top: 40px;
+                
+                & a{
+                    font-size: 18px;
+                    font-weight: 600;
+                    font-family: $font-2;
+                    color: $black;
+                    display: block;
+                    position: relative;
+                    padding-right: 20px;
+                    
+                    @media #{$lg} {
+                        font-size: 16px;
+                    }
+                    @media #{$xs} {
+                        font-size: 16px;
+                    }
+                    
+                    &::before{
+                        content: '\E957';
+                        font-family: 'LineIcons';
+                        position: absolute;
+                        top: 50%;
+                        right: 0;
+                        @include transform(translateY(-50%));
+                    }
+                }
+                
+                & .collapsed{
+                    &::before{
+                        content: '\E959';
+                    }
+                }
+            }
+            & .card-body{
+                padding: 20px 20px 0;
+                
+                & .text{}
+            }
+        }
+    }
+    
+    &.faq-accordion-6{
+        & .accordion{
+            & .card{
+                & .card-header{
+                    & a{
+                        color: $theme-color;
+                        
+                        &.collapsed{
+                            color: $white;
+                        }
+                    }
+                }
+                
+                & .card-body{
+                    
+                }
+            }
+        }
+    }
+}
+
+.faq-image{
+    & img{
+        width: 100%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,221 @@
+
+
+
+/*===========================
+         16.BL0G css 
+===========================*/
+
+
+.blag-area{}
+
+.single-blog{
+    & .blog-image{
+        & a{
+            display: block;
+            
+            & img{
+                width: 100%;
+            }
+        }
+    }
+    & .blog-content{
+        padding-top: 25px;
+        
+        & .blog-title{
+            & a{
+                font-size: 24px;
+                font-weight: 600;
+                color: $black;
+                @include transition(0.3s);
+                
+                @media #{$lg}{
+                    font-size: 20px;
+                }
+                @media #{$xs}{
+                    font-size: 20px;
+                }
+                
+                &:hover{
+                    color: $theme-color;
+                }
+            }
+        }
+        & .blog-author{
+            padding-top: 20px;
+            
+            & .author-image{
+                & img{
+                    width: 65px;
+                    border-radius: 50%;
+                }
+            }
+            & .author-content{
+                padding-left: 20px;
+                
+                & .sub-title{
+                    font-size: 14px;
+                    color: $theme-color;
+                    font-weight: 400;
+                }
+                & .text{
+                    font-size: 16px;
+                    font-weight: 600;
+                    margin-top: 5px;
+                }
+            }
+        }
+    }
+    
+    &.blog-2{
+        & .blog-content{
+            & .blog-title{
+                & a{
+                     &:hover{
+                        color: $theme-color-2;
+                    }
+                }
+            }
+        }
+    }
+    &.blog-3{
+        & .blog-content{
+            & .blog-title{
+                & a{
+                     &:hover{
+                        color: $theme-color-3;
+                    }
+                }
+            }
+        }
+    }
+    &.blog-5{
+        & .blog-content{
+            & .blog-title{
+                & a{
+                     &:hover{
+                        color: $theme-color-5;
+                    }
+                }
+            }
+        }
+    }
+    &.blog-6{
+        & .blog-content{
+            & .blog-title{
+                & a{
+                    color: $white;
+                    
+                     &:hover{
+                        color: $theme-color-6;
+                    }
+                }
+            }
+            
+            & .blog-author{
+                padding-top: 20px;
+                
+                & .author-content{
+
+                    & .sub-title{
+                        color: $theme-color-6;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.blog-btn {
+    & .main-btn{
+        border: 0;
+        background: -webkit-linear-gradient(left, rgba(62,44,234,1) 0%, rgba(75,179,249,1) 50%, rgba(62,44,234,1) 100%);
+        background: -o-linear-gradient(left, rgba(62,44,234,1) 0%, rgba(75,179,249,1) 50%, rgba(62,44,234,1) 100%);
+        background: linear-gradient(to right, rgba(62,44,234,1) 0%, rgba(75,179,249,1) 50%, rgba(62,44,234,1) 100%);
+        background-size: 200%;
+        padding: 0 50px;
+        height: 60px;
+        line-height: 60px;
+        
+        &:hover{
+            background-position: right center;
+            color: $white;
+        }
+    }
+}
+
+
+/*===== SINGLE BLOG 2 =====*/
+
+.single-blog-2{
+    & .single-blog-title{
+        border-bottom: 1px solid $border-color;
+        padding-bottom: 15px;
+        
+        & a{
+            font-size: 24px;
+            font-weight: 600;
+            color: #000;
+            @include transition(0.3s);
+            
+            &:hover{
+                color: $theme-color-4;
+            }
+        }
+    }
+    & .text{
+        font-size: 14px;
+        margin-top: 15px;
+    }
+    
+    & .blog-author-date{
+        & .author{
+            margin-top: 30px;
+            
+            & .author-image{
+                & img{
+                    width: 65px;
+                    border-radius: 50%;
+                }
+            }
+            & .author-content{
+                padding-left: 20px;
+                
+                & .text{
+                    font-size: 14px;
+                    color: $theme-color-4;
+                }
+                & .author-name{
+                    font-size: 16px;
+                    font-weight: 600;
+                }
+            }
+        }
+        & .date{
+            margin-top: 30px;
+            
+            & span{
+                width: 70px;
+                height: 70px;
+                font-size: 14px;
+                color: $body-color;
+                border: 2px dashed $theme-color-4;
+                text-align: center;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

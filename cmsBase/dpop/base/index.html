@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DPOP</title>
+
+    <!-- Inclua os links para os arquivos do Bootstrap CSS -->
+    <link href="../assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../assets/css/geral.css" rel="stylesheet">
+    
+</head>
+<body class="how-to h-100 background-index">
+<div class="volta-lojista"><button onmousedown="startTimer()" onmouseup="clearTimer()" onmouseleave="clearTimer()"></button></div>
+   
+      
+    <div id="loading-overlay"></div>
+    <div id="loadingContainer" style="display:none;"> 
+        <video autoplay muted loop id="myVideo" style="max-width: 100%;margin-top: -70px;">
+            <source src="../assets/videos/intro/Intro.mp4" type="video/mp4" >
+        </video>
+        <div class="div_button">
+            <a href="2-categoria.html" class="btn_start">
+                <div class="button">
+                    <h2 class="button_text">Descubra toda <br/>linha Samsung</h2>
+                    <img src="../assets/img/1_home-principal_hand_white.png" class="button_icon">
+                </div>
+            </a>
+        </div>
+  
+</div>
+    <!-- Inclua os links para os arquivos do Bootstrap JavaScript (opcional, dependendo do que você está usando) -->
+    <script src="../assets/js/jquery-3.7.1.min.js"></script>
+    <script src="../assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/utils.js"></script>
+    <script>
+        var video = document.getElementById("myVideo");
+        var btn = document.getElementById("myBtn");
+        
+        function myFunction() {
+          if (video.paused) {
+            video.play();
+            btn.innerHTML = "Pause";
+          } else {
+            video.pause();
+            btn.innerHTML = "Play";
+          }
+        }
+        </script>
+</body>
+</html>

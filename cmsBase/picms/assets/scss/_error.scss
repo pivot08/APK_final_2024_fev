@@ -1,0 +1,48 @@
+
+
+
+/*===========================
+       19.ERROR  css 
+===========================*/
+
+
+.error-area{
+    height: 750px;
+    
+    @media #{$md}{
+        height: 550px;
+    }
+    @media #{$xs}{
+        height: 450px;
+    }
+}
+
+.error-content{
+    & img{
+        @media #{$md}{
+            width: 450px;
+        }
+        @media #{$sm}{
+            width: 350px;
+        }
+    }
+    
+    & .text{
+        font-size: 16px;
+        text-transform: uppercase;
+        margin-top: 55px;
+        
+        & span{
+            color: $theme-color;
+        }
+    }
+}
+
+
+
+
+
+
+
+
+

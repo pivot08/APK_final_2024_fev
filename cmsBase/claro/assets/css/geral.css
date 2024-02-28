@@ -1,0 +1,263 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 100%;
+    padding:0px;
+}
+
+.col-md-12 {
+  
+  padding: 0px;
+}
+
+
+.row {
+    flex-grow: 1;
+    width: 100%;
+    
+    --bs-gutter-x: 1.9rem; 
+}
+
+.card {
+    height: 100%;
+    border-radius: 0px;
+    border:solid 0px;
+}
+
+.trebuchet-ms {
+  font-family: "Trebuchet MS", Tahoma, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 1px;
+}
+
+/* Claro Geral */
+
+.bg_claro {background-color: #da291c;}
+
+.claro_top {padding-top: 5vh;}
+
+.claro_parte1 {padding-left: 4vh;margin-top:0px;}
+
+.claro_logo {width: 18%;}
+
+.color_white {color:#ffffff;}
+
+.title {font-weight: 800 !important;font-size:43px;}
+
+.claro_parte1 h1 {margin: 5px 0;}
+
+.text {font-weight: 400 !important;line-height: 35px;}
+
+.claro_bottom {padding-bottom: 1vh;}
+
+.nav-pills .nav-link.active {
+  color:  #ffffff !important;
+  background-color: #c79192;
+  border-radius: 0px;
+  
+}
+
+.nav-pills .nav-link {
+  color:  #ffffff !important;
+  background-color: #8f2425;
+  border-radius: 0px;
+  padding:17px;
+}
+
+.nav-link {color: #747474}
+
+.nav-item {padding: 5px 0;}
+
+.button-claro {
+  background-color: #da291c;
+  color:#fff;
+  border:solid 0px;
+  margin:auto;
+  font-size:28px;
+  padding:6px;
+  padding-left:20px;
+  padding-right:45px;
+  border-radius: 
+  6px;
+  width:100%
+}
+
+.button-claro a {
+  color:#fff;
+  text-decoration: none;
+}
+
+li.nav-item.meio {
+  padding:  5px;
+}
+
+/* Vivo 1 */
+.conteudo {
+  width: 82%;
+  margin: 0 auto;
+}
+
+
+.fw700 {font-weight: 700 !important;}
+
+.fw400 {font-weight: 400 !important;}
+
+.title-2 {color: #8f2425;}
+
+.div-bttn1 h6 {
+  text-align: center;
+  margin: 5px 0;
+}
+
+
+
+/* Vivo 2 e Vivo 3*/
+.prod{
+  margin: 5vh 0;
+  width: 40%;
+}
+
+.div-img2 img {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.flex-claro {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: flex-start;
+}
+
+.flex-claro2 {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+align-items: flex-start;
+}
+
+.div-bttn2 h6 {
+  text-align: center;
+  margin: 5px 0;
+}
+
+.div-bttn3 h6 {
+  text-align: center;
+  margin: 5px 0;
+}
+
+
+
+
+
+
+.prod2{
+  margin: 3vh 0 0;
+  width: 45%;
+}
+
+.prod3{
+  margin: 3vh 0 0;
+  width: 30%;
+}
+/* Estilizando os botões da navegação */
+.nav-link {
+  position: relative;
+}
+
+/* Estilizando a seta para os botões */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -9px; /* Ajuste a posição horizontal da seta */
+  transform: translateY(-50%);
+  border-top: 10px solid transparent; /* Configuração da seta */
+  border-bottom: 10px solid transparent; /* Configuração da seta */
+  border-left: 10px solid; /* Configuração da seta */
+  z-index: 999;
+}
+
+/* Estilizando a seta para os botões ativos */
+.nav-link.active::after {
+  color: #c79192; /* Cor da seta quando ativo */
+}
+
+.nav-link::after {
+  color: #8f2425; /* Cor da seta quando ativo */
+}
+
+/* Esconder a seta no último botão */
+.nav-item:last-child .nav-link::after {
+  display: none;
+}
+
+.tab-pane.fade { height: 65vh;
+  padding: 1vh 0 0;}
+
+  h2 {
+    font-size: 29px;
+    line-height: 38px !important;
+    margin-bottom: 20px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.div-texto2 h3 {
+  margin-bottom: 20px;
+}
+
+.div-texto2 h3 {
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+
+h6 {
+  font-size: 4px;
+  letter-spacing: -1px !important;
+  margin-top: 13px !important;
+}
+
+.flex-claro {
+  
+  min-height: 732px;
+}
+
+.button-claro {
+  background-color: #da291c;
+  color: #fff;
+  border: solid 0px;
+  margin: auto;
+  font-size: 34px;
+  padding: 6px;
+  padding-left: 20px;
+  padding-right: 45px;
+  border-radius: 11px;
+  width: 100%;
+  font-family: 'trebuchet MS';
+  letter-spacing: 1px;
+}
+
+.div-bttn1 {
+  margin-top: 30px;
+}
+
+h4 {
+  font-size: 22px;
+}
+
+.div-texto2 {
+  min-height: 420px;
+}

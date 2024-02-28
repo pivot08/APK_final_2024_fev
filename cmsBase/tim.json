@@ -1,0 +1,24 @@
+{
+    "template": [
+        {
+            "TemplateID": "15",
+            "ApplicationID": "5",
+            "Application": "TIM",
+            "PageTypeID": "11",
+            "PageType": "Offer Page",
+            "Template": "P\u00e1gina da Oferta",
+            "Logo": null,
+            "ButtonContent": "",
+            "HeaderText": "",
+            "SpecificationLine1": null,
+            "SpecificationLine2": null,
+            "FootNote": null,
+            "Color": "",
+            "IsMainPage": "0",
+            "IsActive": "1",
+            "IsDeleted": "0"
+        }
+    ],
+    "operatorPlan": [],
+    "operatorValue": []
+}

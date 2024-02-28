@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>VIVO</title>
+
+    <!-- Inclua os links para os arquivos do Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/geral.css" rel="stylesheet">
+
+</head>
+
+<body class="how-to h-100" id="content-body">
+    <div id="loading-overlay"></div>
+    <div id="loadingContainer" style="display:none;">
+        <div class="container-fluid">
+
+            <!-- primeira linha-->
+            <div class="row mx-auto vivo_parte1 vivo_top">
+                <div class="col-md-12">
+                    <div class="card" style="background-color: transparent;">
+                        <img id="template-logo" class="vivo_logo" src="">
+                    </div>
+                </div>
+            </div>
+            <!-- segunda linha-->
+            <div class="row mx-auto vivo_parte1">
+                <div class="col-md-12">
+                    <div class="card" style="background-color: transparent;">
+                        <h1 class="title color_white roboto-slab" id="header-text"></h1>
+                    </div>
+                </div>
+            </div>
+
+            <!-- terceira linha-->
+            <div class="row mx-auto vivo_parte1 vivo_bottom">
+                <div class="col-md-12">
+                    <div class="card" style="background-color: transparent;">
+                        <h2 class="text color_white roboto-slab" id="specification-line"></h2>
+                    </div>
+                </div>
+            </div>
+
+            <!-- quarta linha / box -->
+            <div class="row mx-auto vivo_parte2">
+                <div class="col-md-12">
+                    <div class="card">
+                        <ul class="nav nav-pills nav-justified" id="myTab" role="tablist"></ul>
+
+                        <div class="tab-content" id="myTabContent"></div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!-- Inclua os links para os arquivos do Bootstrap JavaScript (opcional, dependendo do que você está usando) -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script>
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+        const applicationID = params.get('applicationID');
+        const applicationSlug = params.get('applicationSlug');
+        const operatorUserID = params.get('operatorUserID');
+
+        fetch('../' + applicationSlug + '.json')
+            .then(response => {
+                if (!response.ok) {
+                    console.error(`Network response was not ok: ${response.statusText}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('JSON data:', data);
+
+                var content = data.template.filter((x) => x.ApplicationID == applicationID && x.PageTypeID == 9);
+                if (content != null && content != undefined) {
+                    var body = document.getElementById('content-body');
+                    body.style.backgroundColor = '#' + content[0].Color;
+
+                    var templateLogo = document.getElementById('template-logo');
+                    templateLogo.src = '../content/' + content[0].Logo;
+
+                    var headerText = document.getElementById('header-text');
+                    headerText.innerHTML = content[0].HeaderText;
+
+                    var specificationLine = document.getElementById('specification-line');
+                    specificationLine.innerHTML = content[0].SpecificationLine1 + '<br>' + content[0].SpecificationLine2;
+                }
+
+                content = null;
+                content = data.operatorPlan.filter((x) => x.ApplicationID == applicationID);
+                var operatorPlan = '';
+                var operatorValue = '';
+                if (content != null && content != undefined) {
+                    for (var i = 0; i < content.length; i++) {
+                        operatorPlan += '<li class="nav-item" role="presentation">'
+                            + '    <img class="seta-img" src="assets/img/seta.png" width="10%" style="margin:0 auto;visibility:' + (i == 0 ? 'visible' : 'hidden') + '">'
+                            + '    <button class="nav-link ' + (i == 0 ? 'active' : '') + '" id="btn' + content[i].OperatorPlanID + '" data-bs-toggle="tab" data-bs-target="#tabPane' + content[i].OperatorPlanID + '" type="button" role="tab" aria-controls="tabPane' + content[i].OperatorPlanID + '" aria-selected="true">'
+                            + '        <h3 class="arial">' + content[i].OperatorPlan.toUpperCase() + '</h3>'
+                            + '    </button>'
+                            + '</li>';
+
+                        contentValue = data.operatorValue.filter((x) => x.ApplicationID == applicationID && x.OperatorUserID == operatorUserID && x.OperatorPlanID == content[i].OperatorPlanID);
+                        if (contentValue != null && contentValue != undefined) {
+                            operatorValue += '<div class="tab-pane fade ' + (i == 0 ? 'show active' : '') + '" id="tabPane' + content[i].OperatorPlanID + '" role="tabpanel" aria-labelledby="btn' + content[i].OperatorPlanID + '" tabindex="0">'
+                                + '<div class="conteudo">';
+
+                            for (var y = 0; y < contentValue.length; y++) {
+                                var deviceInstallments = formatCurrency(parseFloat(contentValue[y].DeviceValue) / parseInt(contentValue[y].Installments));
+                                operatorValue += '<div class="flex-vivo ' + (y > 0 ? 'divisoria' : '') + '">'
+                                    + '    <div class="div-texto">'
+                                    + '        <h2>'
+                                    + '            <span class="fw400 arial">' + contentValue[y].Device + '</span><br />'
+                                    + '            <span class="fw700 arial">' + contentValue[y].PlanDetail + '</span><br />'
+                                    + '            <span class="fw400 arial">' + formatCurrency(contentValue[y].PlanMonthValue) + '/mês</span>'
+                                    + '        </h2>'
+                                    + '        <br />'
+                                    + '        <h2>'
+                                    + '            <span class="fw700 arial">Aparelho</span><br />'
+                                    + '            <span class="fw400 arial"> ' + formatCurrency(contentValue[y].DeviceValue) + '</span>'
+                                    + '        </h2>'
+                                    + '        <h4 class="arial">' + contentValue[y].Installments + ' parcelas ' + deviceInstallments + '</h4>'
+                                    + '    </div>'
+                                    + '    <div class="div-img2">'
+                                    + '        <img src="../content/' + contentValue[y].Media + '" width="100%">'
+                                    + '    </div>'
+                                    + '</div>';
+                            }
+
+                            operatorValue += '<div class="div-bttn2">'
+                                + '            <button class="button-vivo"><a href="' + content[i].Link + '">' + content[i].ButtonContent + '</a></button>'
+                                + '            <h6>' + content[i].FootNote + '</h6>'
+                                + '        </div>'
+                                + '    </div>'
+                                + '</div>';
+                        }
+                    }
+
+                    var tabPlan = document.getElementById('myTab');
+                    tabPlan.innerHTML = operatorPlan;
+
+                    var tabValue = document.getElementById('myTabContent');
+                    tabValue.innerHTML = operatorValue;
+                }
+            })
+            .catch(error => {
+                console.error('Error loading JSON:', error.message);
+            });
+    </script>
+</body>
+
+</html>

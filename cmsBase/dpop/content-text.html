@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <!-- CSS -->
+   <link rel="stylesheet" href="assets/css/bootstrap.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="assets/css/style.css">
+
+   <link rel="stylesheet" href="assets/css/produto-feature-2.css">
+   <title>Samsung</title>
+</head>
+
+<body class="feature-s9-black" onclick="goBack()">
+   <div id="loading-overlay">Carregando...</div>
+   <div id="loadingContainer" style="display:none;">
+      <div class="bt-voltar-absolute">
+         <a href="#" class="header-links">
+            <img src="assets/imgs/nav_back_white.png" alt="" class="nav-back">
+         </a>
+      </div>
+
+      <section>
+         <div class="container feature">
+            <div class="row">
+               <div class="col-md-12 box-item">
+                  <h3 class="txt-white">
+                     <strong id="content-title"></strong>
+                  </h3>
+
+                  <p class="box-paragraph txt-white text-center" id="content-text-top"></p>
+
+                  <video autoplay loop muted id="content-video">
+                     <source src="" type="video/mp4">
+                     Seu navegador não suporta vídeo HTML5.
+                  </video>
+
+                  <p class="box-tj txt-585858" id="content-footnote"></p>
+               </div>
+            </div>
+         </div>
+      </section>
+   </div>
+   <!-- JS -->
+   <script src="assets/dependencies/jquery/jquery.min.js"></script>
+   <script src="assets/dependencies/owl.carousel/dist/owl.carousel.min.js"></script>
+   <script src="assets/js/utils.js"></script>
+   <script>
+      const url = new URL(window.location.href);
+      const params = new URLSearchParams(url.search);
+      const templateChildID = params.get('templateChildID');
+
+      fetch('../content.json')
+         .then(response => {
+            if (!response.ok) {
+               console.error(`Network response was not ok: ${response.statusText}`);
+            }
+            return response.json();
+         })
+         .then(data => {
+            console.log('JSON data:', data);
+
+            var content = data.filter((x) => x.TemplateID == templateChildID);
+            if (content != null && content != undefined) {
+               var contentTitle = document.getElementById('content-title');
+               contentTitle.innerHTML = content[0].Title;
+
+               var contentOrientation = '';
+               switch (content[0].ContentOrientation) {
+                     case "T":
+                        contentOrientation = 'top';
+                        break;
+                     case "L":
+                        contentOrientation = 'left';
+                        break;
+                     case "B":
+                        contentOrientation = 'bottom';
+                        break;
+                     case "R":
+                        contentOrientation = 'right';
+                        break;
+                     default:
+                        contentOrientation = 'top';
+                        break;
+               }
+               var contentText = document.getElementById('content-text-'+ contentOrientation);
+               contentText.innerHTML = content[0].Content;
+
+               var video = document.getElementById('content-video');
+               video.src = '../content/'+ content[0].Media;
+               video.play();
+
+               var contentFootnote = document.getElementById('content-footnote');
+               contentFootnote.innerHTML = content[0].Footnote;
+            }
+         })
+         .catch(error => {
+            console.error('Error loading JSON:', error.message);
+         });
+   </script>
+</body>
+
+</html>

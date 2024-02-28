@@ -1,0 +1,62 @@
+@charset "UTF-8";
+@font-face {
+	font-family: "sim";
+	src: url("icons/sim.eot");
+	src: url("icons/sim.eot?#iefix") format("embedded-opentype"), url("icons/sim.woff") format("woff"), url("icons/sim.ttf") format("truetype"), url("icons/sim.svg#sim") format("svg");
+	font-weight: normal;
+	font-style: normal;
+}
+
+[data-icon]:before {
+	font-family: "sim" !important;
+	content: attr(data-icon);
+	font-style: normal !important;
+	font-weight: normal !important;
+	font-variant: normal !important;
+	text-transform: none !important;
+	speak: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+[class^="icon-"]:before,
+[class*=" icon-"]:before {
+	font-family: "sim" !important;
+	font-style: normal !important;
+	font-weight: normal !important;
+	font-variant: normal !important;
+	text-transform: none !important;
+	speak: none;
+	line-height: 1;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+.icon-facebook:before {
+	content: "\61";
+}
+
+.icon-twitter:before {
+	content: "\62";
+}
+
+.icon-youtube-play:before {
+	content: "\63";
+}
+
+.icon-if-email-322441:before {
+	content: "\66";
+}
+
+.icon-search:before {
+	content: "\64";
+}
+
+.icon-if-38-instagram-1161953:before {
+	content: "\65";
+}
+
+.icon-spotify:before {
+  content: "\67";
+}

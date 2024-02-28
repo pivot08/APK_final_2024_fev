@@ -1,0 +1,96 @@
+
+
+
+/*===========================
+       06.HISTORY  css 
+===========================*/
+
+
+.history-area{
+    position: relative;
+}
+
+.history-image{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    
+    @media #{$md} {
+        width: 720px;
+        margin: 0 auto;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 50px;
+        position: relative;
+    }
+    @media #{$xs} {
+        width: 100%;
+        margin: 0 auto;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-top: 50px;
+        position: relative;
+    }
+    @media #{$sm} {
+        width: 540px;
+    }
+}
+
+.history-content{
+    max-width: 470px;
+    
+    & .history-title{
+        font-size: 40px;
+        padding-top: 10px;
+        
+        @media #{$lg} {
+            font-size: 30px;
+        }
+        @media #{$xs} {
+            font-size: 24px;            
+        }
+        
+        & span{
+            font-weight: 400;
+            display: contents;
+        }
+    }
+    
+    & .text{
+        margin-top: 35px;
+    }
+}
+
+.history-progress-area{
+    & .history-progress{
+        & .circles-text{
+            font-size: 24px !important;
+            font-weight: 700;
+            color: $black;
+            font-family: $font-1;
+        }
+
+        & .progress-content{
+            padding-left: 15px;
+
+            & .progress-title{
+                font-size: 18px;
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

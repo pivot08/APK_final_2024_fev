@@ -1,0 +1,59 @@
+
+
+
+/*===========================
+        3.BRAND css 
+===========================*/
+
+.brand-area{}
+
+.brand-wrapper{
+    border-top: 1px solid $border-color;
+    
+    & .single-brand{
+        width: 20%;
+        text-align: center;
+        
+        @media #{$xs} {
+            width: 50%;
+        }
+        
+        & img{
+            
+        }
+    }
+    
+    &.brand-wrapper-6{
+        border-color: rgba(20, 83, 151, 0.2);
+        
+        & .single-brand{
+            & img{
+                opacity: 0.4;
+                @include transition(0.3s);
+            }
+            
+            &:hover{
+                & img{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

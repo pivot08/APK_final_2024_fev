@@ -1,0 +1,330 @@
+
+
+
+/*===========================
+       03.DOMAIN  css 
+===========================*/
+
+
+.domain-area{
+    background-color: $gray;
+    
+    &.domain-2{
+        background-color: #2358b8;
+        position: relative;
+        z-index: 5;
+        
+        &::before{
+            position: absolute;
+            content: '';
+            top: 0;
+            left: 0;    
+            width: 100%;
+            height: 100%;
+            background-image: url(../images/domain-bg.png);
+            background-position: center center;
+            background-repeat: no-repeat;
+            z-index: -1;
+        }
+    }
+}
+
+.domain-title{
+    & .sub-title{
+        font-size: 18px;
+        font-weight: 400;
+        color: $theme-color-2;
+        text-transform: uppercase;
+
+        @media #{$xs} {
+            font-size: 16px;
+        }
+    }
+    & .title{
+        font-size: 60px;
+        padding-top: 10px;
+        color: #000;
+
+        @media #{$lg} {
+            font-size: 50px;
+        }
+        @media #{$md} {
+            font-size: 40px;
+        }
+        @media #{$xs} {
+            font-size: 24px;            
+        }
+
+        & span{
+            font-weight: 400;
+            display: contents;
+        }
+    }
+    
+    &.domain-title-2{
+        & .sub-title{
+            color: $white;
+        }
+        & .title{
+            color: $white;
+        }
+    }
+}
+
+
+.domain-search{
+    
+    & .search-form{
+        background-color: $white;
+        @include box-shadow (0px 3px 7px 0px rgba(0, 0, 0, 0.1));
+        border-radius: 50px;
+        margin-top: 105px;
+        
+        @media #{$xs} {
+            border-radius: 0;
+        }
+        @media #{$sm} {
+            border-radius: 50px;
+        }
+        
+        & input{
+            width: 55%;
+            height: 100px;
+            background-color: $white;
+            border: 0;
+            padding: 0 80px;
+            font-size: 24px;
+            color: $black;
+            border-radius: 50px;
+            
+            @media #{$md} {
+                padding: 0 40px;
+                height: 80px;
+            }
+            
+            @media #{$xs} {
+                width: 100%;
+                height: 70px;
+                font-size: 16px;
+                border-radius: 0;
+                padding: 0 30px;
+            }
+            @media #{$sm} {
+                border-radius: 50px;
+            }
+        }
+        & .nice-select{
+            float: none;
+            width: 20%;
+            border-radius: 0;
+            height: 100px;
+            border: 0;
+            padding-left: 50px;
+            padding-right: 50px;
+            
+            @media #{$lg}{
+                padding-left: 30px;
+            }
+            
+            @media #{$md} {
+                height: 80px;
+                padding-left: 30px;
+            }
+            
+            @media #{$xs} {
+                width: 100%;
+                height: 70px;
+                padding-left: 30px;
+            }
+            
+            &::after{
+                width: 12px;
+                height: 12px;
+                right: 35%;
+                border-color: #a4a4a4;
+                
+                @media #{$md} {
+                    right: 25%;
+                }
+                @media #{$sm} {
+                    right: 25%;
+                }
+            }
+            
+            &::before{
+                position: absolute;
+                content: '';
+                width: 2px;
+                height: 70%;
+                background-color: $border-color;
+                left: 0;
+                top: 50%;
+                @include transform(translateY(-50%));
+                
+                @media #{$xs} {
+                    width: 80%;
+                    @include transform(translateX(-50%));
+                    height: 2px;
+                    left: 50%;
+                    top: 0;
+                }
+                @media #{$sm} {
+                    width: 2px;
+                    height: 70%;
+                    @include transform(translateY(-50%));
+                    left: 0;
+                    top: 50%;
+                }
+            }
+            
+            & .current{
+                line-height: 100px;
+                font-size: 24px;
+                color: #a4a4a4;
+                
+                @media #{$md} {
+                    line-height: 80px;
+                }
+                @media #{$xs} {
+                    line-height: 70px;
+                    font-size: 16px;
+                }
+            }
+            & .list{
+                width: 100%;
+                border-radius: 0;
+                
+                & .option{
+                    font-size: 24px;
+                    color: #a4a4a4;
+                    
+                    @media #{$xs} {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+        & .main-btn{
+            width: 25%;
+            height: 100px;
+            line-height: 100px;
+            text-transform: uppercase;
+            font-weight: 700;
+            font-size: 24px;
+            background-color: $theme-color-2;
+            border-color: $theme-color-2;
+            
+            @media #{$md} {
+                height: 80px;
+                line-height: 80px;
+            }
+            
+            @media #{$xs} {
+                width: 100%;
+                height: 70px;
+                line-height: 70px;
+                border-radius: 0;
+                font-size: 18px;
+            }
+            @media #{$sm} {
+                border-radius: 50px;
+            }
+            
+            &:hover{
+                background-color: rgba($theme-color-2, 0.4);
+                color: $theme-color-2;
+            }
+        }
+        
+        &.search-form-2{
+            & .main-btn{
+                background-color: #164aa9;
+                border-color: #164aa9;
+                
+                &:hover{
+                    background-color: rgba(22, 74, 169, 0.6);
+                    color: $white;
+                }
+            }
+        }
+    }
+    
+    & .domain-name{
+        & .single-domain{
+            & a{
+                background-color: $white;
+                width: 80px;
+                height: 80px;
+                text-align: center;
+                border-radius: 10px;
+                @include transition(0.3s);
+                padding: 10px 0;
+                
+                @media #{$xs} {
+                    width: 75px;
+                    height: 75px;
+                }
+                @media #{$sm} {
+                    width: 80px;
+                    height: 80px;
+                }
+                
+                & .name{
+                    font-weight: 700;
+                    color: $body-color;
+                    display: block;
+                    font-size: 18px;
+                }
+                & .price{
+                    display: block;
+                    font-size: 14px;
+                    color: $body-color;
+                    padding-top: 5px;
+                }
+                
+                &:hover{
+                    background-color: $theme-color-2;
+                    @include box-shadow (0px 10px 25px 0px rgba($black, 0.2));
+                    
+                    & .name,
+                    & .price{
+                        color: $white;
+                    }
+                }
+            }
+        }
+        
+        &.domain-name-2{
+            & .single-domain{
+                & a{
+                    background-color: rgba($white, 0.07);
+                    
+                    & .name{
+                        color: $white;
+                    }
+                    & .price{
+                        color: $white;
+                    }
+                    
+                    &:hover{
+                        background-color: #164aa9;
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

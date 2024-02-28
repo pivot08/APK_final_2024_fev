@@ -1,0 +1,298 @@
+
+
+
+/*===========================
+       14.PROCESS css 
+===========================*/
+
+.process-area{}
+
+
+.single-process{
+    & .process-icon{
+        & .icon{
+            width: 30px;
+            height: 30px;
+            line-height: 32px;
+            @include transform(rotate(45deg));
+            position: relative;
+            z-index: 5;
+            
+            &::before,
+            &::after{
+                position: absolute;
+                content: '';
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                @include transform(rotate(-30deg));
+                z-index: -1;
+            }
+            
+            &::after{
+                @include transform(rotate(-60deg));
+            }
+            
+            & i{
+                color: $white;
+                font-size: 16px;
+                @include transform(rotate(-45deg));
+            }
+        }
+        
+        & .icon-title{
+            font-size: 18px;
+            font-weight: 700;
+            color: $body-color;
+            padding-left: 15px;
+            font-family: $font-2;
+            
+            & span{
+                font-weight: 400;
+            }
+        }
+    }
+    & .process-content{
+        & .process-title{
+            & a{
+                font-size: 24px;
+                color: $black;
+                font-family: $font-2;
+                @include transition(0.3s);
+                
+                &:hover{
+                    color: $theme-color;
+                }
+            }
+        }
+        
+        & .text{
+            padding-top: 20px;
+            font-size: 16px;
+        }
+        & .more{
+            font-size: 36px;
+            color: $body-color;
+            margin-top: 5px;
+            @include transition(0.3s);
+                
+            &:hover{
+                color: $theme-color;
+            }
+        }
+    }
+    
+    &.process-color-1{
+        & .process-icon{
+            & .icon{
+                background-color: #6360f4;
+                
+                &::before,
+                &::after{
+                    background-color: #6360f4;
+                }
+            }
+        }
+    }
+    &.process-color-2{
+        & .process-icon{
+            & .icon{
+                background-color: #f23559;
+                
+                &::before,
+                &::after{
+                    background-color: #f23559;
+                }
+            }
+        }
+    }
+    &.process-color-3{
+        & .process-icon{
+            & .icon{
+                background-color: #35f2e7;
+                
+                &::before,
+                &::after{
+                    background-color: #35f2e7;
+                }
+            }
+        }
+    }
+    &.process-color-4{
+        & .process-icon{
+            & .icon{
+                background-color: #1ecf92;
+                
+                &::before,
+                &::after{
+                    background-color: #1ecf92;
+                }
+            }
+        }
+    }
+    &.process-color-5{
+        & .process-icon{
+            & .icon{
+                background-color: #781ceb;
+                
+                &::before,
+                &::after{
+                    background-color: #781ceb;
+                }
+            }
+        }
+    }
+    &.process-color-6{
+        & .process-icon{
+            & .icon{
+                background-color: #54b2f8;
+                
+                &::before,
+                &::after{
+                    background-color: #54b2f8;
+                }
+            }
+        }
+    }
+}
+
+.process-content{
+    & .process-icon{
+        & .icon{
+            width: 30px;
+            height: 30px;
+            line-height: 32px;
+            @include transform(rotate(45deg));
+            position: relative;
+            z-index: 5;
+            text-align: center;
+            
+            &::before,
+            &::after{
+                position: absolute;
+                content: '';
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                @include transform(rotate(-30deg));
+                z-index: -1;
+            }
+            
+            &::after{
+                @include transform(rotate(-60deg));
+            }
+            
+            & i{
+                color: $white;
+                font-size: 16px;
+                @include transform(rotate(-45deg));
+            }
+        }
+        
+        & .icon-title{
+            font-size: 18px;
+            font-weight: 700;
+            color: $body-color;
+            padding-left: 15px;
+            font-family: $font-2;
+            
+            & span{
+                font-weight: 400;
+            }
+        }
+    }
+    & .process-text{
+        & .process-title{
+            font-size: 40px;
+
+            @media #{$lg} {
+                font-size: 30px;
+            }
+            @media #{$xs} {
+                font-size: 24px;            
+            }
+
+            & span{
+                font-weight: 400;
+                display: contents;
+            }
+        }
+        
+        & .text{
+            padding-top: 20px;
+            font-size: 16px;
+        }
+    }
+    
+    &.process-color-1{
+        & .process-icon{
+            & .icon{
+                background-color: #f23559;
+                
+                &::before,
+                &::after{
+                    background-color: #f23559;
+                }
+            }
+        }
+    }
+    
+    &.process-color-2{
+        & .process-icon{
+            & .icon{
+                background-color: #1574ff;
+                
+                &::before,
+                &::after{
+                    background-color: #1574ff;
+                }
+            }
+        }
+    }
+    &.process-color-3{
+        & .process-icon{
+            & .icon{
+                background-color: #2dc322;
+                
+                &::before,
+                &::after{
+                    background-color: #2dc322;
+                }
+            }
+        }
+    }
+    &.process-color-4{
+        & .process-icon{
+            & .icon{
+                background-color: #000;
+                
+                &::before,
+                &::after{
+                    background-color: #000;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

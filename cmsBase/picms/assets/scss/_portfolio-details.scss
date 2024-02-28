@@ -1,0 +1,188 @@
+
+
+
+/*===========================
+   16.PROTFOLIO DETAILS css 
+===========================*/
+
+
+
+.portfolio-details-area{}
+
+
+.portfolio-details-image{
+    & .tab-content{
+        & img{
+            width: 100%;
+        }
+    }
+    
+    & .nav{
+        padding-top: 50px;
+        margin-left: -15px;
+        margin-right: -15px;
+        
+        @media #{$xs}{
+            padding-top: 30px;
+            margin-left: -5px;
+            margin-right: -5px;
+        }
+        
+        & .nav-item{
+            width: 33.33%;
+            padding-left: 15px;
+            padding-right: 15px;      
+            
+            @media #{$xs}{
+                padding-left: 5px;
+                padding-right: 5px;
+            }
+        }
+        
+        & a{
+            position: relative;
+            
+            &::before{
+                position: absolute;
+                content: '';
+                width: 100%;
+                height: 100%;
+                background-color: rgba(255, 255, 255, 0.7);
+                border: 5px solid $theme-color;
+                top: 0;
+                left: 0;
+                opacity: 0;
+                @include transition(0.3s);
+                
+                @media #{$xs}{
+                    border: 2px solid $theme-color;
+                }
+                @media #{$sm}{
+                    border: 3px solid $theme-color;
+                }
+            }
+            
+            &.active{
+                
+                &::before{
+                    opacity: 1;
+                }
+            }
+            
+            & img{
+                width: 100%;
+            }
+        }
+    }
+    
+    &.portfolio-details-image-2{
+        & .nav{
+            padding-top: 0;
+            
+            & .nav-item{
+                width: 100%;
+                margin-top: 30px;
+                
+                @media #{$md}{
+                    width: 33.33%;
+                }
+                @media #{$xs}{
+                    width: 33.33%;
+                }
+                
+                &:first-child{
+                    margin-top: 0;
+                    
+                    @media #{$md}{
+                        margin-top: 30px;
+                    }
+                    @media #{$xs}{
+                        margin-top: 30px;
+                    }
+                }
+            }
+
+            & a{
+                & img{
+                    width: 100%;
+                    height: 140px;
+                    object-position: center;
+                    object-fit: cover;
+                    
+                    @media #{$lg}{
+                        height: 108px;
+                    }
+                    @media #{$xs}{
+                        height: 80px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.portfolio-details-content{
+    padding-top: 90px;
+    
+    @media #{$xs} {
+        padding-top: 60px;
+    }
+    
+    & .portfolio-sub-title{
+        font-size: 14px;
+        font-weight: 400;
+        font-family: $font-1;
+        color: $theme-color;
+    }
+    & .portfolio-title{
+        font-size: 32px;
+        color: #000;
+        font-weight: 500;
+        margin-top: 5px;
+        
+        @media #{$xs}{
+            font-size: 26px;
+        }
+    }
+    & .text{
+        margin-top: 15px;
+    }
+    
+    & .portfolio-cdws{
+        padding-top: 25px;
+        
+        & .single-cdws{
+            & .cdws-icon{
+                & i{
+                    font-size: 24px;
+                    color: #000;
+                }
+            }
+            & .cdws-content{
+                padding-left: 30px;
+                
+                & .cdws-title{
+                    font-size: 14px;
+                    font-family: $font-1;
+                    font-weight: 400;
+                    color: #000;
+                }
+                & .text{
+                    margin-top: 5px;
+                }
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+

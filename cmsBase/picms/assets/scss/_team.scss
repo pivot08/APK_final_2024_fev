@@ -1,0 +1,255 @@
+
+
+
+/*===========================
+         12.TEAM css 
+===========================*/
+
+.team-area{
+    position: relative;
+}
+
+.team-bg{
+    background-color: #eff2f9;
+}
+
+.team-wrapper{
+    background-color: $gray;
+    padding-bottom: 30px;
+}
+
+.single-team{
+    & .team-image{
+        position: relative;
+        & img{
+            width: 100%;
+        }
+        & .plus-link{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            @include transform(translate(-50%, -50%) scale(0));
+            font-size: 30px;
+            color: $white;
+            background-color: $theme-color;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            line-height: 60px;
+            text-align: center;
+            opacity: 0;
+            @include transition(0.3s);
+        }
+    }
+    
+    & .team-content{
+        padding-top: 25px;
+        
+        & .team-title{
+            & a{
+                font-size: 32px;
+                font-weight: 500;
+                font-family: $font-2;
+                color: $black;
+                @include transition(0.3s);
+                
+                @media #{$xs} {
+                    font-size: 26px;
+                }
+                
+                &:hover{
+                    color: $theme-color;
+                }
+            }
+        }
+        & .sub-title{
+            font-size: 18px;
+            color: $body-color;
+            margin-top: 5px;
+        }
+        & .social{
+            border-top: 1px solid $border-color;
+            padding-top: 18px;
+            margin-top: 30px;
+            
+            & li{
+                display: inline-block;
+                margin: 0 30px;
+                
+                @media #{$lg} {
+                    margin: 0 20px;
+                }
+                @media #{$xs} {
+                    margin: 0 20px;
+                }
+                
+                & a{
+                    font-size: 18px;
+                    color: $body-color;
+                    @include transition(0.3s);
+                
+                    &:hover{
+                        color: $theme-color;
+                    }
+                }
+            }
+        }
+    }
+    
+    &:hover{
+        & .team-image{
+            & .plus-link{
+                @include transform(translate(-50%, -50%) scale(1));
+                opacity: 1;
+            }
+        }
+    }
+    
+    &.team-2{
+        & .team-image{
+            & .plus-link{
+                background-color: $theme-color-2;
+            }
+        }
+        
+        & .team-content{
+            & .team-title{
+                & a{
+                    &:hover{
+                        color: $theme-color-2;
+                    }
+                }
+            }
+        }
+    }
+    
+    &.team-4{
+        & .team-image{
+            & .plus-link{
+                background-color: $theme-color-4;
+            }
+        }
+        
+        & .team-content{
+            & .team-title{
+                & a{
+                    &:hover{
+                        color: $theme-color-4;
+                    }
+                }
+            }
+        }
+    }
+    
+    &.team-5{
+        & .team-image{
+            & .plus-link{
+                background-color: $theme-color-5;
+            }
+        }
+        
+        & .team-content{
+            & .team-title{
+                & a{
+                    color: $white;
+                    
+                }
+            }
+            & .sub-title{
+                color: #4bb3f9;
+            }
+            
+            & .social{
+                border-color: rgba($white, 0.3);
+                
+                & li{
+                    & a{
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+    
+    &.team-6{
+        & .team-image{
+            & .plus-link{
+                background-color: #2358b8;
+            }
+        }
+        
+        & .team-content{
+            & .team-title{
+                & a{
+                    color: $white;
+                }
+            }
+            & .sub-title{
+                color: #4bb3f9;
+            }
+            
+            & .social{
+                border-color: rgba($white, 0.3);
+                
+                & li{
+                    & a{
+                        color: $white;
+                    }
+                }
+            }
+        }
+    }
+    
+}
+
+
+
+
+.team-section-title{
+    & .team-line{
+        padding-top: 10px;
+        
+        & li{
+            height: 5px;
+            background-color: #fde4e1;
+            display: inline-block;
+            border-radius: 50px;
+            margin-right: 3px;
+                        
+            &:nth-of-type(1){
+                width: 40px;
+            }
+            &:nth-of-type(2){
+                width: 15px;
+            }
+            &:nth-of-type(3){
+                width: 10px;
+            }
+            &:nth-of-type(4){
+                width: 5px;
+            }
+        }
+    }
+    
+    &.team-section-6{
+        & .team-line{
+            & li{
+                background-color: rgba(255, 255, 255, 0.1);
+            }
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
