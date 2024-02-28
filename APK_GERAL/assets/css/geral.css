@@ -639,3 +639,23 @@ button:active {
   background-size: cover;
   background-position: 0%;
 }
+
+
+#divOpTim, #divOpVivo, #divOpClaro {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 99999;
+}
+
+.featureInt div#divOpClaro, .featureInt div#divOpVivo, .featureInt div#divOpTim {
+  top: 13px;
+  width: auto;
+  height: max-content;
+  left: 8px;
+}
+
+.loginDiv img {
+  max-width: 150px !important;
+}

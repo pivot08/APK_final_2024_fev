@@ -63,12 +63,13 @@ $(document).ready(function() {
     window.location.href = 'index.html';
 }
 
-
-
-   // Função para verificar se o login foi feito pela Vivo, Claro, Tim ou Geral
-   function checkAndRedirect() {
+// Função para verificar o login e redirecionar
+function checkAndRedirect() {
     var username = sessionStorage.getItem("username");
-    
+
+    // Exibe a div correspondente ao login
+    showLoginDiv(username);
+
     // Verifica se o login foi feito pela Vivo
     if (username === "vivo@operadoras") {
         // Define um timeout de 30 segundos para redirecionar para a URL da Vivo
@@ -102,7 +103,37 @@ $(document).ready(function() {
     }
 }
 
+// Função para mostrar a div correspondente ao login
+function showLoginDiv(username) {
+  
+
+    // Mostra a div correspondente ao login
+    switch (username) {
+        case "vivo@operadoras":
+            document.getElementById("divOpVivo").style.display = "block";
+            break;
+
+        case "claro@operadoras":
+            document.getElementById("divOpClaro").style.display = "block";
+            break;
+
+        case "tim@operadoras":
+            document.getElementById("divOpTim").style.display = "block";
+            break;
+
+        case "geral@apk":
+            document.getElementById("divOpGeral").style.display = "block";
+            break;
+
+        // Adicione mais casos conforme necessário para outros logins
+
+        default:
+            // Caso não seja nenhum dos logins específicos, não mostra nenhuma div
+            break;
+    }
+}
+
+
+
 // Chame a função quando a página carregar
 checkAndRedirect();
-
-
