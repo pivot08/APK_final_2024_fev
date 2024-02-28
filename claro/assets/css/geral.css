@@ -106,6 +106,8 @@ li.nav-item.meio {
 .conteudo {
   width: 82%;
   margin: 0 auto;
+  margin-top: 1vh !important;
+
 }
 
 
@@ -133,6 +135,11 @@ li.nav-item.meio {
   margin-top: 20px;
 }
 
+.div-img3 img {
+  width: 100%;
+  margin-top: 20px;
+}
+
 .flex-claro {
   display: flex; 
   justify-content: space-between; 
@@ -140,6 +147,13 @@ li.nav-item.meio {
 }
 
 .flex-claro2 {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+align-items: flex-start;
+}
+
+.flex-claro3 {
   display: flex; 
   justify-content: space-between; 
   align-items: center;
@@ -156,18 +170,13 @@ align-items: flex-start;
   margin: 5px 0;
 }
 
-
-
-
-
-
 .prod2{
-  margin: 3vh 0 0;
+  margin: 0vh 0 0;
   width: 45%;
 }
 
 .prod3{
-  margin: 3vh 0 0;
+  margin: 0vh 0 0;
   width: 30%;
 }
 /* Estilizando os botões da navegação */
@@ -224,15 +233,30 @@ h1 {
   font-size: 26px;
 }
 
+.div-texto3 h3 {
+  margin-bottom: 20px;
+}
+
+.div-texto3 h3 {
+  margin-bottom: 20px;
+  font-size: 26px;
+}
+
 h6 {
   font-size: 10px;
-  letter-spacing: -1px !important;
+  letter-spacing: 1px !important;
   margin-top: 13px !important;
 }
 
-.flex-claro {
+.flex-claro2 {
   
-  min-height: 732px;
+  min-height: 700px;
+}
+
+
+.flex-claro3 {
+  
+  min-height: 680px;
 }
 
 .button-claro {
@@ -259,5 +283,9 @@ h4 {
 }
 
 .div-texto2 {
+  min-height: 420px;
+}
+
+.div-texto3 {
   min-height: 420px;
 }
