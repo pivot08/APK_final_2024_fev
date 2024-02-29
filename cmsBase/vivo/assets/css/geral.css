@@ -1,4 +1,37 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100..900&display=swap');
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url("RobotoSlab-Regular.otf") format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url("RobotoSlab-Medium") format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url("RobotoSlab-Black.otf") format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url("RobotoSlab-Light") format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url("RobotoSlab-Thin.otf") format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
 
 html, body {
     height: 100%;

@@ -289,3 +289,7 @@ h4 {
 .div-texto3 {
   min-height: 420px;
 }
+
+.background-header {
+  background-color: transparent;
+}
