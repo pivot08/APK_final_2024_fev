@@ -56,10 +56,80 @@ $(document).ready(function () {
     window.location.href = '../index.html';
 }
 
-// Definindo o redirecionamento para daqui a 40 segundos (40000 milissegundos)
-setTimeout(redirect, 90000);
+
+// Função para verificar o login e redirecionar
+function checkAndRedirect() {
+    var username = sessionStorage.getItem("username");
+
+    // Exibe a div correspondente ao login
+    showLoginDiv(username);
+
+    // Verifica se o login foi feito pela Vivo
+    if (username === "vivo@operadoras") {
+        // Define um timeout de 30 segundos para redirecionar para a URL da Vivo
+        setTimeout(function () {
+            window.location.href = "../vivo/vivo.html";
+        }, 30000); // 30 segundos em milissegundos
+    }
+
+    // Verifica se o login foi feito pela Claro
+    if (username === "claro@operadoras") {
+        // Define um timeout de 30 segundos para redirecionar para a URL da Claro
+        setTimeout(function () {
+            window.location.href = "../claro/claro.html";
+        }, 30000); // 30 segundos em milissegundos
+    }
+
+    // Verifica se o login foi feito pela Tim
+    if (username === "tim@operadoras") {
+        // Define um timeout de 30 segundos para redirecionar para a URL da Tim
+        setTimeout(function () {
+            window.location.href = "../tim/tim.html";
+        }, 30000); // 30 segundos em milissegundos
+    }
+
+    // Verifica se o login foi feito pela Geral
+    if (username === "geral@apk") {
+        // Define um timeout de 60 segundos para redirecionar para a URL geral
+        setTimeout(function () {
+            window.location.href = "../index.html";
+        }, 60000); // 60 segundos em milissegundos
+    }
+}
+
+// Função para mostrar a div correspondente ao login
+function showLoginDiv(username) {
+   
+
+    // Mostra a div correspondente ao login
+    switch (username) {
+        case "vivo@operadoras":
+            document.getElementById("divOpVivo").style.display = "block";
+            break;
+
+        case "claro@operadoras":
+            document.getElementById("divOpClaro").style.display = "block";
+            break;
+
+        case "tim@operadoras":
+            document.getElementById("divOpTim").style.display = "block";
+            break;
+
+        case "geral@apk":
+            document.getElementById("divOpGeral").style.display = "block";
+            break;
+
+        // Adicione mais casos conforme necessário para outros logins
+
+        default:
+            // Caso não seja nenhum dos logins específicos, não mostra nenhuma div
+            break;
+    }
+}
 
 
+// Chame a função quando a página carregar
+checkAndRedirect();
 
  // Espera 2 segundos e depois oculta o vídeo
  setTimeout(function () {
@@ -81,4 +151,4 @@ setTimeout(redirect, 90000);
     destaquesH5.forEach(function(h5) {
         h5.style.display = 'block';
     });
-}, 16000); 
+}, 16000000); 

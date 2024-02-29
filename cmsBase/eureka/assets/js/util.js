@@ -12,17 +12,18 @@ function clearTimer() {
     clearTimeout(pressTimer);
 }
 
-$(window).on('load', function () {
+
+$(window).on('load', function() {
     // Oculte o overlay de carregamento
     $('#loading-overlay').css('opacity', 0);
     // Mostre o conteúdo da página com fadeIn
-    $('#loadingContainer').fadeIn(1250, function () {
+    $('#loadingContainer').fadeIn(1250, function() {
         // Após a conclusão do fadeIn, oculte o overlay
         $('#loading-overlay').css('display', 'none');
     });
 });
 
-function loopVideos() {
+$(document).ready(function() {
     var videos = $(".video-sequence").toArray();
 
     function playNextVideo(index) {
@@ -34,13 +35,12 @@ function loopVideos() {
             video.play();
 
             // Define um atraso antes de esconder a overlay
-            var timeoutOverlay = setTimeout(function () {
+            setTimeout(function() {
                 overlay.hide();
             }, 2000); // Atraso de 1000 milissegundos (1 segundo)
 
             // Quando o vídeo atual termina, chama a função para o próximo vídeo
-            $(video).on('ended', function () {
-                clearTimeout(timeoutOverlay);
+            $(video).on('ended', function() {
                 // Se ainda há vídeos na sequência, toca o próximo
                 if (index + 1 < videos.length) {
                     playNextVideo(index + 1);
@@ -54,15 +54,86 @@ function loopVideos() {
 
     // Inicia a reprodução do primeiro vídeo
     playNextVideo(0);
+});
+
+
+
+ // Função que será chamada após 40 segundos
+ function redirect() {
+    window.location.href = 'index.html';
 }
 
-const url = new URL(window.location.href);
-const params = new URLSearchParams(url.search);
-const applicationID = params.get('applicationID');
-function redirect() {
-    if (applicationID)
-        applicationID = 0;
+// Função para verificar o login e redirecionar
+function checkAndRedirect() {
+    var username = sessionStorage.getItem("username");
 
-    window.location.href = 'index.html?applicationID=' + applicationID;
+    // Exibe a div correspondente ao login
+    showLoginDiv(username);
+
+    // Verifica se o login foi feito pela Vivo
+    if (username === "vivo@operadoras") {
+        // Define um timeout de 30 segundos para redirecionar para a URL da Vivo
+        setTimeout(function () {
+            window.location.href = "vivo/vivo.html";
+        }, 30000); // 30 segundos em milissegundos
+    }
+
+    // Verifica se o login foi feito pela Claro
+    if (username === "claro@operadoras") {
+        // Define um timeout de 30 segundos para redirecionar para a URL da Claro
+        setTimeout(function () {
+            window.location.href = "claro/claro.html";
+        }, 30000); // 30 segundos em milissegundos
+    }
+
+    // Verifica se o login foi feito pela Tim
+    if (username === "tim@operadoras") {
+        // Define um timeout de 30 segundos para redirecionar para a URL da Tim
+        setTimeout(function () {
+            window.location.href = "tim/tim.html";
+        }, 30000); // 30 segundos em milissegundos
+    }
+
+    // Verifica se o login foi feito pela Geral
+    if (username === "geral@apk") {
+        // Define um timeout de 60 segundos para redirecionar para a URL geral
+        setTimeout(function () {
+            window.location.href = "index.html";
+        }, 60000); // 60 segundos em milissegundos
+    }
 }
-setTimeout(redirect, 60000);
+
+// Função para mostrar a div correspondente ao login
+function showLoginDiv(username) {
+  
+
+    // Mostra a div correspondente ao login
+    switch (username) {
+        case "vivo@operadoras":
+            document.getElementById("divOpVivo").style.display = "block";
+            break;
+
+        case "claro@operadoras":
+            document.getElementById("divOpClaro").style.display = "block";
+            break;
+
+        case "tim@operadoras":
+            document.getElementById("divOpTim").style.display = "block";
+            break;
+
+        case "geral@apk":
+            document.getElementById("divOpGeral").style.display = "block";
+            break;
+
+        // Adicione mais casos conforme necessário para outros logins
+
+        default:
+            // Caso não seja nenhum dos logins específicos, não mostra nenhuma div
+            break;
+    }
+}
+
+
+
+// Chame a função quando a página carregar
+checkAndRedirect();
