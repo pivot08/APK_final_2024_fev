@@ -109,6 +109,9 @@
                             var operatorPlan = '';
                             var operatorValue = '';
                             if (content != null && content != undefined) {
+                                if (content.length == 0)
+                                    document.location.href = mainLink;
+                                
                                 for (var i = 0; i < content.length; i++) {
                                     operatorPlan += '<li class="nav-item" role="presentation">'
                                         + '    <img class="seta-img" src="assets/img/seta.png" width="10%" style="margin:0 auto; visibility: ' + (i == 0 ? 'visible' : 'hidden') + '">'

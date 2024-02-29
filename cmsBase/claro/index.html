@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>EUREKA</title>
+    <title>CLARO</title>
 
     <!-- Inclua os links para os arquivos do Bootstrap CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
@@ -12,7 +12,7 @@
 
 </head>
 
-<body class="how-to h-100" id="content-body">
+<body class="how-to h-100 " id="content-body">
     <div id="loading-overlay"></div>
     <div id="loadingContainer" style="display:none;">
         <div class="container-fluid">
@@ -20,7 +20,7 @@
             <!-- primeira linha-->
             <div class="row mx-auto claro_parte1 claro_top">
                 <div class="col-md-12">
-                    <div class="card" style="background-color: transparent;">
+                    <div class="card background-header">
                         <img id="template-logo" class="claro_logo" src="">
                     </div>
                 </div>
@@ -28,7 +28,7 @@
             <!-- segunda linha-->
             <div class="row mx-auto claro_parte1">
                 <div class="col-md-12">
-                    <div class="card" style="background-color: transparent;">
+                    <div class="card background-header">
                         <h1 class="title color_white trebuchet-ms" id="header-text"></h1>
                         <h2 class="text color_white trebuchet-ms" id="specification-line"></h2>
                     </div>
@@ -44,7 +44,9 @@
                     <div class="card">
                         <ul class="nav nav-pills nav-justified" id="myTab" role="tablist"></ul>
 
-                        <div class="tab-content" id="myTabContent">
+                        <div class="tab-content" id="myTabContent"></div>
+                        <div>
+
                         </div>
                     </div>
                 </div>
@@ -58,92 +60,108 @@
         <script>
             const url = new URL(window.location.href);
             const params = new URLSearchParams(url.search);
+            const path = params.get('path') != null && params.get('path') != undefined ? 'file:///android_asset' : '..';
+            const pathContent = params.get('path') != null && params.get('path') != undefined ? params.get('path') : '../content';
+            const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : 'content';
             const applicationID = params.get('applicationID');
             const applicationSlug = params.get('applicationSlug');
             const operatorUserID = params.get('operatorUserID');
+            const searchParams = window.btoa(window.location.search);
 
-            fetch('../' + applicationSlug + '.json')
-                .then(response => {
-                    if (!response.ok) {
-                        console.error(`Network response was not ok: ${response.statusText}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    console.log('JSON data:', data);
+            var xhrContent = new XMLHttpRequest();
+            xhrContent.onreadystatechange = function () {
+                if (xhrContent.readyState === 4 && xhrContent.status === 200) {
+                    var dataVersion = JSON.parse(xhrContent.responseText);
 
-                    var content = data.template.filter((x) => x.ApplicationID == applicationID && x.PageTypeID == 9);
-                    if (content != null && content != undefined) {
-                        var body = document.getElementById('content-body');
-                        body.style.backgroundColor = '#' + content[0].Color;
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            var data = JSON.parse(xhr.responseText);
 
-                        var templateLogo = document.getElementById('template-logo');
-                        templateLogo.src = '../content/' + content[0].Logo;
+                            var content = data.template.filter((x) => x.ApplicationID == applicationID && x.PageTypeID == 10);
+                            if (content != null && content != undefined) {
 
-                        var headerText = document.getElementById('header-text');
-                        headerText.innerHTML = content[0].HeaderText;
-
-                        var specificationLine = document.getElementById('specification-line');
-                        specificationLine.innerHTML = content[0].SpecificationLine1 + '<br>' + content[0].SpecificationLine2;
-                    }
-
-                    content = null;
-                    content = data.operatorPlan.filter((x) => x.ApplicationID == applicationID);
-                    var operatorPlan = '';
-                    var operatorValue = '';
-                    if (content != null && content != undefined) {
-                        for (var i = 0; i < content.length; i++) {
-                            operatorPlan += '<li class="nav-item" role="presentation">'
-                                + '    <img class="seta-img" src="assets/img/seta.png" width="10%" style="margin:0 auto;visibility:' + (i == 0 ? 'visible' : 'hidden') + '">'
-                                + '    <button class="nav-link ' + (i == 0 ? 'active' : '') + '" id="btn' + content[i].OperatorPlanID + '" data-bs-toggle="tab" data-bs-target="#tabPane' + content[i].OperatorPlanID + '" type="button" role="tab" aria-controls="tabPane' + content[i].OperatorPlanID + '" aria-selected="true">'
-                                + '        <h3 class="trebuchet-ms">' + content[i].OperatorPlan.toUpperCase() + '</h3>'
-                                + '    </button>'
-                                + '</li>';
-
-                            contentValue = data.operatorValue.filter((x) => x.ApplicationID == applicationID && x.OperatorUserID == operatorUserID && x.OperatorPlanID == content[i].OperatorPlanID);
-                            if (contentValue != null && contentValue != undefined) {
-                                operatorValue += '<div class="tab-pane fade ' + (i == 0 ? 'show active' : '') + '" id="tabPane' + content[i].OperatorPlanID + '" role="tabpanel" aria-labelledby="btn' + content[i].OperatorPlanID + '" tabindex="0">'
-                                    + '<div class="conteudo">'
-                                    + ' <div class="flex-claro">';
-
-                                for (var y = 0; y < contentValue.length; y++) {
-                                    var deviceInstallments = formatCurrency(parseFloat(contentValue[y].DeviceValue) / parseInt(contentValue[y].Installments));
-                                    operatorValue += '<div class="prod">'
-                                        + '    <div class="div-texto">'
-                                        + '        <h2><span class="fw700 title-2 trebuchet-ms">' + contentValue[y].Device + '</span></h2>'
-                                        + '        <h3>'
-                                        + '            <span class="fw400 trebuchet-ms">Valor do aparelho </span><span class="fw700 trebuchet-ms">' + contentValue[y].Installments + 'x ' + deviceInstallments + '</span><br /><br />'
-                                        + '            <span class="fw400 trebuchet-ms">Valor total à vista </span> <span class="fw700 trebuchet-ms">' + formatCurrency(contentValue[y].DeviceValue) + '</span><br /><br />'
-                                        + '            <span class="fw400 trebuchet-ms">Valor do plano </span><span class="fw700 trebuchet-ms">' + formatCurrency(contentValue[y].PlanMonthValue) + '</span><br />'
-                                        + '        </h3>'
-                                        + '        <h4 class="trebuchet-ms">' + contentValue[y].Observation + '</h4>'
-                                        + '    </div>'
-                                        + '    <div class="div-img2">'
-                                        + '        <img src="../content/' + contentValue[y].Media + '" width="100%">'
-                                        + '    </div>'
-                                        + '</div>';
+                                var contentVersion = dataVersion.templateContent.filter((x) => x.IsActive == 1 && x.IsMainPage == 1);
+                                if (contentVersion != null && contentVersion != undefined) {
+                                    var mainLink = path + '/' + contentVersion[0].ApplicationSlug + '/base/index.html?origin=' + applicationSlug + '&searchParams=' + searchParams;
                                 }
 
-                                operatorValue += '  <div class="div-bttn2">'
-                                    + '             <button class="button-claro"><a href="' + content[i].Link + '">' + content[i].ButtonContent + '</a></button>'
-                                    + '             <h6>' + content[i].FootNote + '</h6>'
-                                    + '         </div>'
-                                    + '     </div>'
-                                    + '    </div>'
-                                    + '</div>';
+                                var body = document.getElementById('content-body');
+                                body.style.backgroundColor = '#' + content[0].Color;
+
+                                var templateLogo = document.getElementById('template-logo');
+                                templateLogo.src = pathContent + '/' + content[0].Logo;
+
+                                var headerText = document.getElementById('header-text');
+                                headerText.innerHTML = content[0].HeaderText;
+
+                                var specificationLine = document.getElementById('specification-line');
+                                specificationLine.innerHTML = content[0].SpecificationLine1 + '<br>' + content[0].SpecificationLine2;
+                            }
+
+                            content = null;
+                            content = data.operatorPlan.filter((x) => x.ApplicationID == applicationID);
+                            var operatorPlan = '';
+                            var operatorValue = '';
+                            if (content != null && content != undefined) {
+                                if (content.length == 0)
+                                    document.location.href = mainLink;
+
+                                for (var i = 0; i < content.length; i++) {
+                                    operatorPlan += '<li class="nav-item" role="presentation">'
+                                        + '    <button class="nav-link ' + (i == 0 ? 'active' : '') + '" id="btn' + content[i].OperatorPlanID + '" data-bs-toggle="tab" data-bs-target="#tabPane' + content[i].OperatorPlanID + '" type="button" role="tab" aria-controls="tabPane' + content[i].OperatorPlanID + '" aria-selected="true"><h3 class="trebuchet-ms">' + content[i].OperatorPlan.toUpperCase() + '</h3></button>'
+                                        + '</li>';
+
+                                    contentValue = data.operatorValue.filter((x) => x.ApplicationID == applicationID && x.OperatorUserID == operatorUserID && x.OperatorPlanID == content[i].OperatorPlanID);
+                                    if (contentValue != null && contentValue != undefined) {
+                                        operatorValue += '<div class="tab-pane fade ' + (i == 0 ? 'show active' : '') + '" id="tabPane' + content[i].OperatorPlanID + '" role="tabpanel" aria-labelledby="btn' + content[i].OperatorPlanID + '" tabindex="' + i + '">'
+                                            + '    <div class="conteudo">'
+                                            + '        <div class="flex-claro2">';
+
+                                        for (var y = 0; y < contentValue.length; y++) {
+                                            var deviceInstallments = formatCurrency(parseFloat(contentValue[y].DeviceValue) / parseInt(contentValue[y].Installments));
+                                            operatorValue += '<div class="prod' + contentValue.length + '">'
+                                                + '    <div class="div-texto' + contentValue.length + '">'
+                                                + '        <h2><span class="fw700 title-2 trebuchet-ms">' + contentValue[y].Device + '</span></h2>'
+                                                + '        <h3>'
+                                                + '            <span class="fw400 trebuchet-ms">Valor do aparelho </span><span class="fw700 trebuchet-ms">' + contentValue[y].Installments + 'x ' + deviceInstallments + '</span><br/>'
+                                                + '            <br/>'
+                                                + '            <span class="fw400 trebuchet-ms">Valor total à vista </span> <span class="fw700 trebuchet-ms">' + formatCurrency(contentValue[y].DeviceValue) + '</span>'
+                                                + '            <br/><br/>'
+                                                + '            <span class="fw400 trebuchet-ms">Valor do plano </span><span class="fw700 trebuchet-ms">' + formatCurrency(contentValue[y].PlanMonthValue) + '</span><br/>'
+                                                + '        </h3>'
+                                                + '        <h4 class="trebuchet-ms">' + contentValue[y].Observation + '</h4>'
+                                                + '    </div>'
+                                                + '    <div class="div-img2">'
+                                                + '        <img src="' + pathContent + '/' + contentValue[y].Media + '" width="100%">'
+                                                + '    </div>'
+                                                + '</div>';
+                                        }
+
+                                        operatorValue += '      </div>'
+                                            + '        <div class="div-bttn2">'
+                                            + '            <button class="button-claro"><a href="' + mainLink + '">' + content[i].ButtonContent + '</a></button>'
+                                            + '            <h6>' + content[i].FootNote + '</h6>'
+                                            + '        </div>'
+                                            + '    </div>'
+                                            + '</div>';
+                                    }
+                                }
+
+                                var tabPlan = document.getElementById('myTab');
+                                tabPlan.innerHTML = operatorPlan;
+
+                                var tabValue = document.getElementById('myTabContent');
+                                tabValue.innerHTML = operatorValue;
                             }
                         }
-
-                        var tabPlan = document.getElementById('myTab');
-                        tabPlan.innerHTML = operatorPlan;
-
-                        var tabValue = document.getElementById('myTabContent');
-                        tabValue.innerHTML = operatorValue;
-                    }
-                })
-                .catch(error => {
-                    console.error('Error loading JSON:', error.message);
-                });
+                    };
+                    xhr.open("GET", path + '/' + applicationSlug + '.json');
+                    xhr.send(null);
+                }
+            };
+            xhrContent.open("GET", path + '/' + actualVersion + '.json');
+            xhrContent.send(null);
         </script>
 </body>
 
