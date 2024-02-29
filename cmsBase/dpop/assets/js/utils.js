@@ -1,6 +1,6 @@
 let pressTimer;
 function startTimer() {
-    pressTimer = window.setTimeout(function() {
+    pressTimer = window.setTimeout(function () {
         window.location.href = '../index.html';
     }, 5000);  // 5000 ms = 5 segundos
 }
@@ -16,13 +16,13 @@ $(document).ready(function () {
         autoplaySpeed: 300,
         nav: false,
         responsive: {
-            0:{
+            0: {
                 items: 1
             },
-            600:{
+            600: {
                 items: 1
             },
-            1000:{
+            1000: {
                 items: 1
             }
         }
@@ -32,27 +32,27 @@ $(document).ready(function () {
 
 
 
-        function goBack() {
-            history.back(-1);
-        }
-    
-
-        
-
-        $(window).on('load', function() {
-            // Oculte o overlay de carregamento
-            $('#loading-overlay').css('opacity', 0);
-            // Mostre o conteúdo da página com fadeIn
-            $('#loadingContainer').fadeIn(1000, function() {
-                // Após a conclusão do fadeIn, oculte o overlay
-                $('#loading-overlay').css('display', 'none');
-            });
-        });
-  
+function goBack() {
+    history.back(-1);
+}
 
 
- // Função que será chamada após 40 segundos
- function redirect() {
+
+
+$(window).on('load', function () {
+    // Oculte o overlay de carregamento
+    $('#loading-overlay').css('opacity', 0);
+    // Mostre o conteúdo da página com fadeIn
+    $('#loadingContainer').fadeIn(1000, function () {
+        // Após a conclusão do fadeIn, oculte o overlay
+        $('#loading-overlay').css('display', 'none');
+    });
+});
+
+
+
+// Função que será chamada após 40 segundos
+function redirect() {
     window.location.href = '../index.html';
 }
 
@@ -99,7 +99,7 @@ function checkAndRedirect() {
 
 // Função para mostrar a div correspondente ao login
 function showLoginDiv(username) {
-   
+
 
     // Mostra a div correspondente ao login
     switch (username) {
@@ -131,8 +131,8 @@ function showLoginDiv(username) {
 // Chame a função quando a página carregar
 checkAndRedirect();
 
- // Espera 2 segundos e depois oculta o vídeo
- setTimeout(function () {
+// Espera 2 segundos e depois oculta o vídeo
+setTimeout(function () {
     var videoPromo = document.querySelector('.videoPromo');
     videoPromo.style.display = 'none';
 
@@ -148,7 +148,43 @@ checkAndRedirect();
 
     // Torna todos os h5 dentro de .destaques visíveis
     var destaquesH5 = document.querySelectorAll('.destaques h5');
-    destaquesH5.forEach(function(h5) {
+    destaquesH5.forEach(function (h5) {
         h5.style.display = 'block';
     });
-}, 16000000); 
+}, 16000000);
+
+const urlOrigin = new URL(window.location.href);
+const paramsOrigin = new URLSearchParams(urlOrigin.search);
+const origin = paramsOrigin.get('origin') != null && paramsOrigin.get('origin') != undefined ? paramsOrigin.get('origin') : '';
+const searchParams = paramsOrigin.get('searchParams') != null && paramsOrigin.get('searchParams') != undefined ? paramsOrigin.get('searchParams') : '';
+
+var links = document.getElementsByTagName('a');
+for (var i = 0; i < links.length; i++) {
+    if (links[i].href.indexOf('javascript:history.') < 0)
+        links[i].href = links[i].href + (links[i].href.indexOf('?') > 0 ? '&' : '?') + 'origin=' + origin + '&searchParams=' + searchParams;
+}
+
+switch (origin) {
+    case 'vivo':
+        if (document.getElementById("divOpVivo")) {
+            document.getElementById("divOpVivo").style.display = "block";
+            document.getElementById("divOpVivo").getElementsByTagName('a')[0].href = '../../vivo/index.html' + window.atob(searchParams);
+        }
+        break;
+    case 'claro':
+        if (document.getElementById("divOpClaro")) {
+            document.getElementById("divOpClaro").style.display = "block";
+            document.getElementById("divOpClaro").getElementsByTagName('a')[0].href = '../../claro/index.html' + window.atob(searchParams);
+        }
+        break;
+    case 'tim':
+        if (document.getElementById("divOpTim")) {
+            document.getElementById("divOpTim").style.display = "block";
+            document.getElementById("divOpTim").getElementsByTagName('a')[0].href = '../../tim/index.html' + window.atob(searchParams);
+        }
+        break;
+    case '':
+        if (document.getElementById("divOpGeral"))
+            document.getElementById("divOpGeral").style.display = "block";
+        break;
+}

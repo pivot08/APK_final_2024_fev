@@ -20,7 +20,7 @@
             <!-- primeira linha-->
             <div class="row mx-auto vivo_parte1 vivo_top">
                 <div class="col-md-12">
-                    <div class="card" style="background-color: transparent;">
+                    <div class="card background-header">
                         <img id="template-logo" class="vivo_logo" src="">
                     </div>
                 </div>
@@ -28,7 +28,7 @@
             <!-- segunda linha-->
             <div class="row mx-auto vivo_parte1">
                 <div class="col-md-12">
-                    <div class="card" style="background-color: transparent;">
+                    <div class="card background-header">
                         <h1 class="title color_white roboto-slab" id="header-text"></h1>
                     </div>
                 </div>
@@ -37,7 +37,7 @@
             <!-- terceira linha-->
             <div class="row mx-auto vivo_parte1 vivo_bottom">
                 <div class="col-md-12">
-                    <div class="card" style="background-color: transparent;">
+                    <div class="card background-header">
                         <h2 class="text color_white roboto-slab" id="specification-line"></h2>
                     </div>
                 </div>
@@ -50,109 +50,127 @@
                         <ul class="nav nav-pills nav-justified" id="myTab" role="tablist"></ul>
 
                         <div class="tab-content" id="myTabContent"></div>
+                        <div>
 
+                        </div>
                     </div>
                 </div>
+
             </div>
-
         </div>
-    </div>
-    <!-- Inclua os links para os arquivos do Bootstrap JavaScript (opcional, dependendo do que você está usando) -->
-    <script src="assets/js/jquery-3.7.1.min.js"></script>
-    <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script>
-        const url = new URL(window.location.href);
-        const params = new URLSearchParams(url.search);
-        const applicationID = params.get('applicationID');
-        const applicationSlug = params.get('applicationSlug');
-        const operatorUserID = params.get('operatorUserID');
+        <!-- Inclua os links para os arquivos do Bootstrap JavaScript (opcional, dependendo do que você está usando) -->
+        <script src="assets/js/jquery-3.7.1.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script>
+            const url = new URL(window.location.href);
+            const params = new URLSearchParams(url.search);
+            const path = params.get('path') != null && params.get('path') != undefined ? 'file:///android_asset' : '..';
+            const pathContent = params.get('path') != null && params.get('path') != undefined ? params.get('path') : '../content';
+            const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : 'content';
+            const applicationID = params.get('applicationID');
+            const applicationSlug = params.get('applicationSlug');
+            const operatorUserID = params.get('operatorUserID');
+            const searchParams = window.btoa(window.location.search);
 
-        fetch('../' + applicationSlug + '.json')
-            .then(response => {
-                if (!response.ok) {
-                    console.error(`Network response was not ok: ${response.statusText}`);
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('JSON data:', data);
+            var xhrContent = new XMLHttpRequest();
+            xhrContent.onreadystatechange = function () {
+                if (xhrContent.readyState === 4 && xhrContent.status === 200) {
+                    var dataVersion = JSON.parse(xhrContent.responseText);
 
-                var content = data.template.filter((x) => x.ApplicationID == applicationID && x.PageTypeID == 9);
-                if (content != null && content != undefined) {
-                    var body = document.getElementById('content-body');
-                    body.style.backgroundColor = '#' + content[0].Color;
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            var data = JSON.parse(xhr.responseText);
 
-                    var templateLogo = document.getElementById('template-logo');
-                    templateLogo.src = '../content/' + content[0].Logo;
+                            var content = data.template.filter((x) => x.ApplicationID == applicationID && x.PageTypeID == 9);
+                            if (content != null && content != undefined) {
 
-                    var headerText = document.getElementById('header-text');
-                    headerText.innerHTML = content[0].HeaderText;
+                                var contentVersion = dataVersion.templateContent.filter((x) => x.IsActive == 1 && x.IsMainPage == 1);
+                                if (contentVersion != null && contentVersion != undefined) {
+                                    var mainLink = path + '/' + contentVersion[0].ApplicationSlug + '/base/index.html?origin=' + applicationSlug + '&searchParams=' + searchParams;
+                                }
 
-                    var specificationLine = document.getElementById('specification-line');
-                    specificationLine.innerHTML = content[0].SpecificationLine1 + '<br>' + content[0].SpecificationLine2;
-                }
+                                var body = document.getElementById('content-body');
+                                body.style.backgroundColor = '#' + content[0].Color;
 
-                content = null;
-                content = data.operatorPlan.filter((x) => x.ApplicationID == applicationID);
-                var operatorPlan = '';
-                var operatorValue = '';
-                if (content != null && content != undefined) {
-                    for (var i = 0; i < content.length; i++) {
-                        operatorPlan += '<li class="nav-item" role="presentation">'
-                            + '    <img class="seta-img" src="assets/img/seta.png" width="10%" style="margin:0 auto;visibility:' + (i == 0 ? 'visible' : 'hidden') + '">'
-                            + '    <button class="nav-link ' + (i == 0 ? 'active' : '') + '" id="btn' + content[i].OperatorPlanID + '" data-bs-toggle="tab" data-bs-target="#tabPane' + content[i].OperatorPlanID + '" type="button" role="tab" aria-controls="tabPane' + content[i].OperatorPlanID + '" aria-selected="true">'
-                            + '        <h3 class="arial">' + content[i].OperatorPlan.toUpperCase() + '</h3>'
-                            + '    </button>'
-                            + '</li>';
+                                var templateLogo = document.getElementById('template-logo');
+                                templateLogo.src = pathContent + '/' + content[0].Logo;
 
-                        contentValue = data.operatorValue.filter((x) => x.ApplicationID == applicationID && x.OperatorUserID == operatorUserID && x.OperatorPlanID == content[i].OperatorPlanID);
-                        if (contentValue != null && contentValue != undefined) {
-                            operatorValue += '<div class="tab-pane fade ' + (i == 0 ? 'show active' : '') + '" id="tabPane' + content[i].OperatorPlanID + '" role="tabpanel" aria-labelledby="btn' + content[i].OperatorPlanID + '" tabindex="0">'
-                                + '<div class="conteudo">';
+                                var headerText = document.getElementById('header-text');
+                                headerText.innerHTML = content[0].HeaderText;
 
-                            for (var y = 0; y < contentValue.length; y++) {
-                                var deviceInstallments = formatCurrency(parseFloat(contentValue[y].DeviceValue) / parseInt(contentValue[y].Installments));
-                                operatorValue += '<div class="flex-vivo ' + (y > 0 ? 'divisoria' : '') + '">'
-                                    + '    <div class="div-texto">'
-                                    + '        <h2>'
-                                    + '            <span class="fw400 arial">' + contentValue[y].Device + '</span><br />'
-                                    + '            <span class="fw700 arial">' + contentValue[y].PlanDetail + '</span><br />'
-                                    + '            <span class="fw400 arial">' + formatCurrency(contentValue[y].PlanMonthValue) + '/mês</span>'
-                                    + '        </h2>'
-                                    + '        <br />'
-                                    + '        <h2>'
-                                    + '            <span class="fw700 arial">Aparelho</span><br />'
-                                    + '            <span class="fw400 arial"> ' + formatCurrency(contentValue[y].DeviceValue) + '</span>'
-                                    + '        </h2>'
-                                    + '        <h4 class="arial">' + contentValue[y].Installments + ' parcelas ' + deviceInstallments + '</h4>'
-                                    + '    </div>'
-                                    + '    <div class="div-img2">'
-                                    + '        <img src="../content/' + contentValue[y].Media + '" width="100%">'
-                                    + '    </div>'
-                                    + '</div>';
+                                var specificationLine = document.getElementById('specification-line');
+                                specificationLine.innerHTML = content[0].SpecificationLine1 + '<br>' + content[0].SpecificationLine2;
                             }
 
-                            operatorValue += '<div class="div-bttn2">'
-                                + '            <button class="button-vivo"><a href="' + content[i].Link + '">' + content[i].ButtonContent + '</a></button>'
-                                + '            <h6>' + content[i].FootNote + '</h6>'
-                                + '        </div>'
-                                + '    </div>'
-                                + '</div>';
+                            content = null;
+                            content = data.operatorPlan.filter((x) => x.ApplicationID == applicationID);
+                            var operatorPlan = '';
+                            var operatorValue = '';
+                            if (content != null && content != undefined) {
+                                for (var i = 0; i < content.length; i++) {
+                                    operatorPlan += '<li class="nav-item" role="presentation">'
+                                        + '    <img class="seta-img" src="assets/img/seta.png" width="10%" style="margin:0 auto; visibility: ' + (i == 0 ? 'visible' : 'hidden') + '">'
+                                        + '    <button id="btn' + content[i].OperatorPlanID + '" class="nav-link ' + (i == 0 ? 'active' : '') + '" data-bs-toggle="tab" data-bs-target="#tabPane' + content[i].OperatorPlanID + '" type="button" role="tab" aria-controls="tabPane' + content[i].OperatorPlanID + '" aria-selected="true"><h3 class="arial">' + content[i].OperatorPlan.toUpperCase() + '</h3></button>'
+                                        + '</li>';
+
+                                    contentValue = data.operatorValue.filter((x) => x.ApplicationID == applicationID && x.OperatorUserID == operatorUserID && x.OperatorPlanID == content[i].OperatorPlanID);
+                                    if (contentValue != null && contentValue != undefined) {
+                                        operatorValue += '<div class="tab-pane fade ' + (i == 0 ? 'show active' : '') + '" id="tabPane' + content[i].OperatorPlanID + '" role="tabpanel" aria-labelledby="btn' + content[i].OperatorPlanID + '" tabindex="' + i + '">'
+                                            + '     <div class="conteudo">';
+
+                                        for (var y = 0; y < contentValue.length; y++) {
+                                            var deviceInstallments = formatCurrency(parseFloat(contentValue[y].DeviceValue) / parseInt(contentValue[y].Installments));
+                                            operatorValue += '<div class="flex-vivo ' + (y > 0 ? 'divisoria' : '') + '">'
+                                                + '    <div class="div-texto">'
+                                                + '        <h2>'
+                                                + '            <span class="fw400 arial">' + contentValue[y].Device + '</span><br/>'
+                                                + '            <span class="fw700 arial">' + contentValue[y].PlanDetail + '</span><br/>'
+                                                + '            <span class="fw400 arial">' + formatCurrency(contentValue[y].PlanMonthValue) + '/mês</span>'
+                                                + '        </h2>'
+                                                + '        <br/>'
+                                                + '        <h2>'
+                                                + '            <span class="fw700 arial">Aparelho</span><br/>'
+                                                + '            <span class="fw400 arial">' + formatCurrency(contentValue[y].DeviceValue) + '</span>'
+                                                + '        </h2>'
+                                                + '        <h4 class="arial">' + contentValue[y].Installments + ' parcelas ' + deviceInstallments + '</h4>'
+                                                + '    </div>'
+                                                + '    <div class="div-img2">'
+                                                + '        <img src="' + pathContent + '/' + contentValue[y].Media + '" width="100%">'
+                                                + '    </div>'
+                                                + '</div>';
+                                        }
+
+                                        operatorValue += '<div class="div-bttn2">'
+                                            + '            <button class="button-vivo"><a href="' + mainLink + '">' + content[i].ButtonContent + '</a></button>'
+                                            + '            <h6>' + content[i].FootNote + '</h6>'
+                                            + '        </div>'
+                                            + '    </div>'
+                                            + '</div>';
+                                    }
+                                }
+
+                                var tabPlan = document.getElementById('myTab');
+                                tabPlan.innerHTML = operatorPlan;
+
+                                var tabValue = document.getElementById('myTabContent');
+                                tabValue.innerHTML = operatorValue;
+
+                                $('.nav-link').click(function () {
+                                    $('.seta-img').css('visibility', 'hidden');
+                                    $(this).closest('li').find('.seta-img').css('visibility', 'visible');
+                                });
+                            }
                         }
-                    }
-
-                    var tabPlan = document.getElementById('myTab');
-                    tabPlan.innerHTML = operatorPlan;
-
-                    var tabValue = document.getElementById('myTabContent');
-                    tabValue.innerHTML = operatorValue;
+                    };
+                    xhr.open("GET", path + '/' + applicationSlug + '.json');
+                    xhr.send(null);
                 }
-            })
-            .catch(error => {
-                console.error('Error loading JSON:', error.message);
-            });
-    </script>
+            };
+            xhrContent.open("GET", path + '/' + actualVersion + '.json');
+            xhrContent.send(null);
+        </script>
 </body>
 
 </html>

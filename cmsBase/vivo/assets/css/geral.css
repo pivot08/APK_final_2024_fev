@@ -134,7 +134,7 @@ html, body {
 }
 
 .flex-vivo.divisoria {
-  border-bottom: 2px solid #652c8f; 
+  border-top: 2px solid #652c8f; 
 }
 
 .div-bttn2 h6 {
@@ -185,4 +185,8 @@ html, body {
 
 .div-bttn3 .button-vivo {
   margin-top:10px;
+}
+
+.background-header {
+  background-color: transparent;
 }

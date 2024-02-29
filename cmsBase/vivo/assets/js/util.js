@@ -67,9 +67,13 @@ $(document).ready(function() {
 //setTimeout(redirect, 60000);
 
 
-$(document).ready(function(){
-    $('.nav-link').click(function(){
-        $('.seta-img').css('visibility', 'hidden'); // Oculta todas as setas
-        $(this).closest('li').find('.seta-img').css('visibility', 'visible'); // Exibe a seta dentro do botão clicado
-    });
-});
+// $(document).ready(function(){
+//     $('.nav-link').click(function(){
+//         $('.seta-img').css('visibility', 'hidden'); // Oculta todas as setas
+//         $(this).closest('li').find('.seta-img').css('visibility', 'visible'); // Exibe a seta dentro do botão clicado
+//     });
+// });
+
+function formatCurrency(number) {
+    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(number);
+}
