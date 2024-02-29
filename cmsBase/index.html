@@ -80,59 +80,58 @@
             return window.btoa(hashHex);
         }
 
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+        const path = params.get('path') != null && params.get('path') != undefined ? 'file:///android_asset' : '';
+        const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : 'content';
+
         function authenticate() {
             const user = document.getElementById("username").value;
             const plaintextPassword = document.getElementById("password").value;
             hashPassword(plaintextPassword)
                 .then(hashedPassword => {
-                    fetch('user.json')
-                        .then(response => {
-                            if (!response.ok) {
-                                console.error(`Network response was not ok: ${response.statusText}`);
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
+                    var xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function () {
+                        if (xhr.readyState === 4 && xhr.status === 200) {
+                            var data = JSON.parse(xhr.responseText);
+
                             var content = data.filter((x) => x.Login == user);
                             if (content != null && content != undefined) {
                                 if (content[0].Password == hashedPassword) {
-                                    document.location.href = '' + content[0].ApplicationSlug + '/index.html?applicationID=' + content[0].ApplicationID + '&applicationSlug=' + content[0].ApplicationSlug + '&operatorUserID=' + content[0].OperatorUserID;
+                                    document.location.href = path + '/' + content[0].ApplicationSlug + '/index.html?actualVersion=' + actualVersion + '&applicationID=' + content[0].ApplicationID + '&applicationSlug=' + content[0].ApplicationSlug + '&operatorUserID=' + content[0].OperatorUserID;
                                 }
                             }
-                        })
-                        .catch(error => {
-                            alert("Usuário não reconhecido");
-                        });
-
-
-                    console.log("Hashed Password:", hashedPassword)
+                        }
+                    };
+                    xhr.open("GET", path + '/user.json');
+                    xhr.send(null);
                 })
                 .catch(error => alert("Usuário não reconhecido"));
         }
 
-        function redirectTo() {
-            fetch('content.json')
-                .then(response => {
-                    if (!response.ok) {
-                        console.error(`Network response was not ok: ${response.statusText}`);
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    var content = data.templateContent.filter((x) => x.IsMainPage == 1);
-                    if (content != null && content != undefined) {
-                        document.location.href = '' + content[0].ApplicationSlug + '/index.html?applicationID=' + content[0].ApplicationID;
-                    }
-                })
-                .catch(error => {
-                    document.location.href = 'eureka/base/index.html';
-                });
-        }
+        // function redirectTo() {
+        //     fetch('content.json')
+        //         .then(response => {
+        //             if (!response.ok) {
+        //                 console.error(`Network response was not ok: ${response.statusText}`);
+        //             }
+        //             return response.json();
+        //         })
+        //         .then(data => {
+        //             var content = data.templateContent.filter((x) => x.IsMainPage == 1);
+        //             if (content != null && content != undefined) {
+        //                 document.location.href = '' + content[0].ApplicationSlug + '/index.html?applicationID=' + content[0].ApplicationID;
+        //             }
+        //         })
+        //         .catch(error => {
+        //             document.location.href = 'eureka/base/index.html';
+        //         });
+        // }
 
-        const url = new URL(window.location.href);
-        const params = new URLSearchParams(url.search);
-        const redirect = params.get('redirect');
-        if (redirect == 1)
-            redirectTo();
+        // const url = new URL(window.location.href);
+        // const params = new URLSearchParams(url.search);
+        // const redirect = params.get('redirect');
+        // if (redirect == 1)
+        //     redirectTo();
     </script>
 </body>
