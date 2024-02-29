@@ -7,7 +7,6 @@ $operatorPlanID = '';
 $applicationID = '';
 $operatorPlan = '';
 $buttonContent = '';
-$link = '';
 $footNote = '';
 $planOrder = '';
 $isActive = '1';
@@ -29,7 +28,6 @@ if (isset($_GET['id'])) {
 		$applicationID = $n['ApplicationID'];
 		$operatorPlan = $n['OperatorPlan'];
 		$buttonContent = $n['ButtonContent'];
-		$link = $n['Link'];
 		$footNote = $n['FootNote'];
 		$planOrder = $n['PlanOrder'];
 		$isActive = $n['IsActive'];
@@ -40,7 +38,6 @@ if (isset($_POST['save']) || isset($_POST['update'])) {
 	$applicationID = $_POST['ApplicationID'];
 	$operatorPlan = $_POST['OperatorPlan'];
 	$buttonContent = $_POST['ButtonContent'];
-	$link = $_POST['Link'];
 	$footNote = $_POST['FootNote'];
 	$planOrder = $_POST['PlanOrder'];
 
@@ -52,10 +49,10 @@ if (isset($_POST['save']) || isset($_POST['update'])) {
 }
 
 if (isset($_POST['save'])) {
-	operatorPlanInsert($applicationID, $operatorPlan, $buttonContent, $link, $footNote, $planOrder, $isActive);
+	operatorPlanInsert($applicationID, $operatorPlan, $buttonContent, $footNote, $planOrder, $isActive);
 }
 if (isset($_POST['update'])) {
-	operatorPlanUpdate($operatorPlanID, $applicationID, $operatorPlan, $buttonContent, $link, $footNote, $planOrder, $isActive);
+	operatorPlanUpdate($operatorPlanID, $applicationID, $operatorPlan, $buttonContent, $footNote, $planOrder, $isActive);
 }
 if (isset($_POST['delete'])) {
 	operatorPlanDelete($operatorPlanID);
@@ -157,10 +154,6 @@ if (isset($_POST['save']) || isset($_POST['update']) || isset($_POST['delete']))
 										<div class="form-group">
 											<label for="input">Texto do Botão</label>
 											<input type="text" name="ButtonContent" class="form-control" value="<?php echo $buttonContent; ?>">
-										</div>
-										<div class="form-group">
-											<label for="input">Link do Botão</label>
-											<input type="text" name="Link" class="form-control" value="<?php echo $link; ?>">
 										</div>
 										<div class="form-group">
 											<label for="input">Observações de rodapé exíbido no conteúdo</label>

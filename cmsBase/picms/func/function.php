@@ -891,7 +891,6 @@ function operatorPlanGet($operatorPlanID)
         , apk.Application
         , opl.OperatorPlan
         , opl.ButtonContent
-        , opl.Link
         , opl.FootNote
         , opl.PlanOrder
         , opl.IsActive
@@ -914,7 +913,6 @@ function operatorPlanList($applicationID = null)
         , apk.Application
         , opl.OperatorPlan
         , opl.ButtonContent
-        , opl.Link
         , opl.FootNote
         , opl.PlanOrder
         , opl.IsActive
@@ -938,7 +936,6 @@ function operatorPlanByUserList($userID)
         , apk.Application
         , opl.OperatorPlan
         , opl.ButtonContent
-        , opl.Link
         , opl.FootNote
         , opl.PlanOrder
         , opl.IsActive
@@ -953,19 +950,19 @@ function operatorPlanByUserList($userID)
     return mysqli_query($db, $query);
 }
 
-function operatorPlanInsert($applicationID, $operatorPlan, $buttonContent, $link, $footNote, $planOrder, $isActive)
+function operatorPlanInsert($applicationID, $operatorPlan, $buttonContent, $footNote, $planOrder, $isActive)
 {
     global $db;
     $query = "
-        INSERT INTO OperatorPlan (ApplicationID, OperatorPlan, ButtonContent, Link, FootNote, PlanOrder, IsActive, IsDeleted, DControl)
-        VALUES ('$applicationID', '$operatorPlan', '$buttonContent', '$link', '$footNote', $planOrder, $isActive, 0, NOW())
+        INSERT INTO OperatorPlan (ApplicationID, OperatorPlan, ButtonContent, FootNote, PlanOrder, IsActive, IsDeleted, DControl)
+        VALUES ('$applicationID', '$operatorPlan', '$buttonContent', '$footNote', $planOrder, $isActive, 0, NOW())
     ";
     mysqli_query($db, $query);
 
     generateUserOperatorFile();
 }
 
-function operatorPlanUpdate($operatorPlanID, $applicationID, $operatorPlan, $buttonContent, $link, $footNote, $planOrder, $isActive)
+function operatorPlanUpdate($operatorPlanID, $applicationID, $operatorPlan, $buttonContent, $footNote, $planOrder, $isActive)
 {
     global $db;
     $query = "
@@ -973,7 +970,6 @@ function operatorPlanUpdate($operatorPlanID, $applicationID, $operatorPlan, $but
         ApplicationID = '$applicationID'
         , OperatorPlan = '$operatorPlan'
         , ButtonContent = '$buttonContent'
-        , Link = '$link'
         , FootNote = '$footNote'
         , PlanOrder = '$planOrder'
         , IsActive = '$isActive'
