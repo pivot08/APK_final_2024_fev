@@ -1,0 +1,225 @@
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url("RobotoSlab-Regular.otf") format('opentype');
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url("RobotoSlab-Medium") format('opentype');
+  font-weight: 600;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url("RobotoSlab-Black.otf") format('opentype');
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url("RobotoSlab-Light") format('opentype');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Roboto Slab';
+  src: url("RobotoSlab-Thin.otf") format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 100%;
+    padding:0px;
+}
+
+.row {
+    flex-grow: 1;
+    width: 100%;
+  
+    --bs-gutter-x: 1.9rem; 
+}
+
+.card {
+    height: 100%;
+    border-radius: 20px 20px 0px 0px;
+    border:solid 0px;
+}
+
+.roboto-slab {
+  font-family: "Roboto Slab", serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.arial {
+  font-family: Arial, Helvetica, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* Vivo Geral */
+
+.bg_vivo {background-color: #652c8f;}
+
+.vivo_top {padding-top: 5vh;}
+
+.vivo_top3 {padding-top: 5vh;}
+
+.vivo_parte1 {padding-left: 5vh;}
+
+.vivo_logo {width: 30%;}
+
+.color_white {color:#ffffff;}
+
+.title {font-weight: 800 !important;}
+
+.vivo_parte1 h1 {margin: 5px 0;}
+
+.text {font-weight: 400 !important;}
+
+
+
+.nav-pills .nav-link.active {
+  color:  #652c8f !important;
+  background-color: #ffffff;
+  border-bottom: 3px solid #652c8f;
+  border-radius: 0px;
+}
+
+.nav-link {color: #747474}
+
+.nav-item {padding: 10px 0;}
+
+.button-vivo {
+  background-color: #652c8f;
+  color:#fff;
+  border:solid 0px;
+  margin:auto;
+  font-size:28px;
+  padding:6px;
+  padding-left:20px;
+  padding-right:45px;
+  border-radius: 
+  6px;
+  width:100%
+}
+
+.button-vivo a {
+  color:#fff;
+  text-decoration: none;
+}
+
+/* Vivo 1 */
+.conteudo {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.div-texto1 {padding: 2vh 0;}
+
+.fw700 {font-weight: 700 !important;}
+
+.fw400 {font-weight: 400 !important;}
+
+.div-bttn1 h6 {
+  text-align: center;
+  margin: 5px 0;
+}
+
+.div-bttn1 button {margin: 2vh 0 0}
+
+/* Vivo 2 e Vivo 3*/
+.div-texto2 {
+  margin: 3vh 0;
+  width: 47%;
+}
+
+.div-texto3 {
+  margin: 1vh 0;
+  width: 47%;
+}
+
+.div-img2 {width: 45%;}
+
+.flex-vivo {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  padding-top:5px;
+  padding-bottom:5px;
+}
+
+.flex-vivo.divisoria {
+  border-top: 2px solid #652c8f; 
+}
+
+.div-bttn2 h6 {
+  text-align: center;
+  margin: 5px 0;
+}
+
+.div-bttn3 h6 {
+  text-align: center;
+  margin: 5px 0;
+}
+
+
+
+.tab-pane.fade {
+  height: 65vh;
+  padding: 1vh 0 0;}
+
+.div-texto3 h4:first-child {margin-bottom: 15px;}
+
+.col-md-12 {
+  padding:0px;
+}
+
+.button-vivo {
+  background-color: #652c8f;
+  color: #fff;
+  border: solid 0px;
+  margin: auto;
+  font-size: 32px;
+  padding: 6px;
+  padding-left: 20px;
+  padding-right: 45px;
+  border-radius: 13px;
+  width: 100%;
+  font-family: "Roboto Slab", serif;
+  margin-top:30px;
+}
+
+.h6, h6 {
+  font-size: 10px;
+  margin-top: 15px !important;
+}
+
+.div-bttn2 .button-vivo {
+  margin-top:20px;
+}
+
+.div-bttn3 .button-vivo {
+  margin-top:10px;
+}
+
+.background-header {
+  background-color: transparent;
+}

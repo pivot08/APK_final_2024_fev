@@ -1,0 +1,325 @@
+@font-face {
+  font-family: "Bahnschrift";
+  src: url("https://db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.eot");
+  src: url("https://db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/0a6ee448d1bd65c56f6cf256a7c6f20a.svg#Bahnschrift")format("svg");
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.container-fluid {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    max-width: 100%;
+    padding-left:0px;
+    margin-left:-20px;
+}
+
+.row.mx-auto {
+  margin-bottom: 0px;
+}
+
+.row {
+    flex-grow: 1;
+    width: 100%;
+    margin-bottom: 20px;
+    --bs-gutter-x: 1.9rem; 
+}
+
+.card {
+    height: 100%;
+    border-radius: 0px;
+    border:solid 0px;
+}
+
+
+.bahnschrift {
+  font-family: 'Bahnschrift';
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+}
+
+/* tim Geral */
+.bg_verde-agua {background-color: #2bf7fe;}
+.card.bg_verde-agua {
+  display: flex;
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+
+}
+
+.title-vertical {
+  color: #002198;
+  writing-mode: vertical-lr; /* Texto da esquerda para a direita */
+  text-orientation: sideways; /* Mantém o texto na posição vertical */
+  white-space: nowrap; /* Evita quebra de linha */
+  transform: rotate(180deg); /* Rotaciona o texto em 180 graus */
+  margin:0 auto;
+  font-size: 3rem;
+}
+
+.bg_tim {background-image: url('../img/bg_tim.png');}
+
+.bg_transparente {background-color: rgba(255,255,255,0);}
+
+.tim_top {padding-top: 6vh;width: 75%; margin: 0 auto}
+
+.tim_logo {width: 20%;}
+
+.color_white {color:#ffffff;}
+
+.title {
+  font-weight: 800 !important;
+  color: #2bf7fe;
+}
+
+.tim_parte1 h1 {margin: 5px 0;}
+
+.text {font-weight: 400 !important;}
+
+.button-tim {
+  background-color: #2bf7fe;
+  color:#002198;
+  border:solid 0px;
+  margin:auto;
+  font-size:28px;
+  padding:6px;
+  padding-left:20px;
+  padding-right:45px;
+  border-radius: 20px;
+  width:100%;
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.button-tim a {
+  color:#002198;
+  text-decoration: none;
+}
+
+
+/* Vivo 1 */
+
+.div-texto1 {margin: 1vh 0;}
+
+.fw500 {font-weight: 500 !important;}
+
+.fw700 {font-weight: 700 !important;}
+
+.fw400 {font-weight: 400 !important;}
+
+.title-2 {color: #ffffff;}
+
+.div-bttn3 h6 {
+  text-align: center;
+  margin: 5px 0;
+}
+
+.div-bttn1 h6 {
+  text-align: center;
+  margin: 5px 0;
+  color: #ffffff;
+}
+
+.div-bttn1 button {margin: 1vh 0 0}
+
+.conteudo {
+  display: flex;
+  align-items: center;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  margin-bottom: 1vh;
+}
+
+.conteudo .plano, .conteudo .valor {
+  width: 50%;
+  text-align: center;
+  padding: 0 3vh;
+}
+
+.conteudo .plano {border-right: 2px solid #ffffff;}
+
+.valor h2 {border-bottom: 2px solid #ffffff;}
+
+.forma {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  border-radius: 20px;
+}
+
+.box {
+  flex-grow: 1;
+}
+
+.bigger {
+  flex-grow: 3; /* Torna esta div duas vezes maior que as outras */
+}
+
+.lh-menor {line-height: 0.8;}
+/* Vivo 2 e Vivo 3*/
+.conteudo2 {
+  text-align: center;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  margin-bottom: 1vh;
+  padding: 1vh; 
+}
+
+.conteudo2 .plano {border-bottom: 2px solid #ffffff;}
+
+.conteudo2 .valor h1 {border-bottom: none}
+.prod{
+  margin: 5vh 0;
+  width: 40%;
+}
+
+.div-img2 img {
+  width: 100%;
+}
+
+
+.div-img3 img {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.flex-tim {
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+}
+
+.div-bttn3 h6 {
+  text-align: center;
+  margin: 25px 0;
+  color: #ffffff;
+  font-size: .8rem;
+}
+
+.div-bttn3 button {margin: 3vh 0 0}
+
+
+.prod2{
+  width: 45%;
+}
+
+.prod3{
+  margin: 2vh 0;
+  width: 33.3%;
+}
+
+.prod3 .auto-mx {
+  margin-right: 0;
+  margin-left: 0;
+}
+
+.tim_parteflex {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tim_parteflex .prod2 {
+  width: 50%;
+}
+
+.tim_parteflex .prod3 {
+  width: 25%;
+}
+
+.div-texto2a {margin: .5vh;}
+
+.div-texto2b .forma {
+  display: flex;
+  justify-content: space-between;
+  align-items:end;
+  align-self: flex-end;
+  border-radius: 20px;
+}
+
+
+.title-3 {
+  color: #ffffff;
+  font-size: .7rem;
+  line-height: 16px;
+}
+
+.lh-menor2 {line-height: 0.7;}
+
+.linha_borda {
+  width: 70%;
+  margin: 0 auto 1vh;
+  border-bottom: 2px solid #ffffff;
+}
+
+
+.tim_parteflex .prod3 {
+  width: 32.5%;
+}
+
+.conteudo3 {
+  text-align: center;
+  border: 2px solid #ffffff;
+  border-radius: 20px;
+  margin-bottom: 1vh;
+  padding: .5vh; 
+}
+
+.conteudo3 .plano {border-bottom: 2px solid #ffffff;}
+
+.conteudo3 .valor h1 {border-bottom: none}
+
+
+.div-texto2b .forma2 {
+  display: flex;
+  justify-content: center;
+  align-items:flex-start;
+  align-self: flex-end;
+  border-radius: 20px;
+  max-width: 90px;
+    margin: 0 auto;
+}
+
+
+
+.title-4 {
+  color: #ffffff;
+  font-size: .9rem;
+}
+
+.tim-parte2, .prod2 {margin-bottom:0 ;}
+
+.tim-parte3, .prod3 {margin-bottom:0 ;}
+
+
+
+.tim_parteflex {
+  margin-top: 20px;
+  max-height: 1000px;
+}
+
+.tim_parteflex .prod3 {
+  width: 30%;
+}
+
+.lh-menor2 {
+
+}
+
+.planos {margin: 26px 0 !important}
+
+.div-bttn3 h6 {
+  text-align: center;
+  margin: 15px 0;
+  color: #ffffff;
+  font-size: 10px !important;
+}

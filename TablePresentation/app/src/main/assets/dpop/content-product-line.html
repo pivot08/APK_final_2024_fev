@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+   <!-- CSS -->
+   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+   <link rel="stylesheet" href="assets/dependencies/owl.carousel/dist/assets/owl.carousel.min.css">
+   <link rel="stylesheet" href="assets/dependencies/owl.carousel/dist/assets/owl.theme.default.min.css">
+   <link rel="stylesheet" href="assets/css/style.css" id="cssLink">
+
+   <link rel="stylesheet" href="assets/css/animacoes.css">
+   <link rel="stylesheet" href="assets/css/produto-pagina-feature.css">
+   <title>Samsung</title>
+</head>
+
+<body class="background-tabs9" id="content-body">
+   <div id="loading-overlay">Carregando...</div>
+   <div id="loadingContainer" style="display:none;">
+      <header class="header">
+         <div class="container">
+            <div class="row justify-content-md-center">
+               <div class="col-md-2 header-left">
+                  <a href="index.html" class="header-links">
+                     <img src="assets/imgs/nav_home_white.png" alt="" class="nav-home">
+                  </a>
+               </div>
+               <div class="col-md-8 header-center s23" id="header-text">
+                  Pressione para conhecer mais
+               </div>
+               <div class="col-md-2 header-right">
+                  <a href="javascript:history.go(-1);" class="header-links">
+                     <img src="assets/imgs/nav_back_white.png" alt="" class="nav-back">
+                  </a>
+               </div>
+            </div>
+         </div>
+      </header>
+      <section class="wrap">
+         <div class="container">
+            <div class="row" id="content-buttons-product">
+               <div class="col-md-12 box-item header-produto" id="content-header-product">
+                  <img src="assets/imgs/galaxy-tabs9_01.png" alt="" class="box-img img-fluid" id="image-header">
+               </div>
+            </div>
+         </div>
+      </section>
+   </div>
+
+   <!-- JS -->
+   <script src="assets/dependencies/jquery/jquery.min.js"></script>
+   <script src="assets/dependencies/owl.carousel/dist/owl.carousel.min.js"></script>
+   <script src="assets/js/utils.js"></script>
+   <script>
+      const url = new URL(window.location.href);
+      const params = new URLSearchParams(url.search);
+      const templateChildID = params.get('templateChildID');
+
+      fetch('../content.json')
+         .then(response => {
+            if (!response.ok) {
+               console.error(`Network response was not ok: ${response.statusText}`);
+            }
+            return response.json();
+         })
+         .then(data => {
+            console.log('JSON data:', data);
+
+            var content = data.filter((x) => x.TemplateID == templateChildID);
+            if (content != null && content != undefined) {
+               var headerTextTitle = '';
+               var headerImageMedia = '';
+               var contentButton3 = '';
+               var contentButton4 = '';
+
+               for (var i = 0; i < content.length; i++) {
+                  var contentTarget = "content-text";
+                  if (content[i].TemplateID == templateChildID) {
+                     headerTextTitle = content[i].HeaderText;
+
+                     if (content[i].ButtonSizeID == null || content[i].ButtonSizeID == '') {
+                        headerImageMedia = '../content/' + content[i].Media;
+                     }
+                  }
+
+                  switch (content[i].ButtonSizeID) {
+                     case "3": //Rectangular Button - 2 Positions - Vertical
+                        contentButton3 += '<div class="col-md-6 box-item tabs9_03a">'
+                           + '<a href="' + contentTarget + '.html?templateChildID=' + content[i].TemplateContentChildID + '" class="box-link">'
+                           + '<h2 class="box-item-title">' + content[i].Title + '</h2>'
+                           + '<video autoplay loop muted>'
+                           + '<source src="../content/' + content[i].Media + '" type="video/mp4">'
+                           + '</video>'
+                           + '</a>'
+                           + '</div>'
+                        break;
+                     case "4": //Rectangular Button - 2 Positions - Horizontal
+                        contentButton4 = '<a href="' + contentTarget + '.html?templateChildID=' + content[i].TemplateContentChildID + '" class="box-link">'
+                           + '<img src="../content/' + content[i].Media + '" alt="" class="box-img img-fluid">'
+                           + '</a>'
+                        break;
+                  }
+               }
+
+               var buttonHeader = document.getElementById('content-header-product');
+               buttonHeader.innerHTML = buttonHeader.innerHTML + contentButton4;
+
+               var buttonContent = document.getElementById('content-buttons-product');
+               buttonContent.innerHTML = buttonContent.innerHTML + contentButton3;
+
+               var headerImage = document.getElementById('image-header');
+               if (headerImageMedia != '') {
+                  headerImage.src = headerImageMedia;
+               }
+
+               var headerText = document.getElementById('header-text');
+               if (headerText != '') {
+                  headerText.innerHTML = headerTextTitle;
+               }
+            }
+         })
+         .catch(error => {
+            console.error('Error loading JSON:', error.message);
+         });
+   </script>
+</body>
+
+</html>
