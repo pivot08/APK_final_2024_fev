@@ -93,8 +93,7 @@ public class JsonRetrievalHelper extends AsyncTask<String, Void, String> {
                 }
 
                 if (this.contentType == "2") {
-                    JSONArray jsonArray = new JSONArray(jsonResult);
-                    writeJsonArrayToFile(context, jsonArray, this.actualVersion);
+                    writeJsonStringToFile(context, jsonResult, this.actualVersion);
                     MainActivity.processVersionAttualization();
                 }
 

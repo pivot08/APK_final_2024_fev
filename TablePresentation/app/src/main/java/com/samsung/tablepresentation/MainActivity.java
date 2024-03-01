@@ -18,7 +18,7 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     WebView webView;
-    private static String baseUrl = "http://dpopinterativo-dev-br.umbler.net";
+    private static String baseUrl = "https://dpopinterativo.dev.br";
     private static String path = "file:///data/data/com.samsung.tablepresentation/files/";
     private static String versionFolder = "version";
     private static String localVersion = "";
@@ -46,19 +46,6 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setAllowFileAccessFromFileURLs(true);
         webSettings.setAllowUniversalAccessFromFileURLs(true);
 
-        webView.setWebViewClient(new Callback());
-        webView.setWebChromeClient(new WebChromeClient());
-
-        String fileName = "version.json";
-        JSONObject retrievedJson = UpdateLocalVersionTask.readJsonFromFile(this, fileName);
-
-        if (retrievedJson != null) {
-            localVersion = retrievedJson.optString("version", "");
-            webView.loadUrl("file:///android_asset/index.html?path="+ path +"&actualVersion="+ localVersion);
-        } else {
-            webView.loadUrl("file:///android_asset/eureka/base/index.html");
-        }
-
         if (isConnectedToInternet()) {
             String contentType = "1";
             JsonRetrievalHelper jsonRetrievalHelper = new JsonRetrievalHelper(this, username, password, actualVersion, "");
@@ -78,6 +65,19 @@ public class MainActivity extends AppCompatActivity {
 
             jsonRetrievalHelper = new JsonRetrievalHelper(this, username, password, actualVersion, "tim.json");
             jsonRetrievalHelper.execute(baseUrl +"/tim.json", contentType);
+        }
+
+        webView.setWebViewClient(new Callback());
+        webView.setWebChromeClient(new WebChromeClient());
+
+        String fileName = "version.json";
+        JSONObject retrievedJson = UpdateLocalVersionTask.readJsonFromFile(this, fileName);
+
+        if (retrievedJson != null) {
+            localVersion = retrievedJson.optString("version", "");
+            webView.loadUrl("file:///android_asset/index.html?path="+ path +"&actualVersion="+ localVersion);
+        } else {
+            webView.loadUrl("file:///android_asset/eureka/base/index.html");
         }
     }
 

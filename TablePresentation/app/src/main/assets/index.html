@@ -63,12 +63,14 @@
         <h3>Login</h3>
         <br>
 
-        <input type="text" placeholder="Usuário" id="username" required>
+        <input type="text" placeholder="Usuário" id="username" required onkeyup="return forceLower(this);">
         <br>
 
         <input type="password" placeholder="Senha" id="password" required>
         <br>
         <button type="button" onclick="authenticate()">Acessar</button>
+
+        <div id="error" style="color:#ff0000;display:none;"></div>
     </form>
     <script>
         async function hashPassword(password) {
@@ -87,6 +89,10 @@
         const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : 'content';
 
         function authenticate() {
+            const divError = document.getElementById("error");
+            divError.style.display = 'none';
+            divError.innerHTML = '';
+
             const user = document.getElementById("username").value;
             const plaintextPassword = document.getElementById("password").value;
             hashPassword(plaintextPassword)
@@ -97,10 +103,16 @@
                             var data = JSON.parse(xhr.responseText);
 
                             var content = data.filter((x) => x.Login == user);
-                            if (content != null && content != undefined) {
+                            if (content != null && content != undefined && content.length > 0) {
                                 if (content[0].Password == hashedPassword) {
                                     document.location.href = path + '/' + content[0].ApplicationSlug + '/index.html?path=' + pathContent + '&actualVersion=' + actualVersion + '&applicationID=' + content[0].ApplicationID + '&applicationSlug=' + content[0].ApplicationSlug + '&operatorUserID=' + content[0].OperatorUserID;
+                                } else {
+                                    divError.style.display = 'block';
+                                    divError.innerHTML = 'Senha inválida.';
                                 }
+                            } else {
+                                divError.style.display = 'block';
+                                divError.innerHTML = 'Usuário não encontrado.';
                             }
                         }
                     };
@@ -108,6 +120,11 @@
                     xhr.send(null);
                 })
                 .catch(error => alert("Usuário não reconhecido"));
+        }
+
+        function forceLower(strInput)
+        {
+            strInput.value = strInput.value.toLowerCase();
         }
 
         // function redirectTo() {
