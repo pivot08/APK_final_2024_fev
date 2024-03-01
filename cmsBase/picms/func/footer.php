@@ -99,32 +99,32 @@ function buildDataTablesColumnFilter(table) {
           action: function(e, dt, node, config) {
             document.location.href = 'template.php';
           },
-        }<?php } ?><?php if (isset($pageTypeID) && ($pageTypeID == "1,5")) { ?>, {
+        }<?php } ?><?php if (isset($pageTypeID) && ($pageTypeID == "1,5") && $pageTypeID != '0') { ?>, {
           text: 'Adicionar',
           action: function(e, dt, node, config) {
             document.location.href = 'template-content-home.php?pageTypeID=<?php echo isset($pageTypeID) ? $pageTypeID : '0'; ?>';
           },
-        }<?php } ?><?php if (isset($pageTypeID) && ($pageTypeID == "0,2,6")) { ?>, {
+        }<?php } ?><?php if (isset($pageTypeID) && ($pageTypeID == "0,2,6") && $pageTypeID != '0') { ?>, {
           text: 'Adicionar',
           action: function(e, dt, node, config) {
             document.location.href = 'template-content-buttons.php?pageTypeID=<?php echo isset($pageTypeID) ? $pageTypeID : '0'; ?>';
           },
-        }<?php } ?><?php if (isset($pageTypeID) && ($pageTypeID == "3")) { ?>, {
+        }<?php } ?><?php if (isset($pageTypeID) && ($pageTypeID == "3") && $pageTypeID != '0') { ?>, {
           text: 'Adicionar',
           action: function(e, dt, node, config) {
             document.location.href = 'template-content-text.php?pageTypeID=<?php echo isset($pageTypeID) ? $pageTypeID : '0'; ?>';
           },
-        }<?php } ?><?php if (isset($pageTypeID) && ($pageTypeID == "4")) { ?>, {
+        }<?php } ?><?php if (isset($pageTypeID) && ($pageTypeID == "4") && $pageTypeID != '0') { ?>, {
           text: 'Adicionar',
           action: function(e, dt, node, config) {
             document.location.href = 'template-content-product-line.php?pageTypeID=<?php echo isset($pageTypeID) ? $pageTypeID : '0'; ?>';
           },
-        }<?php } ?><?php if (isset($pageTypeID) && ($pageTypeID == "8")) { ?>, {
+        }<?php } ?><?php if (isset($pageTypeID) && ($pageTypeID == "8") && $pageTypeID != '0') { ?>, {
           text: 'Adicionar',
           action: function(e, dt, node, config) {
             document.location.href = 'template-content-step-by-step.php?pageTypeID=<?php echo isset($pageTypeID) ? $pageTypeID : '0'; ?>';
           },
-        }<?php } ?><?php if (isset($pageTypeID) && ($pageTypeID == "7")) { ?>, {
+        }<?php } ?><?php if (isset($pageTypeID) && ($pageTypeID == "7") && $pageTypeID != '0') { ?>, {
           text: 'Adicionar',
           action: function(e, dt, node, config) {
             document.location.href = 'template-content-home-feature.php?pageTypeID=<?php echo isset($pageTypeID) ? $pageTypeID : '0'; ?>';

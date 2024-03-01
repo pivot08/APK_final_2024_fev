@@ -15,7 +15,7 @@ $specificationLine2 = '';
 $footNote = '';
 $color = '';
 $isMainPage = '0';
-$isOperatorExclusive = 0;
+$isOperatorExclusive = 1;
 $isActive = '1';
 $update = false;
 

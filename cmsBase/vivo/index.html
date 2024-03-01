@@ -87,9 +87,11 @@
                             if (content != null && content != undefined) {
 
                                 var contentVersion = dataVersion.templateContent.filter((x) => x.IsActive == 1 && x.IsMainPage == 1);
-                                if (contentVersion != null && contentVersion != undefined) {
-                                    var mainLink = path + '/' + contentVersion[0].ApplicationSlug + '/base/index.html?origin=' + applicationSlug + '&searchParams=' + searchParams;
+                                var mainLinkSlug = 'eureka';
+                                if (contentVersion != null && contentVersion != undefined && contentVersion.length > 0) {
+                                    mainLinkSlug = contentVersion[0].ApplicationSlug
                                 }
+                                var mainLink = path + '/' + mainLinkSlug + '/base/index.html?origin=' + applicationSlug + '&searchParams=' + searchParams;
 
                                 var body = document.getElementById('content-body');
                                 body.style.backgroundColor = '#' + content[0].Color;
@@ -111,7 +113,7 @@
                             if (content != null && content != undefined) {
                                 if (content.length == 0)
                                     document.location.href = mainLink;
-                                
+
                                 for (var i = 0; i < content.length; i++) {
                                     operatorPlan += '<li class="nav-item" role="presentation">'
                                         + '    <img class="seta-img" src="assets/img/seta.png" width="10%" style="margin:0 auto; visibility: ' + (i == 0 ? 'visible' : 'hidden') + '">'

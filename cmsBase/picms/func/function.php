@@ -528,7 +528,7 @@ function templateInsert($applicationID, $pageTypeID, $template, $logo, $buttonCo
 
     if ($result) {
         $templateID = mysqli_insert_id($db);
-        templateUpdateMainPage($templateID);
+        templateUpdateMainPage($templateID, $isOperatorExclusive);
     }
 
     generateUserOperatorFile();
@@ -549,25 +549,27 @@ function templateUpdate($templateID, $applicationID, $pageTypeID, $template, $lo
         , SpecificationLine2 = '$specificationLine2'
         , FootNote = '$footNote'
         , Color = '$color'
-        , IsMainPage = '$isMainPage'
-        , IsOperatorExclusive = '$isOperatorExclusive'
-        , IsActive = '$isActive'
+        , IsMainPage = $isMainPage
+        , IsOperatorExclusive = $isOperatorExclusive
+        , IsActive = $isActive
         , DControl = NOW()
     WHERE
         TemplateID = $templateID";
     mysqli_query($db, $query);
 
-    templateUpdateMainPage($templateID);
+    templateUpdateMainPage($templateID, $isOperatorExclusive);
 
     generateUserOperatorFile();
 }
 
-function templateUpdateMainPage($templateID)
+function templateUpdateMainPage($templateID, $isOperatorExclusive)
 {
     global $db;
     $query = "
     UPDATE Template SET IsMainPage = 0 WHERE TemplateID <> $templateID";
-    return mysqli_query($db, $query);
+
+    if ($isOperatorExclusive == '0')
+        return mysqli_query($db, $query);
 }
 
 function templateDelete($templateID)

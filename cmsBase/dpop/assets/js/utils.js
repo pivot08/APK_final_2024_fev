@@ -1,11 +1,3 @@
-let pressTimer;
-function startTimer() {
-    pressTimer = window.setTimeout(function () {
-        window.location.href = '../index.html';
-    }, 5000);  // 5000 ms = 5 segundos
-}
-
-
 $(document).ready(function () {
 
     $('#carousel-promo').owlCarousel({
@@ -36,9 +28,6 @@ function goBack() {
     history.back(-1);
 }
 
-
-
-
 $(window).on('load', function () {
     // Oculte o overlay de carregamento
     $('#loading-overlay').css('opacity', 0);
@@ -48,88 +37,6 @@ $(window).on('load', function () {
         $('#loading-overlay').css('display', 'none');
     });
 });
-
-
-
-// Função que será chamada após 40 segundos
-function redirect() {
-    window.location.href = '../index.html';
-}
-
-
-// Função para verificar o login e redirecionar
-function checkAndRedirect() {
-    var username = sessionStorage.getItem("username");
-
-    // Exibe a div correspondente ao login
-    showLoginDiv(username);
-
-    // Verifica se o login foi feito pela Vivo
-    if (username === "vivo@operadoras") {
-        // Define um timeout de 30 segundos para redirecionar para a URL da Vivo
-        setTimeout(function () {
-            window.location.href = "../vivo/vivo.html";
-        }, 30000); // 30 segundos em milissegundos
-    }
-
-    // Verifica se o login foi feito pela Claro
-    if (username === "claro@operadoras") {
-        // Define um timeout de 30 segundos para redirecionar para a URL da Claro
-        setTimeout(function () {
-            window.location.href = "../claro/claro.html";
-        }, 30000); // 30 segundos em milissegundos
-    }
-
-    // Verifica se o login foi feito pela Tim
-    if (username === "tim@operadoras") {
-        // Define um timeout de 30 segundos para redirecionar para a URL da Tim
-        setTimeout(function () {
-            window.location.href = "../tim/tim.html";
-        }, 30000); // 30 segundos em milissegundos
-    }
-
-    // Verifica se o login foi feito pela Geral
-    if (username === "geral@apk") {
-        // Define um timeout de 60 segundos para redirecionar para a URL geral
-        setTimeout(function () {
-            window.location.href = "../index.html";
-        }, 60000); // 60 segundos em milissegundos
-    }
-}
-
-// Função para mostrar a div correspondente ao login
-function showLoginDiv(username) {
-
-
-    // Mostra a div correspondente ao login
-    switch (username) {
-        case "vivo@operadoras":
-            document.getElementById("divOpVivo").style.display = "block";
-            break;
-
-        case "claro@operadoras":
-            document.getElementById("divOpClaro").style.display = "block";
-            break;
-
-        case "tim@operadoras":
-            document.getElementById("divOpTim").style.display = "block";
-            break;
-
-        case "geral@apk":
-            document.getElementById("divOpGeral").style.display = "block";
-            break;
-
-        // Adicione mais casos conforme necessário para outros logins
-
-        default:
-            // Caso não seja nenhum dos logins específicos, não mostra nenhuma div
-            break;
-    }
-}
-
-
-// Chame a função quando a página carregar
-checkAndRedirect();
 
 // Espera 2 segundos e depois oculta o vídeo
 setTimeout(function () {
@@ -157,6 +64,7 @@ const urlOrigin = new URL(window.location.href);
 const paramsOrigin = new URLSearchParams(urlOrigin.search);
 const origin = paramsOrigin.get('origin') != null && paramsOrigin.get('origin') != undefined ? paramsOrigin.get('origin') : '';
 const searchParams = paramsOrigin.get('searchParams') != null && paramsOrigin.get('searchParams') != undefined ? paramsOrigin.get('searchParams') : '';
+var linkHome = '';
 
 var links = document.getElementsByTagName('a');
 for (var i = 0; i < links.length; i++) {
@@ -166,21 +74,24 @@ for (var i = 0; i < links.length; i++) {
 
 switch (origin) {
     case 'vivo':
+        linkHome = '../../vivo/index.html' + window.atob(searchParams);
         if (document.getElementById("divOpVivo")) {
             document.getElementById("divOpVivo").style.display = "block";
-            document.getElementById("divOpVivo").getElementsByTagName('a')[0].href = '../../vivo/index.html' + window.atob(searchParams);
+            document.getElementById("divOpVivo").getElementsByTagName('a')[0].href = linkHome
         }
         break;
     case 'claro':
+        linkHome = '../../claro/index.html' + window.atob(searchParams);
         if (document.getElementById("divOpClaro")) {
             document.getElementById("divOpClaro").style.display = "block";
-            document.getElementById("divOpClaro").getElementsByTagName('a')[0].href = '../../claro/index.html' + window.atob(searchParams);
+            document.getElementById("divOpClaro").getElementsByTagName('a')[0].href = linkHome;
         }
         break;
     case 'tim':
+        linkHome = '../../tim/index.html' + window.atob(searchParams);
         if (document.getElementById("divOpTim")) {
             document.getElementById("divOpTim").style.display = "block";
-            document.getElementById("divOpTim").getElementsByTagName('a')[0].href = '../../tim/index.html' + window.atob(searchParams);
+            document.getElementById("divOpTim").getElementsByTagName('a')[0].href = linkHome;
         }
         break;
     case '':
@@ -188,3 +99,13 @@ switch (origin) {
             document.getElementById("divOpGeral").style.display = "block";
         break;
 }
+
+function runTimer(linkHome) {
+    console.log(linkHome)
+    window.location.href = linkHome;
+}
+
+const timer = setTimeout(() => {
+    clearTimeout(timer);
+    runTimer(linkHome);
+}, 30000);
