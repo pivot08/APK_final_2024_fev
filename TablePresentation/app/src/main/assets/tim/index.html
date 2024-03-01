@@ -68,7 +68,7 @@
                     if (xhr.readyState === 4 && xhr.status === 200) {
                         var data = JSON.parse(xhr.responseText);
 
-                        var content = data.template.filter((x) => x.ApplicationID == applicationID && x.PageTypeID == 9);
+                        var content = data.template.filter((x) => x.ApplicationID == applicationID && x.PageTypeID == 11);
                         if (content != null && content != undefined) {
 
                             var mainLinkSlug = 'eureka';
@@ -81,16 +81,16 @@
                             var mainLink = path + '/' + mainLinkSlug + '/base/menu.html?origin=' + applicationSlug + '&searchParams=' + searchParams;
 
                             var body = document.getElementById('content-body');
-                            body.style.backgroundColor = '#' + content[0].Color;
+                            body.style.backgroundColor = '#' + content[0].Color.replace('#', '');
 
                             var templateLogo = document.getElementById('template-logo');
-                            templateLogo.src = pathContent + '/' + content[0].Logo;
+                            templateLogo.src = pathContent + '/operator/' + content[0].Logo;
 
                             var headerText = document.getElementById('header-text');
                             headerText.innerHTML = content[0].HeaderText;
 
-                            var specificationLine = document.getElementById('specification-line');
-                            specificationLine.innerHTML = content[0].SpecificationLine1 + '<br>' + content[0].SpecificationLine2;
+                            //var specificationLine = document.getElementById('specification-line');
+                            //specificationLine.innerHTML = content[0].SpecificationLine1 + '<br>' + content[0].SpecificationLine2;
                         }
 
                         content = null;
@@ -121,7 +121,7 @@
                                                 + '            <div>'
                                                 + '                <h6 class="text color_white bahnschrift">' + contentValue[y].Observation + '</h6>'
                                                 + '                <div class="div-img3">'
-                                                + '                    <img src="' + pathContent + '/' + contentValue[y].Media + '" width="100%">'
+                                                + '                    <img src="' + pathContent + '/operator/' + contentValue[y].Media + '" width="100%">'
                                                 + '                </div>'
                                                 + '                <h1 class="text color_white bahnschrift planos">Planos</h1>'
                                                 + '            </div>'
@@ -160,18 +160,18 @@
                             }
 
                             var tabPlan = document.getElementById('mainContent');
-                            tabValue.innerHTML = operatorValue;
+                            tabPlan.innerHTML = operatorValue;
 
                             var tabButton = document.getElementById('content-button');
                             tabButton.innerHTML = buttonContent;
                         }
                     }
                 };
-                xhr.open("GET", path + '/' + applicationSlug + '.json');
-                xhr.send(null);
-            }
-        };
-        xhrContent.open("GET", path + '/' + actualVersion + '.json');
+                xhr.open("GET", pathContent + '/' + applicationSlug + '.json');
+                    xhr.send(null);
+                }
+            };
+        xhrContent.open("GET", pathContent + '/' + actualVersion + '.json');
         xhrContent.send(null);
     </script>
 </body>
