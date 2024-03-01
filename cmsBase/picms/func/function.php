@@ -724,6 +724,35 @@ function templateContentListFiles()
     return mysqli_query($db, $query);
 }
 
+function operatorTemplateListFiles()
+{
+    global $db;
+    $query = "
+    SELECT
+        tpl.Logo
+    FROM
+        Template tpl
+    WHERE
+        tpl.IsActive = 1
+        AND tpl.IsDeleted = 0
+        ANd tpl.IsOperatorExclusive = 1";
+    return mysqli_query($db, $query);
+}
+
+function operatorValueListFiles()
+{
+    global $db;
+    $query = "
+    SELECT
+        opv.Media
+    FROM
+        OperatorValue opv
+    WHERE
+        opv.IsActive = 1
+        AND opv.IsDeleted = 0";
+    return mysqli_query($db, $query);
+}
+
 function templateContentGet($templateContentID)
 {
     global $db;
@@ -1344,6 +1373,8 @@ function generateUserOperatorFile()
                 }
             }
         }
+
+        generateOperatorZIPFile('operator');
     }
 }
 
@@ -1554,6 +1585,33 @@ function generateZIPFile($guid)
         while ($row = mysqli_fetch_array($result)) {
             $file = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . 'content' . $ds . $row['Media'];
             $zip->addFile($file, $row['Media']);
+        }
+
+        $zip->close();
+    }
+}
+
+function generateOperatorZIPFile($fileName)
+{
+    $zip = new ZipArchive();
+    $ds = DIRECTORY_SEPARATOR;
+    $zipFileName = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . 'version' . $ds . $fileName . '.zip';
+
+    if ($zip->open($zipFileName, ZipArchive::CREATE) === TRUE) {
+        $result = operatorTemplateListFiles();
+        while ($row = mysqli_fetch_array($result)) {
+            if ($row['Logo'] != '') {
+                $file = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . 'content' . $ds . $row['Logo'];
+                $zip->addFile($file, $row['Logo']);
+            }
+        }
+
+        $result = operatorValueListFiles();
+        while ($row = mysqli_fetch_array($result)) {
+            if ($row['Media'] != '') {
+                $file = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . 'content' . $ds . $row['Media'];
+                $zip->addFile($file, $row['Media']);
+            }
         }
 
         $zip->close();
