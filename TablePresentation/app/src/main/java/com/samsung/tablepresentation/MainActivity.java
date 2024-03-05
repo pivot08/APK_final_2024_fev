@@ -2,6 +2,7 @@ package com.samsung.tablepresentation;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
@@ -12,12 +13,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.widget.Toast;
 
 import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
 
-    WebView webView;
+    static WebView webView;
     private static String baseUrl = "https://dpopinterativo.dev.br";
     private static String path = "file:///data/data/com.samsung.tablepresentation/files/";
     private static String versionFolder = "version";
@@ -27,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
     private static String password = "testehospedagem";
 
     public static Context context;
+    private static UpdateLocalVersionTask updateLocalVersion;
+
 
     @SuppressLint("JavascriptInterface")
     @Override
@@ -79,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
         } else {
             webView.loadUrl("file:///android_asset/eureka/base/index.html");
         }
+
+        updateLocalVersion = new UpdateLocalVersionTask(username, password, context, this);
     }
 
     private class Callback extends WebViewClient {
@@ -126,8 +132,7 @@ public class MainActivity extends AppCompatActivity {
         if (actualVersion != null) {
             try {
                 if (actualVersion != "" && !actualVersion.toString().equals(localVersion.toString())) {
-                    UpdateLocalVersionTask updateTask = new UpdateLocalVersionTask(username, password, context);
-                    updateTask.execute(baseUrl, versionFolder, actualVersion);
+                    updateLocalVersion.execute(baseUrl, versionFolder, actualVersion);
                 }
             } catch (Exception e) {
 
@@ -136,8 +141,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void processOperatorFileAttualization() {
-        UpdateLocalVersionTask updateTask = new UpdateLocalVersionTask(username, password, context);
-        updateTask.execute(baseUrl, versionFolder, "operator");
+        UpdateOperatorVersionTask updateOperatorVersion = new UpdateOperatorVersionTask(username, password, context);
+        updateOperatorVersion.execute(baseUrl, versionFolder, "operator");
     }
 
     public static void informDevice() {

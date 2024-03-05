@@ -1,9 +1,14 @@
 package com.samsung.tablepresentation;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -19,26 +24,19 @@ import java.net.URL;
 import java.util.Base64;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
-import android.content.Context;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+public class UpdateOperatorVersionTask extends AsyncTask<String, Void, Void> {
 
-public class UpdateLocalVersionTask extends AsyncTask<String, Void, Void> {
-
-    private static final String TAG = UpdateLocalVersionTask.class.getSimpleName();
+    private static final String TAG = UpdateOperatorVersionTask.class.getSimpleName();
 
     private String username;
     private String password;
     private Context context;
-    private Activity mainActivity;
 
-    public UpdateLocalVersionTask(String username, String password, Context context, Activity mainActivity) {
+    public UpdateOperatorVersionTask(String username, String password, Context context) {
         this.context = context;
         this.username = username;
         this.password = password;
-        this.mainActivity = mainActivity;
     }
 
     @Override
@@ -96,18 +94,6 @@ public class UpdateLocalVersionTask extends AsyncTask<String, Void, Void> {
 
                 // Delete the ZIP file after extraction if needed
                 destinationFile.delete();
-
-                //save a local json file with version guid
-                JSONObject jsonContent = new JSONObject();
-                try {
-                    jsonContent.put("version", versionGuid);
-                    writeJsonToFile(context, jsonContent, "version");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                MainActivity.informDevice();
-                restartApp();
             } else {
                 Log.e(TAG, "Failed to download file. HTTP response code: " + responseCode);
             }
@@ -120,14 +106,6 @@ public class UpdateLocalVersionTask extends AsyncTask<String, Void, Void> {
         }
 
         return null;
-    }
-
-    public void restartApp() {
-        if (mainActivity != null) {
-            Intent intent = mainActivity.getIntent();
-            mainActivity.finish();
-            mainActivity.startActivity(intent);
-        }
     }
 
     private void extractZipFile(File zipFile, String destinationFolder) {
