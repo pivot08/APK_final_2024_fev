@@ -119,10 +119,17 @@ video {max-width: 100%;}
   background-size: cover;
 }
 
+.background-s23ultra { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/ppt5-background-geral.png');
+  background-size: cover;
+}
+
 .background-s23fe { 
   width: 100%;
   height: auto;
-  background-image: url('../img/smartphone/galaxy-s23fe_bg.png');
+  background-image: url('../img/ppt6-background-geral.png');
   background-size: cover;
 }
 
@@ -658,4 +665,9 @@ button:active {
 
 .loginDiv img {
   max-width: 150px !important;
+}
+
+.imagem-snapdragon1 {
+  margin: 0 auto;
+  width: 50% !important;
 }
