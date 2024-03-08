@@ -169,6 +169,36 @@ video {max-width: 100%;}
   background-size: cover;
 }
 
+.background-a05  { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/ppt9-background-geral.png');
+  background-size: cover;
+}
+
+.background-a05s  { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/ppt10-background-geral.png');
+  background-size: cover;
+}
+
+.background-a15  { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/ppt11-background-geral.png');
+  background-size: cover;
+}
+
+
+.background-a155g  { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/ppt13-background-geral.png');
+  background-size: cover;
+}
+
+
 .seta-preta {
     position: absolute;
     top: 68px;
