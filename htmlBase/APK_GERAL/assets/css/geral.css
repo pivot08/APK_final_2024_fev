@@ -460,7 +460,7 @@ button:active {
   height: -webkit-fill-available;
 }
 .pagina-produto .centerauto {padding-top:0px;}
-.pagina-produto .card-title.categoria {padding-top: 32px;font-size:32px;}
+.pagina-produto .card-title.categoria {padding-top: 32px;font-size:30px;}
 
 .pagina-produto .trava-botoes {
   max-height: 230px;
@@ -478,7 +478,7 @@ button:active {
   margin-top: -18px;
   max-width: 85% !important;
   margin-left: 118px;
-  margin-bottom: -15px;
+  margin-bottom: -25px;
 }
 
 .bottom-title {
