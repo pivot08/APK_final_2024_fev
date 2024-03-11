@@ -405,3 +405,31 @@ button:active {
 .loginDiv img {
   max-width: 150px !important;
 }
+
+
+.indice button {
+  background: #000;
+  color: #fff;
+  border: solid 0px;
+  margin-top: 30px;
+  min-width: 397px;
+  padding: 14px;
+  border-radius: 70px;
+  font-size: 36px;
+}
+
+.indice button a {color:#fff;text-decoration: none;}
+
+.centralizar-conteudo {
+  min-height: -webkit-fill-available;
+  border: solid;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.teaser #myVideo {
+  margin: auto 0px !important;
+  top: -60px;
+}
