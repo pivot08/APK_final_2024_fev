@@ -48,7 +48,17 @@
     <!-- Inclua os links para os arquivos do Bootstrap JavaScript (opcional, dependendo do que você está usando) -->
     <script src="assets/js/jquery-3.7.1.min.js"></script>
     <script src="assets/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/js/util.js"></script>
+    <script>
+        $(window).on('load', function() {
+    // Oculte o overlay de carregamento
+    $('#loading-overlay').css('opacity', 0);
+    // Mostre o conteúdo da página com fadeIn
+    $('#loadingContainer').fadeIn(1250, function() {
+        // Após a conclusão do fadeIn, oculte o overlay
+        $('#loading-overlay').css('display', 'none');
+    });
+});
+    </script>
     
 </body>
 </html>
