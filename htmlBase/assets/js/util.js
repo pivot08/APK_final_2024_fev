@@ -58,10 +58,20 @@ $(document).ready(function() {
 
 
 
- // Função que será chamada após 40 segundos
- function redirect() {
-    window.location.href = 'index.html';
+function startTimer() {
+    pressTimer = window.setTimeout(function() {
+        // Obtenha a escolha do usuário do localStorage
+        let chosenIndex = localStorage.getItem('chosenIndex');
+
+        // Se a escolha do usuário estiver presente, use-a para redirecionar o usuário
+        // de volta para a página de índice. Caso contrário, redirecione para 'indice.html' por padrão.
+        window.location.href = chosenIndex ? chosenIndex : 'indice.html';
+    }, 60000);  // 60000 ms = 60 segundos
 }
+
+// Chame a função startTimer quando a página for carregada
+window.onload = startTimer;
+
 
 // Função para verificar o login e redirecionar
 function checkAndRedirect() {
