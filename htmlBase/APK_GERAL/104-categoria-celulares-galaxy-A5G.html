@@ -161,7 +161,7 @@
     </div>
     
     <!-- terceira linha-->
-        <div class="row mx-auto" >
+        <div class="row mx-auto semIndice" >
             
             <!-- Primeira Coluna -->
             <div class="col-md-6 ">
@@ -204,6 +204,62 @@
             </div>
             
         </div>
+
+        <div class="row mx-auto comIndice" >
+            
+            <!-- Primeira Coluna -->
+            <div class="col-md-6 ">
+
+                <a href="115-produtopaginafeature-galaxyA555G.html" class="header-links"> 
+                    <div class="card bac-branco" style="margin-bottom: 20px;max-height: 49%;">
+                        <div class="card-body respiro-categoria scroll-down bacCategorias d-flex" 
+                        style="background: url(assets/img/bt-a55-comindice.jpg) no-repeat;">
+                            <h5 class="card-title categoria">Galaxy A55 5G</h5>
+                            
+                        </div>
+                    </div>
+                </a>
+
+                <a href="105-produtopaginafeature-galaxyA155G.html" class="header-links"> 
+                    <div class="card bac-branco" style="max-height: 49%;">
+                        <div class="card-body respiro-categoria scroll-down bacCategorias d-flex" 
+                        style="background: url(assets/img/ppt14-menu-a155g.png) no-repeat;">
+                            <h5 class="card-title categoria">Galaxy A15 5G</h5>
+                            
+                        </div>
+                    </div>
+                </a>
+           
+            </div>
+
+            <!-- Segunda Coluna -->
+            
+            
+            <div class="col-md-6 ">
+
+                <a href="110-produtopaginafeature-galaxyA355G.html" class="header-links"> 
+                    <div class="card bac-branco" style="margin-bottom: 20px;max-height: 49%;">
+                        <div class="card-body respiro-categoria scroll-down bacCategorias d-flex" 
+                        style="background: url(assets/img/ppt14-menu-a355g.png) no-repeat;">
+                            <h5 class="card-title categoria">Galaxy A35 5G</h5>
+                            
+                        </div>
+                    </div>
+                </a>
+
+                <a href="3-categoria-smartphones.html" class="header-links"> 
+                    <div class="card bac-branco" style="max-height: 49%;">
+                        <div class="card-body respiro-categoria scroll-down bacCategorias d-flex" 
+                        style="background: #006bea;">
+                            <img src="assets/img/bt-todos-celulares.jpg">
+                            
+                        </div>
+                    </div>
+                </a>
+           
+            </div>
+            
+        </div>
     </div>
 </div>
     <!-- Inclua os links para os arquivos do Bootstrap JavaScript (opcional, dependendo do que você está usando) -->
@@ -211,7 +267,34 @@
     <script src="assets/js/bootstrap.bundle.min.js"></script>
     <script src="assets/dependencies/owl.carousel/dist/owl.carousel.min.js"></script>
     <script src="assets/js/utils.js"></script>
+    <script>
+        // Obtenha a URL completa
+var url = window.location.href;
 
+// Verifique se a URL contém o parâmetro 'ref=index-s23'
+if (url.includes('ref=index-a5g')) {
+    // Se o usuário veio da página 'index-s23.html', oculte um div e mostre outro
+    var semIndice = document.getElementsByClassName('semIndice');
+    for(var i = 0; i < semIndice.length; i++) {
+        semIndice[i].style.display = 'none';
+    }
+    var comIndice = document.getElementsByClassName('comIndice');
+    for(var i = 0; i < comIndice.length; i++) {
+        comIndice[i].style.display = 'flex';
+    }
+} else {
+    // Caso contrário, faça o contrário
+    var semIndice = document.getElementsByClassName('semIndice');
+    for(var i = 0; i < semIndice.length; i++) {
+        semIndice[i].style.display = 'flex';
+    }
+    var comIndice = document.getElementsByClassName('comIndice');
+    for(var i = 0; i < comIndice.length; i++) {
+        comIndice[i].style.display = 'none';
+    }
+}
+    
+        </script>
     
 </body>
 </html>
