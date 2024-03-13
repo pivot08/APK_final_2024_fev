@@ -4,7 +4,7 @@ var clickQuant = 0;
 function startTimer() {
     clickQuant++;
     if (clickQuant == 5) {
-        window.location.href = '../index.html';
+        window.location.href = 'indice.html';
     }
 }
 

@@ -1,7 +1,7 @@
 let pressTimer;
 function startTimer() {
     pressTimer = window.setTimeout(function() {
-        window.location.href = '../index.html';
+        window.location.href = '../indice.html';
     }, 5000);  // 5000 ms = 5 segundos
 }
 
