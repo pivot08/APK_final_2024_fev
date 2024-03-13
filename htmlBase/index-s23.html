@@ -61,23 +61,6 @@
 });
 
 
-window.onload = function() {
-    let links = document.getElementsByTagName('a');
-    for (let i = 0; i < links.length; i++) {
-        links[i].addEventListener('click', function() {
-            localStorage.setItem('chosenIndex', window.location.href);
-        });
-    }
-}
-
-document.addEventListener('DOMContentLoaded', (event) => {
-    setTimeout(function() {
-        let redirectPage = localStorage.getItem('chosenIndex');
-        if (redirectPage) {
-            window.location.replace(redirectPage);
-        }
-    }, 10000);  // Redireciona após 10 segundos
-});
 
     </script>
     
