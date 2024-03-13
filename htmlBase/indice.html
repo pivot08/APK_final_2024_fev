@@ -28,23 +28,24 @@
         <div class="col-md-12 text-center indice">
                 <img src="assets/img/ico-indice.jpg" style="max-width: 300px"><br><br><BR>
                 <img src="assets/img/tit-escolha-versao.jpg" style="max-width: 400px"><BR></BR>
-                <button ontouchstart="event.preventDefault(); redirectTo('index-s24.html')">Galaxy S24</button><br>
-<button ontouchstart="event.preventDefault(); redirectTo('index-s23.html')">Galaxy S23</button><br>
-<button ontouchstart="event.preventDefault(); redirectTo('index-a.html')">Galaxy A</button><br>
-<button ontouchstart="event.preventDefault(); redirectTo('index-a5g.html')">Galaxy A 5G</button><br>
+            
+            <button ontouchstart="event.preventDefault(); redirectTo('index-s24.html')">Galaxy S24</button><br>
+            <button ontouchstart="event.preventDefault(); redirectTo('index-s23.html')">Galaxy S23</button><br>
+            <button ontouchstart="event.preventDefault(); redirectTo('index-a.html')">Galaxy A</button><br>
+            <button ontouchstart="event.preventDefault(); redirectTo('index-a5g.html')">Galaxy A 5G</button><br>
 
-<script>
-    function redirectTo(page) {
-        // Se a página for 'index-s24.html', não adicione o prefixo '../'
-        let path = page === 'index-s24.html' ? page : '../' + page;
-    
-        // Armazene a escolha do usuário no localStorage, incluindo o caminho do diretório
-        localStorage.setItem('chosenIndex', path);
-    
-        // Redirecione para a página escolhida
-        window.location.href = page;
-    }
-    </script>
+            <script>
+                function redirectTo(page) {
+                    // Se a página for 'index-s24.html', não adicione o prefixo '../'
+                    let path = page === 'index-s24.html' ? page : '../' + page;
+                
+                    // Armazene a escolha do usuário no localStorage, incluindo o caminho do diretório
+                    localStorage.setItem('chosenIndex', path);
+                
+                    // Redirecione para a página escolhida
+                    window.location.href = page;
+                }
+                </script>
 
         </div>
        
