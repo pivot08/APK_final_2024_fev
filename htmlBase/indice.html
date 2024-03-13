@@ -9,6 +9,11 @@
     <!-- Inclua os links para os arquivos do Bootstrap CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/geral.css" rel="stylesheet">
+    <style>
+        button {
+    touch-action: manipulation;
+}
+    </style>
     
 </head>
 <body class="h-100 centralizar-conteudo">
@@ -28,24 +33,12 @@
         <div class="col-md-12 text-center indice">
                 <img src="assets/img/ico-indice.jpg" style="max-width: 300px"><br><br><BR>
                 <img src="assets/img/tit-escolha-versao.jpg" style="max-width: 400px"><BR></BR>
-            
-            <button ontouchstart="event.preventDefault(); redirectTo('index-s24.html')">Galaxy S24</button><br>
-            <button ontouchstart="event.preventDefault(); redirectTo('index-s23.html')">Galaxy S23</button><br>
-            <button ontouchstart="event.preventDefault(); redirectTo('index-a.html')">Galaxy A</button><br>
-            <button ontouchstart="event.preventDefault(); redirectTo('index-a5g.html')">Galaxy A 5G</button><br>
-
-            <script>
-                function redirectTo(page) {
-                    // Se a página for 'index-s24.html', não adicione o prefixo '../'
-                    let path = page === 'index-s24.html' ? page : '../' + page;
-                
-                    // Armazene a escolha do usuário no localStorage, incluindo o caminho do diretório
-                    localStorage.setItem('chosenIndex', path);
-                
-                    // Redirecione para a página escolhida
-                    window.location.href = page;
-                }
-                </script>
+            c
+            <a href="index-s24.html?chosenIndex=index-s24.html">Galaxy S24</a><br>
+            <a href="index-s23.html?chosenIndex=index-s23.html">Galaxy S23</a><br>
+            <a href="index-a.html?chosenIndex=index-a.html">Galaxy A</a><br>
+            <a href="index-a5g.html?chosenIndex=index-a5g.html">Galaxy A 5G</a><br>
+                            
 
         </div>
        

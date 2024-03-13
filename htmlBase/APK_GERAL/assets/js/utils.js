@@ -52,20 +52,23 @@ $(document).ready(function () {
 
 
        
-        function startTimer() {
-            pressTimer = window.setTimeout(function() {
-                // Obtenha a escolha do usuário do localStorage
-                let chosenIndex = localStorage.getItem('chosenIndex');
-        
-                // Se a escolha do usuário estiver presente, use-a para redirecionar o usuário
-                // de volta para a página de índice. Caso contrário, redirecione para 'indice.html' por padrão.
-                window.location.href = chosenIndex ? chosenIndex : 'indice.html';
-            }, 60000);  // 60000 ms = 60 segundos
+        window.onload = function() {
+            let links = document.getElementsByTagName('a');
+            for (let i = 0; i < links.length; i++) {
+                links[i].addEventListener('click', function() {
+                    localStorage.setItem('chosenIndex', window.location.href);
+                });
+            }
         }
         
-        // Chame a função startTimer quando a página for carregada
-        window.onload = startTimer;
-
+        document.addEventListener('DOMContentLoaded', (event) => {
+            setTimeout(function() {
+                let redirectPage = localStorage.getItem('chosenIndex');
+                if (redirectPage) {
+                    window.location.replace(redirectPage);
+                }
+            }, 10000);  // Redireciona após 10 segundos
+        });
 
 // Função para verificar o login e redirecionar
 function checkAndRedirect() {
@@ -139,7 +142,7 @@ function showLoginDiv(username) {
 
 
 // Chame a função quando a página carregar
-checkAndRedirect();
+//checkAndRedirect();
 
  // Espera 2 segundos e depois oculta o vídeo
  setTimeout(function () {
