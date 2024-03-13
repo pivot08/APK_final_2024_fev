@@ -54,14 +54,27 @@ $(document).ready(function () {
             setTimeout(function() {
                 let params = new URLSearchParams(window.location.search);
                 let redirectPage = params.get('ref');
+        
                 if (redirectPage) {
-                    if (redirectPage === 's24') {
+                    if (redirectPage === 'index-s24') {
                         window.location.href = redirectPage + '.html';
                     } else {
                         window.location.href = '../' + redirectPage + '.html';
                     }
                 }
-            }, 3000);  // Redireciona após 3 segundos
+            }, 60000);  // Redireciona após 3 segundos
+        });
+        
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let params = new URLSearchParams(window.location.search);
+            let redirectPage = params.get('ref');
+        
+            // Adicione o parâmetro de consulta a todos os links em sua página
+            var links = document.getElementsByTagName('a');
+            for (var i = 0; i < links.length; i++) {
+                if (links[i].href.indexOf('javascript:history.') < 0)
+                    links[i].href = links[i].href + (links[i].href.indexOf('?') > 0 ? '&' : '?') + 'ref=' + redirectPage;
+            }
         });
 
 // Função para verificar o login e redirecionar
