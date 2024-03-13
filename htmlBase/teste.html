@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Teste de Redirecionamento</title>
+</head>
+<body>
+    <h1>Teste de Redirecionamento</h1>
+    <a id="myLink" href="funcionou.html">Link</a>
+
+    <script>
+     setTimeout(function() {
+    let params = new URLSearchParams(window.location.search);
+    let redirectPage = params.get('ref');
+    if (redirectPage) {
+        window.location.href = redirectPage + '.html';
+    }
+}, 3000);  // Redireciona após 3 segundos
+
+    </script>
+</body>
+</html>

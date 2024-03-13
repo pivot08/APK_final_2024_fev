@@ -50,24 +50,18 @@ $(document).ready(function () {
         });
   
 
-
-       
-        window.onload = function() {
-            let links = document.getElementsByTagName('a');
-            for (let i = 0; i < links.length; i++) {
-                links[i].addEventListener('click', function() {
-                    localStorage.setItem('chosenIndex', window.location.href);
-                });
-            }
-        }
-        
         document.addEventListener('DOMContentLoaded', (event) => {
             setTimeout(function() {
-                let redirectPage = localStorage.getItem('chosenIndex');
+                let params = new URLSearchParams(window.location.search);
+                let redirectPage = params.get('ref');
                 if (redirectPage) {
-                    window.location.replace(redirectPage);
+                    if (redirectPage === 's24') {
+                        window.location.href = redirectPage + '.html';
+                    } else {
+                        window.location.href = '../' + redirectPage + '.html';
+                    }
                 }
-            }, 10000);  // Redireciona após 10 segundos
+            }, 3000);  // Redireciona após 3 segundos
         });
 
 // Função para verificar o login e redirecionar
@@ -109,6 +103,7 @@ function checkAndRedirect() {
         }, 60000); // 60 segundos em milissegundos
     }
 }
+
 
 // Função para mostrar a div correspondente ao login
 function showLoginDiv(username) {
