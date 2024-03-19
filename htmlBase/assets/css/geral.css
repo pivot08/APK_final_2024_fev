@@ -422,7 +422,6 @@ button:active {
 
 .centralizar-conteudo {
   min-height: -webkit-fill-available;
-  border: solid;
   display: flex;
   align-content: center;
   align-items: center;

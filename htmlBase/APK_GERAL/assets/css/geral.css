@@ -460,13 +460,17 @@ button:active {
   height: -webkit-fill-available;
 }
 .pagina-produto .centerauto {padding-top:0px;}
-.pagina-produto .card-title.categoria {padding-top: 32px;font-size:30px;}
+.pagina-produto .card-title.categoria {padding-top: 32px;font-size:32px;}
 
 .pagina-produto .trava-botoes {
   max-height: 230px;
   margin-bottom: 0px;
 }
 
+
+.card-body h5.card-title.categoria {
+  font-size: 29px !important;
+}
 
 
 .pagina-produto .card-title.categoria {left:auto;}

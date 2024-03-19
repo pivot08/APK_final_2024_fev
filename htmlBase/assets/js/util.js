@@ -4,7 +4,7 @@ var clickQuant = 0;
 function startTimer() {
     clickQuant++;
     if (clickQuant == 5) {
-        window.location.href = '../index.html';
+        window.location.href = 'indice.html';
     }
 }
 
@@ -56,12 +56,32 @@ $(document).ready(function() {
     playNextVideo(0);
 });
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    setTimeout(function() {
+        let params = new URLSearchParams(window.location.search);
+        let redirectPage = params.get('ref');
 
+        if (redirectPage) {
+            if (redirectPage === 'index-s24') {
+                window.location.href = redirectPage + '.html';
+            } else {
+                window.location.href = '../' + redirectPage + '.html';
+            }
+        }
+    }, 60000);  // Redireciona após 3 segundos
+});
 
- // Função que será chamada após 40 segundos
- function redirect() {
-    window.location.href = 'index.html';
-}
+document.addEventListener('DOMContentLoaded', (event) => {
+    let params = new URLSearchParams(window.location.search);
+    let redirectPage = params.get('ref');
+
+    // Adicione o parâmetro de consulta a todos os links em sua página
+    var links = document.getElementsByTagName('a');
+    for (var i = 0; i < links.length; i++) {
+        if (links[i].href.indexOf('javascript:history.') < 0)
+            links[i].href = links[i].href + (links[i].href.indexOf('?') > 0 ? '&' : '?') + 'ref=' + redirectPage;
+    }
+});
 
 // Função para verificar o login e redirecionar
 function checkAndRedirect() {
@@ -103,6 +123,7 @@ function checkAndRedirect() {
     }
 }
 
+
 // Função para mostrar a div correspondente ao login
 function showLoginDiv(username) {
   
@@ -136,4 +157,5 @@ function showLoginDiv(username) {
 
 
 // Chame a função quando a página carregar
-checkAndRedirect();
+//checkAndRedirect();
+
