@@ -274,6 +274,7 @@ video {max-width: 100%;}
 
 .color-branco {color:#ffffff}
 
+
 .image-scroll {
   width: 100%; /* ou o valor desejado */
   max-width: 97%; /* garante que a imagem não ultrapasse a largura do contêiner */
@@ -570,6 +571,8 @@ button:active {
 .color-preto {color:#000;}
 .color-verde-escuro {color:#79af68;}
 .bac-bege {background:#f1ebe1;}
+
+.color-orange {color: #deb584}
 
 .feature .card,.bac-cinza-escuro {background:#212121;}
 .feature .svg-icone2 {opacity: 0.3;}
