@@ -462,6 +462,7 @@ button:active {
 }
 .pagina-produto .centerauto {padding-top:0px;}
 .pagina-produto .card-title.categoria {padding-top: 32px;font-size:32px;}
+.pagina-produto .card-title.font-smaller  {padding-top: 32px;font-size:29px;}
 
 .pagina-produto .trava-botoes {
   max-height: 230px;
@@ -536,9 +537,24 @@ button:active {
   margin-bottom: 20px;
 }
 
+.feature h3 smaller {
+  font-size: 40px;
+  line-height: 52px;
+  margin-bottom: 20px;
+}
+
+
 .box-paragraph {
   margin: 0 auto 35px;
   font-size: 26px;
+  line-height: 36px;
+  font-family: 'Samsung InterFace';
+  text-align: center;
+}
+
+.box-paragraph-smaller {
+  margin: 0 auto 35px;
+  font-size: 24px;
   line-height: 36px;
   font-family: 'Samsung InterFace';
   text-align: center;
