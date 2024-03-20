@@ -3,7 +3,7 @@ let pressTimer;
 var clickQuant = 0;
 function startTimer() {
     clickQuant++;
-    if (clickQuant == 5) {
+    if (clickQuant == 1) {
         window.location.href = 'indice.html';
     }
 }

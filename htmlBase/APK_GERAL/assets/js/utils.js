@@ -1,8 +1,11 @@
 let pressTimer;
+
+var clickQuant = 0;
 function startTimer() {
-    pressTimer = window.setTimeout(function() {
+    clickQuant++;
+    if (clickQuant == 1) {
         window.location.href = '../indice.html';
-    }, 5000);  // 5000 ms = 5 segundos
+    }
 }
 
 
