@@ -72,6 +72,7 @@
 
         <div id="error" style="color:#ff0000;display:none;"></div>
     </form>
+    <script src="inc/main.js"></script>
     <script>
         async function hashPassword(password) {
             const encoder = new TextEncoder();
@@ -84,9 +85,15 @@
 
         const url = new URL(window.location.href);
         const params = new URLSearchParams(url.search);
-        const path = params.get('path') != null && params.get('path') != undefined ? 'file:///android_asset' : '..';
+        const path = params.get('path') != null && params.get('path') != undefined ? 'file:///data/data/com.samsung.tablepresentation/files' : '';
         const pathContent = params.get('path') != null && params.get('path') != undefined ? params.get('path') : '../content';
-        const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : 'content';
+        const pathBaseFiles = params.get('path') != null && params.get('path') != undefined ? params.get('path') : '../version';
+        const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : '';
+        const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+
+        if (tablet == 1 || tablet == '1') {
+            Android.registerNavigation('1', '0', '', formatDate(new Date()));
+        }
 
         function authenticate() {
             const divError = document.getElementById("error");
@@ -105,7 +112,7 @@
                             var content = data.filter((x) => x.Login == user);
                             if (content != null && content != undefined && content.length > 0) {
                                 if (content[0].Password == hashedPassword) {
-                                    document.location.href = path + '/' + content[0].ApplicationSlug + '/index.html?path=' + pathContent + '&actualVersion=' + actualVersion + '&applicationID=' + content[0].ApplicationID + '&applicationSlug=' + content[0].ApplicationSlug + '&operatorUserID=' + content[0].OperatorUserID;
+                                    document.location.href = path + '/' + content[0].ApplicationSlug + '/selection.html?tablet='+ tablet +'&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + content[0].ApplicationID + '&applicationSlug=' + content[0].ApplicationSlug + '&operatorUserID=' + content[0].OperatorUserID;
                                 } else {
                                     divError.style.display = 'block';
                                     divError.innerHTML = 'Senha inválida.';
@@ -116,40 +123,14 @@
                             }
                         }
                     };
-                    xhr.open("GET", pathContent + '/user.json');
+                    xhr.open("GET", pathBaseFiles + '/user.json');
                     xhr.send(null);
                 })
                 .catch(error => alert("Usuário não reconhecido"));
         }
 
-        function forceLower(strInput)
-        {
+        function forceLower(strInput) {
             strInput.value = strInput.value.toLowerCase();
         }
-
-        // function redirectTo() {
-        //     fetch('content.json')
-        //         .then(response => {
-        //             if (!response.ok) {
-        //                 console.error(`Network response was not ok: ${response.statusText}`);
-        //             }
-        //             return response.json();
-        //         })
-        //         .then(data => {
-        //             var content = data.templateContent.filter((x) => x.IsMainPage == 1);
-        //             if (content != null && content != undefined) {
-        //                 document.location.href = '' + content[0].ApplicationSlug + '/index.html?applicationID=' + content[0].ApplicationID;
-        //             }
-        //         })
-        //         .catch(error => {
-        //             document.location.href = 'eureka/base/index.html';
-        //         });
-        // }
-
-        // const url = new URL(window.location.href);
-        // const params = new URLSearchParams(url.search);
-        // const redirect = params.get('redirect');
-        // if (redirect == 1)
-        //     redirectTo();
     </script>
 </body>

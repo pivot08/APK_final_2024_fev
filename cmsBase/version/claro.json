@@ -1,0 +1,122 @@
+{
+    "template": [
+        {
+            "TemplateID": "14",
+            "ApplicationID": "4",
+            "Application": "Claro",
+            "PageTypeID": "10",
+            "PageType": "Offer Page",
+            "Template": "P\u00e1gina da Oferta",
+            "Logo": "1709310742-claro_logo.png",
+            "ButtonContent": "",
+            "HeaderText": "testando a claro",
+            "SpecificationLine1": "jkhkjh",
+            "SpecificationLine2": " kjhjkhk",
+            "FootNote": "",
+            "Color": "#da291c",
+            "IsMainPage": "0",
+            "IsActive": "1",
+            "IsDeleted": "0"
+        }
+    ],
+    "operatorPlan": [
+        {
+            "OperatorPlanID": "8",
+            "ApplicationID": "4",
+            "Application": "Claro",
+            "OperatorPlan": "P\u00f3s-Pago",
+            "ButtonContent": "Consulte especifica\u00e7\u00f5es aqui",
+            "FootNote": "LOrem ipsumLOrem ipsumLOrem ipsumLOrem ipsumLOrem ipsumLOrem ipsumLOrem ipsumLOrem ipsumLOrem ipsum",
+            "PlanOrder": "3",
+            "IsActive": "1",
+            "IsDeleted": "0"
+        },
+        {
+            "OperatorPlanID": "9",
+            "ApplicationID": "4",
+            "Application": "Claro",
+            "OperatorPlan": "Pr\u00e9-pago",
+            "ButtonContent": "Consulte especifica\u00e7\u00f5es aqui",
+            "FootNote": "LOrem ipsumLOrem ipsumLOrem ipsumLOrem ipsumLOrem ipsumLOrem ipsumLOrem ipsumLOrem ipsum",
+            "PlanOrder": "2",
+            "IsActive": "1",
+            "IsDeleted": "0"
+        },
+        {
+            "OperatorPlanID": "10",
+            "ApplicationID": "4",
+            "Application": "Claro",
+            "OperatorPlan": "Controle",
+            "ButtonContent": "Consulte especifica\u00e7\u00f5es aqui",
+            "FootNote": "LOrem ipsumLOrem ipsumLOrem ipsumLOrem ipsumLOrem ipsumLOrem ipsumLOrem ipsum",
+            "PlanOrder": "1",
+            "IsActive": "1",
+            "IsDeleted": "0"
+        }
+    ],
+    "operatorValue": [
+        {
+            "OperatorValueID": "4",
+            "ApplicationID": "4",
+            "Application": "Claro",
+            "OperatorUserID": "2",
+            "OperatorUser": "Claro",
+            "TemplateID": "14",
+            "Template": "P\u00e1gina da Oferta",
+            "OperatorPlanID": "8",
+            "OperatorPlan": "P\u00f3s-Pago",
+            "DeviceID": "3",
+            "Device": "Samsung Galaxy S24 Ultra",
+            "PlanDetail": "Claro controle teste MB",
+            "DeviceValue": "1200.00",
+            "PlanMonthValue": "10.00",
+            "Installments": "10",
+            "Media": "1709310964-Imagem 9x16.jpg",
+            "Observation": "",
+            "IsActive": "1",
+            "IsDeleted": "0"
+        },
+        {
+            "OperatorValueID": "6",
+            "ApplicationID": "4",
+            "Application": "Claro",
+            "OperatorUserID": "2",
+            "OperatorUser": "Claro",
+            "TemplateID": "14",
+            "Template": "P\u00e1gina da Oferta",
+            "OperatorPlanID": "6",
+            "OperatorPlan": "p\u00f3s-pago",
+            "DeviceID": "5",
+            "Device": "Samsung Galaxy A",
+            "PlanDetail": "Claro controle teste MB",
+            "DeviceValue": "100.00",
+            "PlanMonthValue": "14.00",
+            "Installments": "5",
+            "Media": "1709315612-Imagem 16x9.jpg",
+            "Observation": ";lk;lk",
+            "IsActive": "1",
+            "IsDeleted": "0"
+        },
+        {
+            "OperatorValueID": "7",
+            "ApplicationID": "4",
+            "Application": "Claro",
+            "OperatorUserID": "2",
+            "OperatorUser": "Claro",
+            "TemplateID": "14",
+            "Template": "P\u00e1gina da Oferta",
+            "OperatorPlanID": "8",
+            "OperatorPlan": "P\u00f3s-Pago",
+            "DeviceID": "3",
+            "Device": "Samsung Galaxy S24 Ultra",
+            "PlanDetail": "Claro Controle",
+            "DeviceValue": "22222.00",
+            "PlanMonthValue": "100000.00",
+            "Installments": "10",
+            "Media": "1709319743-Template-IMG-Single-Product.jpg",
+            "Observation": "nao tem",
+            "IsActive": "1",
+            "IsDeleted": "0"
+        }
+    ]
+}

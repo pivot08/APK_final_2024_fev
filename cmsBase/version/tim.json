@@ -1,0 +1,58 @@
+{
+    "template": [
+        {
+            "TemplateID": "15",
+            "ApplicationID": "5",
+            "Application": "TIM",
+            "PageTypeID": "11",
+            "PageType": "Offer Page",
+            "Template": "P\u00e1gina da Oferta",
+            "Logo": "1709311189-tim_logo.png",
+            "ButtonContent": "",
+            "HeaderText": "Samsung Galaxy S24 Series BBB",
+            "SpecificationLine1": "hgfhgf",
+            "SpecificationLine2": "hgfhgf",
+            "FootNote": "",
+            "Color": "#002198",
+            "IsMainPage": "0",
+            "IsActive": "1",
+            "IsDeleted": "0"
+        }
+    ],
+    "operatorPlan": [
+        {
+            "OperatorPlanID": "5",
+            "ApplicationID": "5",
+            "Application": "TIM",
+            "OperatorPlan": "controle",
+            "ButtonContent": "teste",
+            "FootNote": "lkjlk",
+            "PlanOrder": "1",
+            "IsActive": "1",
+            "IsDeleted": "0"
+        }
+    ],
+    "operatorValue": [
+        {
+            "OperatorValueID": "5",
+            "ApplicationID": "5",
+            "Application": "TIM",
+            "OperatorUserID": "5",
+            "OperatorUser": "Tim",
+            "TemplateID": "15",
+            "Template": "P\u00e1gina da Oferta",
+            "OperatorPlanID": "5",
+            "OperatorPlan": "controle",
+            "DeviceID": "3",
+            "Device": "Samsung Galaxy S24 Ultra",
+            "PlanDetail": "Tim controle teste MB",
+            "DeviceValue": "12.00",
+            "PlanMonthValue": "12.00",
+            "Installments": "10",
+            "Media": "1709311275-Imagem 16x9.jpg",
+            "Observation": "",
+            "IsActive": "1",
+            "IsDeleted": "0"
+        }
+    ]
+}

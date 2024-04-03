@@ -385,7 +385,7 @@ function applicationList()
     return mysqli_query($db, $query);
 }
 
-function applicationByUserList($userID)
+function applicationByUserList($userID, $isOperator = "")
 {
     global $db;
     $query = "
@@ -398,7 +398,12 @@ function applicationByUserList($userID)
     WHERE
         apk.IsActive = 1
         AND apk.IsDeleted = 0
-        AND upk.UserID = $userID";
+        AND upk.UserID = $userID ";
+
+    if ($isOperator != "") {
+        $query .= " AND OperatorID " . ($isOperator == 1 ? " <> 0" : " = 0") . "";
+    }
+
     return mysqli_query($db, $query);
 }
 
@@ -520,6 +525,7 @@ function templateByUserList($userID, $isOperatorExclusive, $applicationID = null
 function templateInsert($applicationID, $pageTypeID, $template, $logo, $buttonContent, $headerText, $specificationLine1, $specificationLine2, $footNote, $color, $isMainPage, $isOperatorExclusive, $isActive)
 {
     global $db;
+
     $query = "
         INSERT INTO Template (ApplicationID, PageTypeID, Template, Logo, ButtonContent, HeaderText, SpecificationLine1, SpecificationLine2, FootNote, Color, IsMainPage, IsOperatorExclusive, IsActive, IsDeleted, DControl)
         VALUES ('$applicationID', '$pageTypeID', '$template', '$logo', '$buttonContent', '$headerText', '$specificationLine1', '$specificationLine2', '$footNote', '$color', $isMainPage, $isOperatorExclusive, $isActive, 0, NOW())
@@ -564,12 +570,14 @@ function templateUpdate($templateID, $applicationID, $pageTypeID, $template, $lo
 
 function templateUpdateMainPage($templateID, $isOperatorExclusive)
 {
-    global $db;
-    $query = "
-    UPDATE Template SET IsMainPage = 0 WHERE TemplateID <> $templateID";
+    return;
+    
+    // global $db;
+    // $query = "
+    // UPDATE Template SET IsMainPage = 0 WHERE TemplateID <> $templateID";
 
-    if ($isOperatorExclusive == '0')
-        return mysqli_query($db, $query);
+    // if ($isOperatorExclusive == '0')
+    //     return mysqli_query($db, $query);
 }
 
 function templateDelete($templateID)
@@ -800,12 +808,12 @@ function templateContentInsert($applicationID, $templateID, $buttonSizeID, $cont
     global $db;
     $query = "
         INSERT INTO TemplateContent (ApplicationID, TemplateID, ButtonSizeID, ContentOrientationID, TemplateChildID, TemplateContentChildID, TemplateContent, Title, SubTitle, Content, Footnote, ButtonOrder, Media, CoverImage, PositionTop, PositionLeft, IsActive, IsDeleted, DControl)
-        VALUES ('$applicationID', '$templateID', '$buttonSizeID', '$contentOrientationID', '$templateChildID', '$templateContent', '$title', '$subTitle', '$content', '$footnote', '$buttonOrder', '$media', '$coverImage', '$positionTop', '$positionLeft', '$isActive', 0, NOW())
+        VALUES ('$applicationID', '$templateID', '$buttonSizeID', '$contentOrientationID', '$templateChildID', '$templateContentChildID', '$templateContent', '$title', '$subTitle', '$content', '$footnote', '$buttonOrder', '$media', '$coverImage', '$positionTop', '$positionLeft', '$isActive', 0, NOW())
     ";
     mysqli_query($db, $query);
 }
 
-function templateContentUpdate($templateContentID, $applicationID, $templateID, $contentOrientationID, $buttonSizeID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isActive)
+function templateContentUpdate($templateContentID, $applicationID, $templateID, $buttonSizeID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isActive)
 {
     global $db;
     $query = "
@@ -826,7 +834,7 @@ function templateContentUpdate($templateContentID, $applicationID, $templateID, 
         , CoverImage = '$coverImage'
         , PositionTop = '$positionTop'
         , PositionLeft = '$positionLeft'
-        , IsActive = '$isActive'
+        , IsActive = $isActive
         , DControl = NOW()
     WHERE
         TemplateContentID = $templateContentID";
@@ -1230,7 +1238,7 @@ function operatorUserList()
     return mysqli_query($db, $query);
 }
 
-function operatorUserByUserList($userID)
+function operatorUserByUserList($userID, $isOperator = "")
 {
     global $db;
     $query = "
@@ -1250,6 +1258,11 @@ function operatorUserByUserList($userID)
     WHERE
         opu.IsDeleted = 0
         AND upk.UserID = $userID";
+
+    if ($isOperator != "") {
+        $query .= " AND apk.OperatorID " . ($isOperator == 1 ? " <> 0" : " = 0") . "";
+    }
+    
     return mysqli_query($db, $query);
 }
 
@@ -1308,9 +1321,9 @@ function operatorUserDelete($operatorUserID)
 
 function generateUserJsonFile($fileName)
 {
+    $userList = array();
     $result = operatorUserList();
     if ($result->num_rows > 0) {
-        $userList = array();
         while ($row = $result->fetch_assoc()) {
             $userList[] = $row;
         }
@@ -1320,7 +1333,7 @@ function generateUserJsonFile($fileName)
 
     if (isset($json_data)) {
         $ds = DIRECTORY_SEPARATOR;
-        $filePath = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . $fileName . '.json';
+        $filePath = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . 'version' . $ds . $fileName . '.json';
         file_put_contents($filePath, $json_data);
     }
 }
@@ -1368,7 +1381,7 @@ function generateUserOperatorFile()
 
                 if (isset($json_data)) {
                     $ds = DIRECTORY_SEPARATOR;
-                    $filePath = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . $fileName . '.json';
+                    $filePath = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . 'version' . $ds . $fileName . '.json';
                     file_put_contents($filePath, $json_data);
                 }
             }
@@ -1471,7 +1484,7 @@ function generateJsonFile($fileName)
 
     if (isset($json_data)) {
         $ds = DIRECTORY_SEPARATOR;
-        $filePath = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . $fileName . '.json';
+        $filePath = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . 'version' . $ds . $fileName . '.json';
         file_put_contents($filePath, $json_data);
     }
 }
@@ -1517,6 +1530,14 @@ function insertTabletVersionDetail($guid, $deviceID, $deviceModel, $deviceManufa
     mysqli_query($db, $query);
 }
 
+function insertNavigationControl($guid, $actionID, $templateID, $templateContentID, $actionDate, $deviceID, $deviceModel, $deviceManufacturer)
+{
+    global $db;
+    $query = "INSERT INTO NavigationControl (ActionID, TemplateID, TemplateContentID, ActionDate, TabletVersion, DeviceID, DeviceModel, DeviceManufacturer) 
+    VALUES ('$actionID', '$templateID', '$templateContentID', '$actionDate', '$guid', '$deviceID', '$deviceModel', '$deviceManufacturer')";
+    mysqli_query($db, $query);
+}
+
 function updateTabletVersion($guid, $isProduction)
 {
     global $db;
@@ -1538,7 +1559,7 @@ function generateTabletVersionFile($guid)
     $json_data = json_encode($version, JSON_PRETTY_PRINT);
     if (isset($json_data)) {
         $ds = DIRECTORY_SEPARATOR;
-        $filePath = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . 'version.json';
+        $filePath = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . 'version' . $ds . 'version.json';
         file_put_contents($filePath, $json_data);
     }
     generateZIPFile($guid);

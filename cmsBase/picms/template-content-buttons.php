@@ -145,19 +145,19 @@ if (isset($_GET['id'])) {
 											</select>
 										</div>
 										<div class="form-group">
-											<label for="input">Template *</label><br>
+											<label for="input">Template</label>
 											<span style="font-size:12px">obs.: ao deixar o template vazio, o conteúdo será exibido em todas as páginas</span>
-											<select class="form-control" id="TemplateID" name="TemplateID" required>
+											<select class="form-control" id="TemplateID" name="TemplateID">
 												<option value="" data-id="0">Selecione</option>
 												<?php
-												$result = templateList($applicationID);
+												$result = templateList(0, $applicationID);
 												while ($row = mysqli_fetch_array($result)) { ?>
 													<option value="<?php echo $row['TemplateID']; ?>" <?php if ($row['TemplateID'] == $templateID) { echo 'selected'; } ?> data-id="<?php echo $row['ApplicationID']; ?>"><?php echo $row['Template']; ?></option>
 												<?php } ?>
 											</select>
 										</div>
 										<div class="form-group">
-											<label for="input">Template Filho *</label>
+											<label for="input">Template Filho</label>
 											<select class="form-control" name="TemplateChildID">
 												<option value="">Selecione</option>
 												<?php

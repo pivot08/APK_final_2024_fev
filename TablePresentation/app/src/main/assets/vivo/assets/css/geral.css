@@ -7,7 +7,7 @@
 
 @font-face {
   font-family: 'Roboto Slab';
-  src: url("RobotoSlab-Medium") format('opentype');
+  src: url("RobotoSlab-Medium.otf") format('opentype');
   font-weight: 600;
   font-style: normal;
 }
@@ -21,7 +21,7 @@
 
 @font-face {
   font-family: 'Roboto Slab';
-  src: url("RobotoSlab-Light") format('opentype');
+  src: url("RobotoSlab-Light.otf") format('opentype');
   font-weight: 400;
   font-style: normal;
 }
@@ -31,6 +31,16 @@
   src: url("RobotoSlab-Thin.otf") format('opentype');
   font-weight: 300;
   font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto Slab";
+  src: url("https://db.onlinewebfonts.com/t/1ec06eed11bbcb1ee510b8f3522adea8.eot");
+  src: url("https://db.onlinewebfonts.com/t/1ec06eed11bbcb1ee510b8f3522adea8.eot?#iefix")format("embedded-opentype"),
+  url("https://db.onlinewebfonts.com/t/1ec06eed11bbcb1ee510b8f3522adea8.woff2")format("woff2"),
+  url("https://db.onlinewebfonts.com/t/1ec06eed11bbcb1ee510b8f3522adea8.woff")format("woff"),
+  url("https://db.onlinewebfonts.com/t/1ec06eed11bbcb1ee510b8f3522adea8.ttf")format("truetype"),
+  url("https://db.onlinewebfonts.com/t/1ec06eed11bbcb1ee510b8f3522adea8.svg#Roboto Slab")format("svg");
 }
 
 html, body {

@@ -1,9 +1,14 @@
 package com.samsung.tablepresentation;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.util.Log;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -19,22 +24,17 @@ import java.net.URL;
 import java.util.Base64;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
-import android.content.Context;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+public class UpdateBasicFilesTask extends AsyncTask<String, Void, Void> {
 
-public class UpdateLocalVersionTask extends AsyncTask<String, Void, Void> {
-
-    private static final String TAG = UpdateLocalVersionTask.class.getSimpleName();
+    private static final String TAG = UpdateBasicFilesTask.class.getSimpleName();
 
     private String username;
     private String password;
     private Context context;
     private Activity mainActivity;
 
-    public UpdateLocalVersionTask(String username, String password, Context context, Activity mainActivity) {
+    public UpdateBasicFilesTask(String username, String password, Context context, Activity mainActivity) {
         this.context = context;
         this.username = username;
         this.password = password;
@@ -48,7 +48,7 @@ public class UpdateLocalVersionTask extends AsyncTask<String, Void, Void> {
         String versionGuid = params[2];
 
         try {
-            URL url = new URL(baseUrl +"/"+ versionFolder +"/"+ versionGuid +".zip");
+            URL url = new URL(baseUrl +"/basicFiles.zip");
             HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
 
              // Set the authorization header
@@ -69,13 +69,13 @@ public class UpdateLocalVersionTask extends AsyncTask<String, Void, Void> {
                 File appDirectory = context.getFilesDir();
 
                 //create folder if not exists
-                File folder = new File(appDirectory, versionGuid);
+                File folder = new File(appDirectory, "");
                 if (!folder.exists()) {
                     folder.mkdir();
                 }
 
                 // Create a destination file for the ZIP file
-                File destinationFile = new File(folder, versionGuid +".zip");
+                File destinationFile = new File(folder, "basicFiles.zip");
 
                 // Create an output stream for the destination file
                 FileOutputStream outputStream = new FileOutputStream(destinationFile);
@@ -96,18 +96,6 @@ public class UpdateLocalVersionTask extends AsyncTask<String, Void, Void> {
 
                 // Delete the ZIP file after extraction if needed
                 destinationFile.delete();
-
-                //save a local json file with version guid
-                JSONObject jsonContent = new JSONObject();
-                try {
-                    jsonContent.put("version", versionGuid);
-                    writeJsonToFile(context, jsonContent, "version");
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-                MainActivity.informDevice();
-                restartApp();
             } else {
                 Log.e(TAG, "Failed to download file. HTTP response code: " + responseCode);
             }
@@ -161,95 +149,5 @@ public class UpdateLocalVersionTask extends AsyncTask<String, Void, Void> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static void writeJsonToFile(Context context, JSONObject jsonObject, String fileName) {
-        try {
-            // Convert the JSON object to a string
-            String jsonString = jsonObject.toString();
-
-            // Open a file output stream
-            FileOutputStream fileOutputStream = context.openFileOutput(fileName +".json", Context.MODE_PRIVATE);
-
-            // Write the string to the file
-            fileOutputStream.write(jsonString.getBytes());
-
-            // Close the file output stream
-            fileOutputStream.close();
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static void writeJsonArrayToFile(Context context, JSONArray jsonArray, String fileName) {
-        try {
-            // Convert JSONArray to a formatted JSON string
-            String jsonString = jsonArray.toString(4);
-
-            // Open the file for writing
-            FileOutputStream fileOutputStream = context.openFileOutput(fileName +".json", Context.MODE_PRIVATE);
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
-
-            // Write the JSON string to the file
-            outputStreamWriter.write(jsonString);
-
-            // Close the streams
-            outputStreamWriter.close();
-            fileOutputStream.close();
-
-            Log.d(TAG, "JSONArray written to file: " + fileName);
-        } catch (IOException | JSONException e) {
-            Log.e(TAG, "Error writing JSONArray to file", e);
-        }
-    }
-
-    public static void writeJsonStringToFile(Context context, String jsonString, String fileName) {
-        try {
-            // Open the file for writing
-            FileOutputStream fileOutputStream = context.openFileOutput(fileName +".json", Context.MODE_PRIVATE);
-            OutputStreamWriter outputStreamWriter = new OutputStreamWriter(fileOutputStream);
-
-            // Write the JSON string to the file
-            outputStreamWriter.write(jsonString);
-
-            // Close the streams
-            outputStreamWriter.close();
-            fileOutputStream.close();
-
-            Log.d(TAG, "JSONArray written to file: " + fileName);
-        } catch (IOException e) {
-            Log.e(TAG, "Error writing JSONArray to file", e);
-        }
-    }
-
-    public static JSONObject readJsonFromFile(Context context, String fileName) {
-        try {
-            // Open a file input stream
-            FileInputStream fileInputStream = context.openFileInput(fileName);
-
-            // Read the contents of the file using BufferedReader
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(fileInputStream));
-            StringBuilder stringBuilder = new StringBuilder();
-            String line;
-
-            while ((line = bufferedReader.readLine()) != null) {
-                stringBuilder.append(line).append('\n');
-            }
-
-            // Close the streams
-            bufferedReader.close();
-            fileInputStream.close();
-
-            // Convert the string to a JSON object
-            String jsonString = stringBuilder.toString();
-            return new JSONObject(jsonString);
-
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-            // Handle the exception
-        }
-
-        return null; // Return null if reading fails
     }
 }

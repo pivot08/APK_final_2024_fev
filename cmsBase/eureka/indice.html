@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>EUREKA</title>
+
+    <!-- Inclua os links para os arquivos do Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/geral.css" rel="stylesheet">
+    <style>
+        button {
+            touch-action: manipulation;
+        }
+
+        .btIndice {
+            background: #000;
+            color: #fff;
+            padding: 20px;
+            border-radius: 40px;
+            font-size: 30px;
+            text-decoration: none;
+            line-height: 70px;
+        }
+    </style>
+
+</head>
+
+<body class="h-100 centralizar-conteudo">
+    <div class="volta-lojista">
+        <button onmousedown="startTimer()" onmouseup="clearTimer()" onmouseleave="clearTimer()"></button>
+    </div>
+
+
+    <div id="loading-overlay"></div>
+    <div id="loadingContainer" style="display:none;">
+        <!-- segunda linha-->
+        <div class="row mx-auto ">
+            <!-- Coluna 1 -->
+            <div class="col-md-12 text-center indice">
+                <img src="assets/img/ico-indice.jpg" style="max-width: 300px"><br><br><BR>
+                <img src="assets/img/tit-escolha-versao.jpg" style="max-width: 400px"><BR></BR>
+
+                <div id="menu"></div>
+            </div>
+        </div>
+    </div>
+    <!-- Inclua os links para os arquivos do Bootstrap JavaScript (opcional, dependendo do que você está usando) -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../inc/main.js"></script>
+    <script>
+        $(window).on('load', function () {
+            // Oculte o overlay de carregamento
+            $('#loading-overlay').css('opacity', 0);
+            // Mostre o conteúdo da página com fadeIn
+            $('#loadingContainer').fadeIn(1250, function () {
+                // Após a conclusão do fadeIn, oculte o overlay
+                $('#loading-overlay').css('display', 'none');
+            });
+        });
+
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+        const paramsValue = url.search;
+        const path = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? 'file:///data/data/com.samsung.tablepresentation/files' : '';
+        const pathContent = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../content';
+        const pathBaseFiles = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../version';
+        const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : '';
+        const applicationID = params.get('applicationID');
+        const applicationSlug = params.get('applicationSlug');
+        const operatorUserID = params.get('operatorUserID');
+        const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+
+        var xhrContent = new XMLHttpRequest();
+        xhrContent.onreadystatechange = function () {
+            if (xhrContent.readyState === 4 && xhrContent.status === 200) {
+                var data = JSON.parse(xhrContent.responseText);
+
+                var menu = document.getElementById('menu');
+                var menuContent = '';
+                var multiplesHomes = data.templateContent.filter((x) => x.IsMainPage == "1");
+                for (i = 0; i < multiplesHomes.length; i++) {
+                    var contentLink = path + '/' + multiplesHomes[i].ApplicationSlug + '/index.html?tablet='+ tablet +'&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + multiplesHomes[i].ApplicationID + '&applicationSlug=' + multiplesHomes[i].ApplicationSlug + '&operatorUserID=' + multiplesHomes[i].OperatorUserID +'&pageTypeID='+ multiplesHomes[i].PageTypeID +'&templateContentID='+ multiplesHomes[i].TemplateContentID;
+                    
+                    menuContent += '<a href="'+ contentLink +'" class="btIndice">'+ multiplesHomes[i].Template +'</a><br><BR>';
+                }
+                menu.innerHTML = menuContent;
+            }
+        }
+        xhrContent.open("GET", pathBaseFiles + '/' + (actualVersion != "" ? actualVersion : "content") + '.json');
+        xhrContent.send(null);
+    </script>
+
+</body>
+
+</html>

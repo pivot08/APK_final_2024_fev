@@ -51,6 +51,7 @@
 									href="template-content-list.php?pageTypeID=0,2,6"><span>Página de Botões</span></a></li>
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-home' || (isset($pageTypeID) && $pageTypeID == "1,5") ? 'class="active"' : ''); ?>><a
 									href="template-content-list.php?pageTypeID=1,5"><span>Página Inicial</span></a></li>
+							<li id="template-user-list" <?php echo ($urlPage == 'template-user' || $urlPage == 'template-user-list' ? 'class="active"' : ''); ?>><a href="template-user-list.php"><span>Usuários</span></a></li>
 						</ul>
 					</li>
 				<?php } ?>

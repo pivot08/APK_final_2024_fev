@@ -223,7 +223,7 @@ if (isset($_POST['save']) || isset($_POST['update']) || isset($_POST['delete']))
 											<select class="form-control" name="OperatorUserID" required>
 												<option value="">Selecione</option>
 												<?php
-												$result = operatorUserByUserList($_SESSION['user']['UserID']);
+												$result = operatorUserByUserList($_SESSION['user']['UserID'], 1);
 												while ($row = mysqli_fetch_array($result)) { ?>
 													<option value="<?php echo $row['OperatorUserID']; ?>" <?php if ($row['OperatorUserID'] == $operatorUserID) {
 															echo 'selected';

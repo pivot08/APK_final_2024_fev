@@ -14,15 +14,15 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Base64;
 
-public class PostDeviceInfoTask extends AsyncTask<String, Void, String> {
+public class PostNavigationControlTask extends AsyncTask<String, Void, String> {
 
-    private static final String TAG = PostDeviceInfoTask.class.getSimpleName();
+    private static final String TAG = PostNavigationControlTask.class.getSimpleName();
 
     private String username;
     private String password;
     private Context context;
 
-    public PostDeviceInfoTask(String username, String password, Context context) {
+    public PostNavigationControlTask(String username, String password, Context context) {
         this.context = context;
         this.username = username;
         this.password = password;
@@ -35,7 +35,7 @@ public class PostDeviceInfoTask extends AsyncTask<String, Void, String> {
         }
 
         String url = params[0];
-        String postData = buildPostData(params[1]);
+        String postData = buildPostData(params[1], params[2], params[3], params[4], params[5]);
 
         try {
             URL apiUrl = new URL(url);
@@ -101,7 +101,7 @@ public class PostDeviceInfoTask extends AsyncTask<String, Void, String> {
         }
     }
 
-    private String buildPostData(String versionGuid) {
+    private String buildPostData(String versionGuid, String actionID, String templateID, String templateContentID, String actionDate) {
         // Customize the data you want to send in the POST request
         String deviceId = getDeviceId();
         String deviceModel = Build.MODEL;
@@ -109,6 +109,10 @@ public class PostDeviceInfoTask extends AsyncTask<String, Void, String> {
 
         // Build the POST data
         return "version="+ versionGuid +
+                "&actionID=" + actionID +
+                "&templateID=" + templateID +
+                "&templateContentID=" + templateContentID +
+                "&actionDate=" + actionDate +
                 "&deviceId=" + deviceId +
                 "&deviceModel=" + deviceModel +
                 "&deviceManufacturer=" + deviceManufacturer;

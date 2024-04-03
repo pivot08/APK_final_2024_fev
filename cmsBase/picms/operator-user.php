@@ -141,7 +141,7 @@ if (isset($_POST['save']) || isset($_POST['update']) || isset($_POST['delete']))
 												onChange="pageTypeGet(this)">
 												<option value="">Selecione</option>
 												<?php
-												$result = applicationByUserList($_SESSION['user']['UserID']);
+												$result = applicationByUserList($_SESSION['user']['UserID'], 1);
 												while ($row = mysqli_fetch_array($result)) { ?>
 													<option value="<?php echo $row['ApplicationID']; ?>" <?php if ($row['ApplicationID'] == $applicationID) {
 															echo 'selected';
@@ -154,7 +154,7 @@ if (isset($_POST['save']) || isset($_POST['update']) || isset($_POST['delete']))
 										<div class="form-group">
 											<label for="input">Login *</label>
 											<input type="text" name="Login" class="form-control"
-												value="<?php echo $login; ?>" required>
+												value="<?php echo $login; ?>" required pattern="[^\s]+" title="No spaces allowed">
 										</div>
 										<div class="form-group">
 											<label for="input">Senha *</label>
