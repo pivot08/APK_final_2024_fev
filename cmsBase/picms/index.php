@@ -51,6 +51,11 @@
 					<div class="d-flex align-items-center">
 						<div class="mr-auto">
 							<h1>Geral</h1>
+							<p>Bem-vindo ao sistema de administração do APK Samsung.</p>
+							<p>Preparamos abaixo alguns tutoriais de como criar e gerenciar o contéudo.</
+
+
+							
 						</div>						
 					</div>
 				</header>
