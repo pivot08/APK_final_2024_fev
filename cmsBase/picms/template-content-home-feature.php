@@ -150,7 +150,7 @@ if (isset($_GET['id'])) {
 											<select class="form-control" id="TemplateID" name="TemplateID" required>
 												<option value="" data-id="0">Selecione</option>
 												<?php
-												$result = templateList($applicationID);
+												$result = templateList(0, $applicationID);
 												while ($row = mysqli_fetch_array($result)) { ?>
 													<option value="<?php echo $row['TemplateID']; ?>" <?php if ($row['TemplateID'] == $templateID) { echo 'selected'; } ?> data-id="<?php echo $row['ApplicationID']; ?>"><?php echo $row['Template']; ?></option>
 												<?php } ?>
@@ -169,7 +169,7 @@ if (isset($_GET['id'])) {
 										</div>
 										<div class="form-group">
 											<label for="input">Conteúdo Filho</label>
-											<select class="form-control" name="TemplateContentChildID" required>
+											<select class="form-control" name="TemplateContentChildID">
 												<option value="">Selecione</option>
 												<?php
 												$result = templateContentList();

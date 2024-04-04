@@ -75,7 +75,7 @@ if (!isLoggedIn()) {
 										</thead>
 										<tbody>
 											<?php
-											$result = operatorUserByUserList($_SESSION['user']['UserID']);
+											$result = operatorUserByUserList($_SESSION['user']['UserID'], 1);
 											while ($row = mysqli_fetch_array($result)) { ?>
 												<tr>
 													<td>

@@ -89,18 +89,18 @@ public class JsonRetrievalHelper extends AsyncTask<String, Void, String> {
                 if (this.contentType == "1") {
                     JSONObject jsonObject = new JSONObject(jsonResult);
                     String value = jsonObject.getString("version");
-                    MainActivity.processContentAttualization(value);
+                    MainActivity.processContentUpdate(value);
                 }
 
                 if (this.contentType == "2") {
                     writeJsonStringToFile(context, jsonResult, this.actualVersion);
-                    MainActivity.processVersionAttualization();
+                    MainActivity.processVersionUpdate();
                 }
 
                 if (this.contentType == "3") {
                     JSONArray jsonArray = new JSONArray(jsonResult);
                     writeJsonArrayToFile(context, jsonArray, this.fileName.replace(".json", ""));
-                    MainActivity.processOperatorFileAttualization();
+                    MainActivity.processOperatorFileUpdate();
                 }
 
                 if (this.contentType == "4") {

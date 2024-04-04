@@ -107,7 +107,6 @@ public class UpdateLocalVersionTask extends AsyncTask<String, Void, Void> {
                 }
 
                 MainActivity.informDevice();
-                restartApp();
             } else {
                 Log.e(TAG, "Failed to download file. HTTP response code: " + responseCode);
             }

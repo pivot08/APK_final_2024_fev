@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>EUREKA</title>
+
+    <!-- Inclua os links para os arquivos do Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/geral.css" rel="stylesheet">
+
+</head>
+
+<body class="h-100 how-to">
+    <div id="loading-overlay"></div>
+    <div id="loadingContainer" style="display:none;">
+        <a href="busca-inteligente-1.html">
+            <video autoplay loop muted class="videoIntro" id="myVideo">
+                <source src="" type="video/mp4">
+            </video>
+        </a>
+
+        <!-- Inclua os links para os arquivos do Bootstrap JavaScript (opcional, dependendo do que você está usando) -->
+        <script src="assets/js/jquery-3.7.1.min.js"></script>
+        <script src="assets/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="../inc/main.js"></script>
+        <script>
+            const url = new URL(window.location.href);
+            const params = new URLSearchParams(url.search);
+            const paramsValue = url.search;
+            const path = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? 'file:///data/data/com.samsung.tablepresentation/files' : '';
+            const pathContent = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../content';
+            const pathBaseFiles = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../version';
+            const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : '';
+            const applicationID = params.get('applicationID');
+            const applicationSlug = params.get('applicationSlug');
+            const operatorUserID = params.get('operatorUserID');
+            const pageTypeID = params.get('pageTypeID');
+            const templateContentID = params.get('templateContentID');
+            const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+
+            const templateChildID = params.get('templateChildID');
+            const templateContentChildID = params.get('templateContentChildID');
+
+            var xhrContent = new XMLHttpRequest();
+            xhrContent.onreadystatechange = function () {
+                if (xhrContent.readyState === 4 && xhrContent.status === 200) {
+                    var data = JSON.parse(xhrContent.responseText);
+
+                    var content = data.templateContent.filter((x) => x.ApplicationID == applicationID && x.TemplateContentID == templateContentChildID);
+                    if (content != null && content != undefined && content.length > 0) {
+                        var video = document.getElementById('myVideo');
+                        video.src = pathContent + '/' + actualVersion + '/' + content[0].Media;
+                        video.play();
+                    }
+                }
+            }
+            xhrContent.open("GET", pathBaseFiles + '/' + (actualVersion != "" ? actualVersion : "content") + '.json');
+            xhrContent.send(null);
+        </script>
+</body>
+
+</html>

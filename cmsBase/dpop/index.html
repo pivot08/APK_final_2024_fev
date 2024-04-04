@@ -104,7 +104,7 @@
                      <source src="" type="video/mp4">
                   </video>
                </div>
-               <div class="div_button">
+               <div class="div_button" id="divButton" style="display:none;">
                   <a href="./2-categoria.html" id="content-link" class="btn_start">
                      <div class="button">
                         <h2 id="button-text" class="button_text"></h2>
@@ -134,35 +134,46 @@
          setTimeout(() => box.style.animation = "on_click", 5);
       });
 
-      fetch('../content.json')
-        .then(response => {
-            if (!response.ok) {
-                console.error(`Network response was not ok: ${response.statusText}`);
-            }
-            return response.json();
-        })
-        .then(data => {
-            console.log('JSON data:', data);
+      const url = new URL(window.location.href);
+      const params = new URLSearchParams(url.search);
+      const paramsValue = url.search;
+      const path = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? 'file:///data/data/com.samsung.tablepresentation/files' : '';
+      const pathContent = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../content';
+      const pathBaseFiles = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../version';
+      const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : '';
+      const applicationID = params.get('applicationID');
+      const applicationSlug = params.get('applicationSlug');
+      const operatorUserID = params.get('operatorUserID');
+      const pageTypeID = params.get('pageTypeID');
+      const templateContentID = params.get('templateContentID');
 
-            var content = data.filter((x) => x.PageTypeID == 1);
+      var xhrContent = new XMLHttpRequest();
+      xhrContent.onreadystatechange = function () {
+         if (xhrContent.readyState === 4 && xhrContent.status === 200) {
+            var data = JSON.parse(xhrContent.responseText);
+
+            var content = data.templateContent.filter((x) => x.ApplicationID == applicationID && x.PageTypeID == pageTypeID && x.TemplateContentID == templateContentID);
             if (content != null && content != undefined) {
                var video = document.getElementById('home-video');
-               video.src = '../content/'+ content[0].Media;
+               video.src = '../content/' + content[0].Media;
                video.play();
 
                var buttonText = document.getElementById('button-text');
-               buttonText.innerHTML = content[0].ButtonContent;
+               if (content[0].ButtonContent != '') {
+                  document.getElementById('divButton').style.display = 'block';
+                  buttonText.innerHTML = content[0].ButtonContent;
+               }
 
                var body = document.getElementById('content-body');
                body.style.backgroundColor = content[0].Color;
 
                var contentLink = document.getElementById('content-link');
-               contentLink.href = 'content-buttons.html?templateChildID='+ content[0].TemplateChildID;
+               contentLink.href = 'content-buttons.html' + paramsValue + '&applicationID=' + applicationID + '&templateChildID=' + content[0].TemplateChildID;
             }
-        })
-        .catch(error => {
-            console.error('Error loading JSON:', error.message);
-        });
+         }
+      }
+      xhrContent.open("GET", pathBaseFiles + '/' + (actualVersion != "" ? actualVersion : "content") + '.json');
+      xhrContent.send(null);
    </script>
 </body>
 

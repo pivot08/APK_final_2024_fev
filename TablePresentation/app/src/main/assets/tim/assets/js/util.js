@@ -65,7 +65,3 @@ $(document).ready(function() {
 
 // Definindo o redirecionamento para daqui a 40 segundos (40000 milissegundos)
 //setTimeout(redirect, 60000);
-
-function formatCurrency(number) {
-    return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(number);
-}

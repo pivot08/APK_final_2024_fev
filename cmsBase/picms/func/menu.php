@@ -43,14 +43,15 @@
 									href="template-content-list.php?pageTypeID=3"><span>Página Texto</span></a></li>
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-step-by-step' || (isset($pageTypeID) && $pageTypeID == "8") ? 'class="active"' : ''); ?>><a
 									href="template-content-list.php?pageTypeID=8"><span>Página Step By Step</span></a></li>
-							<li id="template-content-list" <?php echo ($urlPage == 'template-content-home-feature' || (isset($pageTypeID) && $pageTypeID == "7") ? 'class="active"' : ''); ?>><a
-									href="template-content-list.php?pageTypeID=7"><span>Página Home Feature</span></a></li>
+							<li id="template-content-list" <?php echo ($urlPage == 'template-content-home-feature' || (isset($pageTypeID) && $pageTypeID == "7,12") ? 'class="active"' : ''); ?>><a
+									href="template-content-list.php?pageTypeID=7,12"><span>Página Home Feature</span></a></li>
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-product-line' || (isset($pageTypeID) && $pageTypeID == "4") ? 'class="active"' : ''); ?>><a
 									href="template-content-list.php?pageTypeID=4"><span>Página Linha de Produto</span></a></li>
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-buttons' || (isset($pageTypeID) && $pageTypeID == "0,2,6") ? 'class="active"' : ''); ?>><a
 									href="template-content-list.php?pageTypeID=0,2,6"><span>Página de Botões</span></a></li>
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-home' || (isset($pageTypeID) && $pageTypeID == "1,5") ? 'class="active"' : ''); ?>><a
 									href="template-content-list.php?pageTypeID=1,5"><span>Página Inicial</span></a></li>
+							<li id="template-user-list" <?php echo ($urlPage == 'template-user' || $urlPage == 'template-user-list' ? 'class="active"' : ''); ?>><a href="template-user-list.php"><span>Usuários</span></a></li>
 						</ul>
 					</li>
 				<?php } ?>
