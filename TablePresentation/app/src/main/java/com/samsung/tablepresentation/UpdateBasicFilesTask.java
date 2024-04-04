@@ -96,6 +96,8 @@ public class UpdateBasicFilesTask extends AsyncTask<String, Void, Void> {
 
                 // Delete the ZIP file after extraction if needed
                 destinationFile.delete();
+
+                restartApp();
             } else {
                 Log.e(TAG, "Failed to download file. HTTP response code: " + responseCode);
             }

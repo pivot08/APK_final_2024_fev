@@ -50,7 +50,7 @@ var linkHome = '';
 var links = document.getElementsByTagName('a');
 for (var i = 0; i < links.length; i++) {
     if (links[i].href.indexOf('javascript:history.') < 0)
-        links[i].href = links[i].href + (links[i].href.indexOf('?') > 0 ? '&' : '?') + 'origin=' + origin + '&searchParams=' + searchParams;
+        links[i].href = links[i].href + (links[i].href.indexOf('?') > 0 ? '&' : '?') + 'origin=' + origin + '&searchParams=' + searchParams +'&'+ paramsOrigin;
 }
 
 switch (origin) {
@@ -90,3 +90,16 @@ const timer = setTimeout(() => {
     clearTimeout(timer);
     runTimer(linkHome);
 }, 30000);
+
+let pressTimer;
+var clickQuant = 0;
+function startTimer() {
+    clickQuant++;
+    if (clickQuant == 1) {
+        window.location.href = 'selection.html?'+ paramsOrigin;
+    }
+}
+
+function clearTimer() {
+    clearTimeout(pressTimer);
+}

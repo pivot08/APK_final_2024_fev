@@ -136,7 +136,6 @@ public class MainActivity extends AppCompatActivity {
         if (actualVersion != null) {
             try {
                 if (actualVersion != "" && !actualVersion.toString().equals(localVersion.toString())) {
-                    updateBasicFiles.execute(baseUrl, versionFolder, actualVersion);
                     updateLocalVersion.execute(baseUrl, versionFolder, actualVersion);
                 }
             } catch (Exception e) {
@@ -151,6 +150,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public static void informDevice() {
+        updateBasicFiles.execute(baseUrl, versionFolder, actualVersion);
+
         String url = baseUrl +"/picms/func/device.php";
         PostDeviceInfoTask postDeviceInfoTask = new PostDeviceInfoTask(username, password, context);
         postDeviceInfoTask.execute(url, actualVersion);

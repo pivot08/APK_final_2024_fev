@@ -83,6 +83,10 @@ if (isset($_POST['save']) || isset($_POST['update'])) {
 	}
 }
 
+if (isset($_POST['delete'])) {
+	$templateContentID = $_POST['TemplateContentID'];
+}
+
 if (isset($_POST['save'])) {
 	templateContentInsert($applicationID, $templateID, $buttonSizeID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isActive);
 }

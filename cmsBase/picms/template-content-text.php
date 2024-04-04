@@ -177,7 +177,7 @@ if (isset($_GET['id'])) {
 										</div>
 										<div class="form-group">
 											<label for="input">Conteúdo Filho</label>
-											<select class="form-control" name="TemplateContentChildID" required>
+											<select class="form-control" name="TemplateContentChildID">
 												<option value="">Selecione</option>
 												<?php
 												$result = templateContentList();

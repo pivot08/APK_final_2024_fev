@@ -124,7 +124,7 @@ function buildDataTablesColumnFilter(table) {
           action: function(e, dt, node, config) {
             document.location.href = 'template-content-step-by-step.php?pageTypeID=<?php echo isset($pageTypeID) ? $pageTypeID : '0'; ?>';
           },
-        }<?php } ?><?php if (isset($pageTypeID) && ($pageTypeID == "7") && $pageTypeID != '0') { ?>, {
+        }<?php } ?><?php if (isset($pageTypeID) && ($pageTypeID == "7,12") && $pageTypeID != '0') { ?>, {
           text: 'Adicionar',
           action: function(e, dt, node, config) {
             document.location.href = 'template-content-home-feature.php?pageTypeID=<?php echo isset($pageTypeID) ? $pageTypeID : '0'; ?>';
