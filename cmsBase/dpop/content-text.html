@@ -46,22 +46,31 @@
    <script src="assets/dependencies/jquery/jquery.min.js"></script>
    <script src="assets/dependencies/owl.carousel/dist/owl.carousel.min.js"></script>
    <script src="assets/js/utils.js"></script>
+   <script src="../inc/main.js"></script>
    <script>
       const url = new URL(window.location.href);
       const params = new URLSearchParams(url.search);
+      const paramsValue = url.search;
+      const path = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? 'file:///data/data/com.samsung.tablepresentation/files' : '';
+      const pathContent = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../content';
+      const pathBaseFiles = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../version';
+      const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : '';
+      const applicationID = params.get('applicationID');
+      const applicationSlug = params.get('applicationSlug');
+      const operatorUserID = params.get('operatorUserID');
+      const pageTypeID = params.get('pageTypeID');
+      const templateContentID = params.get('templateContentID');
+      const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+
       const templateChildID = params.get('templateChildID');
+      const templateContentChildID = params.get('templateContentChildID');
 
-      fetch('../content.json')
-         .then(response => {
-            if (!response.ok) {
-               console.error(`Network response was not ok: ${response.statusText}`);
-            }
-            return response.json();
-         })
-         .then(data => {
-            console.log('JSON data:', data);
+      var xhrContent = new XMLHttpRequest();
+      xhrContent.onreadystatechange = function () {
+         if (xhrContent.readyState === 4 && xhrContent.status === 200) {
+            var data = JSON.parse(xhrContent.responseText);
 
-            var content = data.filter((x) => x.TemplateID == templateChildID);
+            var content = data.templateContent.filter((x) => x.TemplateID == templateChildID);
             if (content != null && content != undefined) {
                var contentTitle = document.getElementById('content-title');
                contentTitle.innerHTML = content[0].Title;
@@ -94,10 +103,10 @@
                var contentFootnote = document.getElementById('content-footnote');
                contentFootnote.innerHTML = content[0].Footnote;
             }
-         })
-         .catch(error => {
-            console.error('Error loading JSON:', error.message);
-         });
+         }
+      }
+      xhrContent.open("GET", pathBaseFiles + '/' + (actualVersion != "" ? actualVersion : "content") + '.json');
+      xhrContent.send(null);
    </script>
 </body>
 

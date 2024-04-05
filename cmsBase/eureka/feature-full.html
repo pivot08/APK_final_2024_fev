@@ -15,7 +15,7 @@
 <body class="h-100 how-to">
     <div id="loading-overlay"></div>
     <div id="loadingContainer" style="display:none;">
-        <a href="busca-inteligente-1.html">
+        <a href="" id="content-link">
             <video autoplay loop muted class="videoIntro" id="myVideo">
                 <source src="" type="video/mp4">
             </video>
@@ -54,6 +54,9 @@
                         var video = document.getElementById('myVideo');
                         video.src = pathContent + '/' + actualVersion + '/' + content[0].Media;
                         video.play();
+
+                        var contentLink = document.getElementById('content-link');
+                        contentLink.href = 'feature-detail.html?tablet='+ tablet +'&path='+ path +'&actualVersion='+ actualVersion +'&applicationID='+ applicationID +'&applicationSlug=' + applicationSlug + '&operatorUserID='+ operatorUserID +'&pageTypeID='+ pageTypeID +'&templateContentChildID=' + content[0].TemplateContentChildID;
                     }
                 }
             }

@@ -168,7 +168,7 @@
                body.style.backgroundColor = content[0].Color;
 
                var contentLink = document.getElementById('content-link');
-               contentLink.href = 'content-buttons.html' + paramsValue + '&applicationID=' + applicationID + '&templateChildID=' + content[0].TemplateChildID;
+               contentLink.href = 'content-buttons.html?tablet='+ tablet +'&path='+ path +'&actualVersion='+ actualVersion +'&applicationID='+ applicationID +'&applicationSlug=' + applicationSlug + '&operatorUserID='+ operatorUserID +'&pageTypeID='+ pageTypeID +'&templateChildID=' + content[0].TemplateChildID +'&templateContentChildID=' + content[0].TemplateContentChildID;
             }
          }
       }

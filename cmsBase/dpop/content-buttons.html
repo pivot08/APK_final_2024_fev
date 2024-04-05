@@ -82,28 +82,44 @@
    <!-- JS -->
    <script src="assets/dependencies/jquery/jquery.min.js"></script>
    <script src="assets/dependencies/owl.carousel/dist/owl.carousel.min.js"></script>
+   <script src="../inc/main.js"></script>
    <script>
       var video = document.getElementById("videoPromo");
-      video.addEventListener("ended", function() {
+      video.addEventListener("ended", function () {
          alert("Video has finished playing!");
          // myFunction();
       });
 
+      // const button = document.querySelector(".btn_start");
+      // const box = document.querySelector(".button");
+      // button.addEventListener("click", () => {
+      //     box.style.animation = "";
+      //     setTimeout(() => box.style.animation = "on_click", 5);
+      // });
+
       const url = new URL(window.location.href);
       const params = new URLSearchParams(url.search);
+      const paramsValue = url.search;
+      const path = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? 'file:///data/data/com.samsung.tablepresentation/files' : '';
+      const pathContent = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../content';
+      const pathBaseFiles = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../version';
+      const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : '';
+      const applicationID = params.get('applicationID');
+      const applicationSlug = params.get('applicationSlug');
+      const operatorUserID = params.get('operatorUserID');
+      const pageTypeID = params.get('pageTypeID');
+      const templateContentID = params.get('templateContentID');
+      const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+
       const templateChildID = params.get('templateChildID');
+      const templateContentChildID = params.get('templateContentChildID');
 
-      fetch('../content.json')
-         .then(response => {
-            if (!response.ok) {
-               console.error(`Network response was not ok: ${response.statusText}`);
-            }
-            return response.json();
-         })
-         .then(data => {
-            console.log('JSON data:', data);
+      var xhrContent = new XMLHttpRequest();
+      xhrContent.onreadystatechange = function () {
+         if (xhrContent.readyState === 4 && xhrContent.status === 200) {
+            var data = JSON.parse(xhrContent.responseText);
 
-            var content = data.filter((x) => x.TemplateID == templateChildID || (x.TemplateID == null && (x.ButtonSizeID == 6 || x.ButtonSizeID == 5)));
+            var content = data.templateContent.filter((x) => x.TemplateID == templateChildID || (x.TemplateID == null && (x.ButtonSizeID == 6 || x.ButtonSizeID == 5)));
             if (content != null && content != undefined && content.length > 0) {
                var headerTextTitle = '';
                var contentButton2 = '';
@@ -115,7 +131,7 @@
                for (var i = 0; i < content.length; i++) {
                   var contentTarget = "content-buttons";
 
-                  var contentChild = data.filter((x) => x.TemplateID == content[i].TemplateContentChildID);
+                  var contentChild = data.templateContent.filter((x) => x.TemplateID == content[i].TemplateContentChildID);
                   if (contentChild != null && contentChild != undefined && contentChild.length > 0) {
                      if (contentChild[0].PageTypeID == 4) {
                         contentTarget = "content-product-line";
@@ -131,7 +147,7 @@
                         break;
                      case "6": //Square Button - With Title
                         contentButton6 += '<div class="item">'
-                           + '<a href="' + contentTarget + '.html?templateChildID=' + content[i].TemplateContentChildID + '">'
+                           + '<a href="' + contentTarget + '.html?tablet='+ tablet +'&path='+ path +'&actualVersion='+ actualVersion +'&applicationID='+ applicationID +'&applicationSlug=' + applicationSlug + '&operatorUserID='+ operatorUserID +'&pageTypeID='+ pageTypeID +'&templateContentChildID=' + content[i].TemplateContentChildID + '">'
                            + '<video autoplay loop muted class="videos" id="video' + content[i].TemplateContentID + '">'
                            + '<source src="../content/' + content[i].Media + '" type="video/mp4">'
                            + '</video>'
@@ -140,7 +156,7 @@
                         break;
                      case "2": //Rectangular Button - 1 Position
                         contentButton2 += '<div class="col-md-6 box-item">'
-                           + '<a href="' + contentTarget + '.html?templateChildID=' + content[i].TemplateContentChildID + '" class="box-link">'
+                           + '<a href="' + contentTarget + '.html?tablet='+ tablet +'&path='+ path +'&actualVersion='+ actualVersion +'&applicationID='+ applicationID +'&applicationSlug=' + applicationSlug + '&operatorUserID='+ operatorUserID +'&pageTypeID='+ pageTypeID +'&templateContentChildID=' + content[i].TemplateContentChildID + '" class="box-link">'
                            + '<img src="../content/' + content[i].Media + '" alt="" class="animacao-bt box-img img-fluid">'
                            + '</a>'
                            + '</div>'
@@ -149,7 +165,7 @@
                         break;
                      case "4": //Rectangular Button - 2 Positions - Horizontal
                         contentButton4 += '<div class="col-md-12 box-item">'
-                           + '<a href="' + contentTarget + '.html?templateChildID=' + contentChild[0].TemplateID + '" class="box-link">'
+                           + '<a href="' + contentTarget + '.html?tablet='+ tablet +'&path='+ path +'&actualVersion='+ actualVersion +'&applicationID='+ applicationID +'&applicationSlug=' + applicationSlug + '&operatorUserID='+ operatorUserID +'&pageTypeID='+ pageTypeID +'&templateChildID='+ content[i].TemplateID +'&templateContentChildID=' + content[i].TemplateContentChildID + '" class="box-link">'
                            + '<img src="../content/' + content[i].Media + '" alt="" class="animacao-bt box-img img-fluid">'
                            + '</a>'
                            + '</div>'
@@ -157,7 +173,7 @@
                      case "5": //Small Button
                         countSmallButton++;
                         contentButton5 += '<div class="col-md-6 ' + (countSmallButton <= 2 ? 'small-button-top' : 'small-button-bottom') + '">'
-                           + '<a href="' + contentTarget + '.html?templateChildID=' + content[i].TemplateContentChildID + '" class="box-link">'
+                           + '<a href="' + contentTarget + '.html?tablet='+ tablet +'&path='+ path +'&actualVersion='+ actualVersion +'&applicationID='+ applicationID +'&applicationSlug=' + applicationSlug + '&operatorUserID='+ operatorUserID +'&pageTypeID='+ pageTypeID +'&templateContentChildID=' + content[i].TemplateContentChildID + '" class="box-link">'
                            + '<img src="../content/' + content[i].Media + '" alt="" class="box-img img-fluid">'
                            + '</a>'
                            + '</div>'
@@ -211,10 +227,10 @@
                   });
                });
             }
-         })
-         .catch(error => {
-            console.error('Error loading JSON:', error.message);
-         });
+         }
+      }
+      xhrContent.open("GET", pathBaseFiles + '/' + (actualVersion != "" ? actualVersion : "content") + '.json');
+      xhrContent.send(null);
    </script>
 </body>
 
