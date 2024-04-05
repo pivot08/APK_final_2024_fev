@@ -91,7 +91,10 @@
         <script>
             const templateChildID = params.get('templateChildID');
             const templateContentChildID = params.get('templateContentChildID');
-
+            const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+        if (tablet == 1 || tablet == '1') {
+                        Android.registerNavigation('1', content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
+                    }
             fetch('../content.json')
                 .then(response => {
                     if (!response.ok) {
@@ -112,6 +115,8 @@
                         if (headerText != '') {
                             headerText.innerHTML = template[0].HeaderText.replace('[ICO_AI]', '<img src="assets/img/ico-inteligencia.png" width="15">');
                         }
+
+                        
 
                         for (var i = 0; i < content.length; i++) {
                             contentButton += '<div class="col-md-6 ">'
