@@ -38,9 +38,9 @@
 								class="icon dripicons-meter"></i><span>CONTEÚDO</span></a>
 						<ul class="collapse nav-sub">
 							<li id="template-list" <?php echo ($urlPage == 'template-list' ? 'class="active"' : ''); ?>><a
-									href="template-list.php"><span>Templates</span></a></li>
+									href="template-list.php"><span>Criar páginas (templates)</span></a></li>
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-text' || (isset($pageTypeID) && $pageTypeID == "3") ? 'class="active"' : ''); ?>><a
-									href="template-content-list.php?pageTypeID=3"><span>Página Texto</span></a></li>
+									href="template-content-list.php?pageTypeID=3"><span>Página Texto (feature produtos)</span></a></li>
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-step-by-step' || (isset($pageTypeID) && $pageTypeID == "8") ? 'class="active"' : ''); ?>><a
 									href="template-content-list.php?pageTypeID=8"><span>Página Step By Step</span></a></li>
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-home-feature' || (isset($pageTypeID) && $pageTypeID == "7,12") ? 'class="active"' : ''); ?>><a
@@ -50,8 +50,8 @@
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-buttons' || (isset($pageTypeID) && $pageTypeID == "0,2,6") ? 'class="active"' : ''); ?>><a
 									href="template-content-list.php?pageTypeID=0,2,6"><span>Página de Botões</span></a></li>
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-home' || (isset($pageTypeID) && $pageTypeID == "1,5") ? 'class="active"' : ''); ?>><a
-									href="template-content-list.php?pageTypeID=1,5"><span>Página Inicial</span></a></li>
-							<li id="template-user-list" <?php echo ($urlPage == 'template-user' || $urlPage == 'template-user-list' ? 'class="active"' : ''); ?>><a href="template-user-list.php"><span>Usuários</span></a></li>
+									href="template-content-list.php?pageTypeID=1,5"><span>Home - Screensavers</span></a></li>
+							<li id="template-user-list" <?php echo ($urlPage == 'template-user' || $urlPage == 'template-user-list' ? 'class="active"' : ''); ?>><a href="template-user-list.php"><span>Usuários p/ operadoras</span></a></li>
 						</ul>
 					</li>
 				<?php } ?>

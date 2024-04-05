@@ -51,6 +51,25 @@
 					<div class="d-flex align-items-center">
 						<div class="mr-auto">
 							<h1>Geral</h1>
+							<p>Bem-vindo ao sistema de administração do APK Samsung.<br>Preparamos abaixo alguns <strong>tutoriais</strong> de como criar e gerenciar o contéudo.</
+<BR><BR>
+							<div class="row" style="padding:10px;">
+								<div style="padding:10px;">
+									<h1>1 - ÍNDICE E SCREENSAVERS</h1><br>
+									<video width="320" height="240" controls>
+									<source src="tutorial/1-Home-Screensaver-Indice.mov" type="video/mp4">
+									Seu navegador não suporta a tag de vídeo.
+									</video>
+								</div>
+								<div  style="padding:10px;">
+									<h1>1 - ÍNDICE E SCREENSAVERS</h1><br>
+									<video width="320" height="240" controls>
+									<source src="tutorial/1-Home-Screensaver-Indice.mov" type="video/mp4">
+									Seu navegador não suporta a tag de vídeo.
+									</video>
+								</div>
+							</div>
+
 						</div>						
 					</div>
 				</header>
