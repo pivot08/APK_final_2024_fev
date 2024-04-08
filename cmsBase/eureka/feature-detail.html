@@ -68,12 +68,11 @@
                         <br>
 
                         <div class="navegacao">
-                            <button class="button-play-next">
-                                <a href="" id="content-link">
-                                    próximo
-                                    <img src="assets/img/seta_proximo.svg" class="seta-proximo" >
-                                </a>
-                            </button>
+                            
+                                <button class="button-play-prev"><a href="javascript:history.back(-1);"><img src="assets/img/seta_anterior.svg" class="seta-anterior"> anterior</a></button>
+                                
+                                <button class="button-play-next"><a href="" id="content-link">próximo <img src="assets/img/seta_proximo.svg" class="seta-proximo"></a></button>
+                            
                         </div>
                     </div>
                 </div>
@@ -144,10 +143,17 @@
 
                     contentLink.href = 'feature-detail.html?tablet='+ tablet +'&path='+ path +'&actualVersion='+ actualVersion +'&applicationID='+ applicationID +'&applicationSlug=' + applicationSlug + '&operatorUserID='+ operatorUserID +'&pageTypeID='+ pageTypeID +'&templateContentChildID=' + content[0].TemplateContentChildID;
                 }
+                if (!content[0].TemplateContentChildID) {
+                    // Seleciona o botão pelo seu seletor de classe e aplica o estilo display: none
+                    document.querySelector('.button-play-next').style.display = 'none';
+                }
             }
         }
         xhrContent.open("GET", pathBaseFiles + '/' + (actualVersion != "" ? actualVersion : "content") + '.json');
         xhrContent.send(null);
+
+        // Verifica se a variável está vazia
+
     </script>
 </body>
 
