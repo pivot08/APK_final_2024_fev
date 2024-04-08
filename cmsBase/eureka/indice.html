@@ -73,9 +73,7 @@
         const applicationSlug = params.get('applicationSlug');
         const operatorUserID = params.get('operatorUserID');
         const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
-        if (tablet == 1 || tablet == '1') {
-                        Android.registerNavigation('1', content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
-                    }
+
         var xhrContent = new XMLHttpRequest();
         xhrContent.onreadystatechange = function () {
             if (xhrContent.readyState === 4 && xhrContent.status === 200) {

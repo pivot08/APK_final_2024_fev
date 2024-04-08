@@ -87,13 +87,13 @@
 
                     var contentLink = document.getElementById('button-link');
                     if (content[0].TemplateChildID != null && content[0].TemplateChildID != '0' && content[0].TemplateChildID != '') {
-                        var slug = data.templateContent.filter((x) => x.TemplateContentID == content[0].TemplateChildID);
+                        var slug = data.templateContent.filter((x) => x.TemplateID == content[0].TemplateChildID);
                         contentLink.href = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/'+ (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : 'menu') +'.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateChildID=' + content[0].TemplateChildID;
                     }
 
                     if (content[0].TemplateContentChildID != null && content[0].TemplateContentChildID != '0' && content[0].TemplateContentChildID != '') {
-                        var slug = data.templateContent.filter((x) => x.TemplateContentID == content[0].TemplateContentChildID);
-                        contentLink.href = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/'+ (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : 'menu') +'.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[0].TemplateContentChildID;
+                        var slug = data.templateContent.filter((x) => x.TemplateID == content[0].TemplateContentChildID);
+                        contentLink.href = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/'+ (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : 'menu') +'.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateChildID=' + content[0].TemplateChildID;
                     }
 
                     if (tablet == 1 || tablet == '1') {

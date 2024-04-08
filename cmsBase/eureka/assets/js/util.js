@@ -50,7 +50,7 @@ var linkHome = '';
 var links = document.getElementsByTagName('a');
 for (var i = 0; i < links.length; i++) {
     if (links[i].href.indexOf('javascript:history.') < 0)
-        links[i].href = links[i].href + (links[i].href.indexOf('?') > 0 ? '&' : '?') + 'origin=' + origin + '&searchParams=' + searchParams +'&'+ paramsOrigin;
+        links[i].href = links[i].href + (links[i].href.indexOf('?') > 0 ? '&' : '?') + 'origin=' + origin + '&' + window.atob(origin);
 }
 
 switch (origin) {
