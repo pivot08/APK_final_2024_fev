@@ -7,11 +7,6 @@ html, body {
 
 }
 
-.teaser #myVideo {
-  margin: auto 0px !important;
-  top: -60px;
-}
-
 body {
   overflow: hidden !important;
 }
@@ -87,6 +82,7 @@ video {max-width: 100%;}
 .bac-branco {background:#fff;border:solid 1px;}
 .bac-cinza {background:#f8f8f8;border:solid 1px;}
 .bac-cinza2 {background: #eeeeee;}
+.bac-cinza3 {background: #f4f4f4;border:solid 1px;}
 
 .bac-verde-agua {background:#b1cbc4;}
 .bac-verde-agua-claro {background:#d7e8de;}
@@ -113,7 +109,7 @@ video {max-width: 100%;}
 .background-s23 { 
   width: 100%;
   height: auto;
-  background-image: url('../img/smartphone/galaxy-s23_bg.png');
+  background-image: url('../img/ppt4-background-geral.png');
   background-size: cover;
 }
 
@@ -124,10 +120,17 @@ video {max-width: 100%;}
   background-size: cover;
 }
 
+.background-s23ultra { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/ppt5-background-geral.png');
+  background-size: cover;
+}
+
 .background-s23fe { 
   width: 100%;
   height: auto;
-  background-image: url('../img/smartphone/galaxy-s23fe_bg.png');
+  background-image: url('../img/ppt6-background-geral.png');
   background-size: cover;
 }
 
@@ -165,6 +168,36 @@ video {max-width: 100%;}
   background-image: url('../img/smartphone/galaxy-zflip_bg.png');
   background-size: cover;
 }
+
+.background-a05  { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/ppt9-background-geral.png');
+  background-size: cover;
+}
+
+.background-a05s  { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/ppt10-background-geral.png');
+  background-size: cover;
+}
+
+.background-a15  { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/ppt11-background-geral.png');
+  background-size: cover;
+}
+
+
+.background-a155g  { 
+  width: 100%;
+  height: auto;
+  background-image: url('../img/ppt13-background-geral.png');
+  background-size: cover;
+}
+
 
 .seta-preta {
     position: absolute;
@@ -240,6 +273,7 @@ video {max-width: 100%;}
 }
 
 .color-branco {color:#ffffff}
+
 
 .image-scroll {
   width: 100%; /* ou o valor desejado */
@@ -347,12 +381,12 @@ a.btn_start {
 }
 
 
-a,video,.btn_start,.div_button,button,.card,.button,.centerauto,.col-md-12,.col-md-6 {
+a,video,.btn_start,.div_button,button,.card,.button,.centerauto,.col-md-12 {
   transition: transform 0.3s; /* Defina a duração desejada (por exemplo, 0.3 segundos) */
 
 }
 
-a:active,video:active,.btn_start:active,.card:active,.button:active,.col-md-12:active,.col-md-6:active {
+a:active,video:active,.btn_start:active,.card:active,.button:active,.col-md-12:active {
   transform: scale(0.8); /* Use 'scale' para suavizar a transição de zoom */
 }
 
@@ -428,12 +462,17 @@ button:active {
 }
 .pagina-produto .centerauto {padding-top:0px;}
 .pagina-produto .card-title.categoria {padding-top: 32px;font-size:32px;}
+.pagina-produto .card-title.font-smaller  {padding-top: 32px;font-size:29px;}
 
 .pagina-produto .trava-botoes {
   max-height: 230px;
   margin-bottom: 0px;
 }
 
+
+.card-body h5.card-title.categoria {
+  font-size: 29px !important;
+}
 
 
 .pagina-produto .card-title.categoria {left:auto;}
@@ -445,7 +484,7 @@ button:active {
   margin-top: -18px;
   max-width: 85% !important;
   margin-left: 118px;
-  margin-bottom: -15px;
+  margin-bottom: -25px;
 }
 
 .bottom-title {
@@ -498,9 +537,24 @@ button:active {
   margin-bottom: 20px;
 }
 
+.feature h3 smaller {
+  font-size: 40px;
+  line-height: 52px;
+  margin-bottom: 20px;
+}
+
+
 .box-paragraph {
   margin: 0 auto 35px;
   font-size: 26px;
+  line-height: 36px;
+  font-family: 'Samsung InterFace';
+  text-align: center;
+}
+
+.box-paragraph-smaller {
+  margin: 0 auto 35px;
+  font-size: 24px;
   line-height: 36px;
   font-family: 'Samsung InterFace';
   text-align: center;
@@ -533,6 +587,8 @@ button:active {
 .color-preto {color:#000;}
 .color-verde-escuro {color:#79af68;}
 .bac-bege {background:#f1ebe1;}
+
+.color-orange {color: #deb584}
 
 .feature .card,.bac-cinza-escuro {background:#212121;}
 .feature .svg-icone2 {opacity: 0.3;}
@@ -664,3 +720,10 @@ button:active {
 .loginDiv img {
   max-width: 150px !important;
 }
+
+.imagem-snapdragon1 {
+  margin: 0 auto;
+  width: 50% !important;
+}
+
+.comIndice,.semIndice {display: none;}

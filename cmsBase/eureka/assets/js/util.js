@@ -83,7 +83,7 @@ switch (origin) {
 
 function runTimer(linkHome) {
     console.log(linkHome)
-    window.location.href = linkHome;
+    window.location.href = 'index.html?tablet=1&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateContentID=22';
 }
 
 const timer = setTimeout(() => {
