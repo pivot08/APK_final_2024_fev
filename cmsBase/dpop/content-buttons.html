@@ -1,103 +1,121 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="pt-br">
 <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DPOP</title>
 
-   <!-- CSS -->
-   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Inclua os links para os arquivos do Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/geral.css" rel="stylesheet">
     <link rel="stylesheet" href="assets/dependencies/owl.carousel/dist/assets/owl.carousel.min.css">
 	<link rel="stylesheet" href="assets/dependencies/owl.carousel/dist/assets/owl.theme.default.min.css">	
     
+    
 <style>
    .seta-preta {
     position: absolute;
-    top: 44px;
+    
     left: 50%;
     margin-left: -28px;
     max-width: 50px;
 }
 
 .selecione {
-    
     color: #fff;
-    font-size: 18px;
+    font-size: 20px;
+    line-height: 36px;
 }
+
+.pdR0 {padding-right: 0px;}
+
+.bac-azul-medio .card-title,.bac-preto .card-title {color:#fff;}
+
 </style>
-
-   <title>Samsung</title>
 </head>
-
 <body class="h-100">
-   <div id="loading-overlay">Carregando...</div>
-   <div id="loadingContainer" style="display: none;">
-      <div class="container-fluid">
-         <div class="row mx-auto primeira-linha">
-            <!-- Coluna 1 -->
-            <div class="col-md-2">
-                <div class="card">
-                    <div class="card-body d-flex align-items-center">
-                        <a href="index.html" class="header-links">
-                            <img src="assets/img/nav_home.svg" alt="" class="nav-home svg-icone">
-                         </a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Coluna 2 -->
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-body selecione d-flex align-items-center" id="header-text">
-                        <img src="assets/img/seta-preta.png" style="width: 100px;" class="seta-preta" >
-                        
-                    </div>
-                </div>
-            </div>
-
-            <!-- Coluna 3 -->
-            <div class="col-md-2">
-                <div class="card">
-                    <div class="card-body d-flex align-items-center">
-                        <a href="javascript:history.go(-1);" class="header-links">
-                            <img src="assets/img/nav_back.svg" alt="" class="nav-back svg-icone">
-                         </a>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-        
-        
-          
-         <div class="row" id="container-buttons">
-            <div class="col-md-6 destaques bac-branco">
-               <div class="">
-                  <video autoplay  muted class="videoPromo" id="videoPromo">
-                     <source src="assets/videos/S24.mp4" type="video/mp4">
-                  </video>
-                  
-                  <h3 style="display: none;" id="carousel-text" class="box-item-bordered-title"></h3>
-                  <div class="owl-carousel owl-theme" id="carousel-promo"></div>
-               </div>
-            </div>
-            <div class="col-md-6 box-item">
-               <div class="row" id="container-small-button">
-               </div>
-            </div>
-         </div>
-            
-        
-
+    <div class="loginDiv">
+        <div id="divOpVivo" style="display: none;"><a href="../vivo/vivo.html"><img src="../assets/img/bt-op-vivo.png"></a></div>
+        <div id="divOpTim" style="display: none;"><a href="../tim/tim.html"><img src="../assets/img/bt-op-tim.png"></a></div>
+        <div id="divOpClaro" style="display: none;"><a href="../claro/claro.html"><img src="../assets/img/bt-op-claro.png"></a></div>
+    </div>
+    <div class="volta-lojista"><button onmousedown="startTimer()" onmouseup="clearTimer()" onmouseleave="clearTimer()"></button></div>
+<div id="loading-overlay"></div>
+<div id="loadingContainer" style="display:none;"> 
+    <div class="container-fluid">
+    <!-- primeira linha-->
+    <div class="row mx-auto primeira-linha">
+      <!-- Coluna 1 -->
+      <div class="col-md-2">
+          <div class="card">
+              <div class="card-body d-flex align-items-center">
+               
+               <a href="https://dpopinterativo.dev.br/dpop/content-buttons.html?tablet=0&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateChildID=5" class="header-links">
+                      <img src="assets/img/nav_home.svg" alt="" class="nav-home svg-icone">
+                   </a>
+              </div>
+          </div>
       </div>
-   </div>
 
-   <!-- JS -->
-   <script src="assets/dependencies/jquery/jquery.min.js"></script>
-   <script src="assets/dependencies/owl.carousel/dist/owl.carousel.min.js"></script>
-   <script src="../inc/main.js"></script>
-   <script>
+      <!-- Coluna 2 -->
+      <div class="col-md-8">
+          <div class="card">
+              <div class="card-body selecione d-flex align-items-center" id="header-text">
+                  <img src="assets/img/seta-preta.png" style="width: 100px;" class="seta-preta" >
+                  
+              </div>
+          </div>
+      </div>
+
+      <!-- Coluna 3 -->
+      <div class="col-md-2">
+          <div class="card">
+              <div class="card-body d-flex align-items-center">
+                  <a href="javascript:history.go(-1);" class="header-links">
+                      <img src="assets/img/nav_back.svg" alt="" class="nav-back svg-icone">
+                   </a>
+              </div>
+          </div>
+      </div>
+
+  </div>
+    <!-- segunda linha-->    
+    <div class="row mx-auto trava-botoes" id="container-buttons">
+      
+      <div class="col-md-6 card destaques botoesSmallDestaque">
+         <div class=" bac-branco" style="border-radius: 30px;">
+            <a href="https://dpopinterativo.dev.br/eureka/menu.html?tablet=1&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateChildID=10">
+               
+            <video autoplay  muted class="videoPromo" id="videoPromo">
+               <source src="assets/videos/S24.mp4" type="video/mp4">
+            </video>
+         </a>
+            
+            <h3 style="display: none;" id="carousel-text" class="box-item-bordered-title"></h3>
+            <div class="owl-carousel owl-theme" id="carousel-promo"></div>
+         </div>
+      </div>
+      <div class="col-md-6" style="padding-right: 0px;margin-bottom: 0px !important;">
+         <div class="row full-height" id="container-small-button">
+         
+         </div>
+      </div>
+      
+   </div>
+    
+        
+        
+    </div>
+
+</div>
+    <!-- Inclua os links para os arquivos do Bootstrap JavaScript (opcional, dependendo do que você está usando) -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/dependencies/owl.carousel/dist/owl.carousel.min.js"></script>
+    <script src="assets/js/utils.js"></script>
+    <script src="../inc/main.js"></script>
+
+    <script>
       var video = document.getElementById("videoPromo");
       video.addEventListener("ended", function () {
          alert("Video has finished playing!");
@@ -127,6 +145,8 @@
 
       const templateChildID = params.get('templateChildID');
       const templateContentChildID = params.get('templateContentChildID');
+      
+      
 
       var xhrContent = new XMLHttpRequest();
       xhrContent.onreadystatechange = function () {
@@ -145,8 +165,10 @@
                for (var i = 0; i < content.length; i++) {
                   var contentTarget = "content-buttons";
 
-                  var contentChild = data.templateContent.filter((x) => x.TemplateContent == content[i].TemplateContentChildID);
+                  var contentChild = data.templateContent.filter((x) => x.TemplateContentID == content[i].TemplateContentChildID);
+                  
                   if (contentChild != null && contentChild != undefined && contentChild.length > 0) {
+                     
                      if (contentChild[0].PageTypeID == 4) {
                         contentTarget = "content-product-line";
                      }
@@ -169,29 +191,38 @@
                            + '</div>'
                         break;
                      case "2": //Rectangular Button - 1 Position
-                        contentButton2 += '<div class="col-md-6 box-item">'
-                           + '<a href="' + contentTarget + '.html?tablet='+ tablet +'&path='+ path +'&actualVersion='+ actualVersion +'&applicationID='+ applicationID +'&applicationSlug=' + applicationSlug + '&operatorUserID='+ operatorUserID +'&pageTypeID='+ pageTypeID +'&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="box-link">'
-                           + '<img src="../content/' + content[i].Media + '" alt="" class="animacao-bt box-img img-fluid">'
+                     contentButton2  += '<div class="col-md-6">'
+                           + '<a href="' + contentTarget + '.html?tablet='+ tablet +'&path='+ path +'&actualVersion='+ actualVersion +'&applicationID='+ applicationID +'&applicationSlug=' + applicationSlug + '&operatorUserID='+ operatorUserID +'&pageTypeID='+ pageTypeID +'&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="header-links">'
+                           + '<div class="card ' + content[i].Footnote + '">'
+                           + '<div class="card-body respiro-categoria scroll-down d-flex">'
+                           + '<h5 class="card-title categoria">' + content[i].TemplateContent + '</h5>'
+                           + '<img src="../content/' + content[i].Media + '" alt="" class="centerauto image-scroll">'
+                           + '</div>'
+                           + '</div>'
                            + '</a>'
                            + '</div>'
                         break;
                      case "3": //Rectangular Button - 2 Positions - Vertical
                         break;
                      case "4": //Rectangular Button - 2 Positions - Horizontal
-                        contentButton4 += '<div class="col-md-12 box-item">'
-                           + '<a href="' + contentTarget + '.html?tablet='+ tablet +'&path='+ path +'&actualVersion='+ actualVersion +'&applicationID='+ applicationID +'&applicationSlug=' + applicationSlug + '&operatorUserID='+ operatorUserID +'&pageTypeID='+ pageTypeID +'&templateChildID='+ content[i].TemplateID +'&templateContentChildID=' + content[i].TemplateContentChildID  + '&templateChildID=' + content[i].TemplateChildID + '" class="box-link">'
+                        contentButton4 += '<div class="col-md-12 "><div class="card  ' + content[i].Footnote + '"><div class="card-body respiro-categoria scroll-down d-flex">'
+                           + '<a href="' + contentTarget + '.html?tablet='+ tablet +'&path='+ path +'&actualVersion='+ actualVersion +'&applicationID='+ applicationID +'&applicationSlug=' + applicationSlug + '&operatorUserID='+ operatorUserID +'&pageTypeID='+ pageTypeID +'&templateChildID='+ content[i].TemplateID +'&templateContentChildID=' + content[i].TemplateContentChildID  + '&templateChildID=' + content[i].TemplateChildID + '">'
+                           + '<h5 class="card-title categoria">' + content[i].TemplateContent + '</h5>'
                            + '<img src="../content/' + content[i].Media + '" alt="" class="animacao-bt box-img img-fluid">'
                            + '</a>'
-                           + '</div>'
+                           + '</div></div></div>'
                         break;
                      case "5": //Small Button
                         countSmallButton++;
-                        contentButton5 += '<div class="col-md-6 ' + (countSmallButton <= 2 ? 'small-button-top' : 'small-button-bottom') + '">'
-                           + '<a href="' + contentTarget + '.html?tablet='+ tablet +'&path='+ path +'&actualVersion='+ actualVersion +'&applicationID='+ applicationID +'&applicationSlug=' + applicationSlug + '&operatorUserID='+ operatorUserID +'&pageTypeID='+ pageTypeID +'&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="box-link">'
-                           + '<img src="../content/' + content[i].Media + '" alt="" class="box-img img-fluid">'
+                           contentButton5  += '<div class="col-md-6  ' + (countSmallButton == 1 || countSmallButton == 3  ? 'botoes-left' : 'pdR0') + (countSmallButton == 1 || countSmallButton == 2  ? ' margin-bottom-20' : '') + '">'
+                           + '<div class="card  ' + content[i].Footnote + '"><div class="card-body botoes  card-center ">'
+                           + '<a href="' + contentTarget + '.html?tablet='+ tablet +'&path='+ path +'&actualVersion='+ actualVersion +'&applicationID='+ applicationID +'&applicationSlug=' + applicationSlug + '&operatorUserID='+ operatorUserID +'&pageTypeID='+ pageTypeID +'&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="header-links">'            
+                           + '<img src="../content/' + content[i].Media + '" alt="">'            
                            + '</a>'
                            + '</div>'
-                        break;
+                           + '</div>'
+                           + '</div>'
+                        break;   
                   }
                }
 
@@ -245,7 +276,17 @@
       }
       xhrContent.open("GET", pathBaseFiles + '/' + (actualVersion != "" ? actualVersion : "content") + '.json');
       xhrContent.send(null);
+ 
+ if (templateChildID === 32) {
+    // Se templateContentChildID for 32, imprime este div e esconde o outro
+    div1.style.display = 'block'; // Mostra o primeiro div
+    div2.style.display = 'none';  // Esconde o segundo div
+} else {
+    // Se templateContentChildID não for 32, imprime este div e esconde o outro
+    div1.style.display = 'none';  // Esconde o primeiro div
+    div2.style.display = 'block'; // Mostra o segundo div
+}
    </script>
-</body>
 
+</body>
 </html>

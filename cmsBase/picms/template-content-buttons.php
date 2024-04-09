@@ -208,6 +208,10 @@ if (isset($_GET['id'])) {
 											<input type="text" name="ButtonOrder" class="form-control" value="<?php echo $buttonOrder; ?>">
 										</div>
 										<div class="form-group">
+											<label for="input">Css Fundo (bac-branco,bac-violeta,bac-cinza,bac-azul-medio)</label>
+											<input type="text" name="Footnote" class="form-control" value="<?php echo $footnote; ?>">
+										</div>
+										<div class="form-group">
 											<div class="col-12">
 												<div class="input-group left">
 													<input type="checkbox" name="IsActive" class="form-control" value="<?php echo $isActive; ?>" <?php if ($isActive) { echo "checked"; } ?> onclick="if(this.checked){this.value='1';}else{this.value='0';}"> Ativo?

@@ -727,3 +727,12 @@ button:active {
 }
 
 .comIndice,.semIndice {display: none;}
+
+.destaques .videoPromo {
+  
+  padding: 10px;
+}
+
+.container-fluid .col-md-6,.container-fluid .col-md-12 {
+  margin-bottom: 22px;
+}
