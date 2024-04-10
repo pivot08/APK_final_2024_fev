@@ -212,6 +212,10 @@ if (isset($_GET['id'])) {
 											<input type="text" name="Footnote" class="form-control" value="<?php echo $footnote; ?>">
 										</div>
 										<div class="form-group">
+											<label for="input">ID Página Filho</label>
+											<input type="text" name="SubTitle" class="form-control" value="<?php echo $subTitle; ?>">
+										</div>
+										<div class="form-group">
 											<div class="col-12">
 												<div class="input-group left">
 													<input type="checkbox" name="IsActive" class="form-control" value="<?php echo $isActive; ?>" <?php if ($isActive) { echo "checked"; } ?> onclick="if(this.checked){this.value='1';}else{this.value='0';}"> Ativo?

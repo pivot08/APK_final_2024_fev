@@ -6,43 +6,79 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
    <!-- CSS -->
-   <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-   <link rel="stylesheet" href="assets/dependencies/owl.carousel/dist/assets/owl.carousel.min.css">
-   <link rel="stylesheet" href="assets/dependencies/owl.carousel/dist/assets/owl.theme.default.min.css">
-   <link rel="stylesheet" href="assets/css/style.css" id="cssLink">
+   
+   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+   <link href="assets/css/geral.css" rel="stylesheet">
+     
+<style>
+   .seta-preta {
+    position: absolute;
+    
+    left: 50%;
+    margin-left: -28px;
+    max-width: 50px;
+}
 
-   <link rel="stylesheet" href="assets/css/animacoes.css">
-   <link rel="stylesheet" href="assets/css/produto-pagina-feature.css">
+.selecione {
+    color: #fff;
+    font-size: 20px;
+    line-height: 36px;
+}
+
+.pdR0 {padding-right: 0px;}
+
+.bac-azul-medio .card-title,.bac-preto .card-title {color:#fff;}
+
+</style>
+</head>
    <title>Samsung</title>
 </head>
 
 <body class="background-tabs9" id="content-body">
    <div id="loading-overlay">Carregando...</div>
    <div id="loadingContainer" style="display:none;">
-      <header class="header">
-         <div class="container">
-            <div class="row justify-content-md-center">
-               <div class="col-md-2 header-left">
-                  <a href="index.html" class="header-links">
-                     <img src="assets/imgs/nav_home_white.png" alt="" class="nav-home">
-                  </a>
+      <div class="container-fluid">
+         <!-- primeira linha-->
+         <div class="row mx-auto primeira-linha">
+           <!-- Coluna 1 -->
+           <div class="col-md-2">
+               <div class="card">
+                   <div class="card-body d-flex align-items-center">
+                    
+                    <a href="https://dpopinterativo.dev.br/dpop/content-buttons.html?tablet=0&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateChildID=5" class="header-links">
+                           <img src="assets/img/nav_home.svg" alt="" class="nav-home svg-icone">
+                        </a>
+                   </div>
                </div>
-               <div class="col-md-8 header-center s23" id="header-text">
-                  Pressione para conhecer mais
+           </div>
+     
+           <!-- Coluna 2 -->
+           <div class="col-md-8">
+               <div class="card">
+                   <div class="card-body selecione d-flex align-items-center" id="header-text">
+                       <img src="assets/img/seta-preta.png" style="width: 100px;" class="seta-preta" >
+                       
+                   </div>
                </div>
-               <div class="col-md-2 header-right">
-                  <a href="javascript:history.go(-1);" class="header-links">
-                     <img src="assets/imgs/nav_back_white.png" alt="" class="nav-back">
-                  </a>
+           </div>
+     
+           <!-- Coluna 3 -->
+           <div class="col-md-2">
+               <div class="card">
+                   <div class="card-body d-flex align-items-center">
+                       <a href="javascript:history.go(-1);" class="header-links">
+                           <img src="assets/img/nav_back.svg" alt="" class="nav-back svg-icone">
+                        </a>
+                   </div>
                </div>
-            </div>
-         </div>
-      </header>
+           </div>
+     
+       </div>
       <section class="wrap">
          <div class="container">
             <div class="row" id="content-buttons-product">
                <div class="col-md-12 box-item header-produto" id="content-header-product">
-                  <img src="assets/imgs/galaxy-tabs9_01.png" alt="" class="box-img img-fluid" id="image-header">
+                  
                </div>
             </div>
          </div>
@@ -77,7 +113,7 @@
          if (xhrContent.readyState === 4 && xhrContent.status === 200) {
             var data = JSON.parse(xhrContent.responseText);
 
-            var content = data.templateContent.filter((x) => x.TemplateID == templateChildID);
+            var content = data.templateContent.filter((x) => x.TemplateID == templateChildID || x.TemplateContentID == templateContentChildID);
             if (content != null && content != undefined) {
                var headerTextTitle = '';
                var headerImageMedia = '';
