@@ -23,7 +23,9 @@
                 <div class="col-md-2">
                     <div class="card">
                         <div class="card-body d-flex align-items-center">
-                            <a href="index.html?tablet=0&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateContentID=22"><img src="assets/img/nav_home.svg" class="svg-icone"></a>
+                            <a
+                                href="index.html?tablet=0&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateContentID=22"><img
+                                    src="assets/img/nav_home.svg" class="svg-icone"></a>
                         </div>
                     </div>
                 </div>
@@ -92,9 +94,7 @@
             const templateChildID = params.get('templateChildID');
             const templateContentChildID = params.get('templateContentChildID');
             const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
-        if (tablet == 1 || tablet == '1') {
-                        Android.registerNavigation('1', content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
-                    }
+
             fetch('../content.json')
                 .then(response => {
                     if (!response.ok) {
@@ -115,8 +115,6 @@
                         if (headerText != '') {
                             headerText.innerHTML = template[0].HeaderText.replace('[ICO_AI]', '<img src="assets/img/ico-inteligencia.png" width="15">');
                         }
-
-                        
 
                         for (var i = 0; i < content.length; i++) {
                             contentButton += '<div class="col-md-6 ">'
@@ -139,6 +137,10 @@
                         button.innerHTML = contentButton;
 
                         loopVideos();
+
+                        if (tablet == 1 || tablet == '1') {
+                            Android.registerNavigation('1', content.TemplateID, content.TemplateContentID, formatDate(new Date()));
+                        }
                     }
                 })
                 .catch(error => {

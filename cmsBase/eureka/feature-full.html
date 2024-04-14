@@ -41,11 +41,6 @@
             const templateContentID = params.get('templateContentID');
             const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
 
-           
-        if (tablet == 1 || tablet == '1') {
-                        Android.registerNavigation('1', content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
-                    }
-
             const templateChildID = params.get('templateChildID');
             const templateContentChildID = params.get('templateContentChildID');
 
@@ -61,7 +56,11 @@
                         video.play();
 
                         var contentLink = document.getElementById('content-link');
-                        contentLink.href = 'feature-detail.html?tablet='+ tablet +'&path='+ path +'&actualVersion='+ actualVersion +'&applicationID='+ applicationID +'&applicationSlug=' + applicationSlug + '&operatorUserID='+ operatorUserID +'&pageTypeID='+ pageTypeID +'&templateContentChildID=' + content[0].TemplateContentChildID;
+                        contentLink.href = 'feature-detail.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[0].TemplateContentChildID;
+
+                        if (tablet == 1 || tablet == '1') {
+                            Android.registerNavigation('1', content.TemplateID, content.TemplateContentID, formatDate(new Date()));
+                        }
                     }
                 }
             }
