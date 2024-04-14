@@ -444,6 +444,7 @@ function templateGet($templateID)
         , tmp.SpecificationLine2
         , tmp.FootNote
         , tmp.Color
+        , IFNULL(tmp.IsHeaderColorWhite, 0) AS IsHeaderColorWhite
         , tmp.IsMainPage
         , tmp.IsActive
         , tmp.IsDeleted
@@ -474,6 +475,7 @@ function templateList($isOperatorExclusive = 0, $applicationID = null)
         , tmp.SpecificationLine2
         , tmp.FootNote
         , tmp.Color
+        , IFNULL(tmp.IsHeaderColorWhite, 0) AS IsHeaderColorWhite
         , tmp.IsMainPage
         , tmp.IsActive
         , tmp.IsDeleted
@@ -506,6 +508,7 @@ function templateByUserList($userID, $isOperatorExclusive, $applicationID = null
         , tmp.SpecificationLine2
         , tmp.FootNote
         , tmp.Color
+        , IFNULL(tmp.IsHeaderColorWhite, 0) AS IsHeaderColorWhite
         , tmp.IsMainPage
         , tmp.IsActive
         , tmp.IsDeleted
@@ -522,13 +525,13 @@ function templateByUserList($userID, $isOperatorExclusive, $applicationID = null
     return mysqli_query($db, $query);
 }
 
-function templateInsert($applicationID, $pageTypeID, $template, $logo, $buttonContent, $headerText, $specificationLine1, $specificationLine2, $footNote, $color, $isMainPage, $isOperatorExclusive, $isActive)
+function templateInsert($applicationID, $pageTypeID, $template, $logo, $buttonContent, $headerText, $specificationLine1, $specificationLine2, $footNote, $color, $isHeaderColorWhite, $isMainPage, $isOperatorExclusive, $isActive)
 {
     global $db;
 
     $query = "
-        INSERT INTO Template (ApplicationID, PageTypeID, Template, Logo, ButtonContent, HeaderText, SpecificationLine1, SpecificationLine2, FootNote, Color, IsMainPage, IsOperatorExclusive, IsActive, IsDeleted, DControl)
-        VALUES ('$applicationID', '$pageTypeID', '$template', '$logo', '$buttonContent', '$headerText', '$specificationLine1', '$specificationLine2', '$footNote', '$color', $isMainPage, $isOperatorExclusive, $isActive, 0, NOW())
+        INSERT INTO Template (ApplicationID, PageTypeID, Template, Logo, ButtonContent, HeaderText, SpecificationLine1, SpecificationLine2, FootNote, Color, IsHeaderColorWhite, IsMainPage, IsOperatorExclusive, IsActive, IsDeleted, DControl)
+        VALUES ('$applicationID', '$pageTypeID', '$template', '$logo', '$buttonContent', '$headerText', '$specificationLine1', '$specificationLine2', '$footNote', '$color', $isHeaderColorWhite, $isMainPage, $isOperatorExclusive, $isActive, 0, NOW())
     ";
     $result = mysqli_query($db, $query);
 
@@ -540,7 +543,7 @@ function templateInsert($applicationID, $pageTypeID, $template, $logo, $buttonCo
     generateUserOperatorFile();
 }
 
-function templateUpdate($templateID, $applicationID, $pageTypeID, $template, $logo, $buttonContent, $headerText, $specificationLine1, $specificationLine2, $footNote, $color, $isMainPage, $isOperatorExclusive, $isActive)
+function templateUpdate($templateID, $applicationID, $pageTypeID, $template, $logo, $buttonContent, $headerText, $specificationLine1, $specificationLine2, $footNote, $color, $isHeaderColorWhite, $isMainPage, $isOperatorExclusive, $isActive)
 {
     global $db;
     $query = "
@@ -555,6 +558,7 @@ function templateUpdate($templateID, $applicationID, $pageTypeID, $template, $lo
         , SpecificationLine2 = '$specificationLine2'
         , FootNote = '$footNote'
         , Color = '$color'
+        , IsHeaderColorWhite = '$isHeaderColorWhite'
         , IsMainPage = $isMainPage
         , IsOperatorExclusive = $isOperatorExclusive
         , IsActive = $isActive
@@ -1406,6 +1410,7 @@ function generateJsonFile($fileName)
         , tmp.ButtonContent
         , tmp.HeaderText
         , tmp.Color
+        , IFNULL(tmp.IsHeaderColorWhite, 0) AS IsHeaderColorWhite
     FROM
         Template tmp
         INNER JOIN Application apk ON tmp.ApplicationID = apk.ApplicationID
@@ -1435,6 +1440,7 @@ function generateJsonFile($fileName)
         , tmp.ButtonContent
         , tmp.HeaderText
         , tmp.Color
+        , IFNULL(tmp.IsHeaderColorWhite, 0) AS IsHeaderColorWhite
         , IF(tpc.ButtonSizeID <> '0', tpc.ButtonSizeID, '') AS ButtonSizeID
         , btz.ButtonSize
         , IF(tpc.ContentOrientationID <> '0', tpc.ContentOrientationID, '') AS ContentOrientationID

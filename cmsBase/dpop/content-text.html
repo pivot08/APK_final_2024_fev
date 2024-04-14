@@ -70,7 +70,7 @@
          if (xhrContent.readyState === 4 && xhrContent.status === 200) {
             var data = JSON.parse(xhrContent.responseText);
 
-            var content = data.templateContent.filter((x) => x.TemplateID == templateChildID);
+            var content = data.templateContent.filter((x) => x.TemplateID == templateChildID || x.TemplateContentID == templateContentChildID);
             if (content != null && content != undefined) {
                var contentTitle = document.getElementById('content-title');
                contentTitle.innerHTML = content[0].Title;

@@ -6,32 +6,36 @@
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
    <!-- CSS -->
-   
+
    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
    <link href="assets/css/geral.css" rel="stylesheet">
-     
-<style>
-   .seta-preta {
-    position: absolute;
-    
-    left: 50%;
-    margin-left: -28px;
-    max-width: 50px;
-}
 
-.selecione {
-    color: #fff;
-    font-size: 20px;
-    line-height: 36px;
-}
+   <style>
+      .seta-preta {
+         position: absolute;
 
-.pdR0 {padding-right: 0px;}
+         left: 50%;
+         margin-left: -28px;
+         max-width: 50px;
+      }
 
-.bac-azul-medio .card-title,.bac-preto .card-title {color:#fff;}
+      .selecione {
+         color: #fff;
+         font-size: 20px;
+         line-height: 36px;
+      }
 
-</style>
+      .pdR0 {
+         padding-right: 0px;
+      }
+
+      .bac-azul-medio .card-title,
+      .bac-preto .card-title {
+         color: #fff;
+      }
+   </style>
 </head>
-   <title>Samsung</title>
+<title>Samsung</title>
 </head>
 
 <body class="background-tabs9" id="content-body">
@@ -40,136 +44,171 @@
       <div class="container-fluid">
          <!-- primeira linha-->
          <div class="row mx-auto primeira-linha">
-           <!-- Coluna 1 -->
-           <div class="col-md-2">
+            <!-- Coluna 1 -->
+            <div class="col-md-2">
                <div class="card">
-                   <div class="card-body d-flex align-items-center">
-                    
-                    <a href="https://dpopinterativo.dev.br/dpop/content-buttons.html?tablet=0&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateChildID=5" class="header-links">
-                           <img src="assets/img/nav_home.svg" alt="" class="nav-home svg-icone">
-                        </a>
-                   </div>
+                  <div class="card-body d-flex align-items-center">
+                     <a href="index.html" class="header-links">
+                        <img src="assets/img/nav_home.svg" class="nav-home svg-icone" id="home-button">
+                     </a>
+                  </div>
                </div>
-           </div>
-     
-           <!-- Coluna 2 -->
-           <div class="col-md-8">
+            </div>
+
+            <div class="col-md-8">
                <div class="card">
-                   <div class="card-body selecione d-flex align-items-center" id="header-text">
-                       <img src="assets/img/seta-preta.png" style="width: 100px;" class="seta-preta" >
-                       
-                   </div>
+                  <div class="card-body selecione d-flex align-items-center" id="header-text">
+                     <img src="assets/img/seta-preta.png" style="width: 100px;" class="seta-preta">
+                  </div>
                </div>
-           </div>
-     
-           <!-- Coluna 3 -->
-           <div class="col-md-2">
+            </div>
+
+            <!-- Coluna 3 -->
+            <div class="col-md-2">
                <div class="card">
-                   <div class="card-body d-flex align-items-center">
-                       <a href="javascript:history.go(-1);" class="header-links">
-                           <img src="assets/img/nav_back.svg" alt="" class="nav-back svg-icone">
-                        </a>
-                   </div>
-               </div>
-           </div>
-     
-       </div>
-      <section class="wrap">
-         <div class="container">
-            <div class="row" id="content-buttons-product">
-               <div class="col-md-12 box-item header-produto" id="content-header-product">
-                  
+                  <div class="card-body d-flex align-items-center">
+                     <a href="javascript:history.go(-1);" class="header-links">
+                        <img src="assets/img/nav_back.svg" alt="" class="nav-back svg-icone" id="back-button">
+                     </a>
+                  </div>
                </div>
             </div>
          </div>
-      </section>
-   </div>
 
-   <!-- JS -->
-   <script src="assets/dependencies/jquery/jquery.min.js"></script>
-   <script src="assets/dependencies/owl.carousel/dist/owl.carousel.min.js"></script>
-   <script src="assets/js/utils.js"></script>
-   <script src="../inc/main.js"></script>
-   <script>
-      const url = new URL(window.location.href);
-      const params = new URLSearchParams(url.search);
-      const paramsValue = url.search;
-      const path = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? 'file:///data/data/com.samsung.tablepresentation/files' : '';
-      const pathContent = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../content';
-      const pathBaseFiles = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../version';
-      const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : '';
-      const applicationID = params.get('applicationID');
-      const applicationSlug = params.get('applicationSlug');
-      const operatorUserID = params.get('operatorUserID');
-      const pageTypeID = params.get('pageTypeID');
-      const templateContentID = params.get('templateContentID');
-      const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+         <div class="row mx-auto trava-botoes">
+            <!-- Primeira Coluna -->
+            <div class="col-md-12">
+               <h5 class="card-title categoria color-branco" id="content-text"></h5>
+               <img id="content-image">
+            </div>
+         </div>
 
-      const templateChildID = params.get('templateChildID');
-      const templateContentChildID = params.get('templateContentChildID');
+         <div class="row mx-auto" id="content-buttons-product">
+         </div>
+      </div>
 
-      var xhrContent = new XMLHttpRequest();
-      xhrContent.onreadystatechange = function () {
-         if (xhrContent.readyState === 4 && xhrContent.status === 200) {
-            var data = JSON.parse(xhrContent.responseText);
+      <!-- JS -->
+      <script src="assets/dependencies/jquery/jquery.min.js"></script>
+      <script src="assets/dependencies/owl.carousel/dist/owl.carousel.min.js"></script>
+      <script src="assets/js/utils.js"></script>
+      <script src="../inc/main.js"></script>
+      <script>
+         const url = new URL(window.location.href);
+         const params = new URLSearchParams(url.search);
+         const paramsValue = url.search;
+         const path = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? 'file:///data/data/com.samsung.tablepresentation/files' : '';
+         const pathContent = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../content';
+         const pathBaseFiles = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../version';
+         const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : '';
+         const applicationID = params.get('applicationID');
+         const applicationSlug = params.get('applicationSlug');
+         const operatorUserID = params.get('operatorUserID');
+         const pageTypeID = params.get('pageTypeID');
+         const templateContentID = params.get('templateContentID');
+         const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
 
-            var content = data.templateContent.filter((x) => x.TemplateID == templateChildID || x.TemplateContentID == templateContentChildID);
-            if (content != null && content != undefined) {
-               var headerTextTitle = '';
-               var headerImageMedia = '';
-               var contentButton3 = '';
-               var contentButton4 = '';
+         const templateChildID = params.get('templateChildID');
+         const templateContentChildID = params.get('templateContentChildID');
 
-               for (var i = 0; i < content.length; i++) {
-                  var contentTarget = "content-text";
-                  if (content[i].TemplateID == templateChildID) {
-                     headerTextTitle = content[i].HeaderText;
+         var xhrContent = new XMLHttpRequest();
+         xhrContent.onreadystatechange = function () {
+            if (xhrContent.readyState === 4 && xhrContent.status === 200) {
+               var data = JSON.parse(xhrContent.responseText);
 
-                     if (content[i].ButtonSizeID == null || content[i].ButtonSizeID == '') {
-                        headerImageMedia = '../content/' + content[i].Media;
+               var content = data.templateContent.filter((x) => x.TemplateID == templateChildID || x.TemplateContentID == templateContentChildID);
+               if (content != null && content != undefined) {
+                  var isHeaderColorWhite = 0;
+                  var bodyColor = '';
+                  var headerTextTitle = '';
+                  var contentMedia = '';
+                  var contentText = '';
+                  var contentButton3 = '';
+                  var contentButton4 = '';
+
+                  for (var i = 0; i < content.length; i++) {
+                     var contentTarget = "content-text";
+                     if (content[i].TemplateID == templateChildID) {
+                        bodyColor = '#' + content[i].Color.replace('#', '');
+
+                        isHeaderColorWhite = content[i].IsHeaderColorWhite;
+
+                        headerTextTitle = content[i].HeaderText;
+
+                        if (content[i].ButtonSizeID == null || content[i].ButtonSizeID == '') {
+                           contentMedia = '../content/' + content[i].Media;
+                           contentText = content[i].ButtonContent;
+                        }
+                     }
+
+                     switch (content[i].ButtonSizeID) {
+                        case "3": //Rectangular Button - 2 Positions - Vertical
+                           contentButton3 += '<div class="col-md-6 ">'
+                              + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="box-link">'
+                              + '      <h5 class="card-title categoria color-branco">' + content[i].Title + '</h5>'
+                              + '      <video autoplay="" loop="" muted="" class="borda">'
+                              + '         <source src="../content/' + content[i].Media + '" type="video/mp4">'
+                              + '      </video>'
+                              + '   </a>'
+                              + '</div>';
+                           break;
+                        case "4": //Rectangular Button - 2 Positions - Horizontal
+                           contentButton4 = '<div class="col-md-12">'
+                              + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="box-link">'
+                              + '      <h5 class="card-title categoria color-branco right-title">' + content[i].Title + '</h5>'
+                              + '      <img src="../content/' + content[i].Media + '" alt="" class="box-img img-fluid  borda">'
+                              + '   </a>'
+                              + '</div>'
+                           break;
                      }
                   }
 
-                  switch (content[i].ButtonSizeID) {
-                     case "3": //Rectangular Button - 2 Positions - Vertical
-                        contentButton3 += '<div class="col-md-6 box-item tabs9_03a">'
-                           + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '" class="box-link">'
-                           + '<h2 class="box-item-title">' + content[i].Title + '</h2>'
-                           + '<video autoplay loop muted>'
-                           + '<source src="../content/' + content[i].Media + '" type="video/mp4">'
-                           + '</video>'
-                           + '</a>'
-                           + '</div>'
-                        break;
-                     case "4": //Rectangular Button - 2 Positions - Horizontal
-                        contentButton4 = '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '" class="box-link">'
-                           + '<img src="../content/' + content[i].Media + '" alt="" class="box-img img-fluid">'
-                           + '</a>'
-                        break;
+                  // var buttonHeader = document.getElementById('content-header-product');
+                  // buttonHeader.innerHTML = buttonHeader.innerHTML + contentButton4;
+
+                  var body = document.getElementById('content-body');
+                  body.style.backgroundColor = bodyColor;
+
+                  var homeButtonImg = document.getElementById('home-button');
+                  if (homeButtonImg != undefined && homeButtonImg != null) {
+                     homeButtonImg.src = isHeaderColorWhite ? 'assets/img/nav_home_white.svg' : 'assets/img/nav_home.svg';
                   }
-               }
 
-               var buttonHeader = document.getElementById('content-header-product');
-               buttonHeader.innerHTML = buttonHeader.innerHTML + contentButton4;
+                  var contentImage = document.getElementById('content-image');
+                  if (contentMedia != '') {
+                     contentImage.src = contentMedia;
+                  }
 
-               var buttonContent = document.getElementById('content-buttons-product');
-               buttonContent.innerHTML = buttonContent.innerHTML + contentButton3;
+                  var contentDivText = document.getElementById('content-text');
+                  if (contentText != '') {
+                     contentDivText.innerHTML = contentText;
+                  }
 
-               var headerImage = document.getElementById('image-header');
-               if (headerImageMedia != '') {
-                  headerImage.src = headerImageMedia;
-               }
+                  var headerText = document.getElementById('header-text');
+                  if (headerText != '') {
+                     if (isHeaderColorWhite) {
+                        if (headerText.classList) {
+                           headerText.classList.remove('selecione');
+                           headerText.classList.add('selecione-black');
+                        }
+                     }
+                     headerText.innerHTML = '<h5 class="title-selecione">' + headerTextTitle + '</h5>';
+                  }
 
-               var headerText = document.getElementById('header-text');
-               if (headerText != '') {
-                  headerText.innerHTML = headerTextTitle;
+                  if (isHeaderColorWhite) {
+                     var backButtonImg = document.getElementById('back-button');
+                     if (backButtonImg != undefined && backButtonImg != null) {
+                        backButtonImg.src = isHeaderColorWhite ? 'assets/img/nav_back-white.svg' : 'assets/img/nav_back.svg';
+                     }
+                  }
+
+                  var buttonContent = document.getElementById('content-buttons-product');
+                  buttonContent.innerHTML = buttonContent.innerHTML + contentButton4 + contentButton3;
                }
             }
          }
-      }
-      xhrContent.open("GET", pathBaseFiles + '/' + (actualVersion != "" ? actualVersion : "content") + '.json');
-      xhrContent.send(null);
-   </script>
+         xhrContent.open("GET", pathBaseFiles + '/' + (actualVersion != "" ? actualVersion : "content") + '.json');
+         xhrContent.send(null);
+      </script>
 </body>
 
 </html>

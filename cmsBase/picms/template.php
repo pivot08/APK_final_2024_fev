@@ -10,6 +10,7 @@ $template = '';
 $buttonContent = '';
 $headerText = '';
 $color = '';
+$isHeaderColorWhite = '1';
 $isMainPage = '0';
 $isOperatorExclusive = 0;
 $isActive = '1';
@@ -30,6 +31,7 @@ if (isset($_GET['id'])) {
 		$buttonContent = $n['ButtonContent'];
 		$headerText = $n['HeaderText'];
 		$color = $n['Color'];
+		$isHeaderColorWhite = $n['IsHeaderColorWhite'];
 		$isMainPage = $n['IsMainPage'];
 		$isActive = $n['IsActive'];
 	}
@@ -55,13 +57,19 @@ if (isset($_POST['save']) || isset($_POST['update'])) {
 	} else {
 		$isActive = 0;
 	}
+
+	if (isset($_POST['IsHeaderColorWhite'])) {
+		$isHeaderColorWhite = $_POST['IsHeaderColorWhite'];
+	} else {
+		$isHeaderColorWhite = 1;
+	}
 }
 
 if (isset($_POST['save'])) {
-	templateInsert($applicationID, $pageTypeID, $template, '', $buttonContent, $headerText, '', '', '', $color, $isMainPage, $isOperatorExclusive, $isActive);
+	templateInsert($applicationID, $pageTypeID, $template, '', $buttonContent, $headerText, '', '', '', $color, $isHeaderColorWhite, $isMainPage, $isOperatorExclusive, $isActive);
 }
 if (isset($_POST['update'])) {
-	templateUpdate($templateID, $applicationID, $pageTypeID, $template, '', $buttonContent, $headerText, '', '', '', $color, $isMainPage, $isOperatorExclusive, $isActive);
+	templateUpdate($templateID, $applicationID, $pageTypeID, $template, '', $buttonContent, $headerText, '', '', '', $color, $isHeaderColorWhite, $isMainPage, $isOperatorExclusive, $isActive);
 }
 if (isset($_POST['delete'])) {
 	templateDelete($templateID);
@@ -206,6 +214,17 @@ if (isset($_POST['save']) || isset($_POST['update']) || isset($_POST['delete']))
 																echo "checked";
 															} ?>
 														onclick="if(this.checked){this.value='1';}else{this.value='0';}"> Página Inicial do APK?
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-12">
+												<div class="input-group left">
+													<input type="checkbox" name="IsHeaderColorWhite" class="form-control"
+														value="<?php echo $isHeaderColorWhite; ?>" <?php if ($isHeaderColorWhite) {
+																echo "checked";
+															} ?>
+														onclick="if(this.checked){this.value='1';}else{this.value='0';}"> Barra superior branca?
 												</div>
 											</div>
 										</div>
