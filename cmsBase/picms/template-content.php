@@ -26,6 +26,18 @@ if (isset($_POST['save']) || isset($_POST['update'])) {
 	$positionTop = isset($_POST['PositionTop']) ? $_POST['PositionTop'] : '';
 	$positionLeft = isset($_POST['PositionLeft']) ? $_POST['PositionLeft'] : '';
 
+	if (isset($_POST['IsWhiteTitle'])) {
+		$isWhiteTitle = $_POST['IsWhiteTitle'];
+	} else {
+		$isWhiteTitle = 0;
+	}
+
+	if (isset($_POST['IsTextRight'])) {
+		$isTextRight = $_POST['IsTextRight'];
+	} else {
+		$isTextRight = 0;
+	}
+
 	if (isset($_POST['IsActive'])) {
 		$isActive = $_POST['IsActive'];
 	} else {
@@ -88,10 +100,10 @@ if (isset($_POST['delete'])) {
 }
 
 if (isset($_POST['save'])) {
-	templateContentInsert($applicationID, $templateID, $buttonSizeID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isActive);
+	templateContentInsert($applicationID, $templateID, $buttonSizeID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isWhiteTitle, $isTextRight, $isActive);
 }
 if (isset($_POST['update'])) {
-	templateContentUpdate($templateContentID, $applicationID, $templateID, $buttonSizeID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isActive);
+	templateContentUpdate($templateContentID, $applicationID, $templateID, $buttonSizeID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isWhiteTitle, $isTextRight, $isActive);
 }
 if (isset($_POST['delete'])) {
 	templateContentDelete($templateContentID);

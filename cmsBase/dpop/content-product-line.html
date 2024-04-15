@@ -140,7 +140,7 @@
                         headerTextTitle = content[i].HeaderText;
 
                         if (content[i].ButtonSizeID == null || content[i].ButtonSizeID == '') {
-                           contentMedia = '../content/' + content[i].Media;
+                           contentMedia = pathContent + '/' + actualVersion + '/' + content[i].Media;
                            contentText = content[i].ButtonContent;
                         }
                      }
@@ -149,9 +149,9 @@
                         case "3": //Rectangular Button - 2 Positions - Vertical
                            contentButton3 += '<div class="col-md-6 ">'
                               + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="box-link">'
-                              + '      <h5 class="card-title categoria ">' + content[i].TemplateContent + '</h5>'
+                              + '      <h5 class="card-title categoria '+ (content[i].IsWhiteTitle ? 'color-branco' : '') +'">' + content[i].TemplateContent + '</h5>'
                               + '      <video autoplay="" loop="" muted="" class="borda">'
-                              + '         <source src="../content/' + content[i].Media + '" type="video/mp4">'
+                              + '         <source src="'+ pathContent + '/' + actualVersion + '/' + content[i].Media + '" type="video/mp4">'
                               + '      </video>'
                               + '   </a>'
                               + '</div>';
@@ -159,8 +159,8 @@
                         case "4": //Rectangular Button - 2 Positions - Horizontal
                            contentButton4 = '<div class="col-md-12">'
                               + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="box-link">'
-                              + '      <h5 class="card-title categoria  right-title">' + content[i].TemplateContent + '</h5>'
-                              + '      <img src="../content/' + content[i].Media + '" alt="" class="box-img img-fluid  borda">'
+                              + '      <h5 class="card-title categoria '+ (content[i].IsTextRight ? 'right-title' : '') +' '+ (content[i].IsWhiteTitle ? 'color-branco' : '') +'">' + content[i].TemplateContent + '</h5>'
+                              + '      <img src="'+ pathContent + '/' + actualVersion + '/' + content[i].Media + '" alt="" class="box-img img-fluid  borda">'
                               + '   </a>'
                               + '</div>'
                            break;

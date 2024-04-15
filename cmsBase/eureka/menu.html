@@ -125,12 +125,12 @@
 
                     var button = document.getElementById('container-buttons');
                     button.innerHTML = contentButton;
-
-                    loopVideos();
                     
                     if (tablet == 1 || tablet == '1') {
                         Android.registerNavigation('2', content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
                     }
+
+                    playNextVideo(0);
                 }
             }
         }

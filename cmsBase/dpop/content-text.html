@@ -101,7 +101,7 @@
                contentText.innerHTML = content[0].Content;
 
                var video = document.getElementById('content-video');
-               video.src = '../content/' + content[0].Media;
+               video.src = pathContent + '/' + actualVersion + '/' + content[0].Media;
                video.play();
 
                var contentFootnote = document.getElementById('content-footnote');

@@ -575,7 +575,7 @@ function templateUpdate($templateID, $applicationID, $pageTypeID, $template, $lo
 function templateUpdateMainPage($templateID, $isOperatorExclusive)
 {
     return;
-    
+
     // global $db;
     // $query = "
     // UPDATE Template SET IsMainPage = 0 WHERE TemplateID <> $templateID";
@@ -656,6 +656,8 @@ function templateContentList()
         , tpc.CoverImage
         , tpc.PositionTop
         , tpc.PositionLeft
+        , IFNULL(tpc.IsWhiteTitle, 0) AS IsWhiteTitle
+        , IFNULL(tpc.IsTextRight, 0) AS IsTextRight
         , tpc.IsActive
     FROM
         TemplateContent tpc
@@ -701,6 +703,8 @@ function templateContentListByPageTypeID($pageTypeID)
         , tpc.CoverImage
         , tpc.PositionTop
         , tpc.PositionLeft
+        , IFNULL(tpc.IsWhiteTitle, 0) AS IsWhiteTitle
+        , IFNULL(tpc.IsTextRight, 0) AS IsTextRight
         , tpc.IsActive
     FROM
         TemplateContent tpc
@@ -728,6 +732,13 @@ function templateContentListFiles()
     $query = "
     SELECT
         tpc.Media
+    FROM
+        TemplateContent tpc
+    WHERE
+        tpc.IsActive = 1
+        AND tpc.IsDeleted = 0
+    UNION SELECT
+        tpc.CoverImage AS Media
     FROM
         TemplateContent tpc
     WHERE
@@ -793,6 +804,8 @@ function templateContentGet($templateContentID)
         , tpc.CoverImage
         , tpc.PositionTop
         , tpc.PositionLeft
+        , IFNULL(tpc.IsWhiteTitle, 0) AS IsWhiteTitle
+        , IFNULL(tpc.IsTextRight, 0) AS IsTextRight
         , tpc.IsActive
     FROM
         TemplateContent tpc
@@ -807,17 +820,17 @@ function templateContentGet($templateContentID)
     return mysqli_query($db, $query);
 }
 
-function templateContentInsert($applicationID, $templateID, $buttonSizeID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isActive)
+function templateContentInsert($applicationID, $templateID, $buttonSizeID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isWhiteTitle, $isTextRight, $isActive)
 {
     global $db;
     $query = "
-        INSERT INTO TemplateContent (ApplicationID, TemplateID, ButtonSizeID, ContentOrientationID, TemplateChildID, TemplateContentChildID, TemplateContent, Title, SubTitle, Content, Footnote, ButtonOrder, Media, CoverImage, PositionTop, PositionLeft, IsActive, IsDeleted, DControl)
-        VALUES ('$applicationID', '$templateID', '$buttonSizeID', '$contentOrientationID', '$templateChildID', '$templateContentChildID', '$templateContent', '$title', '$subTitle', '$content', '$footnote', '$buttonOrder', '$media', '$coverImage', '$positionTop', '$positionLeft', '$isActive', 0, NOW())
+        INSERT INTO TemplateContent (ApplicationID, TemplateID, ButtonSizeID, ContentOrientationID, TemplateChildID, TemplateContentChildID, TemplateContent, Title, SubTitle, Content, Footnote, ButtonOrder, Media, CoverImage, PositionTop, PositionLeft, IsWhiteTitle, IsTextRight, IsActive, IsDeleted, DControl)
+        VALUES ('$applicationID', '$templateID', '$buttonSizeID', '$contentOrientationID', '$templateChildID', '$templateContentChildID', '$templateContent', '$title', '$subTitle', '$content', '$footnote', '$buttonOrder', '$media', '$coverImage', '$positionTop', '$positionLeft', $isWhiteTitle, $isTextRight, '$isActive', 0, NOW())
     ";
     mysqli_query($db, $query);
 }
 
-function templateContentUpdate($templateContentID, $applicationID, $templateID, $buttonSizeID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isActive)
+function templateContentUpdate($templateContentID, $applicationID, $templateID, $buttonSizeID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isWhiteTitle, $isTextRight, $isActive)
 {
     global $db;
     $query = "
@@ -838,6 +851,8 @@ function templateContentUpdate($templateContentID, $applicationID, $templateID, 
         , CoverImage = '$coverImage'
         , PositionTop = '$positionTop'
         , PositionLeft = '$positionLeft'
+        , IsWhiteTitle = $isWhiteTitle
+        , IsTextRight = $isTextRight
         , IsActive = $isActive
         , DControl = NOW()
     WHERE
@@ -1266,7 +1281,7 @@ function operatorUserByUserList($userID, $isOperator = "")
     if ($isOperator != "") {
         $query .= " AND apk.OperatorID " . ($isOperator == 1 ? " <> 0" : " = 0") . "";
     }
-    
+
     return mysqli_query($db, $query);
 }
 
@@ -1457,6 +1472,8 @@ function generateJsonFile($fileName)
         , tpc.CoverImage
         , tpc.PositionTop
         , tpc.PositionLeft
+        , IFNULL(tpc.IsWhiteTitle, 0) AS IsWhiteTitle
+        , IFNULL(tpc.IsTextRight, 0) AS IsTextRight
         , tpc.IsActive
         , IFNULL(tmp.IsMainPage, 0) AS IsMainPage
     FROM
@@ -1610,8 +1627,12 @@ function generateZIPFile($guid)
     if ($zip->open($zipFileName, ZipArchive::CREATE) === TRUE) {
         $result = templateContentListFiles();
         while ($row = mysqli_fetch_array($result)) {
-            $file = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . 'content' . $ds . $row['Media'];
-            $zip->addFile($file, $row['Media']);
+            if ($row['Media'] != '') {
+                $file = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . 'content' . $ds . $row['Media'];
+                if (file_exists($file)) {
+                    $zip->addFile($file, $row['Media']);
+                }
+            }
         }
 
         $zip->close();

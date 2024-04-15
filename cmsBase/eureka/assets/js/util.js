@@ -8,10 +8,10 @@ $(window).on('load', function () {
     });
 });
 
-$(document).ready(function () {
+function playNextVideo(index) {
     var videos = $(".video-sequence").toArray();
 
-    function playNextVideo(index) {
+    if (videos != undefined && videos != null && videos.length > 0) {
         if (index < videos.length) {
             var video = videos[index];
             var overlay = $(video).prev('.video-overlay');
@@ -36,10 +36,7 @@ $(document).ready(function () {
             });
         }
     }
-
-    // Inicia a reprodução do primeiro vídeo
-    playNextVideo(0);
-});
+}
 
 const urlOrigin = new URL(window.location.href);
 const paramsOrigin = new URLSearchParams(urlOrigin.search);
@@ -96,7 +93,7 @@ var clickQuant = 0;
 function startTimer() {
     clickQuant++;
     if (clickQuant == 1) {
-        window.location.href = 'selection.html?'+ paramsOrigin;
+        window.location.href = 'selection.html?' + paramsOrigin;
     }
 }
 

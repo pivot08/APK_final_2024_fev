@@ -21,6 +21,8 @@ $media = '';
 $coverImage = '';
 $positionTop = '';
 $positionLeft = '';
+$isWhiteTitle = '0';
+$isTextRight = '0';
 $isActive = '1';
 $update = false;
 
@@ -53,6 +55,8 @@ if (isset($_GET['id'])) {
 		$coverImage = $n['CoverImage'];
 		$positionTop = $n['PositionTop'];
 		$positionLeft = $n['PositionLeft'];
+		$isWhiteTitle = $n['IsWhiteTitle'];
+		$isTextRight = $n['IsTextRight'];
 		$isActive = $n['IsActive'];
 	}
 }
@@ -202,6 +206,20 @@ if (isset($_GET['id'])) {
 													<option value="<?php echo $row['ButtonSizeID']; ?>" <?php if ($row['ButtonSizeID'] == $buttonSizeID) { echo 'selected'; } ?>><?php echo $row['ButtonSize']; ?></option>
 												<?php } ?>
 											</select>
+										</div>
+										<div class="form-group">
+											<div class="col-12">
+												<div class="input-group left">
+													<input type="checkbox" name="IsWhiteTitle" class="form-control" value="<?php echo $isWhiteTitle; ?>" <?php if ($isWhiteTitle) { echo "checked"; } ?> onclick="if(this.checked){this.value='1';}else{this.value='0';}"> Texto do botão branco?
+												</div>
+											</div>
+										</div>
+										<div class="form-group">
+											<div class="col-12">
+												<div class="input-group left">
+													<input type="checkbox" name="IsTextRight" class="form-control" value="<?php echo $isTextRight; ?>" <?php if ($isTextRight) { echo "checked"; } ?> onclick="if(this.checked){this.value='1';}else{this.value='0';}"> Alinha texto do botão a direita?
+												</div>
+											</div>
 										</div>
 										<div class="form-group">
 											<label for="input">Ordem do botão no template</label>
