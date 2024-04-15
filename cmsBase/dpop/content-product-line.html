@@ -191,6 +191,11 @@
 
                   var contentDivText = document.getElementById('content-text');
                   if (contentText != '') {
+                     if (isHeaderColorWhite && isHeaderColorWhite == 1) {
+                        if (contentDivText.classList) {
+                           contentDivText.classList.add('color-branco');
+                        }
+                     }
                      contentDivText.innerHTML = contentText;
                   }
 
