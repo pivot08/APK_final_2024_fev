@@ -149,18 +149,24 @@
                         case "3": //Rectangular Button - 2 Positions - Vertical
                            contentButton3 += '<div class="col-md-6 ">'
                               + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="box-link">'
-                              + '      <h5 class="card-title categoria '+ (content[i].IsWhiteTitle ? 'color-branco' : '') +'">' + content[i].TemplateContent + '</h5>'
-                              + '      <video autoplay="" loop="" muted="" class="borda">'
-                              + '         <source src="'+ pathContent + '/' + actualVersion + '/' + content[i].Media + '" type="video/mp4">'
-                              + '      </video>'
-                              + '   </a>'
+                              + '      <h5 class="card-title categoria ' + (content[i].IsWhiteTitle && content[i].IsWhiteTitle == 1 ? 'color-branco' : '') + '">' + content[i].TemplateContent + '</h5>'
+
+                           if (content[i].Media.indexOf('mp4') > 0) {
+                              contentButton3 += '      <video autoplay="" loop="" muted="" class="borda">'
+                                 + '         <source src="' + pathContent + '/' + actualVersion + '/' + content[i].Media + '" type="video/mp4">'
+                                 + '      </video>'
+                           } else {
+                              contentButton3 += '      <img src="' + pathContent + '/' + actualVersion + '/' + content[i].Media + '" alt="" class="box-img img-fluid  borda">'
+                           }
+
+                           contentButton3 += '   </a>'
                               + '</div>';
                            break;
                         case "4": //Rectangular Button - 2 Positions - Horizontal
                            contentButton4 = '<div class="col-md-12">'
                               + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="box-link">'
-                              + '      <h5 class="card-title categoria '+ (content[i].IsTextRight ? 'right-title' : '') +' '+ (content[i].IsWhiteTitle ? 'color-branco' : '') +'">' + content[i].TemplateContent + '</h5>'
-                              + '      <img src="'+ pathContent + '/' + actualVersion + '/' + content[i].Media + '" alt="" class="box-img img-fluid  borda">'
+                              + '      <h5 class="card-title categoria ' + (content[i].IsTextRight && content[i].IsTextRight == 1 ? 'right-title' : '') + ' ' + (content[i].IsWhiteTitle && content[i].IsWhiteTitle == 1 ? 'color-branco' : '') + '">' + content[i].TemplateContent + '</h5>'
+                              + '      <img src="' + pathContent + '/' + actualVersion + '/' + content[i].Media + '" alt="" class="box-img img-fluid  borda">'
                               + '   </a>'
                               + '</div>'
                            break;
@@ -175,7 +181,7 @@
 
                   var homeButtonImg = document.getElementById('home-button');
                   if (homeButtonImg != undefined && homeButtonImg != null) {
-                     homeButtonImg.src = isHeaderColorWhite ? 'assets/img/nav_home_white.svg' : 'assets/img/nav_home.svg';
+                     homeButtonImg.src = isHeaderColorWhite && isHeaderColorWhite == 1 ? 'assets/img/nav_home_white.svg' : 'assets/img/nav_home.svg';
                   }
 
                   var contentImage = document.getElementById('content-image');
@@ -190,7 +196,7 @@
 
                   var headerText = document.getElementById('header-text');
                   if (headerText != '') {
-                     if (isHeaderColorWhite) {
+                     if (isHeaderColorWhite && isHeaderColorWhite == 1) {
                         if (headerText.classList) {
                            headerText.classList.remove('selecione');
                            headerText.classList.add('selecione-black');
@@ -199,10 +205,10 @@
                      headerText.innerHTML = '<h5 class="title-selecione">' + headerTextTitle + '</h5>';
                   }
 
-                  if (isHeaderColorWhite) {
+                  if (isHeaderColorWhite && isHeaderColorWhite == 1) {
                      var backButtonImg = document.getElementById('back-button');
                      if (backButtonImg != undefined && backButtonImg != null) {
-                        backButtonImg.src = isHeaderColorWhite ? 'assets/img/nav_back-white.svg' : 'assets/img/nav_back.svg';
+                        backButtonImg.src = isHeaderColorWhite && isHeaderColorWhite == 1 ? 'assets/img/nav_back-white.svg' : 'assets/img/nav_back.svg';
                      }
                   }
 

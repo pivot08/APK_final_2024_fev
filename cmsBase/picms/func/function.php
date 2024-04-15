@@ -558,7 +558,7 @@ function templateUpdate($templateID, $applicationID, $pageTypeID, $template, $lo
         , SpecificationLine2 = '$specificationLine2'
         , FootNote = '$footNote'
         , Color = '$color'
-        , IsHeaderColorWhite = '$isHeaderColorWhite'
+        , IsHeaderColorWhite = $isHeaderColorWhite
         , IsMainPage = $isMainPage
         , IsOperatorExclusive = $isOperatorExclusive
         , IsActive = $isActive

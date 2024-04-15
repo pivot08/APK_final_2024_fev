@@ -61,7 +61,7 @@ if (isset($_POST['save']) || isset($_POST['update'])) {
 	if (isset($_POST['IsHeaderColorWhite'])) {
 		$isHeaderColorWhite = $_POST['IsHeaderColorWhite'];
 	} else {
-		$isHeaderColorWhite = 1;
+		$isHeaderColorWhite = 0;
 	}
 }
 

@@ -168,6 +168,7 @@
             if (content != null && content != undefined && content.length > 0) {
                var headerTextTitle = '';
                var contentButton2 = '';
+               var contentButton3 = '';
                var contentButton4 = '';
                var contentButton5 = '';
                var contentButton6 = '';
@@ -209,7 +210,7 @@
                            + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="header-links">'
                            + '<div class="card ' + content[i].Footnote + '">'
                            + '<div class="card-body respiro-categoria scroll-down d-flex">'
-                           + '<h5 class="card-title categoria '+ (content[i].IsWhiteTitle ? 'color-branco' : '') +'">' + content[i].TemplateContent + '</h5>'
+                           + '<h5 class="card-title categoria '+ (content[i].IsWhiteTitle && content[i].IsWhiteTitle == 1 ? 'color-branco' : '') +'">' + content[i].TemplateContent + '</h5>'
                            + '<img src="'+ pathContent + '/' + actualVersion + '/' + content[i].Media + '" alt="" class="centerauto image-scroll">'
                            + '</div>'
                            + '</div>'
@@ -217,11 +218,20 @@
                            + '</div>'
                         break;
                      case "3": //Rectangular Button - 2 Positions - Vertical
+                        contentButton3 += '<div class="col-md-6">'
+                           + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="header-links">'
+                           + '      <div class="card ' + content[i].Footnote + '">'
+                           + '            <div class="card-body respiro-categoria scroll-down bacCategorias d-flex" style="background: url(\''+ pathContent + '/' + actualVersion + '/' + content[i].Media + '\') no-repeat;">'
+                           + '               <h5 class="card-title categoria '+ (content[i].IsWhiteTitle && content[i].IsWhiteTitle == 1 ? 'color-branco' : '') +'">' + content[i].TemplateContent + '</h5>'               
+                           + '            </div>'
+                           + '      </div>'
+                           + '   </a>'
+                           + '</div>'
                         break;
                      case "4": //Rectangular Button - 2 Positions - Horizontal
-                        contentButton4 += '<div class="col-md-12 "><div class="card  ' + content[i].Footnote + '"><div class="card-body respiro-categoria scroll-down d-flex">'
+                        contentButton4 += '<div class="col-md-12 "><div class="card ' + content[i].Footnote + '"><div class="card-body respiro-categoria scroll-down d-flex">'
                            + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '">'
-                           + '<h5 class="card-title categoria '+ (content[i].IsWhiteTitle ? 'color-branco' : '') +'">' + content[i].TemplateContent + '</h5>'
+                           + '<h5 class="card-title categoria '+ (content[i].IsWhiteTitle && content[i].IsWhiteTitle == 1 ? 'color-branco' : '') +'">' + content[i].TemplateContent + '</h5>'
                            + '<img src="'+ pathContent + '/' + actualVersion + '/' + content[i].Media + '" alt="" class="animacao-bt box-img img-fluid">'
                            + '</a>'
                            + '</div></div></div>'
@@ -241,7 +251,7 @@
                }
 
                var button = document.getElementById('container-buttons');
-               button.innerHTML = button.innerHTML + contentButton4 + contentButton2;
+               button.innerHTML = button.innerHTML + contentButton3 + contentButton4 + contentButton2;
 
                var smallButton = document.getElementById('container-small-button');
                smallButton.innerHTML = contentButton5;
