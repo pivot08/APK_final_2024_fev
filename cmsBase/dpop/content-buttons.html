@@ -95,11 +95,10 @@
 
             <div class="col-md-6 card destaques botoesSmallDestaque">
                <div class=" bac-branco" style="border-radius: 30px;">
-                  <a
-                     href="https://dpopinterativo.dev.br/eureka/menu.html?tablet=1&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateChildID=10">
+                  <a id="link-s24">
 
                      <video autoplay muted class="videoPromo" id="videoPromo">
-                        <source src="assets/videos/S24.mp4" type="video/mp4">
+                        <source src="assets/img/S24.mp4" type="video/mp4">
                      </video>
                   </a>
 
@@ -264,6 +263,13 @@
                   headerText.innerHTML = headerText.innerHTML + headerTextTitle;
                }
 
+               var linkTemp = document.getElementById('link-s24');
+               if (tablet == 1 || tablet == '1') {
+                  linkTemp.href = '../eureka/menu.html?tablet=1&path=file:///data/data/com.samsung.tablepresentation/files&actualVersion=5A66C629-15E2-441E-88EE-D26523A8EADD&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateChildID=10';
+               } else {
+                  linkTemp.href = '../eureka/menu.html?tablet=0&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateChildID=10';
+               }
+               
                // if (content[i].ButtonContent != null && content[i].ButtonContent != undefined && content[i].ButtonContent != '') {
                //    var carouselText = document.getElementById('carousel-text');
                //    carouselText.innerHTML = content[i].ButtonContent;
