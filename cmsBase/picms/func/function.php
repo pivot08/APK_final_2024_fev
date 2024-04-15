@@ -613,6 +613,22 @@ function buttonSizeList()
     return mysqli_query($db, $query);
 }
 
+function buttonPositionList()
+{
+    global $db;
+    $query = "
+    SELECT
+        btp.ButtonPositionID
+        , btp.ButtonPosition
+        , btp.ButtonPositionFlag
+        , btp.IsActive
+    FROM
+        ButtonPosition btp
+    WHERE
+        btp.IsDeleted = 0";
+    return mysqli_query($db, $query);
+}
+
 function contentOrientationList()
 {
     global $db;
@@ -643,6 +659,9 @@ function templateContentList()
         , tmp.Template
         , tpc.ButtonSizeID
         , btz.ButtonSize
+        , tpc.ButtonPositionID
+        , btp.ButtonPosition
+        , btp.ButtonPositionFlag
         , tpc.ContentOrientationID
         , cto.ContentOrientation
         , tpc.TemplateContentChildID
@@ -665,6 +684,7 @@ function templateContentList()
         INNER JOIN Template tmp ON tpc.TemplateID = tmp.TemplateID
         INNER JOIN PageType pgt ON pgt.PageTypeID = tmp.PageTypeID
         LEFT JOIN ButtonSize btz ON tpc.ButtonSizeID = btz.ButtonSizeID
+        LEFT JOIN ButtonPosition btp ON tpc.ButtonPositionID = btp.ButtonPositionID
         LEFT JOIN TemplateContent tcc ON tpc.TemplateContentID = tcc.TemplateContentChildID
         LEFT JOIN ContentOrientation cto ON tpc.ContentOrientationID = cto.ContentOrientationID
     WHERE
@@ -690,6 +710,9 @@ function templateContentListByPageTypeID($pageTypeID)
         , tmp.Template
         , tpc.ButtonSizeID
         , btz.ButtonSize
+        , tpc.ButtonPositionID
+        , btp.ButtonPosition
+        , btp.ButtonPositionFlag
         , tpc.ContentOrientationID
         , cto.ContentOrientation
         , tpc.TemplateContentChildID
@@ -712,6 +735,7 @@ function templateContentListByPageTypeID($pageTypeID)
         LEFT JOIN Template tmp ON tpc.TemplateID = tmp.TemplateID
         LEFT JOIN PageType pgt ON pgt.PageTypeID = tmp.PageTypeID
         LEFT JOIN ButtonSize btz ON tpc.ButtonSizeID = btz.ButtonSizeID
+        LEFT JOIN ButtonPosition btp ON tpc.ButtonPositionID = btp.ButtonPositionID
         LEFT JOIN TemplateContent tcc ON tpc.TemplateContentID = tcc.TemplateContentChildID
         LEFT JOIN ContentOrientation cto ON tpc.ContentOrientationID = cto.ContentOrientationID
     WHERE
@@ -790,6 +814,9 @@ function templateContentGet($templateContentID)
         , tmp.Template
         , IF(tpc.ButtonSizeID <> '0', tpc.ButtonSizeID, '') AS ButtonSizeID
         , btz.ButtonSize
+        , IF(tpc.ButtonPositionID <> '0', tpc.ButtonPositionID, '') AS ButtonPositionID
+        , btp.ButtonPosition
+        , btp.ButtonPositionFlag
         , IF(tpc.ContentOrientationID <> '0', tpc.ContentOrientationID, '') AS ContentOrientationID
         , cto.ContentOrientation
         , IF(tpc.TemplateChildID <> '0', tpc.TemplateChildID, '') AS TemplateChildID
@@ -813,6 +840,7 @@ function templateContentGet($templateContentID)
         LEFT JOIN Template tmp ON tpc.TemplateID = tmp.TemplateID
         LEFT JOIN PageType pgt ON pgt.PageTypeID = tmp.PageTypeID
         LEFT JOIN ButtonSize btz ON tpc.ButtonSizeID = btz.ButtonSizeID
+        LEFT JOIN ButtonPosition btp ON tpc.ButtonPositionID = btp.ButtonPositionID
         LEFT JOIN TemplateContent tcc ON tpc.TemplateContentID = tcc.TemplateContentChildID
         LEFT JOIN ContentOrientation cto ON tpc.ContentOrientationID = cto.ContentOrientationID
     WHERE
@@ -820,17 +848,17 @@ function templateContentGet($templateContentID)
     return mysqli_query($db, $query);
 }
 
-function templateContentInsert($applicationID, $templateID, $buttonSizeID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isWhiteTitle, $isTextRight, $isActive)
+function templateContentInsert($applicationID, $templateID, $buttonSizeID, $buttonPositionID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isWhiteTitle, $isTextRight, $isActive)
 {
     global $db;
     $query = "
-        INSERT INTO TemplateContent (ApplicationID, TemplateID, ButtonSizeID, ContentOrientationID, TemplateChildID, TemplateContentChildID, TemplateContent, Title, SubTitle, Content, Footnote, ButtonOrder, Media, CoverImage, PositionTop, PositionLeft, IsWhiteTitle, IsTextRight, IsActive, IsDeleted, DControl)
-        VALUES ('$applicationID', '$templateID', '$buttonSizeID', '$contentOrientationID', '$templateChildID', '$templateContentChildID', '$templateContent', '$title', '$subTitle', '$content', '$footnote', '$buttonOrder', '$media', '$coverImage', '$positionTop', '$positionLeft', $isWhiteTitle, $isTextRight, '$isActive', 0, NOW())
+        INSERT INTO TemplateContent (ApplicationID, TemplateID, ButtonSizeID, ButtonPositionID, ContentOrientationID, TemplateChildID, TemplateContentChildID, TemplateContent, Title, SubTitle, Content, Footnote, ButtonOrder, Media, CoverImage, PositionTop, PositionLeft, IsWhiteTitle, IsTextRight, IsActive, IsDeleted, DControl)
+        VALUES ('$applicationID', '$templateID', '$buttonSizeID', '$buttonPositionID', '$contentOrientationID', '$templateChildID', '$templateContentChildID', '$templateContent', '$title', '$subTitle', '$content', '$footnote', '$buttonOrder', '$media', '$coverImage', '$positionTop', '$positionLeft', $isWhiteTitle, $isTextRight, '$isActive', 0, NOW())
     ";
     mysqli_query($db, $query);
 }
 
-function templateContentUpdate($templateContentID, $applicationID, $templateID, $buttonSizeID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isWhiteTitle, $isTextRight, $isActive)
+function templateContentUpdate($templateContentID, $applicationID, $templateID, $buttonSizeID, $buttonPositionID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isWhiteTitle, $isTextRight, $isActive)
 {
     global $db;
     $query = "
@@ -838,6 +866,7 @@ function templateContentUpdate($templateContentID, $applicationID, $templateID, 
         ApplicationID = '$applicationID'
         , TemplateID = '$templateID'
         , ButtonSizeID = '$buttonSizeID'
+        , ButtonPositionID = '$buttonPositionID'
         , ContentOrientationID = '$contentOrientationID'
         , TemplateChildID = '$templateChildID'
         , TemplateContentChildID = '$templateContentChildID'
@@ -1458,6 +1487,9 @@ function generateJsonFile($fileName)
         , IFNULL(tmp.IsHeaderColorWhite, 0) AS IsHeaderColorWhite
         , IF(tpc.ButtonSizeID <> '0', tpc.ButtonSizeID, '') AS ButtonSizeID
         , btz.ButtonSize
+        , IF(tpc.ButtonPositionID <> '0', tpc.ButtonPositionID, '') AS ButtonPositionID
+        , btp.ButtonPosition
+        , btp.ButtonPositionFlag
         , IF(tpc.ContentOrientationID <> '0', tpc.ContentOrientationID, '') AS ContentOrientationID
         , cto.ContentOrientation
         , IF(tpc.TemplateChildID <> '0', tpc.TemplateChildID, '') AS TemplateChildID
@@ -1482,6 +1514,7 @@ function generateJsonFile($fileName)
         LEFT JOIN Template tmp ON tpc.TemplateID = tmp.TemplateID
         LEFT JOIN PageType pgt ON pgt.PageTypeID = tmp.PageTypeID
         LEFT JOIN ButtonSize btz ON tpc.ButtonSizeID = btz.ButtonSizeID
+        LEFT JOIN ButtonPosition btp ON tpc.ButtonPositionID = btp.ButtonPositionID
         LEFT JOIN TemplateContent tcc ON tpc.TemplateContentID = tcc.TemplateContentChildID
         LEFT JOIN ContentOrientation cto ON tpc.ContentOrientationID = cto.ContentOrientationID
     WHERE

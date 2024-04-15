@@ -8,6 +8,7 @@ $applicationID = '';
 $pageTypeID = '';
 $templateID = '';
 $buttonSizeID = '';
+$buttonPositionID = '';
 $contentOrientationID = '';
 $templateChildID = '';
 $templateContentChildID = '';
@@ -42,6 +43,7 @@ if (isset($_GET['id'])) {
 		$applicationID = $n['ApplicationID'];
 		$templateID = $n['TemplateID'];
 		$buttonSizeID = $n['ButtonSizeID'];
+		$buttonPositionID = $n['ButtonPositionID'];
 		$contentOrientationID = $n['ContentOrientationID'];
 		$templateChildID = $n['TemplateChildID'];
 		$templateContentChildID = $n['TemplateContentChildID'];
@@ -204,6 +206,17 @@ if (isset($_GET['id'])) {
 												$result = buttonSizeList();
 												while ($row = mysqli_fetch_array($result)) { ?>
 													<option value="<?php echo $row['ButtonSizeID']; ?>" <?php if ($row['ButtonSizeID'] == $buttonSizeID) { echo 'selected'; } ?>><?php echo $row['ButtonSize']; ?></option>
+												<?php } ?>
+											</select>
+										</div>										
+										<div class="form-group">
+											<label for="input">Posição do botão</label>
+											<select class="form-control" name="ButtonPositionID">
+												<option value="">Selecione</option>
+												<?php
+												$result = buttonPositionList();
+												while ($row = mysqli_fetch_array($result)) { ?>
+													<option value="<?php echo $row['ButtonPositionID']; ?>" <?php if ($row['ButtonPositionID'] == $buttonPositionID) { echo 'selected'; } ?>><?php echo $row['ButtonPosition']; ?></option>
 												<?php } ?>
 											</select>
 										</div>
