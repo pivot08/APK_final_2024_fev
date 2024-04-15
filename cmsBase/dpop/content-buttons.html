@@ -36,6 +36,9 @@
       .bac-preto .card-title {
          color: #fff;
       }
+
+
+   
    </style>
 </head>
 
@@ -107,11 +110,26 @@
                </div>
             </div>
             <div class="col-md-6" style="padding-right: 0px;margin-bottom: 0px !important;">
-               <div class="row full-height" id="container-small-button">
+               <div class="row  full-height" id="container-small-button">
 
                </div>
             </div>
 
+         </div>
+
+         <div class="col-md-12 CTop">
+            //Rectangular Button - 2 Positions - Horizontal
+         </div>
+         <div class="col-md-6 Cleft">
+            //Rectangular Button - 2 Positions - Vertical
+            //Rectangular Button - 1 Position
+         </div>
+         <div class="col-md-6 Cright">
+            //Rectangular Button - 2 Positions - Vertical
+            //Rectangular Button - 1 Position
+         </div>
+         <div class="col-md-12 Cbottom">
+            //Rectangular Button - 2 Positions - Horizontal
          </div>
 
 
@@ -205,7 +223,7 @@
                            + '</div>'
                         break;
                      case "2": //Rectangular Button - 1 Position
-                        contentButton2 += '<div class="col-md-6 b">'
+                        contentButton2 += '<div class="col-md-6 halfContentColumn">'
                            + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="header-links">'
                            + '<div class="card ' + content[i].Footnote + '">'
                            + '<div class="card-body respiro-categoria scroll-down d-flex">'
@@ -217,7 +235,7 @@
                            + '</div>'
                         break;
                      case "3": //Rectangular Button - 2 Positions - Vertical
-                        contentButton3 += '<div class="col-md-6 a">'
+                        contentButton3 += '<div class="col-md-6 fullContentColunm">'
                            + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="header-links">'
                            + '      <div class="card ' + content[i].Footnote + '">'
                            + '            <div class="card-body respiro-categoria scroll-down bacCategorias d-flex" style="background: url(\''+ pathContent + '/' + actualVersion + '/' + content[i].Media + '\') no-repeat;">'
