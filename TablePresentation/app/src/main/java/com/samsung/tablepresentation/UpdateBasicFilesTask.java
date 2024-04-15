@@ -125,6 +125,118 @@ public class UpdateBasicFilesTask extends AsyncTask<String, Void, Void> {
             // Create input streams
             ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(new FileInputStream(zipFile)));
 
+            //create the folder structure
+            File rootDirectory = new File(destinationFolder, "dpop");
+            if (!rootDirectory.exists()) {
+                rootDirectory.mkdirs();
+
+                String subDirectoryName = "assets";
+                File subDirectory = new File(rootDirectory, subDirectoryName);
+                if (!subDirectory.exists()) {
+                    subDirectory.mkdirs();
+
+                    String subSubDirectoryName = "css";
+                    File subSubDirectory = new File(subDirectory, subSubDirectoryName);
+                    if (!subSubDirectory.exists()) {
+                        subSubDirectory.mkdirs();
+                    }
+
+                    subSubDirectoryName = "dependencies";
+                    subSubDirectory = new File(subDirectory, subSubDirectoryName);
+                    if (!subSubDirectory.exists()) {
+                        subSubDirectory.mkdirs();
+
+                        String subSubSubDirectoryName = "jquery";
+                        File subSubSubDirectory = new File(subSubDirectory, subSubSubDirectoryName);
+                        if (!subSubSubDirectory.exists()) {
+                            subSubSubDirectory.mkdirs();
+                        }
+
+                        subSubSubDirectoryName = "owl.carousel";
+                        subSubSubDirectory = new File(subSubDirectory, subSubSubDirectoryName);
+                        if (!subSubSubDirectory.exists()) {
+                            subSubSubDirectory.mkdirs();
+
+                            String subSubSubSubDirectoryName = "dist";
+                            File subSubSubSubDirectory = new File(subSubSubDirectory, subSubSubSubDirectoryName);
+                            if (!subSubSubSubDirectory.exists()) {
+                                subSubSubSubDirectory.mkdirs();
+
+                                String subSubSubSubSubDirectoryName = "assets";
+                                File subSubSubSubSubDirectory = new File(subSubSubSubDirectory, subSubSubSubSubDirectoryName);
+                                if (!subSubSubSubSubDirectory.exists()) {
+                                    subSubSubSubSubDirectory.mkdirs();
+                                }
+                            }
+
+                            subSubSubSubDirectoryName = "src";
+                            subSubSubSubDirectory = new File(subSubSubDirectory, subSubSubSubDirectoryName);
+                            if (!subSubSubSubDirectory.exists()) {
+                                subSubSubSubDirectory.mkdirs();
+
+                                String subSubSubSubSubDirectoryName = "js";
+                                File subSubSubSubSubDirectory = new File(subSubSubSubDirectory, subSubSubSubSubDirectoryName);
+                                if (!subSubSubSubSubDirectory.exists()) {
+                                    subSubSubSubSubDirectory.mkdirs();
+                                }
+
+                                subSubSubSubSubDirectoryName = "scss";
+                                subSubSubSubSubDirectory = new File(subSubSubSubDirectory, subSubSubSubSubDirectoryName);
+                                if (!subSubSubSubSubDirectory.exists()) {
+                                    subSubSubSubSubDirectory.mkdirs();
+                                }
+                            }
+                        }
+                    }
+
+                    subSubDirectoryName = "img";
+                    subSubDirectory = new File(subDirectory, subSubDirectoryName);
+                    if (!subSubDirectory.exists()) {
+                        subSubDirectory.mkdirs();
+                    }
+
+                    subSubDirectoryName = "js";
+                    subSubDirectory = new File(subDirectory, subSubDirectoryName);
+                    if (!subSubDirectory.exists()) {
+                        subSubDirectory.mkdirs();
+                    }
+                }
+            }
+
+            rootDirectory = new File(destinationFolder, "eureka");
+            if (!rootDirectory.exists()) {
+                rootDirectory.mkdirs();
+
+                String subDirectoryName = "assets";
+                File subDirectory = new File(rootDirectory, subDirectoryName);
+                if (!subDirectory.exists()) {
+                    subDirectory.mkdirs();
+
+                    String subSubDirectoryName = "css";
+                    File subSubDirectory = new File(subDirectory, subSubDirectoryName);
+                    if (!subSubDirectory.exists()) {
+                        subSubDirectory.mkdirs();
+                    }
+
+                    subSubDirectoryName = "img";
+                    subSubDirectory = new File(subDirectory, subSubDirectoryName);
+                    if (!subSubDirectory.exists()) {
+                        subSubDirectory.mkdirs();
+                    }
+
+                    subSubDirectoryName = "js";
+                    subSubDirectory = new File(subDirectory, subSubDirectoryName);
+                    if (!subSubDirectory.exists()) {
+                        subSubDirectory.mkdirs();
+                    }
+                }
+            }
+
+            rootDirectory = new File(destinationFolder, "inc");
+            if (!rootDirectory.exists()) {
+                rootDirectory.mkdirs();
+            }
+
             // Loop through all entries in the ZIP file
             ZipEntry entry;
             while ((entry = zipInputStream.getNextEntry()) != null) {
@@ -137,13 +249,15 @@ public class UpdateBasicFilesTask extends AsyncTask<String, Void, Void> {
                 }
 
                 // Write the entry to the destination file
-                FileOutputStream fileOutputStream = new FileOutputStream(destinationFile);
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-                while ((bytesRead = zipInputStream.read(buffer)) != -1) {
-                    fileOutputStream.write(buffer, 0, bytesRead);
+                if (!isDirectory(destinationFile.getPath())) {
+                    FileOutputStream fileOutputStream = new FileOutputStream(destinationFile);
+                    byte[] buffer = new byte[1024];
+                    int bytesRead;
+                    while ((bytesRead = zipInputStream.read(buffer)) != -1) {
+                        fileOutputStream.write(buffer, 0, bytesRead);
+                    }
+                    fileOutputStream.close();
                 }
-                fileOutputStream.close();
             }
 
             // Close the ZIP file input stream
@@ -151,5 +265,10 @@ public class UpdateBasicFilesTask extends AsyncTask<String, Void, Void> {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static boolean isDirectory(String path) {
+        File file = new File(path);
+        return file.isDirectory();
     }
 }

@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     static WebView webView;
     static String baseUrl = "https://dpopinterativo.dev.br";
-    private static String path = "file:///data/data/com.samsung.tablepresentation/files/";
+    private static String path = "file:///data/user/0/com.samsung.tablepresentation/files/";
     private static String versionFolder = "version";
     private static String localVersion = "";
     static String actualVersion = "";
@@ -51,6 +51,9 @@ public class MainActivity extends AppCompatActivity {
         webSettings.setAllowUniversalAccessFromFileURLs(true);
 
         JSFunction jsFunction = new JSFunction(this);
+
+        updateBasicFiles = new UpdateBasicFilesTask(username, password, context, this);
+        updateLocalVersion = new UpdateLocalVersionTask(username, password, context, this);
 
         if (isConnectedToInternet()) {
             String contentType = "1";
@@ -86,9 +89,6 @@ public class MainActivity extends AppCompatActivity {
         } else {
             webView.loadUrl("file:///android_asset/indice.html");
         }
-
-        updateBasicFiles = new UpdateBasicFilesTask(username, password, context, this);
-        updateLocalVersion = new UpdateLocalVersionTask(username, password, context, this);
     }
 
     private class Callback extends WebViewClient {
