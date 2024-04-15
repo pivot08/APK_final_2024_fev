@@ -72,32 +72,36 @@
 
             var content = data.templateContent.filter((x) => x.TemplateID == templateChildID || x.TemplateContentID == templateContentChildID);
             if (content != null && content != undefined) {
+               if (tablet == 1 || tablet == '1') {
+                  Android.registerNavigation('1', templateChildID, templateContentChildID, formatDate(new Date()));
+               }
+
                var contentTitle = document.getElementById('content-title');
                contentTitle.innerHTML = content[0].Title;
 
                var contentOrientation = '';
                switch (content[0].ContentOrientation) {
-                     case "T":
-                        contentOrientation = 'top';
-                        break;
-                     case "L":
-                        contentOrientation = 'left';
-                        break;
-                     case "B":
-                        contentOrientation = 'bottom';
-                        break;
-                     case "R":
-                        contentOrientation = 'right';
-                        break;
-                     default:
-                        contentOrientation = 'top';
-                        break;
+                  case "T":
+                     contentOrientation = 'top';
+                     break;
+                  case "L":
+                     contentOrientation = 'left';
+                     break;
+                  case "B":
+                     contentOrientation = 'bottom';
+                     break;
+                  case "R":
+                     contentOrientation = 'right';
+                     break;
+                  default:
+                     contentOrientation = 'top';
+                     break;
                }
-               var contentText = document.getElementById('content-text-'+ contentOrientation);
+               var contentText = document.getElementById('content-text-' + contentOrientation);
                contentText.innerHTML = content[0].Content;
 
                var video = document.getElementById('content-video');
-               video.src = '../content/'+ content[0].Media;
+               video.src = '../content/' + content[0].Media;
                video.play();
 
                var contentFootnote = document.getElementById('content-footnote');

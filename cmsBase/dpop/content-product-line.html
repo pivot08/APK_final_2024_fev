@@ -125,6 +125,10 @@
                   var contentButton3 = '';
                   var contentButton4 = '';
 
+                  if (tablet == 1 || tablet == '1') {
+                     Android.registerNavigation('1', templateChildID, templateContentChildID, formatDate(new Date()));
+                  }
+
                   for (var i = 0; i < content.length; i++) {
                      var contentTarget = "content-text";
                      if (content[i].TemplateID == templateChildID) {

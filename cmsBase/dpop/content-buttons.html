@@ -173,6 +173,10 @@
                var contentButton6 = '';
                var countSmallButton = 0;
 
+               if (tablet == 1 || tablet == '1') {
+                  Android.registerNavigation('1', templateChildID, templateContentChildID, formatDate(new Date()));
+               }
+
                for (var i = 0; i < content.length; i++) {
                   var contentTarget = "content-buttons";
 
@@ -216,7 +220,7 @@
                         break;
                      case "4": //Rectangular Button - 2 Positions - Horizontal
                         contentButton4 += '<div class="col-md-12 "><div class="card  ' + content[i].Footnote + '"><div class="card-body respiro-categoria scroll-down d-flex">'
-                           + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID +'">'
+                           + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '">'
                            + '<h5 class="card-title categoria">' + content[i].TemplateContent + '</h5>'
                            + '<img src="../content/' + content[i].Media + '" alt="" class="animacao-bt box-img img-fluid">'
                            + '</a>'

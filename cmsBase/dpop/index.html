@@ -144,8 +144,10 @@
       const applicationID = params.get('applicationID');
       const applicationSlug = params.get('applicationSlug');
       const operatorUserID = params.get('operatorUserID');
+
       const pageTypeID = params.get('pageTypeID');
       const templateContentID = params.get('templateContentID');
+      const templateContentChildID = params.get('templateContentID');
 
       var xhrContent = new XMLHttpRequest();
       xhrContent.onreadystatechange = function () {
@@ -154,6 +156,10 @@
 
             var content = data.templateContent.filter((x) => x.ApplicationID == applicationID && x.PageTypeID == pageTypeID && x.TemplateContentID == templateContentID);
             if (content != null && content != undefined) {
+               if (tablet == 1 || tablet == '1') {
+                  Android.registerNavigation('1', templateChildID, templateContentChildID, formatDate(new Date()));
+               }
+
                var video = document.getElementById('home-video');
                video.src = '../content/' + content[0].Media;
                video.play();
@@ -168,8 +174,8 @@
                body.style.backgroundColor = content[0].Color;
 
                var contentLink = document.getElementById('content-link');
-               contentLink.href = 'content-buttons.html?tablet='+ tablet +'&path='+ path +'&actualVersion='+ actualVersion +'&applicationID='+ applicationID +'&applicationSlug=' + applicationSlug + '&operatorUserID='+ operatorUserID +'&pageTypeID='+ pageTypeID +'&templateChildID=' + content[0].TemplateChildID +'&templateContentChildID=' + content[0].TemplateContentChildID;
-            }
+               contentLink.href = 'content-buttons.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateChildID=' + content[0].TemplateChildID + '&templateContentChildID=' + content[0].TemplateContentChildID;
+}
          }
       }
       xhrContent.open("GET", pathBaseFiles + '/' + (actualVersion != "" ? actualVersion : "content") + '.json');
