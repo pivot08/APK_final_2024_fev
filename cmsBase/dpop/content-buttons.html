@@ -180,10 +180,10 @@
                for (var i = 0; i < content.length; i++) {
                   var contentTarget = "content-buttons";
 
-                  var contentChild = data.templateContent.filter((x) => (content[i].TemplateChildID != '' && x.TemplateChildID == content[i].TemplateChildID) || (content[i].TemplateContentChildID != '' && x.TemplateContentChildID == content[i].TemplateContentChildID));
+                  var contentChild = data.templateContent.filter((x) => (content[i].TemplateChildID != '' && x.TemplateID == content[i].TemplateChildID) || (content[i].TemplateContentChildID != '' && x.TemplateContentID == content[i].TemplateContentChildID));
 
                   if (contentChild != null && contentChild != undefined && contentChild.length > 0) {
-                     if (contentChild.filter((x) => x.PageTypeID == 4)) {
+                     if (contentChild[0].PageTypeID == 4) {
                         contentTarget = "content-product-line";
                      }
                   }
