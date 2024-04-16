@@ -94,7 +94,7 @@
             var data = JSON.parse(xhrContent.responseText);
 
             var content = data.templateContent.filter((x) => x.TemplateID == templateChildID || x.TemplateContentID == templateContentChildID);
-            if (content != null && content != undefined) {
+            if (content != null && content != undefined && content.length > 0) {
                if (tablet == 1 || tablet == '1') {
                   Android.registerNavigation('1', templateChildID, templateContentChildID, formatDate(new Date()));
                }

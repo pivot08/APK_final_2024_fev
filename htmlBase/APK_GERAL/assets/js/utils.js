@@ -92,7 +92,7 @@ function checkAndRedirect() {
         // Define um timeout de 30 segundos para redirecionar para a URL da Vivo
         setTimeout(function () {
             window.location.href = "../vivo/vivo.html";
-        }, 30000); // 30 segundos em milissegundos
+        }, 300000000); // 30 segundos em milissegundos
     }
 
     // Verifica se o login foi feito pela Claro
@@ -100,7 +100,7 @@ function checkAndRedirect() {
         // Define um timeout de 30 segundos para redirecionar para a URL da Claro
         setTimeout(function () {
             window.location.href = "../claro/claro.html";
-        }, 30000); // 30 segundos em milissegundos
+        }, 300000000); // 30 segundos em milissegundos
     }
 
     // Verifica se o login foi feito pela Tim
@@ -108,7 +108,7 @@ function checkAndRedirect() {
         // Define um timeout de 30 segundos para redirecionar para a URL da Tim
         setTimeout(function () {
             window.location.href = "../tim/tim.html";
-        }, 30000); // 30 segundos em milissegundos
+        }, 300000000); // 30 segundos em milissegundos
     }
 
     // Verifica se o login foi feito pela Geral
@@ -116,7 +116,7 @@ function checkAndRedirect() {
         // Define um timeout de 60 segundos para redirecionar para a URL geral
         setTimeout(function () {
             window.location.href = "../index.html";
-        }, 60000); // 60 segundos em milissegundos
+        }, 6000000000); // 60 segundos em milissegundos
     }
 }
 
