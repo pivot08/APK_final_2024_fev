@@ -90,6 +90,7 @@
         const pathBaseFiles = params.get('path') != null && params.get('path') != undefined ? params.get('path') : '../version';
         const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : '';
         const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+        const requirePassword = params.get('requirePassword') != null && params.get('requirePassword') != undefined ? params.get('requirePassword') : false;
 
         if (tablet == 1 || tablet == '1') {
             Android.registerNavigation('1', '0', '', formatDate(new Date()));
@@ -111,8 +112,8 @@
 
                             var content = data.filter((x) => x.Login == user);
                             if (content != null && content != undefined && content.length > 0) {
-                                if (content[0].Password == hashedPassword) {
-                                    document.location.href = path + '/' + content[0].ApplicationSlug + '/selection.html?tablet='+ tablet +'&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + content[0].ApplicationID + '&applicationSlug=' + content[0].ApplicationSlug + '&operatorUserID=' + content[0].OperatorUserID;
+                                if (content[0].Password == hashedPassword || !requirePassword) {
+                                    document.location.href = path + '/' + content[0].ApplicationSlug + '/selection.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + content[0].ApplicationID + '&applicationSlug=' + content[0].ApplicationSlug + '&operatorUserID=' + content[0].OperatorUserID;
                                 } else {
                                     divError.style.display = 'block';
                                     divError.innerHTML = 'Senha inválida.';
@@ -131,6 +132,12 @@
 
         function forceLower(strInput) {
             strInput.value = strInput.value.toLowerCase();
+        }
+
+        if (!requirePassword) {
+            document.getElementById("username").value = 'eureka';
+            document.getElementById("password").value = 'eureka';
+            authenticate();
         }
     </script>
 </body>

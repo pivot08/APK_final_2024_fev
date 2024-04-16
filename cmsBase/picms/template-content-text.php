@@ -21,6 +21,8 @@ $media = '';
 $coverImage = '';
 $positionTop = '';
 $positionLeft = '';
+$textTitleColor = '';
+$textColor = '';
 $isActive = '1';
 $update = false;
 
@@ -53,6 +55,8 @@ if (isset($_GET['id'])) {
 		$coverImage = $n['CoverImage'];
 		$positionTop = $n['PositionTop'];
 		$positionLeft = $n['PositionLeft'];
+		$textTitleColor = $n['TextTitleColor'];
+		$textColor = $n['TextColor'];
 		$isActive = $n['IsActive'];
 	}
 }
@@ -199,6 +203,11 @@ if (isset($_GET['id'])) {
 											<input type="text" name="Title" class="form-control" value="<?php echo $title; ?>">
 										</div>
 										<div class="form-group">
+											<label for="input">Cor do Título</label>
+											<input type="text" id="colorpicker-popup" name="TextTitleColor" class="form-control"
+												value="<?php echo $textTitleColor; ?>">
+										</div>
+										<div class="form-group">
 											<label for="input">Posicionamento do texto</label>
 											<select class="form-control" name="ContentOrientationID">
 												<option value="">Selecione</option>
@@ -217,6 +226,11 @@ if (isset($_GET['id'])) {
 											<label for="input">Texto exíbido no conteúdo</label>
 											<textarea name="Content" class="form-control"
 												row="5"><?php echo $content; ?></textarea>
+										</div>
+										<div class="form-group">
+											<label for="input">Cor do Texto</label>
+											<input type="text" id="colorpicker-popup" name="TextColor" class="form-control"
+												value="<?php echo $textColor; ?>">
 										</div>
 										<div class="form-group">
 											<label for="input">Observações de rodapé exíbido no conteúdo</label>

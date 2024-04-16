@@ -24,7 +24,9 @@
                 <div class="col-md-2">
                     <div class="card">
                         <div class="card-body d-flex align-items-center">
-                            <a href="index.html?tablet=0&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateContentID=22"><img src="assets/img/nav_home.svg" class="svg-icone"></a>
+                            <a
+                                href="index.html?tablet=0&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateContentID=22"><img
+                                    src="assets/img/nav_home.svg" class="svg-icone"></a>
                         </div>
                     </div>
                 </div>
@@ -93,7 +95,7 @@
                     var template = data.template.filter((x) => x.ApplicationID == applicationID && x.TemplateID == templateChildID);
 
                     var body = document.getElementById('content-body');
-                    body.style.backgroundColor = '#' + template[0].Color;
+                    body.style.backgroundColor = '#' + template[0].Color.replace('#', '');
 
                     var headerText = document.getElementById('header-text');
                     if (headerText != '') {
@@ -110,12 +112,12 @@
                         contentButton += '<div class="col-md-6 ">'
                             + '    <div class="card">'
                             + '        <div class="card-body respiro-video">'
-                            + '            <a href="' + contentTarget + '.html'+ paramsValue +'&applicationID=' + applicationID + '&templateContentChildID=' + content[i].TemplateContentChildID + '">'
+                            + '            <a href="' + contentTarget + '.html' + paramsValue + '&applicationID=' + applicationID + '&templateContentChildID=' + content[i].TemplateContentChildID + '">'
                             + '                <div class="video-overlay">'
-                            + '                    <img src="'+ pathContent + '/' + actualVersion + '/'+ content[i].CoverImage + '">'
+                            + '                    <img src="' + pathContent + '/' + actualVersion + '/' + content[i].CoverImage + '">'
                             + '                </div>'
                             + '                <video class="video-sequence" muted>'
-                            + '                    <source src="'+ pathContent + '/' + actualVersion + '/'+ content[i].Media + '" type="video/mp4">'
+                            + '                    <source src="' + pathContent + '/' + actualVersion + '/' + content[i].Media + '" type="video/mp4">'
                             + '                </video>'
                             + '            </a>'
                             + '        </div>'
@@ -125,7 +127,7 @@
 
                     var button = document.getElementById('container-buttons');
                     button.innerHTML = contentButton;
-                    
+
                     if (tablet == 1 || tablet == '1') {
                         Android.registerNavigation('2', content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
                     }

@@ -103,7 +103,9 @@ function runTimer(linkHome) {
     window.location.href = linkHome;
 }
 
-const timer = setTimeout(() => {
-    clearTimeout(timer);
-    runTimer(linkHome);
-}, 30000);
+if (linkHome != '') {
+    const timer = setTimeout(() => {
+        clearTimeout(timer);
+        runTimer(linkHome);
+    }, 30000);
+}

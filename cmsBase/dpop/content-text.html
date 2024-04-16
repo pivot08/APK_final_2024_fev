@@ -5,65 +5,65 @@
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
    <!-- CSS -->
-    <!-- Inclua os links para os arquivos do Bootstrap CSS -->
-    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
-    <link href="assets/css/geral.css" rel="stylesheet">
-    <link href="assets/css/style.css" rel="stylesheet">
-    
+   <!-- Inclua os links para os arquivos do Bootstrap CSS -->
+   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+   <link href="assets/css/geral.css" rel="stylesheet">
+   <link href="assets/css/style.css" rel="stylesheet">
+
    <title>Samsung</title>
 </head>
 
-<body class="h-100 bac-preto feature"  onclick="goBack()">
+<body class="h-100 bac-preto feature" id="content-body" onclick="goBack()">
    <div id="loading-overlay">Carregando...</div>
    <div id="loadingContainer" style="display:none;">
-      
+
 
       <div class="container-fluid ">
          <!-- primeira linha-->
-        <div class="row mx-auto primeira-linha">
+         <div class="row mx-auto primeira-linha">
 
-         <!-- Coluna 1 -->
-         <div class="col-md-2">
-             <div class="card ">
-                 <div class="card-body d-flex align-items-center"></div>
-             </div>
-         </div>
-
-         <!-- Coluna 2 -->
-         <div class="col-md-8">
-             <div class="card "></div>
-         </div>
-
-         <!-- Coluna 3 -->
-         <div class="col-md-2">
-             <div class="card ">
-                 <div class="card-body d-flex align-items-center">
-                     <a href="javascript:history.go(-1);" class="header-links">
-                         <img src="assets/img/nav_back-white.svg" class="svg-icone2">
-                     </a>
-                 </div>
-             </div>
-         </div>
-
-     </div>
-            <div class="row mx-auto text-center vertical-center">
-               <div class="col-md-12 box-item">
-                  <h3 class="txt-white">
-                     <strong id="content-title"></strong>
-                  </h3>
-
-                  <p class="box-paragraph txt-white text-center" id="content-text-top"></p>
-
-                  <video autoplay loop muted id="content-video">
-                     <source src="" type="video/mp4">
-                     Seu navegador não suporta vídeo HTML5.
-                  </video>
-
-                  <p class="box-tj txt-585858" id="content-footnote"></p>
+            <!-- Coluna 1 -->
+            <div class="col-md-2">
+               <div class="card ">
+                  <div class="card-body d-flex align-items-center"></div>
                </div>
             </div>
+
+            <!-- Coluna 2 -->
+            <div class="col-md-8">
+               <div class="card "></div>
+            </div>
+
+            <!-- Coluna 3 -->
+            <div class="col-md-2">
+               <div class="card ">
+                  <div class="card-body d-flex align-items-center">
+                     <a href="javascript:history.go(-1);" class="header-links">
+                        <img src="assets/img/nav_back-white.svg" class="svg-icone2">
+                     </a>
+                  </div>
+               </div>
+            </div>
+
          </div>
-    
+         <div class="row mx-auto text-center vertical-center">
+            <div class="col-md-12 box-item">
+               <h3 class="txt-white">
+                  <strong id="content-title"></strong>
+               </h3>
+
+               <p class="box-paragraph txt-white text-center" id="content-text-top"></p>
+
+               <img id="content-image">
+               <video autoplay loop muted id="content-video">
+                  <source src="" type="video/mp4">
+               </video>
+
+               <p class="box-tj txt-585858" id="content-footnote"></p>
+            </div>
+         </div>
+      </div>
+
    </div>
    <!-- JS -->
    <script src="assets/dependencies/jquery/jquery.min.js"></script>
@@ -99,8 +99,14 @@
                   Android.registerNavigation('1', templateChildID, templateContentChildID, formatDate(new Date()));
                }
 
+               var body = document.getElementById('content-body');
+               body.style.backgroundColor = '#'+ content[0].Color.replace('#', '');
+
                var contentTitle = document.getElementById('content-title');
                contentTitle.innerHTML = content[0].Title;
+               if (content[0].TextTitleColor != null && content[0].TextTitleColor != '') {
+                  contentTitle.style.color = '#'+ content[0].TextTitleColor.replace('#', '');
+               }
 
                var contentOrientation = '';
                switch (content[0].ContentOrientation) {
@@ -122,10 +128,19 @@
                }
                var contentText = document.getElementById('content-text-' + contentOrientation);
                contentText.innerHTML = content[0].Content;
+               if (content[0].TextColor != null && content[0].TextColor != '') {
+                  contentText.style.color = '#'+ content[0].TextColor.replace('#', '');
+               }
 
-               var video = document.getElementById('content-video');
-               video.src = pathContent + '/' + actualVersion + '/' + content[0].Media;
-               video.play();
+               var media = pathContent + '/' + actualVersion + '/' + content[0].Media;
+               if (media.indexOf('mp4') > 0) {
+                  var video = document.getElementById('content-video');
+                  video.src = media;
+                  video.play();
+               } else {
+                  var image = document.getElementById('content-image');
+                  image.src = media;
+               }
 
                var contentFootnote = document.getElementById('content-footnote');
                contentFootnote.innerHTML = content[0].Footnote;
