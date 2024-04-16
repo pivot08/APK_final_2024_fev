@@ -106,9 +106,20 @@
                 var content = data.templateContent.filter((x) => x.ApplicationID == applicationID && x.TemplateID == templateChildID);
                 if (content != null && content != undefined && content.length > 0) {
                     var contentButton = '';
-                    var contentTarget = "feature-full";
 
                     for (var i = 0; i < content.length; i++) {
+                        var contentTarget = "feature-full";
+
+                        // if (content[i].TemplateChildID != null && content[i].TemplateChildID != '0' && content[i].TemplateChildID != '') {
+                        //     var slug = data.templateContent.filter((x) => x.TemplateID == content[i].TemplateChildID);
+                        //     contentTarget = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : 'menu');
+                        // }
+
+                        // if (content[i].TemplateContentChildID != null && content[i].TemplateContentChildID != '0' && content[i].TemplateContentChildID != '') {
+                        //     var slug = data.templateContent.filter((x) => x.TemplateContentID == content[i].TemplateContentChildID);
+                        //     contentTarget = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : 'menu');
+                        // }
+
                         contentButton += '<div class="col-md-6 ">'
                             + '    <div class="card">'
                             + '        <div class="card-body respiro-video">'
