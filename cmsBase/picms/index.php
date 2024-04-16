@@ -62,12 +62,22 @@
 									</video>
 								</div>
 								<div  style="padding:10px;">
-									<h1>1 - ÍNDICE E SCREENSAVERS</h1><br>
+									<h1>2 - CRIAÇÃO DE PÁGINAS DE CATEGORIA (botões)</h1><br>
 									<video width="320" height="240" controls>
-									<source src="tutorial/1-Home-Screensaver-Indice.mov" type="video/mp4">
+									<source src="tutorial/2-tutorial-paginas-botao.mov" type="video/mp4">
 									Seu navegador não suporta a tag de vídeo.
 									</video>
 								</div>
+								<div  style="padding:10px;">
+									<h1>3 - CRIAÇÃO DE PÁGINAS DE PRODUTOS</h1><br>
+									<video width="320" height="240" controls>
+									<source src="tutorial/3-tutorial-pagina-produto.mov" type="video/mp4">
+									Seu navegador não suporta a tag de vídeo.
+									</video>
+								</div>
+
+
+								
 							</div>
 
 						</div>						

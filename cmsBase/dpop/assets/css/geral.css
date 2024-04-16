@@ -86,6 +86,7 @@ video {max-width: 100%;}
 
 .bac-verde-agua {background:#b1cbc4;}
 .bac-verde-agua-claro {background:#d7e8de;}
+.bac-verde-agua-claro {background:#d7e8de;}
 .bac-cinza-fa {background:#fafafa;border:solid 1px;}
 .bac-cinza-f4 {background:#f4f4f4;border:solid 1px;}
 .bac-cinza-f4-2 {background:#f4f4f4;}
@@ -105,6 +106,19 @@ video {max-width: 100%;}
 .bac-caqui {background:#76766e;}
 .bac-azul-escuro {background: #0e2443;}
 .bac-gelo {background: #eaeff5;}
+.bac-amarelo {background:#f9f5e2;border:solid 1px;}
+.bac-linhaA-gradiente1 {background: rgb(229,193,200);
+  background: linear-gradient(319deg, rgba(229,193,200,1) 17%, rgba(128,104,254,1) 68%);}
+  .bac-linhaA-gradiente2 {
+    background: rgb(74,207,205);
+    background: linear-gradient(319deg, rgba(74,207,205,1) 17%, rgba(0,153,205,1) 98%);
+  }
+  .bac-linhaA-gradiente3 {
+  background: rgb(126,160,227);
+background: linear-gradient(318deg, rgba(126,160,227,1) 23%, rgba(0,128,212,1) 98%);
+  }
+
+  .bac-azul-samsung {background:#006bee;text-align:center;}
 
 .background-s23 { 
   width: 100%;
