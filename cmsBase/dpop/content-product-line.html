@@ -126,9 +126,14 @@
                   var contentButton3 = '';
                   var contentButton4 = '';
 
+                  var showVerticalOnTop = true;
+
                   if (tablet == 1 || tablet == '1') {
                      Android.registerNavigation('1', templateChildID, templateContentChildID, formatDate(new Date()));
                   }
+
+                  //organiza o array de botões pela ordem definida no CMS
+                  content.sort((a, b) => a.ButtonOrder - b.ButtonOrder);
 
                   for (var i = 0; i < content.length; i++) {
                      var contentTarget = "content-text";
@@ -146,6 +151,7 @@
                      }
 
                      switch (content[i].ButtonSizeID) {
+                        case "2": //Rectangular Button - 2 Positions - Vertical
                         case "3": //Rectangular Button - 2 Positions - Vertical
                            contentButton3 += '<div class="col-md-6 ">'
                               + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="box-link">'
@@ -163,6 +169,10 @@
                               + '</div>';
                            break;
                         case "4": //Rectangular Button - 2 Positions - Horizontal
+                           if (i > 1) {
+                              showVerticalOnTop = false;
+                           }
+
                            contentButton4 = '<div class="col-md-12">'
                               + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="box-link">'
                               + '      <h5 class="card-title categoria ' + (content[i].IsTextRight && content[i].IsTextRight == 1 ? 'right-title' : '') + ' ' + (content[i].IsWhiteTitle && content[i].IsWhiteTitle == 1 ? 'color-branco' : '') + '">' + content[i].TemplateContent + '</h5>'
@@ -177,7 +187,7 @@
                   // buttonHeader.innerHTML = buttonHeader.innerHTML + contentButton4;
 
                   var body = document.getElementById('content-body');
-                  body.style.backgroundColor = bodyColor;
+                  body.style.backgroundColor = '#'+ bodyColor.replace('#', '');
 
                   var homeButtonImg = document.getElementById('home-button');
                   if (homeButtonImg != undefined && homeButtonImg != null) {
@@ -218,7 +228,7 @@
                   }
 
                   var buttonContent = document.getElementById('content-buttons-product');
-                  buttonContent.innerHTML = buttonContent.innerHTML + contentButton4 + contentButton3;
+                  buttonContent.innerHTML = buttonContent.innerHTML + (showVerticalOnTop ? contentButton4 + contentButton3 : contentButton3 + contentButton4);
                }
             }
          }

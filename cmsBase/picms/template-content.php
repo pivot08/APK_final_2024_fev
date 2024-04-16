@@ -26,6 +26,8 @@ if (isset($_POST['save']) || isset($_POST['update'])) {
 	$coverImage = isset($_POST['coverImage']) ? $_POST['coverImage'] : '';
 	$positionTop = isset($_POST['PositionTop']) ? $_POST['PositionTop'] : '';
 	$positionLeft = isset($_POST['PositionLeft']) ? $_POST['PositionLeft'] : '';
+	$textTitleColor = isset($_POST['TextTitleColor']) ? $_POST['TextTitleColor'] : '';
+	$textColor = isset($_POST['TextColor']) ? $_POST['TextColor'] : '';
 
 	if (isset($_POST['IsWhiteTitle'])) {
 		$isWhiteTitle = $_POST['IsWhiteTitle'];
@@ -101,10 +103,10 @@ if (isset($_POST['delete'])) {
 }
 
 if (isset($_POST['save'])) {
-	templateContentInsert($applicationID, $templateID, $buttonSizeID, $buttonPositionID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isWhiteTitle, $isTextRight, $isActive);
+	templateContentInsert($applicationID, $templateID, $buttonSizeID, $buttonPositionID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $textTitleColor, $textColor, $isWhiteTitle, $isTextRight, $isActive);
 }
 if (isset($_POST['update'])) {
-	templateContentUpdate($templateContentID, $applicationID, $templateID, $buttonSizeID, $buttonPositionID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $isWhiteTitle, $isTextRight, $isActive);
+	templateContentUpdate($templateContentID, $applicationID, $templateID, $buttonSizeID, $buttonPositionID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $textTitleColor, $textColor, $isWhiteTitle, $isTextRight, $isActive);
 }
 if (isset($_POST['delete'])) {
 	templateContentDelete($templateContentID);

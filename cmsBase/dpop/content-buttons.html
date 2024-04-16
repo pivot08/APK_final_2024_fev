@@ -37,22 +37,22 @@
          color: #fff;
       }
 
-      .Cleft .col-md-6,.Cright .col-md-6 {
-            width: 100%;
-         }
-         .col-md-6.fullContentColunm {
-    height: 770px;
-}
+      .Cleft .col-md-6,
+      .Cright .col-md-6 {
+         width: 100%;
+      }
 
-.Cright .col-md-6.halfContentColumn {
-    height: 45.5%;
-}
+      .col-md-6.fullContentColunm {
+         height: 770px;
+      }
 
-.Cright .respiro-categoria {
-    padding-bottom: 19px;
-}
+      .Cright .col-md-6.halfContentColumn {
+         height: 45.5%;
+      }
 
-
+      .Cright .respiro-categoria {
+         padding-bottom: 19px;
+      }
    </style>
 </head>
 
@@ -113,39 +113,37 @@
             <div class="col-md-6 card destaques botoesSmallDestaque">
                <div class=" bac-branco" style="border-radius: 30px;">
                   <a id="link-s24">
-
                      <video autoplay muted class="videoPromo" id="videoPromo">
                         <source src="assets/img/S24.mp4" type="video/mp4">
                      </video>
                   </a>
-
                   <h3 style="display: none;" id="carousel-text" class="box-item-bordered-title"></h3>
                   <div class="owl-carousel owl-theme" id="carousel-promo"></div>
                </div>
             </div>
-            <div class="col-md-6" style="padding-right: 0px;margin-bottom: 0px !important;">
-               <div class="row  full-height" id="container-small-button">
 
-               </div>
+            <div id="container-full-button"></div>
+            <div class="col-md-6" style="padding-right: 0px;margin-bottom: 0px !important;" id="mainContainer-small-button">
+               <div class="row full-height" id="container-small-button"></div>
             </div>
+         </div>
 
-         </div>
-      <div class="row mx-auto trava-botoes">
-         <div class="col-md-12 CTop" id="button-top">
-            <!--Rectangular Button - 2 Positions - Horizontal-->
-         </div>
-         <div class="col-md-6 Cleft" id="button-left">
-            <!--Rectangular Button - 2 Positions - Vertical
+         <div class="row mx-auto trava-botoes">
+            <div class="col-md-12 CTop" id="button-top">
+               <!--Rectangular Button - 2 Positions - Horizontal-->
+            </div>
+            <div class="col-md-6 Cleft" id="button-left">
+               <!--Rectangular Button - 2 Positions - Vertical
             //Rectangular Button - 1 Position-->
-         </div>
-         <div class="col-md-6 Cright" id="button-right">
-            <!--Rectangular Button - 2 Positions - Vertical
+            </div>
+            <div class="col-md-6 Cright" id="button-right">
+               <!--Rectangular Button - 2 Positions - Vertical
             //Rectangular Button - 1 Position-->
+            </div>
+            <div class="col-md-12 Cbottom" id="button-bottom">
+               <!--Rectangular Button - 2 Positions - Horizontal-->
+            </div>
          </div>
-         <div class="col-md-12 Cbottom" id="button-bottom">
-            <!--Rectangular Button - 2 Positions - Horizontal-->
-         </div>
-      </div>
 
 
 
@@ -160,17 +158,9 @@
    <script src="../inc/main.js"></script>
 
    <script>
-      var video = document.getElementById("videoPromo");
-      video.addEventListener("ended", function () {
-         alert("Video has finished playing!");
-         // myFunction();
-      });
-
-      // const button = document.querySelector(".btn_start");
-      // const box = document.querySelector(".button");
-      // button.addEventListener("click", () => {
-      //     box.style.animation = "";
-      //     setTimeout(() => box.style.animation = "on_click", 5);
+      // var video = document.getElementById("videoPromo");
+      // video.addEventListener("ended", function () {
+      //    alert("Video has finished playing!");
       // });
 
       const url = new URL(window.location.href);
@@ -198,6 +188,8 @@
             var content = data.templateContent.filter((x) => x.TemplateID == templateChildID || (x.TemplateID == null && (x.ButtonSizeID == 6 || x.ButtonSizeID == 5)));
 
             if (content != null && content != undefined && content.length > 0) {
+               var showSmallButton = true;
+
                var headerTextTitle = '';
                var contentButton = '';
                var contentButton2 = '';
@@ -217,11 +209,19 @@
                   Android.registerNavigation('1', templateChildID, templateContentChildID, formatDate(new Date()));
                }
 
+               //verifica se a quantidade de botões da página é maior do que 4; se for, não exibibe os small buttons
+               var checkButtonQuantity = content.filter((x) => x.TemplateID != null && x.TemplateID != '');
+               if (checkButtonQuantity.length > 4) {
+                  showSmallButton = false;
+               }
+
+               //organiza o array de botões pela ordem definida no CMS
+               content.sort((a, b) => a.ButtonOrder - b.ButtonOrder);
+
                for (var i = 0; i < content.length; i++) {
                   var contentTarget = "content-buttons";
 
                   var contentChild = data.templateContent.filter((x) => (content[i].TemplateChildID != '' && x.TemplateID == content[i].TemplateChildID) || (content[i].TemplateContentChildID != '' && x.TemplateContentID == content[i].TemplateContentChildID));
-
                   if (contentChild != null && contentChild != undefined && contentChild.length > 0) {
                      if (contentChild[0].PageTypeID == 4) {
                         contentTarget = "content-product-line";
@@ -246,8 +246,11 @@
                            + '</div>'
                         break;
                      case "2": //Rectangular Button - 1 Position
-                        contentButton = '<div class="col-md-6 halfContentColumn">'
-                           + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="header-links">'
+                        if (showSmallButton || (!showSmallButton && contentButton5 != '')) {
+                           contentButton = '<div class="col-md-6 halfContentColumn">';
+                        }
+
+                        contentButton += '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="header-links">'
                            + '<div class="card ' + content[i].Footnote + '">'
                            + '<div class="card-body respiro-categoria scroll-down d-flex">'
                            + '<h5 class="card-title categoria ' + (content[i].IsWhiteTitle && content[i].IsWhiteTitle == 1 ? 'color-branco' : '') + '">' + content[i].TemplateContent + '</h5>'
@@ -255,7 +258,10 @@
                            + '</div>'
                            + '</div>'
                            + '</a>'
-                           + '</div>'
+
+                        if (showSmallButton || (!showSmallButton && contentButton5 != '')) {
+                           contentButton += '</div>';
+                        }
                         break;
                      case "3": //Rectangular Button - 2 Positions - Vertical
                         contentButton = '<div class="col-md-6 fullContentColunm">'
@@ -269,7 +275,7 @@
                            + '</div>'
                         break;
                      case "4": //Rectangular Button - 2 Positions - Horizontal
-                        contentButton = '<div class="col-md-12 "><div class="card ' + content[i].Footnote + '"><div class="card-body respiro-categoria scroll-down d-flex">'
+                        contentButton = '<div class="col-md-12"><div class="card ' + content[i].Footnote + '"><div class="card-body respiro-categoria scroll-down d-flex">'
                            + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '">'
                            + '<h5 class="card-title categoria ' + (content[i].IsWhiteTitle && content[i].IsWhiteTitle == 1 ? 'color-branco' : '') + '">' + content[i].TemplateContent + '</h5>'
                            + '<img src="' + pathContent + '/' + actualVersion + '/' + content[i].Media + '" alt="" class="animacao-bt box-img img-fluid">'
@@ -277,46 +283,54 @@
                            + '</div></div></div>'
                         break;
                      case "5": //Small Button
-                        countSmallButton++;
-                        contentButton5 += '<div class="col-md-6  ' + (countSmallButton == 1 || countSmallButton == 3 ? 'botoes-left' : 'pdR0') + (countSmallButton == 1 || countSmallButton == 2 ? ' margin-bottom-20' : '') + '">'
-                           + '<div class="card  ' + content[i].Footnote + '"><div class="card-body botoes  card-center ">'
-                           + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="header-links">'
-                           + '<img src="' + pathContent + '/' + actualVersion + '/' + content[i].Media + '" alt="">'
-                           + '</a>'
-                           + '</div>'
-                           + '</div>'
-                           + '</div>'
+                        if (showSmallButton) {
+                           countSmallButton++;
+                           contentButton5 += '<div class="col-md-6 ' + (countSmallButton == 1 || countSmallButton == 3 ? 'botoes-left' : 'pdR0') + (countSmallButton == 1 || countSmallButton == 2 ? ' margin-bottom-20' : '') + '">'
+                              + '<div class="card  ' + content[i].Footnote + '"><div class="card-body botoes  card-center ">'
+                              + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="header-links">'
+                              + '<img src="' + pathContent + '/' + actualVersion + '/' + content[i].Media + '" alt="">'
+                              + '</a>'
+                              + '</div>'
+                              + '</div>'
+                              + '</div>'
+                        }
                         break;
                   }
 
-                  if (contentButton != '') {
-                     if (content[i].ButtonPositionFlag == 'T') {
-                        contentTop += contentButton;
-                     } else if (content[i].ButtonPositionFlag == 'L') {
-                        contentLeft += contentButton;
-                     } else if (content[i].ButtonPositionFlag == 'R') {
-                        contentRight += contentButton;
-                     } else if (content[i].ButtonPositionFlag == 'B') {
-                        contentBottom += contentButton;
-                     } else {
-                        switch (content[i].ButtonSizeID) {
-                           case "1": //Square Button
-                           case "5": //Small Button
-                              break;
-                           case "6": //Square Button - With Title
-                              contentButton6 += contentButton;
-                              break;
-                           case "2": //Rectangular Button - 1 Position
-                              contentButton2 += contentButton;
-                              break;
-                           case "3": //Rectangular Button - 2 Positions - Vertical
-                              contentButton3 += contentButton;
-                              break;
-                           case "4": //Rectangular Button - 2 Positions - Horizontal
-                              contentButton4 += contentButton;
-                              break;
+                  if (!showSmallButton && contentButton5 == '' && content[i].TemplateID != null && content[i].TemplateID != '') {
+                     contentButton5 = contentButton;
+                  } else {
+
+                     if (contentButton != '') {
+                        if (content[i].ButtonPositionFlag == 'T') {
+                           contentTop += contentButton;
+                        } else if (content[i].ButtonPositionFlag == 'L') {
+                           contentLeft += contentButton;
+                        } else if (content[i].ButtonPositionFlag == 'R') {
+                           contentRight += contentButton;
+                        } else if (content[i].ButtonPositionFlag == 'B') {
+                           contentBottom += contentButton;
+                        } else {
+                           switch (content[i].ButtonSizeID) {
+                              case "1": //Square Button
+                              case "5": //Small Button
+                                 break;
+                              case "6": //Square Button - With Title
+                                 contentButton6 += contentButton;
+                                 break;
+                              case "2": //Rectangular Button - 1 Position
+                                 contentButton2 += contentButton;
+                                 break;
+                              case "3": //Rectangular Button - 2 Positions - Vertical
+                                 contentButton3 += contentButton;
+                                 break;
+                              case "4": //Rectangular Button - 2 Positions - Horizontal
+                                 contentButton4 += contentButton;
+                                 break;
+                           }
                         }
                      }
+
                   }
                }
 
@@ -325,18 +339,28 @@
 
                var buttonTop = document.getElementById('button-top');
                buttonTop.innerHTML = contentTop;
-               
+
                var buttonLeft = document.getElementById('button-left');
                buttonLeft.innerHTML = contentLeft;
-               
+
                var buttonRight = document.getElementById('button-right');
                buttonRight.innerHTML = contentRight;
-               
+
                var buttonBottom = document.getElementById('button-bottom');
                buttonBottom.innerHTML = contentBottom;
 
+               var fullButton = document.getElementById('container-full-button');
+               var mainDivSmallButton = document.getElementById('mainContainer-small-button');
                var smallButton = document.getElementById('container-small-button');
-               smallButton.innerHTML = contentButton5;
+               if (!showSmallButton) {
+                  fullButton.innerHTML = contentButton5;
+                  fullButton.classList.add('col-md-6');
+                  fullButton.classList.add('halfContentColumn');
+                  mainDivSmallButton.remove();
+               } else {
+                  smallButton.innerHTML = contentButton5;
+                  fullButton.remove();
+               }
 
                var carousel = document.getElementById('carousel-promo');
                carousel.innerHTML = contentButton6;
