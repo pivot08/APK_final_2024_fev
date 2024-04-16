@@ -151,8 +151,8 @@ if (isset($_GET['id'])) {
 											</select>
 										</div>
 										<div class="form-group">
-											<label for="input">Template</label>
-											<span style="font-size:12px">obs.: ao deixar o template vazio, o conteúdo será exibido em todas as páginas</span>
+											<label for="input">Template (onde o conteúdo deve aparecer) *</label><br>
+											<span style="font-size:9px">obs.: ao deixar o template vazio, o conteúdo será exibido em todas as páginas</span>
 											<select class="form-control" id="TemplateID" name="TemplateID">
 												<option value="" data-id="0">Selecione</option>
 												<?php
@@ -163,7 +163,7 @@ if (isset($_GET['id'])) {
 											</select>
 										</div>
 										<div class="form-group">
-											<label for="input">Template Filho</label>
+											<label for="input">Template Filho (onde o link deve direcionar) *</label>
 											<select class="form-control" name="TemplateChildID">
 												<option value="">Selecione</option>
 												<?php
@@ -174,7 +174,7 @@ if (isset($_GET['id'])) {
 											</select>
 										</div>
 										<div class="form-group">
-											<label for="input">Conteúdo Filho</label>
+											<label for="input">Conteúdo Filho  (onde o link deve direcionar - se for a página final de texto)</label>
 											<select class="form-control" name="TemplateContentChildID">
 												<option value="">Selecione</option>
 												<?php

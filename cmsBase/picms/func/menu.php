@@ -51,7 +51,7 @@
 									href="template-content-list.php?pageTypeID=0,2,6"><span>Conteúdo de Botões Categorias</span></a></li>
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-home' || (isset($pageTypeID) && $pageTypeID == "1,5") ? 'class="active"' : ''); ?>><a
 									href="template-content-list.php?pageTypeID=1,5"><span>Home - Screensavers</span></a></li>
-							<li id="template-user-list" <?php echo ($urlPage == 'template-user' || $urlPage == 'template-user-list' ? 'class="active"' : ''); ?>><a href="template-user-list.php"><span>Usuários p/ operadoras</span></a></li>
+							
 						</ul>
 					</li>
 				<?php } ?>
@@ -60,7 +60,8 @@
 					<a class="has-arrow" href="#" aria-expanded="false"><i class="icon dripicons-meter"></i><span>CONTEÚDO
 							OPERADORAS</span></a>
 					<ul class="collapse nav-sub">
-						<li id="operator-user-list" <?php echo ($urlPage == 'operator-user' || $urlPage == 'operator-user-list' ? 'class="active"' : ''); ?>><a href="operator-user-list.php"><span>Usuários</span></a></li>
+					<li id="template-user-list" <?php echo ($urlPage == 'template-user' || $urlPage == 'template-user-list' ? 'class="active"' : ''); ?>><a href="template-user-list.php"><span>Usuários p/ operadoras</span></a></li>	
+					<li id="operator-user-list" <?php echo ($urlPage == 'operator-user' || $urlPage == 'operator-user-list' ? 'class="active"' : ''); ?>><a href="operator-user-list.php"><span>Usuários</span></a></li>
 						<li id="operator-template-list" <?php echo ($urlPage == 'operator-template' || $urlPage == 'operator-template-list' ? 'class="active"' : ''); ?>><a
 								href="operator-template-list.php"><span>Template</span></a></li>
 						<?php if ($_SESSION['user']['UserTypeID'] == 1) { ?>
