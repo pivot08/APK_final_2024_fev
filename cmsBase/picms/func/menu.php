@@ -16,21 +16,7 @@
 		</div>
 		<nav class="main-menu">
 			<ul class="nav metismenu">
-				<?php if ($_SESSION['user']['UserTypeID'] == 1) { ?>
-					<li class="sidebar-header"><span>ADMIN</span></li>
-					<li
-						class="nav-dropdown <?php echo ($urlPage == 'lista-usuarios' || $urlPage == 'perfil' || $urlPage == 'unity-list' || $urlPage == 'unity' ? 'active' : ''); ?>">
-						<a class="has-arrow" href="#" aria-expanded="false"><i
-								class="icon dripicons-meter"></i><span>ADMINISTRADOR</span></a>
-						<ul class="collapse nav-sub">
-							<li id="lista-usuarios" <?php echo ($urlPage == 'lista-usuarios' ? 'class="active"' : ''); ?>><a
-									href="lista-usuarios.php"><span>Usuários</span></a></li>
-							<li id="perfil" <?php echo ($urlPage == 'perfil' ? 'class="active"' : ''); ?>><a
-									href="perfil.php?id=<?php echo $_SESSION["user"]["UserID"]; ?>"><span>Seu perfil</span></a></li>
-							<!--<li id="unity-list" <?php echo ($urlPage == 'unity-list' || $urlPage == 'unity' ? 'class="active"' : ''); ?>><a href="unity-list.php"><span>Unidades</span></a></li>-->
-						</ul>
-					</li>
-				<?php } ?>
+				
 				<?php if ($_SESSION['user']['UserTypeID'] == 1) { ?>
 					<li
 						class="nav-dropdown <?php echo ($urlPage == 'template' || $urlPage == 'template-list' || $urlPage == 'template-content' || $urlPage == 'template-content-list' || $urlPage == 'template-content-home' || $urlPage == 'template-content-buttons' || $urlPage == 'template-content-text' || $urlPage == 'template-content-product-line' || $urlPage == 'template-content-home-feature' || $urlPage == 'template-content-step-by-step' ? 'active' : ''); ?>">
@@ -46,9 +32,9 @@
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-home-feature' || (isset($pageTypeID) && $pageTypeID == "7,12") ? 'class="active"' : ''); ?>><a
 									href="template-content-list.php?pageTypeID=7,12"><span>Conteúdo Vídeo Features (eureka)</span></a></li>
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-product-line' || (isset($pageTypeID) && $pageTypeID == "4") ? 'class="active"' : ''); ?>><a
-									href="template-content-list.php?pageTypeID=4"><span>Conteúdo botões de Produto</span></a></li>
+									href="template-content-list.php?pageTypeID=4"><span>Botões de Produto</span></a></li>
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-buttons' || (isset($pageTypeID) && $pageTypeID == "0,2,6") ? 'class="active"' : ''); ?>><a
-									href="template-content-list.php?pageTypeID=0,2,6"><span>Conteúdo de Botões Categorias</span></a></li>
+									href="template-content-list.php?pageTypeID=0,2,6"><span>Botões Categorias</span></a></li>
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-home' || (isset($pageTypeID) && $pageTypeID == "1,5") ? 'class="active"' : ''); ?>><a
 									href="template-content-list.php?pageTypeID=1,5"><span>Home - Screensavers</span></a></li>
 							
@@ -87,10 +73,25 @@
 				<?php if ($_SESSION['user']['UserTypeID'] == 1) { ?>
 					<li class="nav-dropdown <?php echo ($urlPage == 'navigation-control' ? 'active' : ''); ?>">
 						<a class="has-arrow" href="#" aria-expanded="false"><i
-								class="icon dripicons-meter"></i><span>HISTÓRICO</span></a>
+								class="icon dripicons-meter"></i><span>RELATÓRIO</span></a>
 						<ul class="collapse nav-sub">
 							<li id="navigation-control" <?php echo ($urlPage == 'navigation-control' ? 'class="active"' : ''); ?>><a
 									href="navigation-control.php"><span>Registro de Navegação</span></a></li>
+						</ul>
+					</li>
+				<?php } ?>
+				<?php if ($_SESSION['user']['UserTypeID'] == 1) { ?>
+					<li class="sidebar-header"><span>ADMIN</span></li>
+					<li
+						class="nav-dropdown <?php echo ($urlPage == 'lista-usuarios' || $urlPage == 'perfil' || $urlPage == 'unity-list' || $urlPage == 'unity' ? 'active' : ''); ?>">
+						<a class="has-arrow" href="#" aria-expanded="false"><i
+								class="icon dripicons-meter"></i><span>ADMINISTRADOR</span></a>
+						<ul class="collapse nav-sub">
+							<li id="lista-usuarios" <?php echo ($urlPage == 'lista-usuarios' ? 'class="active"' : ''); ?>><a
+									href="lista-usuarios.php"><span>Usuários</span></a></li>
+							<li id="perfil" <?php echo ($urlPage == 'perfil' ? 'class="active"' : ''); ?>><a
+									href="perfil.php?id=<?php echo $_SESSION["user"]["UserID"]; ?>"><span>Seu perfil</span></a></li>
+							<!--<li id="unity-list" <?php echo ($urlPage == 'unity-list' || $urlPage == 'unity' ? 'class="active"' : ''); ?>><a href="unity-list.php"><span>Unidades</span></a></li>-->
 						</ul>
 					</li>
 				<?php } ?>
