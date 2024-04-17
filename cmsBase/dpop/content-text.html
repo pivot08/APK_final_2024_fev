@@ -144,6 +144,9 @@
 
                var contentFootnote = document.getElementById('content-footnote');
                contentFootnote.innerHTML = content[0].Footnote;
+               if (content[0].TextColor != null && content[0].TextColor != '') {
+                  contentFootnote.style.color = '#'+ content[0].TextColor.replace('#', '');
+               }
             }
          }
       }
