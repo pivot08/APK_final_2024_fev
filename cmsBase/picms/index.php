@@ -50,9 +50,27 @@
 				<header class="page-header">
 					<div class="d-flex align-items-center">
 						<div class="mr-auto">
-							<h1>Geral</h1>
+							<h1>Bem-vindo</h1>
 							<p>Bem-vindo ao sistema de administração do APK Samsung.<br>Preparamos abaixo alguns <strong>tutoriais</strong> de como criar e gerenciar o contéudo.</
 <BR><BR>
+							<p>
+<strong>Noções básicas deste CMS:</strong><br>
+1 - Para qualquer página é necessário criar um template e após isso, criar o conteúdo desta página nos menus abaixo.<br><br>
+2 - Após qualquer modificação, é necessário clicar em "Atualizar Site" ou "Atualizar Tablet"  para que as alterações sejam efetivadas no sistema.<br><br>
+3 - Na escolha das criações ou edições, você verá 3 opções: <br>
+
+a) Template (onde o conteúdo deve aparecer) *<br>
+Escolha o template que você criou, ou seja, onde este conteúdo deve ser incluído<BR><BR>
+
+b) Template Filho (onde o link deve direcionar) *<br>
+Escolha aqui para qual página o link deste conteúdo deve ser direcionado<BR><BR>
+
+c) Conteúdo Filho (onde o link deve direcionar - se for a página final de texto)<br>
+Escolha aqui para qual página o link deste conteúdo deve ser direcionado (aqui somente para páginas de texto e neste caso, deixe o Template Filho vazio).<BR><BR>
+<br>
+</p>
+
+
 							<div class="row" style="padding:10px;">
 								<div style="padding:10px;max-width:400px;">
 									<h3>1 - ÍNDICE E SCREENSAVERS</h3><br>
