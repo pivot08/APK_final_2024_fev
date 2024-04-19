@@ -123,7 +123,8 @@
             </div>
 
             <div id="container-full-button"></div>
-            <div class="col-md-6" style="padding-right: 0px;margin-bottom: 0px !important;" id="mainContainer-small-button">
+            <div class="col-md-6" style="padding-right: 0px;margin-bottom: 0px !important;"
+               id="mainContainer-small-button">
                <div class="row full-height" id="container-small-button"></div>
             </div>
          </div>
@@ -176,6 +177,11 @@
       const pageTypeID = params.get('pageTypeID');
       const templateContentID = params.get('templateContentID');
       const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+      const originLink = params.get('originLink') != null && params.get('originLink') != undefined ? params.get('originLink') : '';
+      if (originLink != '' && originLink != null) {
+         backIndex(originLink);
+         fixHomeLink(originLink);
+      }
 
       const templateChildID = params.get('templateChildID');
       const templateContentChildID = params.get('templateContentChildID');
@@ -238,7 +244,7 @@
                         break;
                      case "6": //Square Button - With Title
                         contentButton = '<div class="item">'
-                           + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '">'
+                           + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '">'
                            + '<video autoplay loop muted class="videos" id="video' + content[i].TemplateContentID + '">'
                            + '<source src="' + pathContent + '/' + actualVersion + '/' + content[i].Media + '" type="video/mp4">'
                            + '</video>'
@@ -250,7 +256,7 @@
                            contentButton = '<div class="col-md-6 halfContentColumn">';
                         }
 
-                        contentButton += '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="header-links">'
+                        contentButton += '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '" class="header-links">'
                            + '<div class="card ' + content[i].Footnote + '">'
                            + '<div class="card-body respiro-categoria scroll-down d-flex">'
                            + '<h5 class="card-title categoria ' + (content[i].IsWhiteTitle && content[i].IsWhiteTitle == 1 ? 'color-branco' : '') + '">' + content[i].TemplateContent + '</h5>'
@@ -265,7 +271,7 @@
                         break;
                      case "3": //Rectangular Button - 2 Positions - Vertical
                         contentButton = '<div class="col-md-6 fullContentColunm">'
-                           + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="header-links">'
+                           + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '" class="header-links">'
                            + '      <div class="card ' + content[i].Footnote + '">'
                            + '            <div class="card-body respiro-categoria scroll-down bacCategorias d-flex" style="background: url(\'' + pathContent + '/' + actualVersion + '/' + content[i].Media + '\') no-repeat;">'
                            + '               <h5 class="card-title categoria ' + (content[i].IsWhiteTitle && content[i].IsWhiteTitle == 1 ? 'color-branco' : '') + '">' + content[i].TemplateContent + '</h5>'
@@ -276,7 +282,7 @@
                         break;
                      case "4": //Rectangular Button - 2 Positions - Horizontal
                         contentButton = '<div class="col-md-12"><div class="card ' + content[i].Footnote + '"><div class="card-body respiro-categoria scroll-down d-flex">'
-                           + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '">'
+                           + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '">'
                            + '<h5 class="card-title categoria ' + (content[i].IsWhiteTitle && content[i].IsWhiteTitle == 1 ? 'color-branco' : '') + '">' + content[i].TemplateContent + '</h5>'
                            + '<img src="' + pathContent + '/' + actualVersion + '/' + content[i].Media + '" alt="" class="animacao-bt box-img img-fluid">'
                            + '</a>'
@@ -285,9 +291,10 @@
                      case "5": //Small Button
                         if (showSmallButton) {
                            countSmallButton++;
+                           contentTarget = "content-text-institutional"
                            contentButton5 += '<div class="col-md-6 ' + (countSmallButton == 1 || countSmallButton == 3 ? 'botoes-left' : 'pdR0') + (countSmallButton == 1 || countSmallButton == 2 ? ' margin-bottom-20' : '') + '">'
                               + '<div class="card  ' + content[i].Footnote + '"><div class="card-body botoes  card-center ">'
-                              + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="header-links">'
+                              + '<a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '" class="header-links">'
                               + '<img src="' + pathContent + '/' + actualVersion + '/' + content[i].Media + '" alt="">'
                               + '</a>'
                               + '</div>'

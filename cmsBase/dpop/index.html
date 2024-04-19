@@ -144,6 +144,7 @@
       const applicationID = params.get('applicationID');
       const applicationSlug = params.get('applicationSlug');
       const operatorUserID = params.get('operatorUserID');
+      const originLink = params.get('originLink') != null && params.get('originLink') != undefined ? params.get('originLink') : '';
 
       const pageTypeID = params.get('pageTypeID');
       const templateContentID = params.get('templateContentID');
@@ -171,11 +172,11 @@
                }
 
                var body = document.getElementById('content-body');
-               body.style.backgroundColor = '#'+ content[0].Color.replace('#', '');
+               body.style.backgroundColor = '#' + content[0].Color.replace('#', '');
 
                var contentLink = document.getElementById('content-link');
                contentLink.href = 'content-buttons.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateChildID=' + content[0].TemplateChildID + '&templateContentChildID=' + content[0].TemplateContentChildID;
-}
+            }
          }
       }
       xhrContent.open("GET", pathBaseFiles + '/' + (actualVersion != "" ? actualVersion : "content") + '.json');

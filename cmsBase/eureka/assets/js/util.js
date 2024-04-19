@@ -42,13 +42,6 @@ const urlOrigin = new URL(window.location.href);
 const paramsOrigin = new URLSearchParams(urlOrigin.search);
 const origin = paramsOrigin.get('origin') != null && paramsOrigin.get('origin') != undefined ? paramsOrigin.get('origin') : '';
 const searchParams = paramsOrigin.get('searchParams') != null && paramsOrigin.get('searchParams') != undefined ? paramsOrigin.get('searchParams') : '';
-var linkHome = '';
-
-var links = document.getElementsByTagName('a');
-for (var i = 0; i < links.length; i++) {
-    if (links[i].href.indexOf('javascript:history.') < 0)
-        links[i].href = links[i].href + (links[i].href.indexOf('?') > 0 ? '&' : '?') + 'origin=' + origin + '&' + window.atob(origin);
-}
 
 switch (origin) {
     case 'vivo':
@@ -76,27 +69,4 @@ switch (origin) {
         if (document.getElementById("divOpGeral"))
             document.getElementById("divOpGeral").style.display = "block";
         break;
-}
-
-function runTimer(linkHome) {
-    console.log(linkHome)
-    window.location.href = 'index.html?tablet=1&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateContentID=22';
-}
-
-const timer = setTimeout(() => {
-    clearTimeout(timer);
-    runTimer(linkHome);
-}, 30000);
-
-let pressTimer;
-var clickQuant = 0;
-function startTimer() {
-    clickQuant++;
-    if (clickQuant == 1) {
-        window.location.href = 'selection.html?' + paramsOrigin;
-    }
-}
-
-function clearTimer() {
-    clearTimeout(pressTimer);
 }

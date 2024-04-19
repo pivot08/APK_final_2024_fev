@@ -82,6 +82,11 @@
         const applicationSlug = params.get('applicationSlug');
         const operatorUserID = params.get('operatorUserID');
         const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+        const originLink = params.get('originLink') != null && params.get('originLink') != undefined ? params.get('originLink') : '';
+        if (originLink != '' && originLink != null) {
+            backIndex(originLink);
+            fixHomeLink(originLink);
+        }
 
         const templateChildID = params.get('templateChildID');
         const templateContentChildID = params.get('templateContentChildID');
@@ -110,20 +115,20 @@
                     for (var i = 0; i < content.length; i++) {
                         var contentTarget = "feature-full";
 
-                        // if (content[i].TemplateChildID != null && content[i].TemplateChildID != '0' && content[i].TemplateChildID != '') {
-                        //     var slug = data.templateContent.filter((x) => x.TemplateID == content[i].TemplateChildID);
-                        //     contentTarget = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : 'menu');
-                        // }
+                        if (content[i].TemplateChildID != null && content[i].TemplateChildID != '0' && content[i].TemplateChildID != '') {
+                            var slug = data.templateContent.filter((x) => x.TemplateID == content[i].TemplateChildID);
+                            contentTarget = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : 'feature-full');
+                        }
 
-                        // if (content[i].TemplateContentChildID != null && content[i].TemplateContentChildID != '0' && content[i].TemplateContentChildID != '') {
-                        //     var slug = data.templateContent.filter((x) => x.TemplateContentID == content[i].TemplateContentChildID);
-                        //     contentTarget = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : 'menu');
-                        // }
+                        if (content[i].TemplateContentChildID != null && content[i].TemplateContentChildID != '0' && content[i].TemplateContentChildID != '') {
+                            var slug = data.templateContent.filter((x) => x.TemplateContentID == content[i].TemplateContentChildID);
+                            contentTarget = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : 'feature-full');
+                        }
 
                         contentButton += '<div class="col-md-6 ">'
                             + '    <div class="card">'
                             + '        <div class="card-body respiro-video">'
-                            + '            <a href="' + contentTarget + '.html' + paramsValue + '&applicationID=' + applicationID + '&templateContentChildID=' + content[i].TemplateContentChildID + '">'
+                            + '            <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '">'
                             + '                <div class="video-overlay">'
                             + '                    <img src="' + pathContent + '/' + actualVersion + '/' + content[i].CoverImage + '">'
                             + '                </div>'

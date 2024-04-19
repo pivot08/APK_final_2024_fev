@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+   <!-- CSS -->
+   <!-- Inclua os links para os arquivos do Bootstrap CSS -->
+   <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+   <link href="assets/css/geral.css" rel="stylesheet">
+   <link href="assets/css/style.css" rel="stylesheet">
+
+   <title>Samsung</title>
+</head>
+
+<body class="h-100 bac-preto feature" id="content-body">
+   <div id="loading-overlay">Carregando...</div>
+   <div id="loadingContainer" style="display:none;">
+
+
+      <div class="container-fluid ">
+         <!-- primeira linha-->
+         <div class="row mx-auto primeira-linha">
+
+            <!-- Coluna 1 -->
+            <div class="col-md-2">
+               <div class="card ">
+                  <div class="card-body d-flex align-items-center"></div>
+               </div>
+            </div>
+
+            <!-- Coluna 2 -->
+            <div class="col-md-8">
+               <div class="card">
+                  <div class="card-body selecione d-flex align-items-center" id="header-text">
+                     <img src="assets/img/seta-preta.png" style="width: 100px;" class="seta-preta">
+                  </div>
+               </div>
+            </div>
+
+            <!-- Coluna 3 -->
+            <div class="col-md-2">
+               <div class="card ">
+                  <div class="card-body d-flex align-items-center">
+                     <a href="javascript:history.go(-1);" class="header-links">
+                        <img src="assets/img/nav_back.svg" class="svg-icone2" id="back-button">
+                     </a>
+                  </div>
+               </div>
+            </div>
+
+         </div>
+         <div class="row mx-auto text-center vertical-center">
+            <div class="col-md-12 box-item">
+               <h3 class="txt-white" id="content-title-div">
+                  <strong id="content-title"></strong>
+               </h3>
+
+               <p class="box-paragraph txt-white text-center" id="content-text-top"></p>
+
+               <img id="content-image">
+               <video autoplay loop muted id="content-video">
+                  <source src="" type="video/mp4">
+               </video>
+
+               <p class="box-tj txt-585858" id="content-footnote"></p>
+            </div>
+         </div>
+      </div>
+
+   </div>
+   <!-- JS -->
+   <script src="assets/dependencies/jquery/jquery.min.js"></script>
+   <script src="assets/dependencies/owl.carousel/dist/owl.carousel.min.js"></script>
+   <script src="assets/js/utils.js"></script>
+   <script src="../inc/main.js"></script>
+   <script>
+      const url = new URL(window.location.href);
+      const params = new URLSearchParams(url.search);
+      const paramsValue = url.search;
+      const path = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? 'file:///data/data/com.samsung.tablepresentation/files' : '';
+      const pathContent = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../content';
+      const pathBaseFiles = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../version';
+      const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : '';
+      const applicationID = params.get('applicationID');
+      const applicationSlug = params.get('applicationSlug');
+      const operatorUserID = params.get('operatorUserID');
+      const pageTypeID = params.get('pageTypeID');
+      const templateContentID = params.get('templateContentID');
+      const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+      const originLink = params.get('originLink') != null && params.get('originLink') != undefined ? params.get('originLink') : '';
+      if (originLink != '' && originLink != null) {
+         backIndex(originLink);
+         fixHomeLink(originLink);
+      }
+
+      const templateChildID = params.get('templateChildID');
+      const templateContentChildID = params.get('templateContentChildID');
+
+      var xhrContent = new XMLHttpRequest();
+      xhrContent.onreadystatechange = function () {
+         if (xhrContent.readyState === 4 && xhrContent.status === 200) {
+            var data = JSON.parse(xhrContent.responseText);
+
+            var content = data.templateContent.filter((x) => x.TemplateID == templateChildID || x.TemplateContentID == templateContentChildID);
+            if (content != null && content != undefined && content.length > 0) {
+               var isHeaderColorWhite = 0;
+
+               if (tablet == 1 || tablet == '1') {
+                  Android.registerNavigation('1', templateChildID, templateContentChildID, formatDate(new Date()));
+               }
+
+               if (content[0].IsHeaderColorWhite != null && content[0].IsHeaderColorWhite != undefined) {
+                  isHeaderColorWhite = content[0].IsHeaderColorWhite;
+               }
+
+               var body = document.getElementById('content-body');
+               body.style.backgroundColor = '#' + content[0].Color.replace('#', '');
+
+               var headerText = document.getElementById('header-text');
+               if (headerText != '') {
+                  headerText.innerHTML = headerText.innerHTML + '<h5 class="title-selecione parte2">' + content[0].HeaderText + '</h5>';
+               }
+
+               var contentTitle = document.getElementById('content-title');
+               contentTitle.innerHTML = content[0].Title;
+               if (content[0].Title == null || content[0].Title == '') {
+                  var contentTitleDiv = document.getElementById('content-title-div');
+                  contentTitleDiv.remove();
+               }
+               if (content[0].TextTitleColor != null && content[0].TextTitleColor != '') {
+                  contentTitle.style.color = '#' + content[0].TextTitleColor.replace('#', '');
+               }
+
+               var contentOrientation = '';
+               switch (content[0].ContentOrientation) {
+                  case "T":
+                     contentOrientation = 'top';
+                     break;
+                  case "L":
+                     contentOrientation = 'left';
+                     break;
+                  case "B":
+                     contentOrientation = 'bottom';
+                     break;
+                  case "R":
+                     contentOrientation = 'right';
+                     break;
+                  default:
+                     contentOrientation = 'top';
+                     break;
+               }
+               var contentText = document.getElementById('content-text-' + contentOrientation);
+               contentText.innerHTML = content[0].Content;
+               if (content[0].Content == null || content[0].Content == '') {
+                  contentText.remove();
+               }
+               if (content[0].TextColor != null && content[0].TextColor != '') {
+                  contentText.style.color = '#' + content[0].TextColor.replace('#', '');
+               }
+
+               var media = pathContent + '/' + actualVersion + '/' + content[0].Media;
+               var video = document.getElementById('content-video');
+               var image = document.getElementById('content-image');
+               if (media.indexOf('mp4') > 0) {
+                  video.src = media;
+                  video.play();
+                  image.remove();
+               } else {
+                  image.src = media;
+                  video.remove();
+               }
+
+               var contentFootnote = document.getElementById('content-footnote');
+               contentFootnote.innerHTML = content[0].Footnote;
+               if (content[0].Footnote == null || content[0].Footnote == '') {
+                  contentFootnote.remove();
+               }
+               if (content[0].TextColor != null && content[0].TextColor != '') {
+                  contentFootnote.style.color = '#' + content[0].TextColor.replace('#', '');
+               }
+
+               if (isHeaderColorWhite && isHeaderColorWhite == 1) {
+                  var backButtonImg = document.getElementById('back-button');
+                  if (backButtonImg != undefined && backButtonImg != null) {
+                     backButtonImg.src = isHeaderColorWhite && isHeaderColorWhite == 1 ? 'assets/img/nav_back-white.svg' : 'assets/img/nav_back.svg';
+                  }
+               }
+
+               if (content[0].Style != undefined && content[0].Style != null) {
+                  var styleElement = document.createElement('style');
+                  styleElement.textContent = content[0].Style;
+                  document.head.appendChild(styleElement);
+               }
+            }
+         }
+      }
+      xhrContent.open("GET", pathBaseFiles + '/' + (actualVersion != "" ? actualVersion : "content") + '.json');
+      xhrContent.send(null);
+   </script>
+</body>
+
+</html>

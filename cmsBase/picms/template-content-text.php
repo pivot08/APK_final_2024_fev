@@ -23,6 +23,7 @@ $positionTop = '';
 $positionLeft = '';
 $textTitleColor = '';
 $textColor = '';
+$style = '';
 $isActive = '1';
 $update = false;
 
@@ -57,6 +58,7 @@ if (isset($_GET['id'])) {
 		$positionLeft = $n['PositionLeft'];
 		$textTitleColor = $n['TextTitleColor'];
 		$textColor = $n['TextColor'];
+		$sytle = $n['Style'];
 		$isActive = $n['IsActive'];
 	}
 }
@@ -246,6 +248,10 @@ if (isset($_GET['id'])) {
 											<label for="input">Ajuste de posição do texto - da esquerda</label>
 											<input type="number" name="PositionLeft" class="form-control"
 												value="<?php echo $positionLeft; ?>">
+										</div>
+										<div class="form-group">
+											<label for="input">Estilo manual (CSS)</label>
+											<textarea name="Style" class="form-control" row="5"><?php echo $style; ?></textarea>
 										</div>
 										<div class="form-group">
 											<div class="col-12">

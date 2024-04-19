@@ -107,6 +107,11 @@
          const pageTypeID = params.get('pageTypeID');
          const templateContentID = params.get('templateContentID');
          const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+         const originLink = params.get('originLink') != null && params.get('originLink') != undefined ? params.get('originLink') : '';
+         if (originLink != '' && originLink != null) {
+            backIndex(originLink);
+            fixHomeLink(originLink);
+         }
 
          const templateChildID = params.get('templateChildID');
          const templateContentChildID = params.get('templateContentChildID');
@@ -154,7 +159,7 @@
                         case "2": //Rectangular Button - 2 Positions - Vertical
                         case "3": //Rectangular Button - 2 Positions - Vertical
                            contentButton3 += '<div class="col-md-6 ">'
-                              + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="box-link">'
+                              + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '" class="box-link">'
                               + '      <h5 class="card-title categoria ' + (content[i].IsWhiteTitle && content[i].IsWhiteTitle == 1 ? 'color-branco' : '') + '">' + content[i].TemplateContent + '</h5>'
 
                            if (content[i].Media.indexOf('mp4') > 0) {
@@ -174,7 +179,7 @@
                            }
 
                            contentButton4 = '<div class="col-md-12">'
-                              + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '" class="box-link">'
+                              + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '" class="box-link">'
                               + '      <h5 class="card-title categoria ' + (content[i].IsTextRight && content[i].IsTextRight == 1 ? 'right-title' : '') + ' ' + (content[i].IsWhiteTitle && content[i].IsWhiteTitle == 1 ? 'color-branco' : '') + '">' + content[i].TemplateContent + '</h5>'
                               + '      <img src="' + pathContent + '/' + actualVersion + '/' + content[i].Media + '" alt="" class="box-img img-fluid  borda">'
                               + '   </a>'
@@ -187,7 +192,7 @@
                   // buttonHeader.innerHTML = buttonHeader.innerHTML + contentButton4;
 
                   var body = document.getElementById('content-body');
-                  body.style.backgroundColor = '#'+ bodyColor.replace('#', '');
+                  body.style.backgroundColor = '#' + bodyColor.replace('#', '');
 
                   var homeButtonImg = document.getElementById('home-button');
                   if (homeButtonImg != undefined && homeButtonImg != null) {

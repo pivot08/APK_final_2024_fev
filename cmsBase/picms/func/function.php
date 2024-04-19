@@ -677,6 +677,7 @@ function templateContentList()
         , tpc.PositionLeft
         , tpc.TextTitleColor
         , tpc.TextColor
+        , tpc.Style
         , IFNULL(tpc.IsWhiteTitle, 0) AS IsWhiteTitle
         , IFNULL(tpc.IsTextRight, 0) AS IsTextRight
         , tpc.IsActive
@@ -729,6 +730,7 @@ function templateContentListByPageTypeID($pageTypeID)
         , tpc.PositionTop
         , tpc.PositionLeft
         , tpc.TextTitleColor
+        , tpc.TextColor
         , tpc.TextColor
         , IFNULL(tpc.IsWhiteTitle, 0) AS IsWhiteTitle
         , IFNULL(tpc.IsTextRight, 0) AS IsTextRight
@@ -837,6 +839,7 @@ function templateContentGet($templateContentID)
         , tpc.PositionLeft
         , tpc.TextTitleColor
         , tpc.TextColor
+        , tpc.TextColor
         , IFNULL(tpc.IsWhiteTitle, 0) AS IsWhiteTitle
         , IFNULL(tpc.IsTextRight, 0) AS IsTextRight
         , tpc.IsActive
@@ -854,17 +857,17 @@ function templateContentGet($templateContentID)
     return mysqli_query($db, $query);
 }
 
-function templateContentInsert($applicationID, $templateID, $buttonSizeID, $buttonPositionID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $textTitleColor, $textColor, $isWhiteTitle, $isTextRight, $isActive)
+function templateContentInsert($applicationID, $templateID, $buttonSizeID, $buttonPositionID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $textTitleColor, $textColor, $style, $isWhiteTitle, $isTextRight, $isActive)
 {
     global $db;
     $query = "
-        INSERT INTO TemplateContent (ApplicationID, TemplateID, ButtonSizeID, ButtonPositionID, ContentOrientationID, TemplateChildID, TemplateContentChildID, TemplateContent, Title, SubTitle, Content, Footnote, ButtonOrder, Media, CoverImage, PositionTop, PositionLeft, TextTitleColor, TextColor, IsWhiteTitle, IsTextRight, IsActive, IsDeleted, DControl)
-        VALUES ('$applicationID', '$templateID', '$buttonSizeID', '$buttonPositionID', '$contentOrientationID', '$templateChildID', '$templateContentChildID', '$templateContent', '$title', '$subTitle', '$content', '$footnote', '$buttonOrder', '$media', '$coverImage', '$positionTop', '$positionLeft', '$textTitleColor', '$textColor', $isWhiteTitle, $isTextRight, '$isActive', 0, NOW())
+        INSERT INTO TemplateContent (ApplicationID, TemplateID, ButtonSizeID, ButtonPositionID, ContentOrientationID, TemplateChildID, TemplateContentChildID, TemplateContent, Title, SubTitle, Content, Footnote, ButtonOrder, Media, CoverImage, PositionTop, PositionLeft, TextTitleColor, TextColor, Style, IsWhiteTitle, IsTextRight, IsActive, IsDeleted, DControl)
+        VALUES ('$applicationID', '$templateID', '$buttonSizeID', '$buttonPositionID', '$contentOrientationID', '$templateChildID', '$templateContentChildID', '$templateContent', '$title', '$subTitle', '$content', '$footnote', '$buttonOrder', '$media', '$coverImage', '$positionTop', '$positionLeft', '$textTitleColor', '$textColor', '$style', $isWhiteTitle, $isTextRight, '$isActive', 0, NOW())
     ";
     mysqli_query($db, $query);
 }
 
-function templateContentUpdate($templateContentID, $applicationID, $templateID, $buttonSizeID, $buttonPositionID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $textTitleColor, $textColor, $isWhiteTitle, $isTextRight, $isActive)
+function templateContentUpdate($templateContentID, $applicationID, $templateID, $buttonSizeID, $buttonPositionID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $textTitleColor, $textColor, $style, $isWhiteTitle, $isTextRight, $isActive)
 {
     global $db;
     $query = "
@@ -888,6 +891,7 @@ function templateContentUpdate($templateContentID, $applicationID, $templateID, 
         , PositionLeft = '$positionLeft'
         , TextTitleColor = '$textTitleColor'
         , TextColor = '$textColor'
+        , Style = '$style'
         , IsWhiteTitle = $isWhiteTitle
         , IsTextRight = $isTextRight
         , IsActive = $isActive
@@ -1514,6 +1518,7 @@ function generateJsonFile($fileName)
         , tpc.PositionLeft
         , tpc.TextTitleColor
         , tpc.TextColor
+        , tpc.Style
         , IFNULL(tpc.IsWhiteTitle, 0) AS IsWhiteTitle
         , IFNULL(tpc.IsTextRight, 0) AS IsTextRight
         , tpc.IsActive
