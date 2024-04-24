@@ -75,6 +75,8 @@ video {max-width: 100%;}
 .bac-verde {background:#97d653;}
 .bac-preto {background:#000;}
 .bac-azul {background:#0278cc;color:#fff;}
+
+
 .bac-azul-medio {background: #04b3e2;color:#fff;}
 .bac-lilas {background:#e8dafd;}
 .bac-violeta {background: rgb(183,183,201);
@@ -118,7 +120,8 @@ video {max-width: 100%;}
 background: linear-gradient(318deg, rgba(126,160,227,1) 23%, rgba(0,128,212,1) 98%);
   }
 
-  .bac-azul-samsung {background:#006bee;text-align:center;}
+  .bac-azul-samsung {background:#006bee;text-align:center !important;}
+  .bac-azul-samsung h5 {text-align: center !important;margin-left:-5px !important;}
 
 .background-s23 { 
   width: 100%;
