@@ -122,6 +122,9 @@ background: linear-gradient(318deg, rgba(126,160,227,1) 23%, rgba(0,128,212,1) 9
 
   .bac-azul-samsung {background:#006bee;text-align:center !important;}
   .bac-azul-samsung h5 {text-align: center !important;margin-left:-5px !important;}
+  .bac-azul-samsung h5 {
+    width: 100%;
+}
 
 .background-s23 { 
   width: 100%;
