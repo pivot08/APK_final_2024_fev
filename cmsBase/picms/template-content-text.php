@@ -58,7 +58,7 @@ if (isset($_GET['id'])) {
 		$positionLeft = $n['PositionLeft'];
 		$textTitleColor = $n['TextTitleColor'];
 		$textColor = $n['TextColor'];
-		$sytle = $n['Style'];
+		$style = $n['Style'];
 		$isActive = $n['IsActive'];
 	}
 }
