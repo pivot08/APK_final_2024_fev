@@ -731,7 +731,7 @@ function templateContentListByPageTypeID($pageTypeID)
         , tpc.PositionLeft
         , tpc.TextTitleColor
         , tpc.TextColor
-        , tpc.TextColor
+        , tpc.Style
         , IFNULL(tpc.IsWhiteTitle, 0) AS IsWhiteTitle
         , IFNULL(tpc.IsTextRight, 0) AS IsTextRight
         , tpc.IsActive
@@ -839,7 +839,7 @@ function templateContentGet($templateContentID)
         , tpc.PositionLeft
         , tpc.TextTitleColor
         , tpc.TextColor
-        , tpc.TextColor
+        , tpc.Style
         , IFNULL(tpc.IsWhiteTitle, 0) AS IsWhiteTitle
         , IFNULL(tpc.IsTextRight, 0) AS IsTextRight
         , tpc.IsActive
