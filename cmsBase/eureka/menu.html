@@ -83,9 +83,10 @@
         const operatorUserID = params.get('operatorUserID');
         const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
         const originLink = params.get('originLink') != null && params.get('originLink') != undefined ? params.get('originLink') : '';
+        const homeOriginLink = window.btoa('../eureka/menu.html' + paramsValue);
         if (originLink != '' && originLink != null) {
             backIndex(originLink);
-            fixHomeLink(originLink);
+            fixHomeLink(homeOriginLink);
         }
 
         const templateChildID = params.get('templateChildID');
@@ -128,7 +129,7 @@
                         contentButton += '<div class="col-md-6 ">'
                             + '    <div class="card">'
                             + '        <div class="card-body respiro-video">'
-                            + '            <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '">'
+                            + '            <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink + '">'
                             + '                <div class="video-overlay">'
                             + '                    <img src="' + pathContent + '/' + actualVersion + '/' + content[i].CoverImage + '">'
                             + '                </div>'

@@ -108,9 +108,12 @@
          const templateContentID = params.get('templateContentID');
          const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
          const originLink = params.get('originLink') != null && params.get('originLink') != undefined ? params.get('originLink') : '';
+         const homeOriginLink = params.get('homeOriginLink') != null && params.get('homeOriginLink') != undefined ? params.get('homeOriginLink') : '';
          if (originLink != '' && originLink != null) {
             backIndex(originLink);
-            fixHomeLink(originLink);
+         }
+         if (homeOriginLink != '' && homeOriginLink != null) {
+            fixHomeLink(homeOriginLink);
          }
 
          const templateChildID = params.get('templateChildID');
@@ -159,7 +162,7 @@
                         case "2": //Rectangular Button - 2 Positions - Vertical
                         case "3": //Rectangular Button - 2 Positions - Vertical
                            contentButton3 += '<div class="col-md-6 ">'
-                              + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '" class="box-link">'
+                              + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink + '" class="box-link">'
                               + '      <h5 class="card-title categoria ' + (content[i].IsWhiteTitle && content[i].IsWhiteTitle == 1 ? 'color-branco' : '') + '">' + content[i].TemplateContent + '</h5>'
 
                            if (content[i].Media.indexOf('mp4') > 0) {
@@ -179,7 +182,7 @@
                            }
 
                            contentButton4 = '<div class="col-md-12">'
-                              + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '" class="box-link">'
+                              + '   <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink + '" class="box-link">'
                               + '      <h5 class="card-title categoria ' + (content[i].IsTextRight && content[i].IsTextRight == 1 ? 'right-title' : '') + ' ' + (content[i].IsWhiteTitle && content[i].IsWhiteTitle == 1 ? 'color-branco' : '') + '">' + content[i].TemplateContent + '</h5>'
                               + '      <img src="' + pathContent + '/' + actualVersion + '/' + content[i].Media + '" alt="" class="box-img img-fluid  borda">'
                               + '   </a>'

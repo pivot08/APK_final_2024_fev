@@ -85,9 +85,12 @@
       const templateContentID = params.get('templateContentID');
       const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
       const originLink = params.get('originLink') != null && params.get('originLink') != undefined ? params.get('originLink') : '';
+      const homeOriginLink = params.get('homeOriginLink') != null && params.get('homeOriginLink') != undefined ? params.get('homeOriginLink') : '';
       if (originLink != '' && originLink != null) {
          backIndex(originLink);
-         fixHomeLink(originLink);
+      }
+      if (homeOriginLink != '' && homeOriginLink != null) {
+         fixHomeLink(homeOriginLink);
       }
 
       const templateChildID = params.get('templateChildID');
