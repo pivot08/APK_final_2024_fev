@@ -339,7 +339,7 @@ background: linear-gradient(318deg, rgba(126,160,227,1) 23%, rgba(0,128,212,1) 9
 }
 
 
-.trava-botoes {max-height: 346px;}
+.trava-botoes {max-height: 316px;}
 
 .volta-lojista {position: absolute;z-index: 99999999;}
 .volta-lojista button {
@@ -504,7 +504,7 @@ button:active {
   margin-top: -18px;
   max-width: 85% !important;
   margin-left: 118px;
-  margin-bottom: -25px;
+  margin-bottom: -55px;
 }
 
 .bottom-title {
