@@ -85,7 +85,7 @@ div#container-full-button {
                <div class="card">
                   <div class="card-body d-flex align-items-center">
 
-                     <a href="https://dpopinterativo.dev.br/dpop/content-buttons.html?tablet=0&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateChildID=5"
+                     <a href="index.html"
                         class="header-links">
                         <img src="assets/img/nav_home.svg" alt="" class="nav-home svg-icone">
                      </a>
@@ -186,8 +186,8 @@ div#container-full-button {
       const templateContentID = params.get('templateContentID');
       const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
       const originLink = params.get('originLink') != null && params.get('originLink') != undefined ? params.get('originLink') : '';
-      const homeOriginLink = window.btoa('../dpop/content-buttons.html' + paramsValue);
-      if (originLink != '' && originLink != null) {
+      const homeOriginLink = params.get('homeOriginLink') != null && params.get('homeOriginLink') != undefined ? params.get('homeOriginLink') : window.btoa('../dpop/content-buttons.html' + paramsValue);
+         if (originLink != '' && originLink != null) {
          backIndex(originLink);
          fixHomeLink(homeOriginLink);
       }
