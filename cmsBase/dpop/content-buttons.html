@@ -391,11 +391,7 @@ div#container-full-button {
                }
 
                var linkTemp = document.getElementById('link-s24');
-               if (tablet == 1 || tablet == '1') {
-                  linkTemp.href = '../eureka/menu.html?tablet=1&path=file:///data/data/com.samsung.tablepresentation/files&actualVersion=5A66C629-15E2-441E-88EE-D26523A8EADD&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateChildID=10';
-               } else {
-                  linkTemp.href = '../eureka/menu.html?tablet=0&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateChildID=10';
-               }
+               linkTemp.href = '../eureka/menu.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=2&applicationSlug=eureka&operatorUserID=&pageTypeID=5&templateChildID=10';
 
                // if (content[i].ButtonContent != null && content[i].ButtonContent != undefined && content[i].ButtonContent != '') {
                //    var carouselText = document.getElementById('carousel-text');
