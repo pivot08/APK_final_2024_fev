@@ -21,7 +21,7 @@ function padWithZero(number) {
 var clickQuant = 0;
 function backIndice() {
    clickQuant++;
-   if (clickQuant == 1) {
+   if (clickQuant == 5) {
       window.location.href = 'selection.html?' + paramsOrigin;
    }
 }
