@@ -22,7 +22,7 @@ var clickQuant = 0;
 function backIndice() {
    clickQuant++;
    if (clickQuant == 5) {
-      window.location.href = 'selection.html?' + paramsOrigin;
+      window.location.href = '../eureka/selection.html?' + paramsOrigin;
    }
 }
 
