@@ -4,7 +4,7 @@
 <!-- jQuery/jQueryUI (hosted) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/jquery-ui.js"></script>
-<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css">
+<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.24/themes/ui-lightness/jquery-ui.css" rel="stylesheet" type="text/css">
 <script src="../picms/assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 <script src="../picms/assets/vendor/js-storage/js.storage.js"></script>
 <script src="../picms/assets/vendor/js-cookie/src/js.cookie.js"></script>
@@ -28,7 +28,7 @@
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.flash.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.5.2/js/buttons.html5.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.9/summernote.js"></script>
 <script src="../picms/assets/js/components/select2-init.js"></script>
 <!-- ======================= COLOR PICKER ===========================-->
 <script src="../picms/assets/vendor/colorpicker/jquery.colorpicker.js"></script>
@@ -38,7 +38,7 @@
 <script src="../picms/assets/vendor/colorpicker/parts/jquery.ui.colorpicker-memory.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.6/jquery.inputmask.min.js" integrity="sha512-6Jym48dWwVjfmvB0Hu3/4jn4TODd6uvkxdi9GNbBHwZ4nGcRxJUCaTkL3pVY6XUQABqFo3T58EMXFQztbjvAFQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="/js/main.js"></script>
+<!-- <script src="https://dpopinterativo.dev.br/js/main.js"></script> -->
 <script>
 
   var initializedTables = {};
@@ -160,7 +160,7 @@ function buildDataTablesColumnFilter(table) {
             document.location.href = 'template-user.php';
           },
         }<?php } ?>], 'language': {
-        'url': 'http://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json',
+        'url': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json',
       },
     });
 
@@ -173,7 +173,7 @@ function buildDataTablesColumnFilter(table) {
         'pageLength',
         'excel',
       ], 'language': {
-        'url': 'http://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json',
+        'url': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/Portuguese-Brasil.json',
       },
       'drawCallback': function(settings) {
         buildDataTablesColumnFilter(this);

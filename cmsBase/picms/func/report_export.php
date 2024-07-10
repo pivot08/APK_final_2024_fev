@@ -9,10 +9,10 @@ if ($result->num_rows > 0) {
    // header("Expires: 0");
 
    $excelContent = chr(0xEF) . chr(0xBB) . chr(0xBF); // UTF-8 BOM
-    $excelContent .= "Data\tAção\tAplicativo\tTemplate\tConteúdo\tVersão\tEm Produção?\tDispositivo\tModelo\n";
+    $excelContent .= "Data;Acao;Aplicativo;Template;Conteudo;Versao;Em Producao?;Dispositivo;Modelo\n";
 
    while ($row = $result->fetch_assoc()) {
-      $excelContent .= $row["ActionDate"] . "\t" . $row["Action"] . "\t" . $row["Application"] . "\t" . $row["Template"] . "\t" . $row["TemplateContent"] . "\t" . $row["TabletVersion"] . "\t" . ($row['IsProduction'] == 1 ? 'Sim' : 'Não') . "\t" . $row["DeviceID"] . "\t" . $row["DeviceModel"] . "\n";
+      $excelContent .= $row["ActionDate"] . ";" . removeAccents($row["Action"]) . ";" . removeAccents($row["Application"]) . ";" . removeAccents($row["Template"]) . ";" . removeAccents($row["TemplateContent"]) . ";" . $row["TabletVersion"] . ";" . ($row['IsProduction'] == 1 ? 'Sim' : 'Não') . ";" . $row["DeviceID"] . ";" . $row["DeviceModel"] . "\n";
    }
 } else {
    echo "0 results";
@@ -21,4 +21,8 @@ if ($result->num_rows > 0) {
 $file = fopen("report.xls", "w");
 fwrite($file, $excelContent);
 fclose($file);
+
+function removeAccents($str) {
+   return iconv('UTF-8', 'ASCII//TRANSLIT', $str);
+}
 ?>

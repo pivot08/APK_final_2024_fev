@@ -55,16 +55,17 @@
       }
 
       .col-md-6.halfContentColumn {
-    min-height: 370px;
-}
+         min-height: 370px;
+      }
 
-div#container-full-button {
-    min-height: 328px !important;
-    max-height: 343px;
-}
-.respiro-categoria img {
-    max-width: 94%;
-}
+      div#container-full-button {
+         min-height: 328px !important;
+         max-height: 343px;
+      }
+
+      .respiro-categoria img {
+         max-width: 94%;
+      }
    </style>
 </head>
 
@@ -90,8 +91,7 @@ div#container-full-button {
                <div class="card">
                   <div class="card-body d-flex align-items-center">
 
-                     <a href="index.html"
-                        class="header-links">
+                     <a href="index.html" class="header-links">
                         <img src="assets/img/nav_home.svg" alt="" class="nav-home svg-icone">
                      </a>
                   </div>
@@ -192,7 +192,7 @@ div#container-full-button {
       const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
       const originLink = params.get('originLink') != null && params.get('originLink') != undefined ? params.get('originLink') : '';
       const homeOriginLink = params.get('homeOriginLink') != null && params.get('homeOriginLink') != undefined ? params.get('homeOriginLink') : window.btoa('../dpop/content-buttons.html' + paramsValue);
-         if (originLink != '' && originLink != null) {
+      if (originLink != '' && originLink != null) {
          backIndex(originLink);
          fixHomeLink(homeOriginLink);
       }
@@ -245,6 +245,10 @@ div#container-full-button {
                   if (contentChild != null && contentChild != undefined && contentChild.length > 0) {
                      if (contentChild[0].PageTypeID == 4) {
                         contentTarget = "content-product-line";
+                     }
+
+                     if (contentChild[0].PageTypeID == 8) {
+                        contentTarget = "../eureka/menu";
                      }
                   }
 
@@ -393,7 +397,7 @@ div#container-full-button {
 
                var linkTemp = document.getElementById('link-s24');
 
-               
+
 
                linkTemp.href = '/dpop/content-buttons.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=2&applicationSlug=eureka&operatorUserID=&pageTypeID=5&templateContentChildID=&templateChildID=166&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink;
 

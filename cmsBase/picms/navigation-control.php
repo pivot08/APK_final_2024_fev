@@ -1,4 +1,4 @@
-<?php include('func/function.php') ?>
+<?php include ('func/function.php') ?>
 <?php if (!isLoggedIn()) {
 	header('location: auth.sign-in.php');
 } ?>
@@ -9,7 +9,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title><?php echo $pageList[$urlPage] .' - '. $siteName; ?></title>
+	<title><?php echo $pageList[$urlPage] . ' - ' . $siteName; ?></title>
 	<!-- ================== GOOGLE FONTS ==================-->
 	<link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500" rel="stylesheet">
 	<!-- ======================= GLOBAL VENDOR STYLES ========================-->
@@ -38,9 +38,9 @@
 <body>
 	<!-- CONTENT WRAPPER -->
 	<div id="app">
-		<?php include('func/menu.php') ?>
+		<?php include ('func/menu.php') ?>
 		<div class="content-wrapper">
-			<?php include('func/nav_bar.php') ?>
+			<?php include ('func/nav_bar.php') ?>
 			<div class="content">
 				<header class="page-header">
 					<div class="d-flex align-items-center">
@@ -55,7 +55,7 @@
 							<div class="card">
 								<h5 class="card-header">Registro de Navegação</h5>
 								<div class="card-body">
-									<table id="bs4-table" class="table table-striped table-bordered" style="width:100%">
+									<table id="bsNavigation" class="table table-striped table-bordered" style="width:100%">
 										<thead>
 											<tr>
 												<th>Data</th>
@@ -69,23 +69,6 @@
 												<th>Modelo</th>
 											</tr>
 										</thead>
-										<tbody>
-										<?php 
-										$result = navigationControlList();
-										while ($row = mysqli_fetch_array($result)) { ?>
-											<tr>
-												<td><?php echo $row['ActionDate']; ?></td>
-												<td><?php echo $row['Action']; ?></td>
-												<td><?php echo $row['Application']; ?></td>
-												<td><?php echo $row['Template']; ?></td>
-												<td><?php echo $row['TemplateContent']; ?></td>
-												<td><?php echo $row['TabletVersion']; ?></td>
-												<td><?php echo $row['IsProduction'] == 1 ? 'Sim' : 'Não'; ?></td>
-												<td><?php echo $row['DeviceID']; ?></td>
-												<td><?php echo $row['DeviceModel']; ?></td>
-											</tr>
-										<?php } ?>
-										</tbody>
 										<tfoot>
 											<tr>
 												<th>Data</th>
@@ -108,6 +91,31 @@
 			</div>
 		</div>
 	</div>
-	<?php include('func/footer.php') ?>
+	<?php include ('func/footer.php') ?>
+	<script>
+		$(document).ready(function () {
+			$('#bsNavigation').DataTable({
+				"processing": true,
+				"serverSide": true,
+				"ajax": {
+					"url": "func/navigation-control.php",
+					"type": "POST"
+				},
+				"columns": [
+					{ "data": "ActionDate" },         // Data
+					{ "data": "Action" },             // Ação
+					{ "data": "Application" },        // Aplicativo
+					{ "data": "Template" },           // Template
+					{ "data": "TemplateContent" },    // Conteúdo
+					{ "data": "TabletVersion" },      // Versão
+					{ "data": "IsProduction" },       // Em Produção?
+					{ "data": "DeviceID" },           // Dispositivo
+					{ "data": "DeviceModel" }         // Modelo
+				]
+			});
+		});
+
+	</script>
 </body>
+
 </html>
