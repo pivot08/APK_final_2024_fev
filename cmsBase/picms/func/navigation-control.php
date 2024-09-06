@@ -35,6 +35,8 @@ $baseQuery = "
         act.Action,
         tmp.TemplateID,
         tmp.Template,
+        pgt.PageTypeID,
+        pgt.PageType,
         tpc.TemplateContentID,
         tpc.TemplateContent,
         apk.ApplicationID,
@@ -49,6 +51,7 @@ $baseQuery = "
         NavigationControl nvc
         INNER JOIN Action act ON nvc.ActionID = act.ActionID
         INNER JOIN Template tmp ON nvc.TemplateID = tmp.TemplateID
+        INNER JOIN PageType pgt ON tmp.PageTypeID = pgt.PageTypeID
         INNER JOIN Application apk ON tmp.ApplicationID = apk.ApplicationID
         INNER JOIN TabletVersion tbv ON nvc.TabletVersion = tbv.TabletVersion
         LEFT JOIN TemplateContent tpc ON nvc.TemplateContentID = tpc.TemplateContentID";
@@ -58,6 +61,7 @@ if ($search) {
     $baseQuery .= " WHERE
         act.Action LIKE :search OR
         tmp.Template LIKE :search OR
+        pgt.PageType LIKE :search OR
         apk.Application LIKE :search OR
         tpc.TemplateContent LIKE :search OR
         nvc.DeviceID LIKE :search OR

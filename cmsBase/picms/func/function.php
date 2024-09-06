@@ -1724,6 +1724,8 @@ function navigationControlList()
         , act.Action
         , tmp.TemplateID
         , tmp.Template
+        , pgt.PageTypeID
+        , pgt.PageType
         , tpc.TemplateContentID
         , tpc.TemplateContent
         , apk.ApplicationID
@@ -1738,6 +1740,7 @@ function navigationControlList()
         NavigationControl nvc
         INNER JOIN Action act ON nvc.ActionID = act.ActionID
         INNER JOIN Template tmp ON nvc.TemplateID = tmp.TemplateID
+        INNER JOIN PageType pgt ON tmp.PageTypeID = pgt.PageTypeID
         INNER JOIN Application apk ON tmp.ApplicationID = apk.ApplicationID
         INNER JOIN TabletVersion tbv ON nvc.TabletVersion = tbv.TabletVersion
         LEFT JOIN TemplateContent tpc ON nvc.TemplateContentID = tpc.TemplateContentID

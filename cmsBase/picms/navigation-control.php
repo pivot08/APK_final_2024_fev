@@ -61,6 +61,7 @@
 												<th>Data</th>
 												<th>Ação</th>
 												<th>Aplicativo</th>
+												<th>Tipo</th>
 												<th>Template</th>
 												<th>Conteúdo</th>
 												<th>Versão</th>
@@ -74,6 +75,7 @@
 												<th>Data</th>
 												<th>Ação</th>
 												<th>Aplicativo</th>
+												<th>Tipo</th>
 												<th>Template</th>
 												<th>Conteúdo</th>
 												<th>Versão</th>
@@ -105,6 +107,7 @@
 					{ "data": "ActionDate" },         // Data
 					{ "data": "Action" },             // Ação
 					{ "data": "Application" },        // Aplicativo
+					{ "data": "PageType" },           // PageType
 					{ "data": "Template" },           // Template
 					{ "data": "TemplateContent" },    // Conteúdo
 					{ "data": "TabletVersion" },      // Versão
