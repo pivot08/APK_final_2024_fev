@@ -23,6 +23,6 @@ fwrite($file, $excelContent);
 fclose($file);
 
 function removeAccents($str) {
-   return iconv('UTF-8', 'ASCII//TRANSLIT', $str);
+   return transliterator_transliterate('Any-Latin; Latin-ASCII', $str);
 }
 ?>
