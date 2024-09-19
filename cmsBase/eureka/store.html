@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>EUREKA</title>
+
+    <!-- Inclua os links para os arquivos do Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/geral.css" rel="stylesheet">
+
+  <!-- Adicionando as bibliotecas jQuery e jQuery UI -->
+  <script src="assets/js/jquery-3.7.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<style>
+    .indice button {
+    background: #000;
+    color: #fff;
+    border: solid 0px;
+    margin-top: 30px;
+    min-width: 277px;
+    padding: 11px;
+    border-radius: 70px;
+    font-size: 26px;
+}
+
+
+input#search {
+    padding: 14px;
+    border-radius: 70px;
+    width: 380px;
+    clear: both;
+    font-size: 21px;
+}
+
+h2#loja-selecionada {
+    margin-top: 60px;
+}
+</style>
+</head>
+<body class="h-100 centralizar-conteudo">
+
+    <div id="loading-overlay"></div>
+    <div id="loadingContainer" style="display:none;">
+        <!-- segunda linha-->
+        <div class="row mx-auto ">
+            <!-- Coluna 1 -->
+            <div class="col-md-12 text-center indice">
+                <img src="assets/img/ico-indice.jpg" style="max-width: 300px"><br><br><BR>
+                
+                <h1>Buscar Loja ou CNPJ</h1>
+
+  <!-- Campo de busca -->
+  <input type="text" id="search" placeholder="Digite o CNPJ ou Nome da Loja">
+  
+  <!-- Botão para selecionar a loja -->
+  <button id="selecionar">Selecionar</button>
+  
+  <!-- Campo hidden para armazenar o valor selecionado -->
+  <input type="hidden" id="selectedValue">
+
+  <!-- Título e Resultado da loja selecionada -->
+  <h2 id="loja-selecionada" style="display:none;">Loja selecionada:</h2>
+  <div id="result"></div>
+
+  <!-- Botão para confirmar e ir para a próxima página -->
+  <button id="confirmar" style="display:none;">Confirmar</button>
+
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="../inc/main.js"></script>
+    <script>
+        $(window).on('load', function () {
+            // Oculte o overlay de carregamento
+            $('#loading-overlay').css('opacity', 0);
+            // Mostre o conteúdo da página com fadeIn
+            $('#loadingContainer').fadeIn(1250, function () {
+                // Após a conclusão do fadeIn, oculte o overlay
+                $('#loading-overlay').css('display', 'none');
+            });
+        });
+
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+        const paramsValue = url.search;
+        const path = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? 'file:///data/data/com.samsung.tablepresentation/files' : '';
+        const pathContent = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../content';
+        const pathBaseFiles = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../version';
+        const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : '';
+        const applicationID = params.get('applicationID');
+        const applicationSlug = params.get('applicationSlug');
+        const operatorUserID = params.get('operatorUserID');
+        const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+
+        var xhrContent = new XMLHttpRequest();
+        xhrContent.onreadystatechange = function () {
+            if (xhrContent.readyState === 4 && xhrContent.status === 200) {
+                var data = JSON.parse(xhrContent.responseText);
+
+                var menu = document.getElementById('menu');
+                var menuContent = '';
+                var multiplesHomes = data.templateContent.filter((x) => x.IsMainPage == "1");
+                for (i = 0; i < multiplesHomes.length; i++) {
+                    var contentLink = path + '/' + multiplesHomes[i].ApplicationSlug + '/index.html?tablet='+ tablet +'&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + multiplesHomes[i].ApplicationID + '&applicationSlug=' + multiplesHomes[i].ApplicationSlug + '&operatorUserID=' + multiplesHomes[i].OperatorUserID +'&pageTypeID='+ multiplesHomes[i].PageTypeID +'&templateContentID='+ multiplesHomes[i].TemplateContentID;
+                    
+                    menuContent += '<a href="'+ contentLink +'" class="btIndice">'+ multiplesHomes[i].Template +'</a><br><BR>';
+                }
+                menu.innerHTML = menuContent;
+            }
+        }
+        xhrContent.open("GET", pathBaseFiles + '/' + (actualVersion != "" ? actualVersion : "content") + '.json');
+        xhrContent.send(null);
+    </script>
+  <script>
+    let excelData = [];
+    let autocompleteSuggestions = [];
+
+    // Carregar os dados do Excel ao carregar a página
+    $(document).ready(function() {
+      $.ajax({
+        url: 'https://dpopinterativo.dev.br/eureka/Store-List-PIVOT.xlsx',
+        method: 'GET',
+        xhrFields: {
+          responseType: 'blob'
+        },
+        success: function(data) {
+          const reader = new FileReader();
+          reader.onload = function(e) {
+            const workbook = XLSX.read(e.target.result, { type: 'binary' });
+            const sheetName = workbook.SheetNames[0];
+            excelData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName]);
+
+            // Gerar sugestões para o autocomplete
+            generateAutocompleteSuggestions();
+          };
+          reader.readAsBinaryString(data);
+        },
+        error: function() {
+          alert('Erro ao carregar os dados do Excel.');
+        }
+      });
+    });
+
+    // Função para gerar as sugestões para o autocomplete
+    function generateAutocompleteSuggestions() {
+      autocompleteSuggestions = [];
+
+      // Adicionar tanto CNPJ quanto Nome da Loja como sugestões
+      excelData.forEach(function(item) {
+        if (item.CNPJ && item["Store Name"]) {
+          autocompleteSuggestions.push({
+            label: `${item.CNPJ.trim()} - ${item["Store Name"].trim()}`,
+            value: item.CNPJ.trim(), // Usar o CNPJ como valor principal para a busca
+            storeName: item["Store Name"].trim()
+          });
+        }
+      });
+
+      // Iniciar o autocomplete com as sugestões, mas só após 4 caracteres
+      $('#search').autocomplete({
+        source: function(request, response) {
+          // Verificar se o valor digitado tem pelo menos 4 caracteres
+          if (request.term.length >= 4) {
+            // Filtrar as sugestões com base no termo digitado
+            const filteredSuggestions = $.grep(autocompleteSuggestions, function(item) {
+              return item.label.toLowerCase().includes(request.term.toLowerCase());
+            });
+            response(filteredSuggestions);
+          } else {
+            // Não exibir nada se menos de 4 caracteres forem digitados
+            response([]);
+          }
+        },
+        select: function(event, ui) {
+          // Quando o usuário seleciona uma opção, o valor do campo será o CNPJ
+          $('#search').val(ui.item.value);
+
+          // Armazenar o CNPJ selecionado no campo hidden
+          $('#selectedValue').val(ui.item.value);
+
+          // Exibir o título "Loja selecionada:" e o resultado da busca
+          $('#loja-selecionada').show();
+          $('#result').html(`<p>Loja: ${ui.item.storeName} - CNPJ: ${ui.item.value}</p>`);
+
+          // Mostrar o botão "Confirmar"
+          $('#confirmar').show();
+
+          return false;
+        },
+        focus: function(event, ui) {
+          // Quando o autocomplete está em foco, exibe o CNPJ + Nome da Loja
+          $('#search').val(ui.item.label);
+          return false;
+        }
+      });
+    }
+
+    // Função para buscar dados no Excel carregado
+    $('#selecionar').click(function() {
+      const searchValue = $('#search').val().toLowerCase().trim(); // Remover espaços extras
+      let result = '';
+
+      // Validando se os dados do Excel foram carregados
+      if (!excelData) {
+        alert('Os dados do Excel ainda não foram carregados.');
+        return;
+      }
+
+      // Buscando nos dados
+      for (let i = 0; i < excelData.length; i++) {
+        if (excelData[i].CNPJ && excelData[i].CNPJ.toLowerCase().trim() === searchValue) {
+          result += `<p>Loja: ${excelData[i]["Store Name"]} - CNPJ: ${excelData[i].CNPJ}</p>`;
+          break;
+        } else if (excelData[i]["Store Name"] && excelData[i]["Store Name"].toLowerCase().includes(searchValue)) {
+          result += `<p>Loja: ${excelData[i]["Store Name"]} - CNPJ: ${excelData[i].CNPJ}</p>`;
+          break;
+        }
+      }
+
+      if (result === '') {
+        result = 'Nenhum resultado encontrado.';
+      } else {
+        // Exibir o título "Loja selecionada:" e o resultado da busca
+        $('#loja-selecionada').show();
+        $('#result').html(result);
+
+        // Mostrar o botão "Confirmar"
+        $('#confirmar').show();
+      }
+    });
+
+    // Redirecionar para a próxima página ao clicar em "Confirmar"
+    $('#confirmar').click(function() {
+      const selectedValue = $('#selectedValue').val();
+
+      if (!selectedValue) {
+        alert('Por favor, selecione um valor antes de confirmar.');
+        return;
+      }
+
+      // Redirecionar para a próxima página (indice.html) com o valor selecionado
+      window.location.href = 'indice.html?cnpj=' + encodeURIComponent(selectedValue);
+    });
+  </script>
+</body>
+</html>
