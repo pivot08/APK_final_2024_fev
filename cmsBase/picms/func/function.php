@@ -67,6 +67,8 @@ $pageList = [
     "update-site" => "Atualizar - Site"
     ,
     "navigation-control" => "Registro de Navegação"
+    ,
+    "store" => "Lojas"
 ];
 $siteName = 'Samsung - Pop Interativo';
 $siteDomain = 'dpopinterativo.dev.br';
@@ -1558,6 +1560,41 @@ function generateJsonFile($fileName)
         $filePath = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . 'version' . $ds . $fileName . '.json';
         file_put_contents($filePath, $json_data);
     }
+
+    generateJsonStoreFile('store');
+}
+
+function generateJsonStoreFile($fileName)
+{
+    global $db;
+    $query = "
+    SELECT
+        str.StoreID
+        , str.StoreCode
+        , str.StoreName
+        , str.CNPJ
+    FROM
+        Store str
+    ";
+    $result = mysqli_query($db, $query);
+    if ($result->num_rows > 0) {
+        $store = array();
+        while ($row = $result->fetch_assoc()) {
+            $store[] = $row;
+        }
+    }
+
+    $data = array(
+        "store" => $store
+    );
+
+    $json_data = json_encode($data, JSON_PRETTY_PRINT);
+
+    if (isset($json_data)) {
+        $ds = DIRECTORY_SEPARATOR;
+        $filePath = dirname(__FILE__) . $ds . '..' . $ds . '..' . $ds . 'eureka' . $ds . $fileName . '.json';
+        file_put_contents($filePath, $json_data);
+    }
 }
 
 function tabletVersionList()
@@ -1754,5 +1791,20 @@ function hashPassword($password)
 {
     $hashedPassword = hash('sha256', $password);
     return base64_encode($hashedPassword);
+}
+
+function storeSimpleList()
+{
+    global $db;
+    $query = "
+    SELECT
+        str.StoreID
+        , str.StoreCode
+        , str.StoreName
+        , str.CNPJ
+    FROM
+        Store str
+    ";
+    return mysqli_query($db, $query);
 }
 ?>

@@ -112,7 +112,9 @@
 
                             var content = data.filter((x) => x.Login == user);
                             if (content != null && content != undefined && content.length > 0) {
-                                if (content[0].Password == hashedPassword || !requirePassword) {
+                                if (localStorage.getItem("store") == undefined || localStorage.getItem("store") == "") {
+                                    document.location.href = path + '/' + content[0].ApplicationSlug + '/store.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + content[0].ApplicationID + '&applicationSlug=' + content[0].ApplicationSlug + '&operatorUserID=' + content[0].OperatorUserID;
+                                } else if (content[0].Password == hashedPassword || !requirePassword) {
                                     document.location.href = path + '/' + content[0].ApplicationSlug + '/selection.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + content[0].ApplicationID + '&applicationSlug=' + content[0].ApplicationSlug + '&operatorUserID=' + content[0].OperatorUserID;
                                 } else {
                                     divError.style.display = 'block';
