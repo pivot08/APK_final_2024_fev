@@ -1638,11 +1638,11 @@ function insertTabletVersionDetail($guid, $deviceID, $deviceModel, $deviceManufa
     mysqli_query($db, $query);
 }
 
-function insertNavigationControl($guid, $actionID, $templateID, $templateContentID, $actionDate, $deviceID, $deviceModel, $deviceManufacturer)
+function insertNavigationControl($guid, $actionID, $templateID, $templateContentID, $actionDate, $storeID, $deviceID, $deviceModel, $deviceManufacturer)
 {
     global $db;
-    $query = "INSERT INTO NavigationControl (ActionID, TemplateID, TemplateContentID, ActionDate, TabletVersion, DeviceID, DeviceModel, DeviceManufacturer) 
-    VALUES ('$actionID', '$templateID', '$templateContentID', '$actionDate', '$guid', '$deviceID', '$deviceModel', '$deviceManufacturer')";
+    $query = "INSERT INTO NavigationControl (ActionID, TemplateID, TemplateContentID, ActionDate, TabletVersion, StoreID, DeviceID, DeviceModel, DeviceManufacturer) 
+    VALUES ('$actionID', '$templateID', '$templateContentID', '$actionDate', '$guid', '$storeID', '$deviceID', '$deviceModel', '$deviceManufacturer')";
     mysqli_query($db, $query);
 }
 
@@ -1769,6 +1769,9 @@ function navigationControlList()
         , apk.Application
         , DATE_FORMAT(nvc.ActionDate, '%d/%m/%Y %H:%i:%s') AS ActionDate
         , nvc.TabletVersion
+        , str.StoreID
+        , str.StoreCode
+        , str.StoreName
         , nvc.DeviceID
         , nvc.DeviceModel
         , nvc.DeviceManufacturer
@@ -1781,6 +1784,7 @@ function navigationControlList()
         INNER JOIN Application apk ON tmp.ApplicationID = apk.ApplicationID
         INNER JOIN TabletVersion tbv ON nvc.TabletVersion = tbv.TabletVersion
         LEFT JOIN TemplateContent tpc ON nvc.TemplateContentID = tpc.TemplateContentID
+        LEFT JOIN Store str ON nvc.StoreID = str.StoreID
     ORDER BY
         nvc.ActionDate DESC
     ";

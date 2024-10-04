@@ -89,6 +89,7 @@
       const templateContentID = params.get('templateContentID');
       const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
       const originLink = params.get('originLink') != null && params.get('originLink') != undefined ? params.get('originLink') : '';
+      const storeID = params.get('storeID') != null && params.get('storeID') != undefined ? params.get('storeID') : '';
       const homeOriginLink = params.get('homeOriginLink') != null && params.get('homeOriginLink') != undefined ? params.get('homeOriginLink') : '';
       if (originLink != '' && originLink != null) {
          backIndex(originLink);
@@ -110,7 +111,8 @@
                var isHeaderColorWhite = 0;
 
                if (tablet == 1 || tablet == '1') {
-                  Android.registerNavigation('1', templateChildID, templateContentChildID, formatDate(new Date()));
+                  // var storeID = localStorage.getItem("store") != undefined && localStorage.getItem("store") != null ? localStorage.getItem("store") : '';
+                  Android.registerNavigation('1|' + storeID, templateChildID, templateContentChildID, formatDate(new Date()));
                }
 
                if (content[0].IsHeaderColorWhite != null && content[0].IsHeaderColorWhite != undefined) {

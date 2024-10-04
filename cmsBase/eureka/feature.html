@@ -94,6 +94,7 @@
             const templateChildID = params.get('templateChildID');
             const templateContentChildID = params.get('templateContentChildID');
             const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+            const storeID = params.get('storeID') != null && params.get('storeID') != undefined ? params.get('storeID') : '';
             const originLink = params.get('originLink') != null && params.get('originLink') != undefined ? params.get('originLink') : '';
             const homeOriginLink = params.get('homeOriginLink') != null && params.get('homeOriginLink') != undefined ? params.get('homeOriginLink') : '';
             if (originLink != '' && originLink != null) {
@@ -128,7 +129,7 @@
                             contentButton += '<div class="col-md-6 ">'
                                 + '    <div class="card">'
                                 + '        <div class="card-body respiro-video">'
-                                + '            <a href="' + contentTarget + '.html?templateChildID=' + content[i].TemplateContentChildID + '&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink + '">'
+                                + '            <a href="' + contentTarget + '.html?storeID='+ storeID +'&templateChildID=' + content[i].TemplateContentChildID + '&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink + '">'
                                 + '                <div class="video-overlay">'
                                 + '                    <img src="../content/' + content[i].CoverImage + '">'
                                 + '                </div>'
@@ -147,7 +148,8 @@
                         loopVideos();
 
                         if (tablet == 1 || tablet == '1') {
-                            Android.registerNavigation('1', content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
+                            // var storeID = localStorage.getItem("store") != undefined && localStorage.getItem("store") != null ? localStorage.getItem("store") : '';
+                            Android.registerNavigation('1|' + storeID, content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
                         }
                     }
                 })

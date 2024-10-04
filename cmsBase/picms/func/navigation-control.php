@@ -43,6 +43,10 @@ $baseQuery = "
         apk.Application,
         DATE_FORMAT(nvc.ActionDate, '%d/%m/%Y %H:%i:%s') AS ActionDate,
         nvc.TabletVersion,
+        str.StoreID,
+        str.StoreCode,
+        str.StoreName,
+        str.StoreCode +' - '+ str.StoreName AS Store,
         nvc.DeviceID,
         nvc.DeviceModel,
         nvc.DeviceManufacturer,
@@ -54,7 +58,8 @@ $baseQuery = "
         INNER JOIN PageType pgt ON tmp.PageTypeID = pgt.PageTypeID
         INNER JOIN Application apk ON tmp.ApplicationID = apk.ApplicationID
         INNER JOIN TabletVersion tbv ON nvc.TabletVersion = tbv.TabletVersion
-        LEFT JOIN TemplateContent tpc ON nvc.TemplateContentID = tpc.TemplateContentID";
+        LEFT JOIN TemplateContent tpc ON nvc.TemplateContentID = tpc.TemplateContentID
+        LEFT JOIN Store str ON nvc.StoreID = str.StoreID";
 
 // Filtered records
 if ($search) {
@@ -64,6 +69,8 @@ if ($search) {
         pgt.PageType LIKE :search OR
         apk.Application LIKE :search OR
         tpc.TemplateContent LIKE :search OR
+        str.StoreCode LIKE :search OR
+        str.StoreName LIKE :search OR
         nvc.DeviceID LIKE :search OR
         nvc.DeviceModel LIKE :search OR
         nvc.DeviceManufacturer LIKE :search";

@@ -72,7 +72,12 @@
         const applicationID = params.get('applicationID');
         const applicationSlug = params.get('applicationSlug');
         const operatorUserID = params.get('operatorUserID');
+        const storeID = params.get('storeID') != null && params.get('storeID') != undefined ? params.get('storeID') : '';
         const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+        
+        if (storeID == '') {
+            document.location.href = path + '/' + content[0].ApplicationSlug + '/store.html?storeID='+ storeID +'&tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + content[0].ApplicationID + '&applicationSlug=' + content[0].ApplicationSlug + '&operatorUserID=' + content[0].OperatorUserID;
+        }
 
         var xhrContent = new XMLHttpRequest();
         xhrContent.onreadystatechange = function () {
@@ -83,7 +88,7 @@
                 var menuContent = '';
                 var multiplesHomes = data.templateContent.filter((x) => x.IsMainPage == "1");
                 for (i = 0; i < multiplesHomes.length; i++) {
-                    var contentLink = path + '/' + multiplesHomes[i].ApplicationSlug + '/index.html?tablet='+ tablet +'&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + multiplesHomes[i].ApplicationID + '&applicationSlug=' + multiplesHomes[i].ApplicationSlug + '&operatorUserID=' + multiplesHomes[i].OperatorUserID +'&pageTypeID='+ multiplesHomes[i].PageTypeID +'&templateContentID='+ multiplesHomes[i].TemplateContentID;
+                    var contentLink = path + '/' + multiplesHomes[i].ApplicationSlug + '/index.html?storeID='+ storeID +'&tablet='+ tablet +'&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + multiplesHomes[i].ApplicationID + '&applicationSlug=' + multiplesHomes[i].ApplicationSlug + '&operatorUserID=' + multiplesHomes[i].OperatorUserID +'&pageTypeID='+ multiplesHomes[i].PageTypeID +'&templateContentID='+ multiplesHomes[i].TemplateContentID;
                     
                     menuContent += '<a href="'+ contentLink +'" class="btIndice">'+ multiplesHomes[i].Template +'</a><br><BR>';
                 }

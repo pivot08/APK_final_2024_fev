@@ -65,6 +65,7 @@
 												<th>Template</th>
 												<th>Conteúdo</th>
 												<th>Versão</th>
+												<th>Loja</th>
 												<th>Em Produção?</th>
 												<th>Dispositivo</th>
 												<th>Modelo</th>
@@ -79,6 +80,7 @@
 												<th>Template</th>
 												<th>Conteúdo</th>
 												<th>Versão</th>
+												<th>Loja</th>
 												<th>Em Produção?</th>
 												<th>Dispositivo</th>
 												<th>Modelo</th>
@@ -111,6 +113,7 @@
 					{ "data": "Template" },           // Template
 					{ "data": "TemplateContent" },    // Conteúdo
 					{ "data": "TabletVersion" },      // Versão
+					{ "data": "Store" },      			 // Loja
 					{ "data": "IsProduction" },       // Em Produção?
 					{ "data": "DeviceID" },           // Dispositivo
 					{ "data": "DeviceModel" }         // Modelo

@@ -91,9 +91,11 @@
         const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : '';
         const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
         const requirePassword = params.get('requirePassword') != null && params.get('requirePassword') != undefined ? params.get('requirePassword') : false;
+        const storeID = params.get('storeID') != null && params.get('storeID') != undefined ? params.get('storeID') : '';
 
         if (tablet == 1 || tablet == '1') {
-            Android.registerNavigation('1', '0', '', formatDate(new Date()));
+            // var storeID = localStorage.getItem("store") != undefined && localStorage.getItem("store") != null ? localStorage.getItem("store") : '';
+            Android.registerNavigation('1|' + storeID, '0', '', formatDate(new Date()));
         }
 
         function authenticate() {
@@ -112,14 +114,14 @@
 
                             var content = data.filter((x) => x.Login == user);
                             if (content != null && content != undefined && content.length > 0) {
-                                if (localStorage.getItem("store") == undefined || localStorage.getItem("store") == "") {
+                                // if (localStorage.getItem("store") == undefined || localStorage.getItem("store") == "") {
                                     document.location.href = path + '/' + content[0].ApplicationSlug + '/store.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + content[0].ApplicationID + '&applicationSlug=' + content[0].ApplicationSlug + '&operatorUserID=' + content[0].OperatorUserID;
-                                } else if (content[0].Password == hashedPassword || !requirePassword) {
-                                    document.location.href = path + '/' + content[0].ApplicationSlug + '/selection.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + content[0].ApplicationID + '&applicationSlug=' + content[0].ApplicationSlug + '&operatorUserID=' + content[0].OperatorUserID;
-                                } else {
-                                    divError.style.display = 'block';
-                                    divError.innerHTML = 'Senha inválida.';
-                                }
+                                // } else if (content[0].Password == hashedPassword || !requirePassword) {
+                                //     document.location.href = path + '/' + content[0].ApplicationSlug + '/selection.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + content[0].ApplicationID + '&applicationSlug=' + content[0].ApplicationSlug + '&operatorUserID=' + content[0].OperatorUserID;
+                                // } else {
+                                //     divError.style.display = 'block';
+                                //     divError.innerHTML = 'Senha inválida.';
+                                // }
                             } else {
                                 divError.style.display = 'block';
                                 divError.innerHTML = 'Usuário não encontrado.';

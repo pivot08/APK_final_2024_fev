@@ -84,6 +84,7 @@
         const operatorUserID = params.get('operatorUserID');
         const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
         const originLink = params.get('originLink') != null && params.get('originLink') != undefined ? params.get('originLink') : '';
+        const storeID = params.get('storeID') != null && params.get('storeID') != undefined ? params.get('storeID') : '';
         const homeOriginLink = window.btoa('../eureka/menu.html' + paramsValue);
         if (originLink != '' && originLink != null) {
             backIndex(originLink);
@@ -130,7 +131,7 @@
                         contentButton += '<div class="col-md-6 ">'
                             + '    <div class="card">'
                             + '        <div class="card-body respiro-video">'
-                            + '            <a href="' + contentTarget + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink + '">'
+                            + '            <a href="' + contentTarget + '.html?storeID='+ storeID +'&tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink + '">'
                             + '                <div class="video-overlay">'
                             + '                    <img src="' + pathContent + '/' + actualVersion + '/' + content[i].CoverImage + '">'
                             + '                </div>'
@@ -147,7 +148,8 @@
                     button.innerHTML = contentButton;
 
                     if (tablet == 1 || tablet == '1') {
-                        Android.registerNavigation('2', content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
+                        // var storeID = localStorage.getItem("store") != undefined && localStorage.getItem("store") != null ? localStorage.getItem("store") : '';
+                        Android.registerNavigation('2|'+ storeID, content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
                     }
 
                     playNextVideo(0);

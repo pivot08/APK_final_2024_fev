@@ -115,7 +115,7 @@
             if (item.CNPJ && item.StoreName) {
               autocompleteSuggestions.push({
                 label: `${item.CNPJ.trim()} - ${item.StoreName.trim()}`,
-                value: item.CNPJ.trim(), // Usar o CNPJ como valor principal para a busca
+                value: item.StoreID.trim(), // Usar o CNPJ como valor principal para a busca
                 storeName: item.StoreName.trim()
               });
             }
@@ -138,7 +138,7 @@
             },
             select: function (event, ui) {
               // Quando o usuário seleciona uma opção, o valor do campo será o CNPJ
-              $('#search').val(ui.item.value);
+              $('#search').val(ui.item.label);
 
               // Armazenar o CNPJ selecionado no campo hidden
               $('#selectedValue').val(ui.item.value);
@@ -203,9 +203,9 @@
             return;
           }
 
-          localStorage.setItem("store", selectedValue);
+          // localStorage.setItem("store", selectedValue);
           // Redirecionar para a próxima página (indice.html) com o valor selecionado
-          document.location.href = path + '/'+ applicationSlug +'/selection.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID;
+          document.location.href = path + '/'+ applicationSlug +'/selection.html?storeID='+ selectedValue +'&tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID;
         });
       }
     }

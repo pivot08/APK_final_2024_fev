@@ -56,6 +56,7 @@
         const operatorUserID = params.get('operatorUserID');
         const pageTypeID = params.get('pageTypeID');
         const templateContentID = params.get('templateContentID');
+        const storeID = params.get('storeID') != null && params.get('storeID') != undefined ? params.get('storeID') : '';
         const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
 
         const originLink = window.btoa('../eureka/index.html' + paramsValue);
@@ -83,16 +84,17 @@
                     var contentLink = document.getElementById('button-link');
                     if (content[0].TemplateChildID != null && content[0].TemplateChildID != '0' && content[0].TemplateChildID != '') {
                         var slug = data.templateContent.filter((x) => x.TemplateID == content[0].TemplateChildID);
-                        contentLink.href = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : 'menu') + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateChildID=' + content[0].TemplateChildID + '&originLink=' + originLink;
+                        contentLink.href = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : 'menu') + '.html?storeID='+ storeID +'&tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateChildID=' + content[0].TemplateChildID + '&originLink=' + originLink;
                     }
 
                     if (content[0].TemplateContentChildID != null && content[0].TemplateContentChildID != '0' && content[0].TemplateContentChildID != '') {
                         var slug = data.templateContent.filter((x) => x.TemplateID == content[0].TemplateContentChildID);
-                        contentLink.href = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : 'menu') + '.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateChildID=' + content[0].TemplateChildID + '&originLink=' + originLink;
+                        contentLink.href = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : 'menu') + '.html?storeID='+ storeID +'&tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateChildID=' + content[0].TemplateChildID + '&originLink=' + originLink;
                     }
 
                     if (tablet == 1 || tablet == '1') {
-                        Android.registerNavigation('1', content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
+                        // var storeID = localStorage.getItem("store") != undefined && localStorage.getItem("store") != null ? localStorage.getItem("store") : '';
+                        Android.registerNavigation('1|'+ storeID, content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
                     }
                 }
             }

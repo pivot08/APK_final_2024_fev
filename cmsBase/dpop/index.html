@@ -145,6 +145,7 @@
       const applicationSlug = params.get('applicationSlug');
       const operatorUserID = params.get('operatorUserID');
       const originLink = params.get('originLink') != null && params.get('originLink') != undefined ? params.get('originLink') : '';
+      const storeID = params.get('storeID') != null && params.get('storeID') != undefined ? params.get('storeID') : '';
 
       const pageTypeID = params.get('pageTypeID');
       const templateContentID = params.get('templateContentID');
@@ -158,7 +159,8 @@
             var content = data.templateContent.filter((x) => x.ApplicationID == applicationID && x.PageTypeID == pageTypeID && x.TemplateContentID == templateContentID);
             if (content != null && content != undefined) {
                if (tablet == 1 || tablet == '1') {
-                  Android.registerNavigation('1', templateChildID, templateContentChildID, formatDate(new Date()));
+                  // var storeID = localStorage.getItem("store") != undefined && localStorage.getItem("store") != null ? localStorage.getItem("store") : '';
+                  Android.registerNavigation('1|' + storeID, templateChildID, templateContentChildID, formatDate(new Date()));
                }
 
                var video = document.getElementById('home-video');
@@ -175,7 +177,7 @@
                body.style.backgroundColor = '#' + content[0].Color.replace('#', '');
 
                var contentLink = document.getElementById('content-link');
-               contentLink.href = 'content-buttons.html?tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateChildID=' + content[0].TemplateChildID + '&templateContentChildID=' + content[0].TemplateContentChildID;
+               contentLink.href = 'content-buttons.html?storeID='+ storeID +'&tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateChildID=' + content[0].TemplateChildID + '&templateContentChildID=' + content[0].TemplateContentChildID;
             }
          }
       }
