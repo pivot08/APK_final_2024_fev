@@ -71,6 +71,9 @@ if (isset($_POST['save'])) {
 if (isset($_POST['update'])) {
 	templateUpdate($templateID, $applicationID, $pageTypeID, $template, '', $buttonContent, $headerText, '', '', '', $color, $isHeaderColorWhite, $isMainPage, $isOperatorExclusive, $isActive);
 }
+if (isset($_POST['copy'])) {
+	$newTemplateID = templateCopy($templateID, $applicationID, $pageTypeID, $template, '', $buttonContent, $headerText, '', '', '', $color, $isHeaderColorWhite, $isMainPage, $isOperatorExclusive, $isActive);
+}
 if (isset($_POST['delete'])) {
 	templateDelete($templateID);
 }
@@ -87,6 +90,9 @@ if (isset($_POST['save']) || isset($_POST['update']) || isset($_POST['delete']))
 		$msg = 'Registro excluído com sucesso.';
 	}
 	header('location: template-list.php?msg=' . $msg);
+}
+if (isset($_POST['copy'])) {
+	header('location: template.php?id=' . $newTemplateID);
 }
 ?>
 <!DOCTYPE html>
@@ -249,6 +255,7 @@ if (isset($_POST['save']) || isset($_POST['update']) || isset($_POST['delete']))
 											<button type="submit" name="save" class="btn btn-primary">Incluir</button>
 										<?php } ?>
 										<button type="submit" name="delete" class="btn btn-secondary">Excluir</button>
+										<button type="submit" name="copy" class="btn btn-secondary">Copiar</button>
 									</div>
 								</form>
 							</div>

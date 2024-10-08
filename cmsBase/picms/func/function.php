@@ -574,6 +574,19 @@ function templateUpdate($templateID, $applicationID, $pageTypeID, $template, $lo
     generateUserOperatorFile();
 }
 
+function templateCopy($fromTemplateID, $applicationID, $pageTypeID, $template, $logo, $buttonContent, $headerText, $specificationLine1, $specificationLine2, $footNote, $color, $isHeaderColorWhite, $isMainPage, $isOperatorExclusive, $isActive)
+{
+    global $db;
+
+    $query = "
+        INSERT INTO Template (ApplicationID, PageTypeID, Template, Logo, ButtonContent, HeaderText, SpecificationLine1, SpecificationLine2, FootNote, Color, IsHeaderColorWhite, IsMainPage, IsOperatorExclusive, IsActive, IsDeleted, DControl)
+        VALUES ('$applicationID', '$pageTypeID', '$template [Cópia]', '$logo', '$buttonContent', '$headerText', '$specificationLine1', '$specificationLine2', '$footNote', '$color', $isHeaderColorWhite, $isMainPage, $isOperatorExclusive, $isActive, 0, NOW())
+    ";
+    $result = mysqli_query($db, $query);
+    return mysqli_insert_id($db);
+}
+
+
 function templateUpdateMainPage($templateID, $isOperatorExclusive)
 {
     return;
@@ -901,6 +914,17 @@ function templateContentUpdate($templateContentID, $applicationID, $templateID, 
     WHERE
         TemplateContentID = $templateContentID";
     mysqli_query($db, $query);
+}
+
+function templateContentCopy($fromTemplateContentID, $applicationID, $templateID, $buttonSizeID, $buttonPositionID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $textTitleColor, $textColor, $style, $isWhiteTitle, $isTextRight, $isActive)
+{
+    global $db;
+    $query = "
+        INSERT INTO TemplateContent (ApplicationID, TemplateID, ButtonSizeID, ButtonPositionID, ContentOrientationID, TemplateChildID, TemplateContentChildID, TemplateContent, Title, SubTitle, Content, Footnote, ButtonOrder, Media, CoverImage, PositionTop, PositionLeft, TextTitleColor, TextColor, Style, IsWhiteTitle, IsTextRight, IsActive, IsDeleted, DControl)
+        VALUES ('$applicationID', '$templateID', '$buttonSizeID', '$buttonPositionID', '$contentOrientationID', '$templateChildID', '$templateContentChildID', '$templateContent [Cópia]', '$title', '$subTitle', '$content', '$footnote', '$buttonOrder', '$media', '$coverImage', '$positionTop', '$positionLeft', '$textTitleColor', '$textColor', '$style', $isWhiteTitle, $isTextRight, '$isActive', 0, NOW())
+    ";
+    mysqli_query($db, $query);
+    return mysqli_insert_id($db);
 }
 
 function templateContentDelete($templateContentID)
@@ -1751,7 +1775,7 @@ function generateOperatorZIPFile($fileName)
     }
 }
 
-function navigationControlList()
+function navigationControlList($offset, $limit)
 {
     global $db;
     $query = "
@@ -1787,7 +1811,9 @@ function navigationControlList()
         LEFT JOIN Store str ON nvc.StoreID = str.StoreID
     ORDER BY
         nvc.ActionDate DESC
+    LIMIT $limit OFFSET $offset
     ";
+
     return mysqli_query($db, $query);
 }
 

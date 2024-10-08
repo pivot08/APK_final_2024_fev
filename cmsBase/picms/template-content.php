@@ -7,7 +7,7 @@ if (isset($_GET['pageTypeID'])) {
 	$pageTypeID = $_GET['pageTypeID'];
 }
 
-if (isset($_POST['save']) || isset($_POST['update'])) {
+if (isset($_POST['save']) || isset($_POST['update']) || isset($_POST['copy'])) {
 	$templateContentID = $_POST['TemplateContentID'];
 	$applicationID = isset($_POST['ApplicationID']) ? $_POST['ApplicationID'] : '';
 	$templateID = isset($_POST['TemplateID']) ? $_POST['TemplateID'] : '';
@@ -109,6 +109,9 @@ if (isset($_POST['save'])) {
 if (isset($_POST['update'])) {
 	templateContentUpdate($templateContentID, $applicationID, $templateID, $buttonSizeID, $buttonPositionID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $textTitleColor, $textColor, $style, $isWhiteTitle, $isTextRight, $isActive);
 }
+if (isset($_POST['copy'])) {
+	$newTemplateContentID = templateContentCopy($templateContentID, $applicationID, $templateID, $buttonSizeID, $buttonPositionID, $contentOrientationID, $templateChildID, $templateContentChildID, $templateContent, $title, $subTitle, $content, $footnote, $buttonOrder, $media, $coverImage, $positionTop, $positionLeft, $textTitleColor, $textColor, $style, $isWhiteTitle, $isTextRight, $isActive);
+}
 if (isset($_POST['delete'])) {
 	templateContentDelete($templateContentID);
 }
@@ -125,5 +128,32 @@ if (isset($_POST['save']) || isset($_POST['update']) || isset($_POST['delete']))
 		$msg = 'Registro excluído com sucesso.';
 	}
 	header('location: template-content-list.php?msg='. $msg .'&pageTypeID='. $pageTypeID);
+}
+if (isset($_POST['copy'])) {
+	switch ($pageTypeID) {
+		case 1:
+		case 5:
+			$pageGoTo = "template-content-home.php";
+			break;
+		case 0:
+		case 2:
+		case 6:
+			$pageGoTo = "template-content-buttons.php";
+			break;
+		case 3:
+			$pageGoTo = "template-content-text.php";
+			break;
+		case 7:
+		case 12:
+			$pageGoTo = "template-content-home-feature.php";
+			break;
+		case 4:
+			$pageGoTo = "template-content-product-line.php";
+			break;
+		case 8:
+			$pageGoTo = "template-content-step-by-step.php";
+			break;
+	}
+	header('location: '. $pageGoTo .'?id='. $newTemplateContentID);
 }
 ?>

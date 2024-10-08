@@ -210,6 +210,7 @@ if (isset($_GET['id'])) {
 											<button type="submit" name="save" class="btn btn-primary">Incluir</button>
 										<?php } ?>
 										<button type="submit" name="delete" class="btn btn-secondary">Excluir</button>
+										<button type="submit" name="copy" class="btn btn-secondary">Copiar</button>
 									</div>
 								</form>
 							</div>
