@@ -74,12 +74,16 @@
 					</li>
 				<?php } ?>
 				<?php if ($_SESSION['user']['UserTypeID'] == 1) { ?>
-					<li class="nav-dropdown <?php echo ($urlPage == 'navigation-control' || $urlPage == 'store-list' || $urlPage == 'store' ? 'active' : ''); ?>">
+					<li class="nav-dropdown <?php echo ($urlPage == 'navigation-control' || $urlPage == 'store-list' || $urlPage == 'store' || $urlPage == 'navigation-control-location' ? 'active' : ''); ?>">
 						<a class="has-arrow" href="#" aria-expanded="true"><i
 								class="icon dripicons-meter"></i><span>RELATÓRIO</span></a>
 						<ul class="collapse nav-sub">
 							<li id="navigation-control" <?php echo ($urlPage == 'navigation-control' ? 'class="active"' : ''); ?>><a
 									href="navigation-control.php"><span>Registro de Navegação</span></a></li>
+							<li id="navigation-control-store" <?php echo ($urlPage == 'navigation-control-store' ? 'class="active"' : ''); ?>><a
+									href="navigation-control-store.php"><span>Registro de Navegação - Loja</span></a></li>
+							<li id="navigation-control-location" <?php echo ($urlPage == 'navigation-control-location' ? 'class="active"' : ''); ?>><a
+									href="navigation-control-location.php"><span>Registro de Navegação - Localização</span></a></li>
 							<li id="store-list" <?php echo ($urlPage == 'store-home' ? 'class="active"' : ''); ?>><a
 									href="store-list.php"><span>Lojas</span></a></li>
 						</ul>

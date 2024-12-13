@@ -68,7 +68,11 @@ $pageList = [
     ,
     "navigation-control" => "Registro de Navegação"
     ,
-    "store" => "Lojas"
+    "navigation-control-store" => "Registro de Navegação - Lojas"
+    ,
+    "navigation-control-location" => "Registro de Navegação - Localização"
+    ,
+    "store-list" => "Lojas"
 ];
 $siteName = 'Samsung - Pop Interativo';
 $siteDomain = 'dpopinterativo.dev.br';
@@ -1817,6 +1821,92 @@ function navigationControlList($offset, $limit)
     return mysqli_query($db, $query);
 }
 
+function navigationControlByStoreList($offset, $limit)
+{
+    global $db;
+    $query = "
+    SELECT
+        nvc.NavigationControlID
+        , act.ActionID
+        , act.Action
+        , tmp.TemplateID
+        , tmp.Template
+        , pgt.PageTypeID
+        , pgt.PageType
+        , tpc.TemplateContentID
+        , tpc.TemplateContent
+        , apk.ApplicationID
+        , apk.Application
+        , DATE_FORMAT(nvc.ActionDate, '%d/%m/%Y %H:%i:%s') AS ActionDate
+        , nvc.TabletVersion
+        , str.StoreID
+        , str.CNPJ
+        , str.StoreCode
+        , str.StoreName
+        , nvc.DeviceID
+        , nvc.DeviceModel
+        , nvc.DeviceManufacturer
+        , tbv.IsProduction
+    FROM
+        NavigationControl nvc
+        INNER JOIN Action act ON nvc.ActionID = act.ActionID
+        INNER JOIN Template tmp ON nvc.TemplateID = tmp.TemplateID
+        INNER JOIN PageType pgt ON tmp.PageTypeID = pgt.PageTypeID
+        INNER JOIN Application apk ON tmp.ApplicationID = apk.ApplicationID
+        INNER JOIN TabletVersion tbv ON nvc.TabletVersion = tbv.TabletVersion
+        INNER JOIN Store str ON nvc.StoreID = str.StoreID
+        LEFT JOIN TemplateContent tpc ON nvc.TemplateContentID = tpc.TemplateContentID
+    ORDER BY
+        nvc.ActionDate DESC
+    LIMIT $limit OFFSET $offset
+    ";
+
+    return mysqli_query($db, $query);
+}
+
+function navigationControlByLocationList($offset, $limit)
+{
+    global $db;
+    $query = "
+    SELECT
+        nvc.NavigationControlID
+        , act.ActionID
+        , act.Action
+        , tmp.TemplateID
+        , tmp.Template
+        , pgt.PageTypeID
+        , pgt.PageType
+        , tpc.TemplateContentID
+        , tpc.TemplateContent
+        , apk.ApplicationID
+        , apk.Application
+        , DATE_FORMAT(nvc.ActionDate, '%d/%m/%Y %H:%i:%s') AS ActionDate
+        , nvc.TabletVersion
+        , str.Region
+        , str.State
+        , str.City
+        , str.Neighbor
+        , nvc.DeviceID
+        , nvc.DeviceModel
+        , nvc.DeviceManufacturer
+        , tbv.IsProduction
+    FROM
+        NavigationControl nvc
+        INNER JOIN Action act ON nvc.ActionID = act.ActionID
+        INNER JOIN Template tmp ON nvc.TemplateID = tmp.TemplateID
+        INNER JOIN PageType pgt ON tmp.PageTypeID = pgt.PageTypeID
+        INNER JOIN Application apk ON tmp.ApplicationID = apk.ApplicationID
+        INNER JOIN TabletVersion tbv ON nvc.TabletVersion = tbv.TabletVersion
+        INNER JOIN Store str ON nvc.StoreID = str.StoreID
+        LEFT JOIN TemplateContent tpc ON nvc.TemplateContentID = tpc.TemplateContentID
+    ORDER BY
+        nvc.ActionDate DESC
+    LIMIT $limit OFFSET $offset
+    ";
+
+    return mysqli_query($db, $query);
+}
+
 function hashPassword($password)
 {
     $hashedPassword = hash('sha256', $password);
@@ -1834,6 +1924,34 @@ function storeSimpleList()
         , str.CNPJ
     FROM
         Store str
+    ";
+    return mysqli_query($db, $query);
+}
+
+function storeList()
+{
+    global $db;
+    $query = "
+        SELECT
+            str.StoreID,
+            str.StoreCode,
+            str.StoreName,
+            str.CNPJ,
+            nvc.DeviceID,
+            nvc.TabletVersion,
+            DATE_FORMAT(nvc.ActionDate, '%d/%m/%Y %H:%i:%s') AS ActionDate,
+            DATE_FORMAT(tbv.DControl, '%d/%m/%Y %H:%i:%s') AS DControl,
+            tbv.IsProduction
+        FROM
+            Store str
+            LEFT JOIN NavigationControl nvc ON str.StoreID = nvc.StoreID
+            LEFT JOIN TabletVersion tbv ON nvc.TabletVersion = tbv.TabletVersion
+        WHERE
+            nvc.ActionDate = (
+                SELECT MAX(nvc2.ActionDate)
+                FROM NavigationControl nvc2
+                WHERE nvc2.StoreID = str.StoreID
+            )
     ";
     return mysqli_query($db, $query);
 }
