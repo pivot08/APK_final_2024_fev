@@ -81,6 +81,49 @@ video {max-width: 100%;}
 
 .bac-preto .title-selecione {color:#000;}
 
+h3.title-paradigma {
+  margin: auto;
+  background: #313131;
+  padding: 23px;
+  padding-left:60px;
+  padding-right:60px;
+  border-radius: 50px;
+  color:#fff;
+  font-size: 42px;
+  font-weight: 500;
+  margin-top:20px;
+}
+
+.container-fluid-paradigma {
+  display: flex;
+  flex-direction: column;
+  height: 103vh;
+  max-width: 100%;
+}
+
+
+
+.nav-paradigma h3 {
+  font-size: 42px;
+  color: #fff;
+}
+
+.img-paradigma {position: absolute;bottom: 0;margin:auto;}
+
+.row.nav-paradigma {
+  margin: auto 0px;
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
+  display: flex;
+  align-content: center;
+  align-items: center;
+  justify-content: space-between;
+  
+  max-height: 200px;
+  margin-top: -297px !important;
+}
+
 .title-how-to {text-align: center;font-size: 26px;font-weight: 200;padding-left:50px;padding-right:50px;padding-top:40px;font-family: 'Samsung Sharp Sans Regular';}
 .title-how-to strong {font-family: 'Samsung Sharp Sans';}
 .seta-preta {
@@ -105,6 +148,13 @@ z-index: 99999;}
     align-items: center !important;
     display: flex;
     
+}
+
+.row.nav-paradigma {
+  margin: auto 0px;
+  width: 100%;
+  text-align: center;
+  margin-top: 50px;
 }
 
 
