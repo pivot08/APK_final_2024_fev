@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>EUREKA</title>
+
+    <!-- Inclua os links para os arquivos do Bootstrap CSS -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/geral.css" rel="stylesheet">
+</head>
+
+<body class="h-100 bac-preto" id="content-body">
+    <div class="volta-lojista">
+        <button onmousedown="backIndice()"></button>
+    </div>
+    <div id="loading-overlay"></div>
+    <div id="loadingContainer" style="display:none;">
+
+        <div class="container-fluid">
+            <!-- primeira linha-->
+            <div class="row mx-auto" style="max-height: 70px;margin-bottom: 30px;">
+                <!-- Coluna 1 -->
+                <div class="col-md-2">
+                    <div class="card bac-preto">
+                        <div class="card-body d-flex align-items-center">
+                            <a
+                                href="index.html?tablet=0&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateContentID=22"><img
+                                    src="assets/img/nav_home_white.png" class="svg-icone"></a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna 2 -->
+                <div class="col-md-8">
+                    <div class="card bac-preto">
+                        <div class="card-body selecione d-flex align-items-center">
+                            <img src="assets/img/seta-branca.png" style="width: 100px;" class="seta-preta">
+
+                            <div class="card-body selecione d-flex align-items-center">
+                                <h5 class="title-selecione title-descubra-galaxy-ai" id="header-text">Saiba mais sobre as features</h5>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Coluna 3 -->
+                <div class="col-md-2">
+                    <div class="card bac-preto">
+
+                        <div class="card-body d-flex align-items-center">
+                            <a href="javascript:history.back(-1);"> <img src="assets/img/nav_back_white.png"
+                                    class="svg-icone2"></a>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- terceira linha-->
+            <div class="row mx-auto" id="container-buttons"></div>
+        </div>
+
+    </div>
+
+    <!-- Inclua os links para os arquivos do Bootstrap JavaScript (opcional, dependendo do que você está usando) -->
+    <script src="assets/js/jquery-3.7.1.min.js"></script>
+    <script src="assets/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="../inc/main.js"></script>
+    <script>
+        const url = new URL(window.location.href);
+        const params = new URLSearchParams(url.search);
+        const paramsValue = url.search;
+        const path = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? 'file:///data/data/com.samsung.tablepresentation/files' : '';
+        const pathContent = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../content';
+        const pathBaseFiles = params.get('path') != null && params.get('path') != undefined && params.get('path') != '' ? params.get('path') : '../version';
+        const actualVersion = params.get('actualVersion') != null && params.get('actualVersion') != undefined ? params.get('actualVersion') : '';
+        const applicationID = params.get('applicationID');
+        const applicationSlug = params.get('applicationSlug');
+        const operatorUserID = params.get('operatorUserID');
+        const tablet = params.get('tablet') != null && params.get('tablet') != undefined ? params.get('tablet') : 0;
+        const originLink = params.get('originLink') != null && params.get('originLink') != undefined ? params.get('originLink') : '';
+        const storeID = params.get('storeID') != null && params.get('storeID') != undefined ? params.get('storeID') : '';
+        const homeOriginLink = window.btoa('../eureka/menu.html' + paramsValue);
+        if (originLink != '' && originLink != null) {
+            backIndex(originLink);
+            fixHomeLink(homeOriginLink);
+        }
+
+        const templateChildID = params.get('templateChildID');
+        const templateContentChildID = params.get('templateContentChildID');
+
+        var xhrContent = new XMLHttpRequest();
+        xhrContent.onreadystatechange = function () {
+            if (xhrContent.readyState === 4 && xhrContent.status === 200) {
+                var data = JSON.parse(xhrContent.responseText);
+
+                if (templateChildID != null && templateChildID != '' && templateChildID != '0') {
+                    var template = data.template.filter((x) => x.ApplicationID == applicationID && x.TemplateID == templateChildID);
+
+                    var body = document.getElementById('content-body');
+                    body.style.backgroundColor = '#' + template[0].Color.replace('#', '');
+
+                    var headerText = document.getElementById('header-text');
+                    if (headerText != '') {
+                        headerText.innerHTML = template[0].HeaderText.replace('[ICO_AI]', '<img src="assets/img/ico-inteligencia.png" width="15">');
+                    }
+                }
+
+                var content = data.templateContent.filter((x) => x.ApplicationID == applicationID && x.TemplateID == templateChildID);
+                if (content != null && content != undefined && content.length > 0) {
+                    var contentButton = '';
+
+                    for (var i = 0; i < content.length; i++) {
+                        var contentTarget = "feature-full";
+
+                        if (content[i].TemplateChildID != null && content[i].TemplateChildID != '0' && content[i].TemplateChildID != '') {
+                            var slug = data.templateContent.filter((x) => x.TemplateID == content[i].TemplateChildID);
+                            contentTarget = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : 'feature-full');
+                        }
+
+                        if (content[i].TemplateContentChildID != null && content[i].TemplateContentChildID != '0' && content[i].TemplateContentChildID != '') {
+                            var slug = data.templateContent.filter((x) => x.TemplateContentID == content[i].TemplateContentChildID);
+                            contentTarget = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : 'feature-full');
+                        }
+
+                        contentButton += '<div class="col-md-6 ">'
+                            + '    <div class="card">'
+                            + '        <div class="card-body respiro-video">'
+                            + '            <a href="' + contentTarget + '.html?storeID='+ storeID +'&tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink + '">'
+                            + '                <div class="video-overlay">'
+                            + '                    <img src="' + pathContent + '/' + actualVersion + '/' + content[i].CoverImage + '">'
+                            + '                </div>'
+                            + '                <video class="video-sequence" muted>'
+                            + '                    <source src="' + pathContent + '/' + actualVersion + '/' + content[i].Media + '" type="video/mp4">'
+                            + '                </video>'
+                            + '            </a>'
+                            + '        </div>'
+                            + '    </div>'
+                            + '</div>';
+                    }
+
+                    var button = document.getElementById('container-buttons');
+                    button.innerHTML = contentButton;
+
+                    if (tablet == 1 || tablet == '1') {
+                        // var storeID = localStorage.getItem("store") != undefined && localStorage.getItem("store") != null ? localStorage.getItem("store") : '';
+                        Android.registerNavigation('2|'+ storeID, content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
+                    }
+
+                    playNextVideo(0);
+                }
+            }
+        }
+        xhrContent.open("GET", pathBaseFiles + '/' + (actualVersion != "" ? actualVersion : "content") + '.json');
+        xhrContent.send(null);
+    </script>
+</body>
+
+</html>

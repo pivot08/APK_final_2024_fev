@@ -75,7 +75,11 @@ video {max-width: 100%;}
 .bac-branco {background:#fff;border:solid 1px;}
 .bac-cinza {background:#f8f8f8;border:solid 1px;}
 
+.bac-preto .selecione {
+  background: #fff;
+}
 
+.bac-preto .title-selecione {color:#000;}
 
 .title-how-to {text-align: center;font-size: 26px;font-weight: 200;padding-left:50px;padding-right:50px;padding-top:40px;font-family: 'Samsung Sharp Sans Regular';}
 .title-how-to strong {font-family: 'Samsung Sharp Sans';}
