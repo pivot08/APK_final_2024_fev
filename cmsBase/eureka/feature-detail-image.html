@@ -30,7 +30,7 @@
                         <div class="card-body d-flex align-items-center">
                             <a
                                 href="index.html?tablet=1&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateContentID=22"><img
-                                    src="assets/img/nav_home_white.png" class="svg-icone"></a>
+                                    src="assets/img/nav_home_white.png" class="svg-icone" id="home-button"></a>
                         </div>
                     </div>
                 </div>
@@ -38,11 +38,8 @@
                 <!-- Coluna 2 -->
                 <div class="col-md-8">
                     <div class="card bac-preto">
-                        <div class="card-body selecione d-flex align-items-center">
+                        <div class="card-body selecione d-flex align-items-center" id="header-text">
                             <img src="assets/img/seta-branca.png" style="width: 100px;" class="seta-preta">
-
-                            <h5 class="title-selecione" id="header-text">Saiba mais sobre as features</h5>
-
                         </div>
                     </div>
                 </div>
@@ -53,7 +50,7 @@
 
                         <div class="card-body d-flex align-items-center">
                             <a href="javascript:history.back(-1);"> <img src="assets/img/nav_back_white.png"
-                                    class="svg-icone2"></a>
+                                    class="svg-icone2" id="back-button"></a>
 
                         </div>
                     </div>
@@ -66,17 +63,19 @@
                 <!-- Coluna 1 -->
                 <div class="col-md-12">
                     <div class="card bac-preto">
-                        <h3 class="title-paradigma">Now Bar & Now Brief <img src="assets/img/galaxy-ai.png" style="max-width: 50px;margin-top: -5px;margin-left:5px;"></h3>
-                        
+                        <h3 class="title-paradigma" id="title"></h3>
+
 
                         <div class="row nav-paradigma">
-                            <div class="col-md-3"><a href="#"><img
-                                src="assets/img/seta-esq-branca.png" style="max-width: 25px;"> </a></div>
-                                <div class="col-md-6"><h3 >Tes kasjd </h3></div>
-                                
-                                <div class="col-md-3"><a href="#"><img
-                                    src="assets/img/seta-dir-branca.png" style="max-width: 25px;"> </a></div>
-                                
+                            <div class="col-md-3"><a href="javascript:history.back(-1);"><img
+                                        src="assets/img/seta-esq-branca.png" style="max-width: 25px;"> </a></div>
+                            <div class="col-md-6">
+                                <h3 id="sub-title"></h3>
+                            </div>
+
+                            <div class="col-md-3 button-next"><a href="#" id="content-link"><img
+                                        src="assets/img/seta-dir-branca.png" style="max-width: 25px;"> </a></div>
+
 
                         </div>
                     </div>
@@ -89,8 +88,11 @@
                 <!-- Coluna 1 -->
                 <div class="col-md-12">
                     <div class="card bac-preto">
+                        <video autoplay loop muted id="myVideo" style="display:none;">
+                            <source src="" type="video/mp4">
+                        </video>
 
-                        <img src="assets/img/exemplo-paradigma.png" class="img-fluid img-paradigma" >
+                        <img src="" class="img-fluid img-paradigma" id="myImage" style="display:none;">
 
                     </div>
                 </div>
@@ -137,28 +139,62 @@
 
                 var content = data.templateContent.filter((x) => x.ApplicationID == applicationID && x.TemplateContentID == templateContentChildID);
                 if (content != null && content != undefined && content.length > 0) {
-                    var video = document.getElementById('myVideo');
-                    video.src = pathContent + '/' + actualVersion + '/' + content[0].Media;
-                    video.play();
+                    if (content[0].Media.indexOff('.mp4') > 0) {
+                        var video = document.getElementById('myVideo');
+                        video.src = pathContent + '/' + actualVersion + '/' + content[0].Media;
+                        video.style.display = 'block'
+                        video.play();
+                    } else {
+                        var image = document.getElementById('myImage');
+                        image.src = pathContent + '/' + actualVersion + '/' + content[0].Media;
+                        image.style.display = 'block'
+                    }
+
+                    var title = document.getElementById('title');
+                    title.innerHTML = content[0].Title.replace('[ICO_AI]', '<img src="assets/img/galaxy-ai.png" style="max-width: 50px;margin-top: -5px;margin-left:5px;">');
+
+                    var subTitle = document.getElementById('sub-title');
+                    subTitle.innerHTML = content[0].SubTitle;
+
+                    var isHeaderColorWhite = 0;
+                    isHeaderColorWhite = content[0].IsHeaderColorWhite;
+
+                    var homeButtonImg = document.getElementById('home-button');
+                    if (homeButtonImg != undefined && homeButtonImg != null) {
+                        homeButtonImg.src = isHeaderColorWhite && isHeaderColorWhite == 1 ? 'assets/img/nav_home_white.svg' : 'assets/img/nav_home.svg';
+                    }
+
+                    if (isHeaderColorWhite && isHeaderColorWhite == 1) {
+                        var backButtonImg = document.getElementById('back-button');
+                        if (backButtonImg != undefined && backButtonImg != null) {
+                            backButtonImg.src = isHeaderColorWhite && isHeaderColorWhite == 1 ? 'assets/img/nav_back_white.png' : 'assets/img/nav_back.svg';
+                        }
+                    }
 
                     var headerText = document.getElementById('header-text');
                     if (headerText != '') {
-                        headerText.innerHTML = content[0].HeaderText;
+                        if (isHeaderColorWhite && isHeaderColorWhite == 1) {
+                            if (headerText.classList) {
+                                headerText.classList.remove('selecione');
+                                headerText.classList.add('selecione-black');
+                            }
+                        }
+                        headerText.innerHTML = '<h5 class="title-selecione title-descubra-galaxy-ai">' + content[0].HeaderText.replace('[ICO_AI]', '<img src="assets/img/ico-inteligencia.png" width="15">') + '</h5>';
                     }
 
                     var contentLink = document.getElementById('content-link');
 
-                    contentLink.href = 'feature-detail.html?storeID='+ storeID +'&tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[0].TemplateContentChildID + '&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink;
+                    contentLink.href = 'feature-detail-image.html?storeID=' + storeID + '&tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[0].TemplateContentChildID + '&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink;
 
                     if (tablet == 1 || tablet == '1') {
                         // var storeID = localStorage.getItem("store") != undefined && localStorage.getItem("store") != null ? localStorage.getItem("store") : '';
-                        Android.registerNavigation('1|'+ storeID, content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
+                        Android.registerNavigation('1|' + storeID, content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
                     }
                 }
 
                 if (!content[0].TemplateContentChildID) {
                     // Seleciona o botão pelo seu seletor de classe e aplica o estilo display: none
-                    document.querySelector('.button-play-next').style.display = 'none';
+                    document.querySelector('.button-next').style.display = 'none';
                 }
             }
         }

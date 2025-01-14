@@ -65,7 +65,13 @@
                         video.play();
 
                         var contentLink = document.getElementById('content-link');
-                        contentLink.href = 'feature-detail.html?storeID='+ storeID +'&tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[0].TemplateContentChildID + '&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink;
+                        var pageRef = 'feature-detail';
+
+                        if (content[0].PageTypeID == 13) {
+                            pageRef = 'feature-detail-image'
+                        }
+
+                        contentLink.href = pageRef +'.html?storeID='+ storeID +'&tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&pageTypeID=' + pageTypeID + '&templateContentChildID=' + content[0].TemplateContentChildID + '&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink;
 
                         if (tablet == 1 || tablet == '1') {
                             // var storeID = localStorage.getItem("store") != undefined && localStorage.getItem("store") != null ? localStorage.getItem("store") : '';

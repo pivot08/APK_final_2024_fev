@@ -59,6 +59,8 @@ html, body {
 
 .selecione {background: #000;border-bottom-left-radius: 30px;border-bottom-right-radius: 30px;max-height: 90%;text-align: center;max-height: 70px;}
 .title-selecione {color:#fff;margin:auto;font-size:19px;}
+.selecione-black {background: #fff;border-bottom-left-radius: 30px;border-bottom-right-radius: 30px;max-height: 90%;text-align: center;max-height: 70px;}
+.selecione-black .title-selecione {color:#000;margin:auto;font-size:19px;}
 .how-to .title-selecione {color:#fff;margin:auto;font-size:28px;}
 .title-selecione.parte2 {color:#fff;margin:auto;font-size:30px;}
 video {max-width: 100%;}
