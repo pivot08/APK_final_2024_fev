@@ -28,11 +28,14 @@
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-text' || (isset($pageTypeID) && $pageTypeID == "3") ? 'class="active"' : ''); ?>><a
 									href="template-content-list.php?pageTypeID=3"><span>Conteúdo páginas de Texto (feature
 										produtos)</span></a></li>
-							<li id="template-content-list" <?php echo ($urlPage == 'template-content-step-by-step' || (isset($pageTypeID) && $pageTypeID == "8") ? 'class="active"' : ''); ?>><a
-									href="template-content-list.php?pageTypeID=8"><span>Conteúdo Step By Step (eureka)</span></a>
+							<li id="template-content-list" <?php echo ($urlPage == 'template-content-step-by-step' || (isset($pageTypeID) && $pageTypeID == "8,13") ? 'class="active"' : ''); ?>><a
+									href="template-content-list.php?pageTypeID=8,13"><span>Conteúdo Step By Step (eureka)</span></a>
 							</li>
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-home-feature' || (isset($pageTypeID) && $pageTypeID == "7,12") ? 'class="active"' : ''); ?>><a
 									href="template-content-list.php?pageTypeID=7,12"><span>Conteúdo Vídeo Features
+										(eureka)</span></a></li>
+							<li id="template-content-list" <?php echo ($urlPage == 'template-content-specification' || (isset($pageTypeID) && $pageTypeID == "14") ? 'class="active"' : ''); ?>><a
+									href="template-content-list.php?pageTypeID=14"><span>Conteúdo Detalhe Especificação
 										(eureka)</span></a></li>
 							<li id="template-content-list" <?php echo ($urlPage == 'template-content-product-line' || (isset($pageTypeID) && $pageTypeID == "4") ? 'class="active"' : ''); ?>><a
 									href="template-content-list.php?pageTypeID=4"><span>Botões de Produto</span></a></li>

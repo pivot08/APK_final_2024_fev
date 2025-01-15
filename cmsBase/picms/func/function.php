@@ -42,6 +42,8 @@ $pageList = [
     ,
     "template-content-home-feature" => "Templates - Conteúdo"
     ,
+    "template-content-specification" => "Templates - Conteúdo"
+    ,
     "template-content-list" => "Lista de Templates - Conteúdo"
     ,
     "operator-template" => "Operadoras - Templates"
