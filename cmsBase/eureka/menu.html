@@ -36,7 +36,7 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body selecione d-flex align-items-center" id="header-text-card">
-                            <img src="assets/img/seta-preta.png" style="width: 100px;" class="seta-preta">
+                            <img src="assets/img/seta-preta.png" style="width: 100px;" class="seta-preta" id="arrow-header">
 
                             <div class="card-body selecione d-flex align-items-center" id="header-text">
                                 <h5 class="title-selecione title-descubra-galaxy-ai"></h5>
@@ -105,20 +105,26 @@
                     var isHeaderColorWhite = 0;
                     isHeaderColorWhite = template[0].IsHeaderColorWhite;
 
+                    var body = document.getElementById('content-body');
+                    body.style.backgroundColor = '#' + template[0].Color.replace('#', '');
+
                     var homeButtonImg = document.getElementById('home-button');
                     if (homeButtonImg != undefined && homeButtonImg != null) {
                         homeButtonImg.src = isHeaderColorWhite && isHeaderColorWhite == 1 ? 'assets/img/nav_home_white.png' : 'assets/img/nav_home.svg';
                     }
 
                     if (isHeaderColorWhite && isHeaderColorWhite == 1) {
+                        body.classList.add('bac-preto');
                         var backButtonImg = document.getElementById('back-button');
                         if (backButtonImg != undefined && backButtonImg != null) {
                             backButtonImg.src = isHeaderColorWhite && isHeaderColorWhite == 1 ? 'assets/img/nav_back_white.png' : 'assets/img/nav_back.svg';
                         }
-                    }
 
-                    var body = document.getElementById('content-body');
-                    body.style.backgroundColor = '#' + template[0].Color.replace('#', '');
+                        var arrow = document.getElementById('arrow-header');
+                        if (arrow != undefined && arrow != null) {
+                            arrow.src = isHeaderColorWhite && isHeaderColorWhite == 1 ? 'assets/img/seta-branca.png' : 'assets/img/seta-preta.png';
+                        }
+                    }
 
                     var headerText = document.getElementById('header-text');
                     if (headerText != '') {
