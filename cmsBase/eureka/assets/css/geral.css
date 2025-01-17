@@ -15,6 +15,10 @@ html, body {
 
 }
 
+.bac-preto .card {
+  background: #000;
+}
+
 .container-fluid {
     display: flex;
     flex-direction: column;
