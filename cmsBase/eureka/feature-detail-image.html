@@ -39,7 +39,8 @@
                 <div class="col-md-8">
                     <div class="card bac-preto">
                         <div class="card-body selecione d-flex align-items-center" id="header-text">
-                            <img src="assets/img/seta-branca.png" style="width: 100px;" class="seta-preta">
+                            <img src="assets/img/seta-branca.png" style="width: 100px;" class="seta-preta"
+                                id="arrow-header">
                         </div>
                     </div>
                 </div>
@@ -137,9 +138,9 @@
             if (xhrContent.readyState === 4 && xhrContent.status === 200) {
                 var data = JSON.parse(xhrContent.responseText);
 
-                var content = data.templateContent.filter((x) => x.ApplicationID == applicationID && x.TemplateContentID == templateContentChildID);
+                var content = data.templateContent.filter((x) => x.ApplicationID == applicationID && (x.TemplateID == templateChildID || x.TemplateContentID == templateContentChildID));
                 if (content != null && content != undefined && content.length > 0) {
-                    if (content[0].Media.indexOff('.mp4') > 0) {
+                    if (content[0].Media.indexOf('.mp4') > 0) {
                         var video = document.getElementById('myVideo');
                         video.src = pathContent + '/' + actualVersion + '/' + content[0].Media;
                         video.style.display = 'block'
@@ -155,7 +156,7 @@
 
                     var subTitle = document.getElementById('sub-title');
                     subTitle.innerHTML = content[0].SubTitle;
-                    
+
                     var body = document.getElementById('content-body');
                     body.style.backgroundColor = '#' + content[0].Color.replace('#', '');
 
@@ -164,14 +165,20 @@
 
                     var homeButtonImg = document.getElementById('home-button');
                     if (homeButtonImg != undefined && homeButtonImg != null) {
-                        homeButtonImg.src = isHeaderColorWhite && isHeaderColorWhite == 1 ? 'assets/img/nav_home_white.svg' : 'assets/img/nav_home.svg';
+                        homeButtonImg.src = isHeaderColorWhite && isHeaderColorWhite == 1 ? 'assets/img/nav_home_white.png' : 'assets/img/nav_home.svg';
                     }
 
                     if (isHeaderColorWhite && isHeaderColorWhite == 1) {
+                        body.classList.add('bac-preto');
                         var backButtonImg = document.getElementById('back-button');
                         if (backButtonImg != undefined && backButtonImg != null) {
                             backButtonImg.src = isHeaderColorWhite && isHeaderColorWhite == 1 ? 'assets/img/nav_back_white.png' : 'assets/img/nav_back.svg';
                         }
+                    }
+
+                    var arrow = document.getElementById('arrow-header');
+                    if (arrow != undefined && arrow != null) {
+                        arrow.src = isHeaderColorWhite && isHeaderColorWhite == 1 ? 'assets/img/seta-branca.png' : 'assets/img/seta-preta.png';
                     }
 
                     var headerText = document.getElementById('header-text');
@@ -193,11 +200,11 @@
                         // var storeID = localStorage.getItem("store") != undefined && localStorage.getItem("store") != null ? localStorage.getItem("store") : '';
                         Android.registerNavigation('1|' + storeID, content[0].TemplateID, content[0].TemplateContentID, formatDate(new Date()));
                     }
-                }
 
-                if (!content[0].TemplateContentChildID) {
-                    // Seleciona o botão pelo seu seletor de classe e aplica o estilo display: none
-                    document.querySelector('.button-next').style.display = 'none';
+                    if (!content[0].TemplateContentChildID) {
+                        // Seleciona o botão pelo seu seletor de classe e aplica o estilo display: none
+                        document.querySelector('.button-next').style.display = 'none';
+                    }
                 }
             }
         }

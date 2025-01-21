@@ -26,7 +26,7 @@
             <div class="row mx-auto" style="max-height: 70px;margin-bottom: 30px;">
                 <!-- Coluna 1 -->
                 <div class="col-md-2">
-                    <div class="card bac-preto">
+                    <div class="card">
                         <div class="card-body d-flex align-items-center">
                             <a
                                 href="index.html?tablet=1&path=&actualVersion=&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateContentID=22"><img
@@ -37,19 +37,19 @@
 
                 <!-- Coluna 2 -->
                 <div class="col-md-8">
-                    <div class="card bac-preto">
+                    <div class="card">
                         <div class="card-body selecione d-flex align-items-center" id="header-text">
-                            <img src="assets/img/seta-branca.png" style="width: 100px;" class="seta-preta">
+                            <img src="assets/img/seta-preta.png" style="width: 100px;" class="seta-preta" id="arrow-header">
                         </div>
                     </div>
                 </div>
 
                 <!-- Coluna 3 -->
                 <div class="col-md-2">
-                    <div class="card bac-preto">
+                    <div class="card">
 
                         <div class="card-body d-flex align-items-center">
-                            <a href="javascript:history.back(-1);"> <img src="assets/img/nav_back_white.png"
+                            <a href="javascript:history.back(-1);"> <img src="assets/img/nav_back.svg"
                                     class="svg-icone2" id="back-button"></a>
 
                         </div>
@@ -130,11 +130,11 @@
 
                 var content = data.templateContent.filter((x) => x.ApplicationID == applicationID && x.TemplateContentID == templateContentChildID);
                 if (content != null && content != undefined && content.length > 0) {
-                    var title = document.getElementById('title');
-                    title.innerHTML = content[0].Title.replace('[ICO_AI]', '<img src="assets/img/galaxy-ai.png" style="max-width: 50px;margin-top: -5px;margin-left:5px;">');
+                    // var title = document.getElementById('title');
+                    // title.innerHTML = content[0].Title.replace('[ICO_AI]', '<img src="assets/img/galaxy-ai.png" style="max-width: 50px;margin-top: -5px;margin-left:5px;">');
 
-                    var subTitle = document.getElementById('sub-title');
-                    subTitle.innerHTML = content[0].SubTitle;
+                    // var subTitle = document.getElementById('sub-title');
+                    // subTitle.innerHTML = content[0].SubTitle;
 
                     var body = document.getElementById('content-body');
                     body.style.backgroundColor = '#' + content[0].Color.replace('#', '');
@@ -148,10 +148,16 @@
                     }
 
                     if (isHeaderColorWhite && isHeaderColorWhite == 1) {
+                        body.classList.add('bac-preto');
                         var backButtonImg = document.getElementById('back-button');
                         if (backButtonImg != undefined && backButtonImg != null) {
                             backButtonImg.src = isHeaderColorWhite && isHeaderColorWhite == 1 ? 'assets/img/nav_back_white.png' : 'assets/img/nav_back.svg';
                         }
+                    }
+
+                    var arrow = document.getElementById('arrow-header');
+                    if (arrow != undefined && arrow != null) {
+                        arrow.src = isHeaderColorWhite && isHeaderColorWhite == 1 ? 'assets/img/seta-branca.png' : 'assets/img/seta-preta.png';
                     }
 
                     var headerText = document.getElementById('header-text');
@@ -165,7 +171,7 @@
                         headerText.innerHTML = '<h5 class="title-selecione title-descubra-galaxy-ai">' + content[0].HeaderText.replace('[ICO_AI]', '<img src="assets/img/ico-inteligencia.png" width="15">') + '</h5>';
                     }
 
-                    if (content[0].Media.indexOff('.mp4') > 0) {
+                    if (content[0].Media.indexOf('.mp4') > 0) {
                         var video = document.getElementById('myVideo');
                         video.src = pathContent + '/' + actualVersion + '/' + content[0].Media;
                         video.style.display = 'block'
@@ -176,6 +182,7 @@
                         image.style.display = 'block'
                     }
 
+                    var contentTarget = 'menu';
                     if (content[0].TemplateChildID != null && content[0].TemplateChildID != '0' && content[0].TemplateChildID != '') {
                         var slug = data.templateContent.filter((x) => x.TemplateID == content[0].TemplateChildID);
                         contentTarget = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : (content[0].PageTypeID == 13 ? 'feature-detail-image' : 'feature-full'));
@@ -187,9 +194,9 @@
                     }
 
                     var contentLink = document.getElementById('content-link');
-                    contentLink.href = contentTarget + '.html?storeID=' + storeID + '&tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&templateContentChildID=' + content[i].TemplateContentChildID + '&templateChildID=' + content[i].TemplateChildID + '&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink;
+                    contentLink.href = contentTarget + '.html?storeID=' + storeID + '&tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=' + applicationID + '&applicationSlug=' + applicationSlug + '&operatorUserID=' + operatorUserID + '&templateContentChildID=' + content[0].TemplateContentChildID + '&templateChildID=' + content[0].TemplateChildID + '&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink;
 
-                    if (content[0].CoverImage.indexOff('.mp4') > 0) {
+                    if (content[0].CoverImage.indexOf('.mp4') > 0) {
                         var videoButton = document.getElementById('myVideoButton');
                         videoButton.src = pathContent + '/' + actualVersion + '/' + content[0].CoverImage;
                         videoButton.style.display = 'block'

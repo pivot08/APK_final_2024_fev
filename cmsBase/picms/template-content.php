@@ -153,6 +153,9 @@ if (isset($_POST['copy'])) {
 		case 8:
 			$pageGoTo = "template-content-step-by-step.php";
 			break;
+		case 14:
+			$pageGoTo = "template-content-specification.php";
+			break;
 	}
 	header('location: '. $pageGoTo .'?id='. $newTemplateContentID);
 }

@@ -152,12 +152,12 @@
 
                         if (content[i].TemplateChildID != null && content[i].TemplateChildID != '0' && content[i].TemplateChildID != '') {
                             var slug = data.templateContent.filter((x) => x.TemplateID == content[i].TemplateChildID);
-                            contentTarget = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : (content[i].PageTypeID == 13 ? 'feature-detail-image' : 'feature-full'));
+                            contentTarget = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : (slug[0].PageTypeID && slug[0].PageTypeID == 13 ? 'feature-detail-image' : (slug[0].PageTypeID && slug[0].PageTypeID == 14 ? 'feature-detail-specification' : 'feature-full')));
                         }
 
                         if (content[i].TemplateContentChildID != null && content[i].TemplateContentChildID != '0' && content[i].TemplateContentChildID != '') {
                             var slug = data.templateContent.filter((x) => x.TemplateContentID == content[i].TemplateContentChildID);
-                            contentTarget = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : (content[i].PageTypeID == 13 ? 'feature-detail-image' : 'feature-full'));
+                            contentTarget = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : (slug[0].PageTypeID && slug[0].PageTypeID == 13 ? 'feature-detail-image' : (slug[0].PageTypeID && slug[0].PageTypeID == 14 ? 'feature-detail-specification' : 'feature-full')));
                         }
 
                         contentButton += '<div class="col-md-6 ">'

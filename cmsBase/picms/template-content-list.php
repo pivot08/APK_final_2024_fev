@@ -1,4 +1,4 @@
-<?php include ('func/function.php') ?>
+<?php include('func/function.php') ?>
 <?php
 $pageTypeID = 0;
 if (isset($_GET['pageTypeID'])) {
@@ -46,9 +46,9 @@ if (!isLoggedIn()) {
 <body>
 	<!-- CONTENT WRAPPER -->
 	<div id="app">
-		<?php include ('func/menu.php') ?>
+		<?php include('func/menu.php') ?>
 		<div class="content-wrapper">
-			<?php include ('func/nav_bar.php') ?>
+			<?php include('func/nav_bar.php') ?>
 			<div class="content">
 				<header class="page-header">
 					<div class="d-flex align-items-center">
@@ -114,6 +114,9 @@ if (!isLoggedIn()) {
 														case 8:
 															echo "template-content-step-by-step.php";
 															break;
+														case 14:
+															echo "template-content-specification.php";
+															break;
 													}
 													?>?pageTypeID=<?php echo $pageTypeID; ?>&id=<?php echo $row['TemplateContentID']; ?>">
 															<?php echo $row['TemplateContent']; ?>
@@ -143,7 +146,7 @@ if (!isLoggedIn()) {
 			</div>
 		</div>
 	</div>
-	<?php include ('func/footer.php') ?>
+	<?php include('func/footer.php') ?>
 </body>
 
 </html>
