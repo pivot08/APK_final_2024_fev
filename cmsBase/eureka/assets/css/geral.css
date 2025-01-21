@@ -124,8 +124,7 @@ h3.title-paradigma {
   display: flex;
   align-content: center;
   align-items: center;
-  justify-content: space-between;
-  
+  justify-content: flex-start;
   max-height: 200px;
   margin-top: -297px !important;
   z-index: 9999999;
