@@ -136,7 +136,7 @@
             if (xhrContent.readyState === 4 && xhrContent.status === 200) {
                 var data = JSON.parse(xhrContent.responseText);
 
-                var content = data.templateContent.filter((x) => x.ApplicationID == applicationID && (x.TemplateID == templateChildID || x.TemplateContentID == templateContentChildID));
+                var content = data.templateContent.filter((x) => x.ApplicationID == applicationID && ((templateChildID != undefined && templateChildID != null && x.TemplateID == templateChildID) || (templateContentChildID != undefined && templateContentChildID != null && x.TemplateContentID == templateContentChildID)));
                 if (content != null && content != undefined && content.length > 0) {
                     if (content[0].Media.indexOf('.mp4') > 0) {
                         var video = document.getElementById('myVideo');
