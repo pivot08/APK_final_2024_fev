@@ -112,6 +112,7 @@ if (!isLoggedIn()) {
 															echo "template-content-product-line.php";
 															break;
 														case 8:
+														case 13:
 															echo "template-content-step-by-step.php";
 															break;
 														case 14:
