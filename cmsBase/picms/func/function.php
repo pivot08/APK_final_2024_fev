@@ -1806,6 +1806,7 @@ function navigationControlList($offset, $limit)
         , nvc.DeviceModel
         , nvc.DeviceManufacturer
         , tbv.IsProduction
+        , DATE_FORMAT(tbv.DControl, '%d/%m/%Y %H:%i:%s') AS VersionDate
     FROM
         NavigationControl nvc
         INNER JOIN Action act ON nvc.ActionID = act.ActionID
@@ -1849,6 +1850,7 @@ function navigationControlByStoreList($offset, $limit)
         , nvc.DeviceModel
         , nvc.DeviceManufacturer
         , tbv.IsProduction
+        , DATE_FORMAT(tbv.DControl, '%d/%m/%Y %H:%i:%s') AS VersionDate
     FROM
         NavigationControl nvc
         INNER JOIN Action act ON nvc.ActionID = act.ActionID
@@ -1892,6 +1894,7 @@ function navigationControlByLocationList($offset, $limit)
         , nvc.DeviceModel
         , nvc.DeviceManufacturer
         , tbv.IsProduction
+        , DATE_FORMAT(tbv.DControl, '%d/%m/%Y %H:%i:%s') AS VersionDate
     FROM
         NavigationControl nvc
         INNER JOIN Action act ON nvc.ActionID = act.ActionID

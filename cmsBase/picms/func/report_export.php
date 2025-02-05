@@ -10,7 +10,7 @@ $file = fopen("report.xls", "w");
 
 // Escrever o cabeçalho do arquivo Excel (com BOM para UTF-8)
 fwrite($file, chr(0xEF) . chr(0xBB) . chr(0xBF)); // UTF-8 BOM
-fwrite($file, "Data;Acao;Aplicativo;Tipo;Template;Conteudo;Versao;Loja;Em Producao?;Dispositivo;Modelo\n");
+fwrite($file, "Data;Acao;Aplicativo;Tipo;Template;Conteudo;Versao;Loja;Data Versao;Em Producao?;Dispositivo;Modelo\n");
 
 // Variáveis de controle de paginação
 $offset = 0;
@@ -29,6 +29,7 @@ do {
            $line = $row["ActionDate"] . ";" . removeAccents($row["Action"]) . ";" . removeAccents($row["Application"]) . ";" . removeAccents($row["PageType"]) . ";" 
                    . removeAccents($row["Template"]) . ";" . removeAccents($row["TemplateContent"]) . ";" . $row["TabletVersion"] . ";" 
                    . $row["StoreCode"] . ' - ' . $row["StoreName"] . ";" 
+                   . $row["VersionDate"] . ";" 
                    . ($row['IsProduction'] == 1 ? 'Sim' : 'Não') . ";" . $row["DeviceID"] . ";" . $row["DeviceModel"] . "\n";
            
            // Escrever a linha no arquivo diretamente
