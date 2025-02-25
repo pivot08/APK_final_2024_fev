@@ -75,6 +75,12 @@ $pageList = [
     "navigation-control-location" => "Registro de Navegação - Localização"
     ,
     "store-list" => "Lojas"
+    ,
+    "report-control" => "Registro de Navegação"
+    ,
+    "report-control-store" => "Registro de Navegação - Lojas"
+    ,
+    "report-control-location" => "Registro de Navegação - Localização"
 ];
 $siteName = 'Samsung - Pop Interativo';
 $siteDomain = 'dpopinterativo.dev.br';
@@ -1779,6 +1785,142 @@ function generateOperatorZIPFile($fileName)
 
         $zip->close();
     }
+}
+
+function getFirstRecordDate() {
+    global $db;
+    $query = "SELECT MIN(ActionDate) AS FirstDate FROM NavigationControl";
+    $result = mysqli_query($db, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row['FirstDate'];
+}
+
+function getFirstRecordDateByStore() {
+    global $db;
+    $query = "SELECT MIN(ActionDate) AS FirstDate FROM NavigationControl WHERE StoreID IS NOT NULL";
+    $result = mysqli_query($db, $query);
+    $row = mysqli_fetch_assoc($result);
+    return $row['FirstDate'];
+}
+
+function getWeeklyRecords($startDate, $endDate) {
+    global $db;
+    $query = "
+    SELECT
+        DATE_FORMAT(nvc.ActionDate, '%d/%m/%Y %H:%i:%s') AS ActionDate,
+        act.Action,
+        apk.Application,
+        pgt.PageType,
+        tmp.Template,
+        tpc.TemplateContent,
+        nvc.TabletVersion,
+        str.StoreCode,
+        str.StoreName,
+        DATE_FORMAT(tbv.DControl, '%d/%m/%Y %H:%i:%s') AS VersionDate,
+        tbv.IsProduction,
+        nvc.DeviceID,
+        nvc.DeviceModel
+    FROM
+        NavigationControl nvc
+        INNER JOIN Action act ON nvc.ActionID = act.ActionID
+        INNER JOIN Template tmp ON nvc.TemplateID = tmp.TemplateID
+        INNER JOIN PageType pgt ON tmp.PageTypeID = pgt.PageTypeID
+        INNER JOIN Application apk ON tmp.ApplicationID = apk.ApplicationID
+        INNER JOIN TabletVersion tbv ON nvc.TabletVersion = tbv.TabletVersion
+        LEFT JOIN TemplateContent tpc ON nvc.TemplateContentID = tpc.TemplateContentID
+        LEFT JOIN Store str ON nvc.StoreID = str.StoreID
+    WHERE
+        nvc.ActionDate BETWEEN '$startDate' AND '$endDate'
+    ORDER BY
+        nvc.ActionDate ASC";
+
+    return mysqli_query($db, $query);
+}
+
+function getWeeklyRecordsByStore($startDate, $endDate) {
+    global $db;
+    $query = "
+    SELECT
+        nvc.NavigationControlID
+        , act.ActionID
+        , act.Action
+        , tmp.TemplateID
+        , tmp.Template
+        , pgt.PageTypeID
+        , pgt.PageType
+        , tpc.TemplateContentID
+        , tpc.TemplateContent
+        , apk.ApplicationID
+        , apk.Application
+        , DATE_FORMAT(nvc.ActionDate, '%d/%m/%Y %H:%i:%s') AS ActionDate
+        , nvc.TabletVersion
+        , str.StoreID
+        , str.CNPJ
+        , str.StoreCode
+        , str.StoreName
+        , nvc.DeviceID
+        , nvc.DeviceModel
+        , nvc.DeviceManufacturer
+        , tbv.IsProduction
+        , DATE_FORMAT(tbv.DControl, '%d/%m/%Y %H:%i:%s') AS VersionDate
+    FROM
+        NavigationControl nvc
+        INNER JOIN Action act ON nvc.ActionID = act.ActionID
+        INNER JOIN Template tmp ON nvc.TemplateID = tmp.TemplateID
+        INNER JOIN PageType pgt ON tmp.PageTypeID = pgt.PageTypeID
+        INNER JOIN Application apk ON tmp.ApplicationID = apk.ApplicationID
+        INNER JOIN TabletVersion tbv ON nvc.TabletVersion = tbv.TabletVersion
+        INNER JOIN Store str ON nvc.StoreID = str.StoreID
+        LEFT JOIN TemplateContent tpc ON nvc.TemplateContentID = tpc.TemplateContentID
+    WHERE
+        nvc.ActionDate BETWEEN '$startDate' AND '$endDate'
+    ORDER BY
+        nvc.ActionDate ASC";
+
+    return mysqli_query($db, $query);
+}
+
+function getWeeklyRecordsByLocation($startDate, $endDate) {
+    global $db;
+    $query = "
+    SELECT
+        nvc.NavigationControlID
+        , act.ActionID
+        , act.Action
+        , tmp.TemplateID
+        , tmp.Template
+        , pgt.PageTypeID
+        , pgt.PageType
+        , tpc.TemplateContentID
+        , tpc.TemplateContent
+        , apk.ApplicationID
+        , apk.Application
+        , DATE_FORMAT(nvc.ActionDate, '%d/%m/%Y %H:%i:%s') AS ActionDate
+        , nvc.TabletVersion
+        , str.Region
+        , str.State
+        , str.City
+        , str.Neighbor
+        , nvc.DeviceID
+        , nvc.DeviceModel
+        , nvc.DeviceManufacturer
+        , tbv.IsProduction
+        , DATE_FORMAT(tbv.DControl, '%d/%m/%Y %H:%i:%s') AS VersionDate
+    FROM
+        NavigationControl nvc
+        INNER JOIN Action act ON nvc.ActionID = act.ActionID
+        INNER JOIN Template tmp ON nvc.TemplateID = tmp.TemplateID
+        INNER JOIN PageType pgt ON tmp.PageTypeID = pgt.PageTypeID
+        INNER JOIN Application apk ON tmp.ApplicationID = apk.ApplicationID
+        INNER JOIN TabletVersion tbv ON nvc.TabletVersion = tbv.TabletVersion
+        INNER JOIN Store str ON nvc.StoreID = str.StoreID
+        LEFT JOIN TemplateContent tpc ON nvc.TemplateContentID = tpc.TemplateContentID
+    WHERE
+        nvc.ActionDate BETWEEN '$startDate' AND '$endDate'
+    ORDER BY
+        nvc.ActionDate ASC";
+
+    return mysqli_query($db, $query);
 }
 
 function navigationControlList($offset, $limit)

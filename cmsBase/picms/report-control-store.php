@@ -1,7 +1,53 @@
-<?php include ('func/function.php') ?>
+<?php include('func/function.php') ?>
 <?php if (!isLoggedIn()) {
 	header('location: auth.sign-in.php');
-} ?>
+}
+
+// Definir diretório onde os relatórios estão armazenados
+$reportDir = __DIR__ . "/func/report";
+
+// Criar a pasta "report" se não existir
+if (!is_dir($reportDir)) {
+    mkdir($reportDir, 0777, true);
+}
+
+// Função para listar os arquivos de relatório na pasta
+function getReportFiles($directory) {
+    $files = glob($directory . "/report-store_*.xls"); // Buscar arquivos no formato report_[numero_semana_ano].xls
+    $reports = [];
+
+    foreach ($files as $file) {
+        if (preg_match('/report-store_(\d+)_(\d+)\.xls$/', basename($file), $matches)) {
+            $weekNumber = $matches[1];
+            $year = $matches[2];
+
+            // Calcular a data de início e fim da semana
+            $startDate = new DateTime();
+            $startDate->setISODate($year, $weekNumber, 1); // Segunda-feira da semana
+            $endDate = clone $startDate;
+            $endDate->modify('+6 days'); // Domingo da semana
+
+            $reports[] = [
+                'week' => $weekNumber,
+                'year' => $year,
+                'startDate' => $startDate->format('d/m/Y'),
+                'endDate' => $endDate->format('d/m/Y'),
+                'file' => basename($file)
+            ];
+        }
+    }
+
+    // Ordenar por ano e semana (do mais recente para o mais antigo)
+    usort($reports, function ($a, $b) {
+        return ($b['year'] . $b['week']) <=> ($a['year'] . $a['week']);
+    });
+
+    return $reports;
+}
+
+// Obter a lista de relatórios
+$reports = getReportFiles($reportDir);
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,14 +84,14 @@
 <body>
 	<!-- CONTENT WRAPPER -->
 	<div id="app">
-		<?php include ('func/menu.php') ?>
+		<?php include('func/menu.php') ?>
 		<div class="content-wrapper">
-			<?php include ('func/nav_bar.php') ?>
+			<?php include('func/nav_bar.php') ?>
 			<div class="content">
 				<header class="page-header">
 					<div class="d-flex align-items-center">
 						<div class="mr-auto">
-							<h1 class="separator">Histórico</h1>
+							<h1 class="separator">Arquivos de Relatórios</h1>
 						</div>
 					</div>
 				</header>
@@ -53,37 +99,42 @@
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
-								<h5 class="card-header">Registro de Navegação</h5>
+								<h5 class="card-header">Registro de Navegação - Loja</h5>
 								<div class="card-body">
-									<table id="bsNavigation" class="table table-striped table-bordered" style="width:100%">
+									<table id="bs6-table" class="table table-striped table-bordered" style="width:100%">
 										<thead>
 											<tr>
-												<th>Data</th>
-												<th>Ação</th>
-												<th>Aplicativo</th>
-												<th>Tipo</th>
-												<th>Template</th>
-												<th>Conteúdo</th>
-												<th>Versão</th>
-												<th>Loja</th>
-												<th>Dispositivo</th>
-												<th>Modelo</th>
-												<th>Versão mais recente?</th>
+												<th>Número da Semana</th>
+												<th>Ano</th>
+												<th>Data de Início</th>
+												<th>Data de Fim</th>
+												<th>Download</th>
 											</tr>
 										</thead>
+										<tbody>
+											<?php if (!empty($reports)): ?>
+												<?php foreach ($reports as $report): ?>
+													<tr>
+														<td><?= $report['week'] ?></td>
+														<td><?= $report['year'] ?></td>
+														<td><?= $report['startDate'] ?></td>
+														<td><?= $report['endDate'] ?></td>
+														<td><a href="func/report/<?= $report['file'] ?>" download>Baixar</a></td>
+													</tr>
+												<?php endforeach; ?>
+											<?php else: ?>
+												<tr>
+													<td colspan="5">Nenhum relatório disponível.</td>
+												</tr>
+											<?php endif; ?>
+										</tbody>
 										<tfoot>
 											<tr>
-												<th>Data</th>
-												<th>Ação</th>
-												<th>Aplicativo</th>
-												<th>Tipo</th>
-												<th>Template</th>
-												<th>Conteúdo</th>
-												<th>Versão</th>
-												<th>Loja</th>
-												<th>Dispositivo</th>
-												<th>Modelo</th>
-												<th>Versão mais recente?</th>
+												<th>Número da Semana</th>
+												<th>Ano</th>
+												<th>Data de Início</th>
+												<th>Data de Fim</th>
+												<th>Download</th>
 											</tr>
 										</tfoot>
 									</table>
@@ -95,33 +146,7 @@
 			</div>
 		</div>
 	</div>
-	<?php include ('func/footer.php') ?>
-	<script>
-		$(document).ready(function () {
-			$('#bsNavigation').DataTable({
-				"processing": true,
-				"serverSide": true,
-				"ajax": {
-					"url": "func/navigation-control.php",
-					"type": "POST"
-				},
-				"columns": [
-					{ "data": "ActionDate" },         // Data
-					{ "data": "Action" },             // Ação
-					{ "data": "Application" },        // Aplicativo
-					{ "data": "PageType" },           // PageType
-					{ "data": "Template" },           // Template
-					{ "data": "TemplateContent" },    // Conteúdo
-					{ "data": "TabletVersion" },      // Versão
-					{ "data": "Store" },      			 // Loja
-					{ "data": "IsProduction" },       // Versão mais recente?
-					{ "data": "DeviceID" },           // Dispositivo
-					{ "data": "DeviceModel" }         // Modelo
-				]
-			});
-		});
-
-	</script>
+	<?php include('func/footer.php') ?>
 </body>
 
 </html>

@@ -65,7 +65,7 @@
 												<th>Device ID</th>
 												<th>ID da Versão</th>
 												<th>Data da Versão</th>
-												<th>Em Produção?</th>
+												<th>Versão mais recente?</th>
 											</tr>
 										</thead>
 										<tbody>
@@ -109,7 +109,7 @@
 												<th>Device ID</th>
 												<th>ID da Versão</th>
 												<th>Data da Versão</th>
-												<th>Em Produção?</th>
+												<th>Versão mais recente?</th>
 											</tr>
 										</tfoot>
 									</table>

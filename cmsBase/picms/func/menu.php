@@ -93,6 +93,20 @@
 					</li>
 				<?php } ?>
 				<?php if ($_SESSION['user']['UserTypeID'] == 1) { ?>
+					<li class="nav-dropdown <?php echo ($urlPage == 'report-control' || $urlPage == 'report-store' || $urlPage == 'report-control-location' ? 'active' : ''); ?>">
+						<a class="has-arrow" href="#" aria-expanded="true"><i
+								class="icon dripicons-meter"></i><span>RELATÓRIO - DOWNLOAD</span></a>
+						<ul class="collapse nav-sub">
+							<li id="report-control" <?php echo ($urlPage == 'report-control' ? 'class="active"' : ''); ?>><a
+									href="report-control.php"><span>Registro de Navegação</span></a></li>
+							<li id="report-control-store" <?php echo ($urlPage == 'report-control-store' ? 'class="active"' : ''); ?>><a
+									href="report-control-store.php"><span>Registro de Navegação - Loja</span></a></li>
+							<li id="report-control-location" <?php echo ($urlPage == 'report-control-location' ? 'class="active"' : ''); ?>><a
+									href="report-control-location.php"><span>Registro de Navegação - Localização</span></a></li>
+						</ul>
+					</li>
+				<?php } ?>
+				<?php if ($_SESSION['user']['UserTypeID'] == 1) { ?>
 					<li class="sidebar-header"><span>ADMIN</span></li>
 					<li
 						class="nav-dropdown <?php echo ($urlPage == 'lista-usuarios' || $urlPage == 'perfil' || $urlPage == 'unity-list' || $urlPage == 'unity' ? 'active' : ''); ?>">

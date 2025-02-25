@@ -5,44 +5,66 @@ function removeAccents($str) {
    return transliterator_transliterate('Any-Latin; Latin-ASCII', $str);
 }
 
-// Abrir arquivo para escrita
-$file = fopen("report.xls", "w");
+//Criar a pasta "report" se não existir
+$reportDir = __DIR__ . "/report";
+if (!is_dir($reportDir)) {
+    mkdir($reportDir, 0777, true);
+}
 
-// Escrever o cabeçalho do arquivo Excel (com BOM para UTF-8)
-fwrite($file, chr(0xEF) . chr(0xBB) . chr(0xBF)); // UTF-8 BOM
-fwrite($file, "Data;Acao;Aplicativo;Tipo;Template;Conteudo;Versao;Loja;Data Versao;Em Producao?;Dispositivo;Modelo\n");
+// Obter a data do primeiro registro
+$firstDate = getFirstRecordDate();
+if (!$firstDate) {
+    die("Nenhum registro encontrado na tabela.");
+}
 
-// Variáveis de controle de paginação
-$offset = 0;
-$limit = 10000; // Define quantos registros buscar por vez
+// Converter para o formato de data
+$firstDate = new DateTime($firstDate);
+$firstDate->modify('monday this week'); // Ajustar para a primeira segunda-feira anterior ou a mesma
 
-// Loop para buscar os dados paginados
-do {
-   // Consulta paginada ao banco de dados
-   $result = navigationControlList($offset, $limit); // Adaptar a função para aceitar offset e limit
+// Obter a data atual
+$today = new DateTime();
+$today->modify('sunday this week'); // Ajustar para o último domingo da semana atual
 
-   // Verificar se há resultados
-   if ($result->num_rows > 0) {
-       // Processar cada linha de resultado
-       while ($row = $result->fetch_assoc()) {
-           // Montar a linha para o arquivo Excel
-           $line = $row["ActionDate"] . ";" . removeAccents($row["Action"]) . ";" . removeAccents($row["Application"]) . ";" . removeAccents($row["PageType"]) . ";" 
-                   . removeAccents($row["Template"]) . ";" . removeAccents($row["TemplateContent"]) . ";" . $row["TabletVersion"] . ";" 
-                   . $row["StoreCode"] . ' - ' . $row["StoreName"] . ";" 
-                   . $row["VersionDate"] . ";" 
-                   . ($row['IsProduction'] == 1 ? 'Sim' : 'Não') . ";" . $row["DeviceID"] . ";" . $row["DeviceModel"] . "\n";
-           
-           // Escrever a linha no arquivo diretamente
-           fwrite($file, $line);
-       }
+// Loop por todas as semanas até a atual
+while ($firstDate <= $today) {
+    $startDate = $firstDate->format('Y-m-d 00:00:00');
+    $endDate = $firstDate->modify('+6 days')->format('Y-m-d 23:59:59');
 
-       // Incrementa o offset para buscar a próxima página de resultados
-       $offset += $limit;
-   }
-} while ($result->num_rows > 0); // Continua enquanto houver resultados
+    // Criar nome do arquivo baseado no número da semana e ano
+    $weekNumber = $firstDate->format('W');
+    $year = $firstDate->format('Y');
+    $filename = "$reportDir/report_{$weekNumber}_{$year}.xls";
 
-// Fechar o arquivo após completar a escrita
-fclose($file);
+    // Abrir arquivo para escrita
+    $file = fopen($filename, "w");
 
-echo "Arquivo Excel gerado com sucesso!";
+    // Escrever cabeçalho no arquivo Excel
+    fwrite($file, chr(0xEF) . chr(0xBB) . chr(0xBF)); // UTF-8 BOM
+    fwrite($file, "Data;Acao;Aplicativo;Tipo;Template;Conteudo;Versao;Loja;Data Versao;Dispositivo;Modelo;Versao mais recente?\n");
+
+    // Buscar registros da semana
+    $result = getWeeklyRecords($startDate, $endDate);
+
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            // Criar linha com os dados
+            $line = $row["ActionDate"] . ";" . removeAccents($row["Action"]) . ";" . removeAccents($row["Application"]) . ";" .
+                    removeAccents($row["PageType"]) . ";" . removeAccents($row["Template"]) . ";" . removeAccents($row["TemplateContent"]) . ";" .
+                    $row["TabletVersion"] . ";" . $row["StoreCode"] . " - " . $row["StoreName"] . ";" .
+                    $row["VersionDate"] . ";" .
+                    $row["DeviceID"] . ";" . $row["DeviceModel"] . ";" . ($row["IsProduction"] == 1 ? 'Sim' : 'Não') . "\n";
+
+            // Escrever no arquivo
+            fwrite($file, $line);
+        }
+    }
+
+    // Fechar o arquivo
+    fclose($file);
+
+    echo "Arquivo gerado: $filename\n";
+
+    // Avançar para a próxima semana
+    $firstDate->modify('+1 day');
+}
 ?>
