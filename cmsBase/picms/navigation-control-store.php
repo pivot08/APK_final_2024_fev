@@ -120,9 +120,9 @@
 					{ "data": "Template" },           // Template
 					{ "data": "TemplateContent" },    // Conteúdo
 					{ "data": "TabletVersion" },      // Versão
-					{ "data": "IsProduction" },       // Versão mais recente?
 					{ "data": "DeviceID" },           // Dispositivo
-					{ "data": "DeviceModel" }         // Modelo
+					{ "data": "DeviceModel" },         // Modelo
+					{ "data": "IsProduction" },       // Versão mais recente?
 				]
 			});
 		});
