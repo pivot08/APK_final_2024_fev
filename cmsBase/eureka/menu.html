@@ -36,7 +36,8 @@
                 <div class="col-md-8">
                     <div class="card">
                         <div class="card-body selecione d-flex align-items-center" id="header-text-card">
-                            <img src="assets/img/seta-preta.png" style="width: 100px;" class="seta-preta" id="arrow-header">
+                            <img src="assets/img/seta-preta.png" style="width: 100px;" class="seta-preta"
+                                id="arrow-header">
 
                             <div class="card-body selecione d-flex align-items-center" id="header-text">
                                 <h5 class="title-selecione title-descubra-galaxy-ai"></h5>
@@ -68,7 +69,7 @@
                 <div class="col-md-3"><a href="" id="link3"><img src="assets/img/bt-migracao-new25.png"></a></div>
                 <div class="col-md-3"><a href="" id="link4"><img src="assets/img/bt-try-new25.png"></a></div>
             </div>
-            
+
         </div>
 
     </div>
@@ -146,7 +147,7 @@
                                 headerText.classList.add('selecione-black');
                             }
                         }
-                        headerText.innerHTML = '<h5 class="title-selecione title-descubra-galaxy-ai">'+ template[0].HeaderText.replace('[ICO_AI]', '<img src="assets/img/ico-inteligencia.png" width="15">') +'</h5>';
+                        headerText.innerHTML = '<h5 class="title-selecione title-descubra-galaxy-ai">' + template[0].HeaderText.replace('[ICO_AI]', '<img src="assets/img/ico-inteligencia.png" width="15">') + '</h5>';
                     }
                 }
 
@@ -167,73 +168,71 @@
                             contentTarget = '../' + (slug != null && slug.length > 0 ? slug[0].ApplicationSlug : applicationSlug) + '/' + (slug != null && slug.length > 0 && slug[0].ApplicationSlug == 'dpop' ? 'content-buttons' : (slug[0].PageTypeID && slug[0].PageTypeID == 13 ? 'feature-detail-image' : (slug[0].PageTypeID && slug[0].PageTypeID == 14 ? 'feature-detail-specification' : 'feature-full')));
                         }
                         // Construção do link dinâmico
-    var link1 = "/dpop/content-text-institutional.html?pageTypeID=5" +
-        "&templateContentChildID=297" +
-        "&templateChildID=" +
-        "&storeID=" + storeID +
-        "&tablet=" + tablet +
-        "&path=" + path +
-        "&actualVersion=" + actualVersion +
-        "&applicationID=" + applicationID +
-        "&applicationSlug=" + applicationSlug +
-        "&operatorUserID=" + operatorUserID +
-        "&templateContentChildID=" + content[0].TemplateContentChildID +  // Pegando o primeiro item da array
-        "&templateChildID=" + content[0].TemplateChildID +
-        "&originLink=" + originLink +
-        "&homeOriginLink=" + homeOriginLink;
+                        var link1 = "../dpop/content-text-institutional.html?pageTypeID=5" +
+                            "&templateContentChildID=297" +
+                            "&templateChildID=" +
+                            "&storeID=" + storeID +
+                            "&tablet=" + tablet +
+                            "&path=" + path +
+                            "&actualVersion=" + actualVersion +
+                            "&applicationID=" + applicationID +
+                            "&applicationSlug=" + applicationSlug +
+                            "&operatorUserID=" + operatorUserID +
+                            "&templateContentChildID=" + content[0].TemplateContentChildID +  // Pegando o primeiro item da array
+                            "&templateChildID=" + content[0].TemplateChildID +
+                            "&originLink=" + originLink +
+                            "&homeOriginLink=" + homeOriginLink;
 
-        var link2 = "/dpop/content-text-institutional.html?pageTypeID=5" +
-        "&templateContentChildID=" +
-        "&templateChildID=147" +
-        "&storeID=" + storeID +
-        "&tablet=" + tablet +
-        "&path=" + path +
-        "&actualVersion=" + actualVersion +
-        "&applicationID=" + applicationID +
-        "&applicationSlug=" + applicationSlug +
-        "&operatorUserID=" + operatorUserID +
-        "&templateContentChildID=" + content[0].TemplateContentChildID +  // Pegando o primeiro item da array
-        "&templateChildID=" + content[0].TemplateChildID +
-        "&originLink=" + originLink +
-        "&homeOriginLink=" + homeOriginLink;
+                        var link2 = "../dpop/content-text-institutional.html?pageTypeID=5" +
+                            "&templateContentChildID=" +
+                            "&templateChildID=147" +
+                            "&storeID=" + storeID +
+                            "&tablet=" + tablet +
+                            "&path=" + path +
+                            "&actualVersion=" + actualVersion +
+                            "&applicationID=" + applicationID +
+                            "&applicationSlug=" + applicationSlug +
+                            "&operatorUserID=" + operatorUserID +
+                            "&templateContentChildID=" + content[0].TemplateContentChildID +  // Pegando o primeiro item da array
+                            "&templateChildID=" + content[0].TemplateChildID +
+                            "&originLink=" + originLink +
+                            "&homeOriginLink=" + homeOriginLink;
 
-        var link3 = "/dpop/content-text-institutional.html?pageTypeID=5" +
-        "&templateContentChildID=" +
-        "&templateChildID=151" +
-        "&storeID=" + storeID +
-        "&tablet=" + tablet +
-        "&path=" + path +
-        "&actualVersion=" + actualVersion +
-        "&applicationID=" + applicationID +
-        "&applicationSlug=" + applicationSlug +
-        "&operatorUserID=" + operatorUserID +
-        "&templateContentChildID=" + content[0].TemplateContentChildID +  // Pegando o primeiro item da array
-        "&templateChildID=" + content[0].TemplateChildID +
-        "&originLink=" + originLink +
-        "&homeOriginLink=" + homeOriginLink;
+                        var link3 = "../dpop/content-text-institutional.html?pageTypeID=5" +
+                            "&templateContentChildID=" +
+                            "&templateChildID=151" +
+                            "&storeID=" + storeID +
+                            "&tablet=" + tablet +
+                            "&path=" + path +
+                            "&actualVersion=" + actualVersion +
+                            "&applicationID=" + applicationID +
+                            "&applicationSlug=" + applicationSlug +
+                            "&operatorUserID=" + operatorUserID +
+                            "&templateContentChildID=" + content[0].TemplateContentChildID +  // Pegando o primeiro item da array
+                            "&templateChildID=" + content[0].TemplateChildID +
+                            "&originLink=" + originLink +
+                            "&homeOriginLink=" + homeOriginLink;
 
-        var link4 = "/dpop/content-text-institutional.html?pageTypeID=5" +
-        "&templateContentChildID=84" +
-        "&templateChildID=" +
-        "&storeID=" + storeID +
-        "&tablet=" + tablet +
-        "&path=" + path +
-        "&actualVersion=" + actualVersion +
-        "&applicationID=" + applicationID +
-        "&applicationSlug=" + applicationSlug +
-        "&operatorUserID=" + operatorUserID +
-        "&templateContentChildID=" + content[0].TemplateContentChildID +  // Pegando o primeiro item da array
-        "&templateChildID=" + content[0].TemplateChildID +
-        "&originLink=" + originLink +
-        "&homeOriginLink=" + homeOriginLink;
+                        var link4 = "../dpop/content-text-institutional.html?pageTypeID=5" +
+                            "&templateContentChildID=84" +
+                            "&templateChildID=" +
+                            "&storeID=" + storeID +
+                            "&tablet=" + tablet +
+                            "&path=" + path +
+                            "&actualVersion=" + actualVersion +
+                            "&applicationID=" + applicationID +
+                            "&applicationSlug=" + applicationSlug +
+                            "&operatorUserID=" + operatorUserID +
+                            "&templateContentChildID=" + content[0].TemplateContentChildID +  // Pegando o primeiro item da array
+                            "&templateChildID=" + content[0].TemplateChildID +
+                            "&originLink=" + originLink +
+                            "&homeOriginLink=" + homeOriginLink;
 
-    // Define o link gerado no atributo href do elemento <a>
-    document.getElementById("link1").href = link1;
-    document.getElementById("link2").href = link2;
-    document.getElementById("link3").href = link3;
-    document.getElementById("link4").href = link4;
-
-
+                        // Define o link gerado no atributo href do elemento <a>
+                        document.getElementById("link1").href = link1;
+                        document.getElementById("link2").href = link2;
+                        document.getElementById("link3").href = link3;
+                        document.getElementById("link4").href = link4;
 
                         contentButton += '<div class="col-md-6 ">'
                             + '    <div class="card">'
@@ -251,8 +250,8 @@
                             + '</div>';
                     }
 
-                    
-                        
+
+
                     var button = document.getElementById('container-buttons');
                     button.innerHTML = contentButton;
 
@@ -268,9 +267,9 @@
         xhrContent.open("GET", pathBaseFiles + '/' + (actualVersion != "" ? actualVersion : "content") + '.json');
         xhrContent.send(null);
 
-        
-               linkTemp.href = '../eureka/index.html?storeID='+ storeID +'&tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateContentID=459&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink;
-              
+
+        linkTemp.href = '../eureka/index.html?storeID=' + storeID + '&tablet=' + tablet + '&path=' + path + '&actualVersion=' + actualVersion + '&applicationID=2&applicationSlug=eureka&operatorUserID=undefined&pageTypeID=5&templateContentID=459&originLink=' + originLink + '&homeOriginLink=' + homeOriginLink;
+
     </script>
 </body>
 
